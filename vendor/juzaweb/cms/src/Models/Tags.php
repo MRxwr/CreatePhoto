@@ -3,6 +3,7 @@
 namespace Juzaweb\Models;
 
 use Juzaweb\Traits\UseSlug;
+use Spatie\Translatable\HasTranslations;
 
 /**
  * Juzaweb\Models\Tags
@@ -15,8 +16,10 @@ use Juzaweb\Traits\UseSlug;
 class Tags extends Model
 {
     use UseSlug;
+    use HasTranslations;
 
     protected $table = 'tags';
     protected $primaryKey = 'id';
+    public $translatable = ['name'];
     protected $fillable = ['name'];
 }

@@ -49,20 +49,20 @@ class CPostTest extends TestCase
 
     protected function indexTest($key)
     {
-        $response = $this->get('/admin-cp/' . $key);
+        $response = $this->get('/admin/' . $key);
 
         $response->assertStatus(200);
     }
 
     protected function createTest($key, $postType)
     {
-        $response = $this->get('/admin-cp/'. $key .'/create');
+        $response = $this->get('/admin/'. $key .'/create');
 
         $response->assertStatus(200);
 
         if ($post = $this->makerData($postType)) {
             $old = app($postType->get('model'))->count();
-            $this->post('/admin-cp/' . $key, $post);
+            $this->post('/admin/' . $key, $post);
             $new = app($postType->get('model'))->count();
             $this->assertEquals($old, ($new - 1));
         }
@@ -72,11 +72,11 @@ class CPostTest extends TestCase
     {
         if ($post = $this->makerData($postType)) {
             $model = app($postType->get('model'))->first(['id']);
-            $response = $this->get('/admin-cp/posts/' . $model->id . '/edit');
+            $response = $this->get('/admin/posts/' . $model->id . '/edit');
 
             $response->assertStatus(200);
 
-            $this->put('/admin-cp/'.$key.'/' . $model->id, $post);
+            $this->put('/admin/'.$key.'/' . $model->id, $post);
 
             $model = app($postType->get('model'))
                 ->where('id', '=', $model->id)

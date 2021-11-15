@@ -4,6 +4,7 @@ namespace Juzaweb\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Juzaweb\Traits\TaxonomyModel;
+use Spatie\Translatable\HasTranslations;
 
 /**
  * Juzaweb\Models\Taxonomy
@@ -44,9 +45,11 @@ use Juzaweb\Traits\TaxonomyModel;
 class Taxonomy extends Model
 {
     use TaxonomyModel;
+    use HasTranslations;
 
     protected $table = 'taxonomies';
     protected $slugSource = 'name';
+    public $translatable = ['name','description'];
     protected $fillable = [
         'name',
         'description',

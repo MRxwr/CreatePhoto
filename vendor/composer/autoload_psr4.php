@@ -67,7 +67,6 @@ return array(
     'Lcobucci\\JWT\\' => array($vendorDir . '/lcobucci/jwt/src'),
     'Laravel\\Tinker\\' => array($vendorDir . '/laravel/tinker/src'),
     'L5Swagger\\' => array($vendorDir . '/juzaweb/l5-swagger/src'),
-    'Juzaweb\\cms\\' => array($baseDir . '/app/juzaweb/cms/src'),
     'Juzaweb\\Tests\\' => array($vendorDir . '/juzaweb/cms/tests'),
     'Juzaweb\\' => array($vendorDir . '/juzaweb/cms/src'),
     'JsonSchema\\' => array($vendorDir . '/justinrainbow/json-schema/src/JsonSchema'),
@@ -107,5 +106,4 @@ return array(
     'Barryvdh\\Debugbar\\' => array($vendorDir . '/barryvdh/laravel-debugbar/src'),
     'Arcanedev\\Support\\' => array($vendorDir . '/arcanedev/support/src'),
     'Arcanedev\\LogViewer\\' => array($vendorDir . '/juzaweb/log-viewer/src'),
-    'App\\' => array($baseDir . '/app'),
 );

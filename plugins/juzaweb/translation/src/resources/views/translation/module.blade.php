@@ -5,7 +5,7 @@
     <div class="row mb-3">
         <div class="col-md-12">
             <div class="btn-group float-right">
-                <!-- <a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" data-target="#modal-add">{{ trans('juzaweb::app.add_language') }}</a> -->
+                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" data-target="#modal-add">{{ trans('juzaweb::app.add_language') }}</a>
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@
                             <label>{{ trans('juzaweb::app.language') }}</label>
                             
                             <select name="locale"  class="load-locales" data-placeholder="--- {{ trans('juzaweb::app.language') }} ---">
-
+                             
                             </select>
                         </div>
                     </div>

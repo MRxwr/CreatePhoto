@@ -15,7 +15,7 @@ class UpdateTest extends TestCase
 {
     public function testUpdateCms()
     {
-        $response = $this->post('admin-cp/updates', [
+        $response = $this->post('admin/updates', [
             '_token' => csrf_token(),
         ]);
 

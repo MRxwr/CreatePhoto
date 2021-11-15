@@ -29,7 +29,7 @@ class ADashboardTest extends TestCase
 
     public function testIndex()
     {
-        $response = $this->get('/admin-cp');
+        $response = $this->get('/admin');
 
         $response->assertStatus(200);
     }

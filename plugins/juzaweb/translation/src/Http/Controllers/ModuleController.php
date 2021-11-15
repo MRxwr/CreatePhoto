@@ -24,13 +24,15 @@ class ModuleController extends BackendController
             'title' => trans('juzaweb::app.translations'),
             'url' => route('admin.translations.index')
         ]);
-
+        
+      
         $data = Locale::getByKey($type);
-       
-        dd(get_config('locales'));
+       $locales = config('locales');
+        
         return view('jutr::translation.module', [
             'title' => $data->get('title'),
-            'type' => $type
+            'type' => $type,
+            'locales' => $locales
         ]);
     }
 

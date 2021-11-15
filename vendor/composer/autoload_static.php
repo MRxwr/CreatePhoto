@@ -137,7 +137,6 @@ class ComposerStaticInit3f60cc683beac6e9bb1a6cd9551f9b8c
         ),
         'J' => 
         array (
-            'Juzaweb\\cms\\' => 12,
             'Juzaweb\\Tests\\' => 14,
             'Juzaweb\\' => 8,
             'JsonSchema\\' => 11,
@@ -201,7 +200,6 @@ class ComposerStaticInit3f60cc683beac6e9bb1a6cd9551f9b8c
         array (
             'Arcanedev\\Support\\' => 18,
             'Arcanedev\\LogViewer\\' => 20,
-            'App\\' => 4,
         ),
     );
 
@@ -452,10 +450,6 @@ class ComposerStaticInit3f60cc683beac6e9bb1a6cd9551f9b8c
         array (
             0 => __DIR__ . '/..' . '/juzaweb/l5-swagger/src',
         ),
-        'Juzaweb\\cms\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/app/juzaweb/cms/src',
-        ),
         'Juzaweb\\Tests\\' => 
         array (
             0 => __DIR__ . '/..' . '/juzaweb/cms/tests',
@@ -611,10 +605,6 @@ class ComposerStaticInit3f60cc683beac6e9bb1a6cd9551f9b8c
         'Arcanedev\\LogViewer\\' => 
         array (
             0 => __DIR__ . '/..' . '/juzaweb/log-viewer/src',
-        ),
-        'App\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/app',
         ),
     );
 

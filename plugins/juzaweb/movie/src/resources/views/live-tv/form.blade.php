@@ -136,8 +136,8 @@
 
     <script type="text/javascript">
         CKEDITOR.replace('description', {
-            filebrowserImageBrowseUrl: '/admin-cp/filemanager?type=Images',
-            filebrowserBrowseUrl: '/admin-cp/filemanager?type=Files'
+            filebrowserImageBrowseUrl: '/admin/filemanager?type=Images',
+            filebrowserBrowseUrl: '/admin/filemanager?type=Files'
         });
     </script>
 @endsection

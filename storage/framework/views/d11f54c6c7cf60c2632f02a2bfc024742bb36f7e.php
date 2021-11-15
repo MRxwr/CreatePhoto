@@ -1,0 +1,1 @@
+<?php /**PATH C:\wamp64\www\github\CreatePhoto\themes/default/views/404.blade.php ENDPATH**/ ?>

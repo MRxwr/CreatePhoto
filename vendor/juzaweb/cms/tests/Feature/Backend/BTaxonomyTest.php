@@ -114,6 +114,6 @@ class BTaxonomyTest extends TestCase
 
     protected function getUrlTaxonomy($taxonomy)
     {
-        return '/admin-cp/' . str_replace('.', '/', $taxonomy->get('menu_slug'));
+        return '/admin/' . str_replace('.', '/', $taxonomy->get('menu_slug'));
     }
 }
