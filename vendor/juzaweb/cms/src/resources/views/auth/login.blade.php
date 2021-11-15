@@ -8,7 +8,7 @@
                 <div class="juzaweb__auth__containerInner">
                     <div class="text-center mb-5">
                         <h1 class="mb-5 px-3">
-                            <strong>{{ trans('juzaweb::message.login_form.welcome', ['name' => get_config('sitename', 'JUZAWEB')]) }}</strong>
+                            <strong>{{ trans('juzaweb::message.login_form.welcome', ['name' => get_config('sitename', 'Create CMS')]) }}</strong>
                         </h1>
 
                         <p class="mb-4">
@@ -55,7 +55,7 @@
 
                 <div class="mt-auto pb-5 pt-5">
                     <div class="text-center">
-                        Copyright © {{ date('Y') }} {{ get_config('sitename') }} - Provided by JUZAWEB
+                        Copyright © {{ date('Y') }} {{ get_config('sitename') }} - Provided by Create CMS
                     </div>
                 </div>
             </div>

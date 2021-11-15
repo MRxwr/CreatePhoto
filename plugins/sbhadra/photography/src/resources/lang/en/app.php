@@ -5,6 +5,7 @@ return [
     'packages'=>'Packages',
     'package'=>'Package',
     'price'=>'price',
+    'types'=>'Types',
     'currency'=>'Currency',
     'bookings'=>'Bookings',
     'service'=>'Service',

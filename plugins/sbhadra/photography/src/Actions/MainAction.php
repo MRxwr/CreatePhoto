@@ -44,8 +44,8 @@ class MainAction extends Action
     }
     public function registerTaxonomies()
     {
-        HookAction::registerTaxonomy('services', 'packages', [
-            'label' => trans('sbph::app.services'),
+        HookAction::registerTaxonomy('types', 'packages', [
+            'label' => trans('sbph::app.types'),
             'menu_position' => 6, 
         ]);
 
