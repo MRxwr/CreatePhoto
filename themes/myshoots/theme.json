@@ -6,6 +6,7 @@
   "version": "1.0",
   "parent": "",
   "require": {
-    "sbhadra/bookings": "^1.0"
+    "sbhadra/photography": "^1.0",
+    "sbhadra/slider": "^1.0"
   }
 }
