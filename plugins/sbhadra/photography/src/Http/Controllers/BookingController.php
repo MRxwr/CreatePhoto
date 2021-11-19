@@ -13,7 +13,7 @@ class BookingController extends BackendController
    
     use PostTypeController;
 
-    protected $viewPrefix = 'sbph::backend.package'; // View prefix for resource
+    protected $viewPrefix = 'sbph::backend.booking'; // View prefix for resource
 
     // Make validator for store and update
     protected function validator(array $attributes)

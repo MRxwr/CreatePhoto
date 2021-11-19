@@ -15,8 +15,10 @@ class CreateTimeslotsTable extends Migration
     {
         Schema::create('timeslots', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('title', 250);
+            $table->string('slug', 250)->unique()->index();
             $table->string('starttime', 250);
-            $table->string('endttime', 250);
+            $table->string('endtime', 250);
             $table->string('status', 50)->default('no');
             $table->timestamps();
         });

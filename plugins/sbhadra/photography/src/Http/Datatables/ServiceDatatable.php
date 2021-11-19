@@ -26,7 +26,7 @@ class ServiceDatatable extends PostTypeDataTable
         return [
             'thumbnail' => [
                 'label' => trans('sbph::app.thumbnail'),
-                'width' => '10%',
+                'width' => '7%',
                 'formatter' => function ($value, $row, $index) {
                     return '<img src="'. $row->getThumbnail() .'" class="w-100" />';
                 }
@@ -34,6 +34,12 @@ class ServiceDatatable extends PostTypeDataTable
             'title' => [
                 'label' => trans('sbph::app.name'),
                 'formatter' => [$this, 'rowActionsFormatter']
+            ],
+            'price' => [
+                'label' => trans('sbph::app.price'),
+                'formatter' => function ($value, $row, $index) {
+                    return $row->price;
+                }
             ],
             'created_at' => [
                 'label' => trans('sbph::app.created_at'),
@@ -47,7 +53,6 @@ class ServiceDatatable extends PostTypeDataTable
                 'label' => trans('sbph::app.actions'),
                 'width' => '15%',
                 'sortable' => false
-                
             ]
         ];
     }

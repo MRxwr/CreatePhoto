@@ -7,19 +7,25 @@
     <div class="container" style="max-width: 1340px;">
       <div class="row">
         <div class="col-12">
-          <h2 class="shoots-Head">باقاتنا</h2>
+          <h2 class="shoots-Head">Our Packages</h2>
         </div>
       </div>
       <div class="row no-gutters">
-          <!-- Package Div Start -->
+              <!-- Package Div Start -->
            <div class="col-md-6 col-sm-6 col-12">
               <a href="index51ce.html?page=reservations&amp;id=6">
               <div class="package-card card m-2">
                 <div class="card-body p-2">
                   <div class="row align-items-center no-gutters">
+                  
                     <div class="col-lg-7 col-md-8 col-sm-12 order-lg-1 order-md-1 order-sm-2 order-2">
-                    <h5 class="package-head">التصوير العائلي</h5>
-                      <ul><li>يشمل تصوير الأم والأب مع الأبناء</li><li>عدد 10 لقطات مطبوعه حجم 13*18</li><li>صور جماعيه وصور فرديه لكل طفل في ثيمات تصوير بسيطه كلاسيكيه</li></ul>         
+                    <h5 class="package-head">Family  Package</h5>
+                      <ul>
+                    <li>Includes parents with their kids.</li><li>10 edited photos and print size (13x18)</li><li>Classic and simple themes</li>
+                  </ul>                      <!--                       <h5></h5>
+                      <ul class="list-unstyled">
+						                                   </ul>
+                       -->
                       <p class="theme-color package-price-tag text-right"><span>Price:</span><span class="ml-2">85 KD</span></p>
                     </div>
                     <div class="col-lg-5 col-md-4 order-lg-3 order-md-2 order-sm-1 order-1">
@@ -39,10 +45,14 @@
                   <div class="row align-items-center no-gutters">
                   
                     <div class="col-lg-7 col-md-8 col-sm-12 order-lg-1 order-md-1 order-sm-2 order-2">
-                    <h5 class="package-head">اللقطات المتنوعة</h5>
+                    <h5 class="package-head">Themes Package</h5>
                       <ul>
-                    </ul><p></p><ul><li>تشمل الجلسه 10 لقطات</li><li>طباعة الصور حجم 18*13 في عدد 3 ثيمات مختلفة</li><li>يتوفر الثيم مع اللبس و الاكسسوارات للأطفال من عمر 3 شهور الى 5 سنوات</li><li>البكج للطفل الواحد</li><li>في حال اخذ البكج للأخوه ستحسب رسوم اضافيه ٥ دك لكل طفل .</li></ul><ul>
-                  </ul>                   
+                    <li>10 photos in 3 different themes.</li>
+                    <li>- printed size 18 * 13.</li><li>Customes are included.</li></ul><ul>
+                  </ul>                      <!--                       <h5></h5>
+                      <ul class="list-unstyled">
+						                                   </ul>
+                       -->
                       <p class="theme-color package-price-tag text-right"><span>Price:</span><span class="ml-2">80 KD</span></p>
                     </div>
                     <div class="col-lg-5 col-md-4 order-lg-3 order-md-2 order-sm-1 order-1">
@@ -53,16 +63,22 @@
               </div>
               </a>
             </div>
-          <!-- Package Div End -->
+        <!-- Package Div End -->
           <!-- Package Div Start -->
            <div class="col-md-6 col-sm-6 col-12">
               <a href="index3146.html?page=reservations&amp;id=9">
               <div class="package-card card m-2">
                 <div class="card-body p-2">
                   <div class="row align-items-center no-gutters">
+                  
                     <div class="col-lg-7 col-md-8 col-sm-12 order-lg-1 order-md-1 order-sm-2 order-2">
-                    <h5 class="package-head">الحوامل</h5>
-                      <ul><li>يشمل تصوير الأم في ثيم خاص على حسب جنس الجنين (ولد او بنت )&nbsp;</li><li>عدد 8 لقطات مطبوعه</li><li>ممكن تصوير الأبناء و الزوج مع الأم الحامل</li></ul>    
+                    <h5 class="package-head">Pregnancy package</h5>
+                      <ul>
+                    <li>Session at studio up to 60 minutes.<br></li><li>Your choice of one of our pregnancy themes (Gender reveal themes)</li><li>Cake (boy or girl)&nbsp;</li><li>Balloons&nbsp;</li><li>Includes 8 pictures of the pregnant mommy with her husband and kids .</li></ul><ul>
+                  </ul>                      <!--                       <h5></h5>
+                      <ul class="list-unstyled">
+						                                   </ul>
+                       -->
                       <p class="theme-color package-price-tag text-right"><span>Price:</span><span class="ml-2">80 KD</span></p>
                     </div>
                     <div class="col-lg-5 col-md-4 order-lg-3 order-md-2 order-sm-1 order-1">
@@ -73,16 +89,20 @@
               </div>
               </a>
             </div>
-          <!-- Package Div End -->
+        <!-- Package Div End -->
           <!-- Package Div Start -->
            <div class="col-md-6 col-sm-6 col-12">
               <a href="index3685.html?page=reservations&amp;id=13">
               <div class="package-card card m-2">
                 <div class="card-body p-2">
                   <div class="row align-items-center no-gutters">
+                  
                     <div class="col-lg-7 col-md-8 col-sm-12 order-lg-1 order-md-1 order-sm-2 order-2">
-                    <h5 class="package-head">VIP العيد ميلاد</h5>
-                      <ul><li>جلسة تصوير تشمل ٨ لقطات&nbsp;</li><li>طباعة الصور معدله حجم (١٣*١٨)&nbsp;</li><li>كيك&nbsp;</li><li>اختيار عدد ثيم واحد فقط خاص للعيدميلاد&nbsp;</li><li>توفير اللبس والاكسسوارات&nbsp;</li></ul><br><br>    
+                    <h5 class="package-head">Birthday Package VIP</h5>
+                      <ul><li>Session at studio up to 50 minutes photography.&nbsp;</li><li>Your choice of one of our birthday themes.</li><li>Cake and balloons&nbsp;</li><li>8 edited photos print size (13 x 18)&nbsp;</li><li>Outfit is included. (Optional)</li></ul>                      <!--                       <h5></h5>
+                      <ul class="list-unstyled">
+						                                   </ul>
+                       -->
                       <p class="theme-color package-price-tag text-right"><span>Price:</span><span class="ml-2">80 KD</span></p>
                     </div>
                     <div class="col-lg-5 col-md-4 order-lg-3 order-md-2 order-sm-1 order-1">
@@ -93,7 +113,7 @@
               </div>
               </a>
             </div>
-            <!-- Package Div End -->
+        <!-- Package Div End -->
           <!-- Package Div Start -->
            <div class="col-md-6 col-sm-6 col-12">
               <a href="indexd80a.html?page=reservations&amp;id=14">
@@ -102,9 +122,11 @@
                   <div class="row align-items-center no-gutters">
                   
                     <div class="col-lg-7 col-md-8 col-sm-12 order-lg-1 order-md-1 order-sm-2 order-2">
-                    <h5 class="package-head">VVIP العيد ميلاد</h5>
-                      <ul><li>جلسة تصوير تشمل 10 لقطات&nbsp;</li><li>طباعة الصور معدله حجم ١٣*١٨</li><li>كيك&nbsp;</li></ul><ul><li>اختيار عدد ثيم واحد خاص للعيدميلاد</li><li>يشمل تصوير الطفل مع الأم و الأب</li></ul><br><br>                    
-
+                    <h5 class="package-head">Birthday Package VVIP</h5>
+                      <ul><li>Session at studio up to 50 minutes photography. </li><li>Your choice of one of our birthday themes.</li><li>Cake and balloons </li><li>10 edited photos print size (13 x 18)&nbsp;</li><li>Includes photos with parents in the same theme.</li><li>Digital copy via whatsapp.</li></ul>                      <!--                       <h5></h5>
+                      <ul class="list-unstyled">
+						                                   </ul>
+                       -->
                       <p class="theme-color package-price-tag text-right"><span>Price:</span><span class="ml-2">100 KD</span></p>
                     </div>
                     <div class="col-lg-5 col-md-4 order-lg-3 order-md-2 order-sm-1 order-1">
@@ -124,8 +146,8 @@
                   <div class="row align-items-center no-gutters">
                   
                     <div class="col-lg-7 col-md-8 col-sm-12 order-lg-1 order-md-1 order-sm-2 order-2">
-                    <h5 class="package-head">Golden العيد ميلاد</h5>
-                      <ul><li>جلسة تصوير تتضمن 12 لقطه &nbsp;للطفل مطبوعه في البوم حجم 13*18</li><li>لوحة خشبية للتعليق</li><li>فلاش ميموري بالصور المختاره فقط</li><li>كيك و بلونات</li><li>ثيم من اختياركم للعيدميلاد&nbsp;</li><li>يشمل تصوير الطفل مع الأم و الأب</li></ul><br>                      <!--                       <h5></h5>
+                    <h5 class="package-head">Birthday Package Golden</h5>
+                      <br><ul><li>Session at studio up to 60 minutes photography. </li><li>Your choice of one of birthday themes.</li><li>Cake and balloons.</li><li>12 edited photos on digital album printed book size ( 13*18) cm landscape.&nbsp;</li><li>1 wood panel from your 12 photos .</li><li>Flash memory of only the selected 12 photos of this package, high resolution , edited in jpg format (No raw files).</li><li>Outfit is included. (Optional)</li><li>Photos with Parents Are allowed</li></ul>                      <!--                       <h5></h5>
                       <ul class="list-unstyled">
 						                                   </ul>
                        -->
@@ -148,8 +170,8 @@
                   <div class="row align-items-center no-gutters">
                   
                     <div class="col-lg-7 col-md-8 col-sm-12 order-lg-1 order-md-1 order-sm-2 order-2">
-                    <h5 class="package-head">التخرج</h5>
-                      <ul><li>عدد ١٠ صور مطبوعه حجم ١٣*١٨&nbsp;</li><li>كيكه وبلونات خاصه في ثيم التخرج&nbsp;</li></ul>                      <!--                       <h5></h5>
+                    <h5 class="package-head">Graduation Package</h5>
+                      <br><ul><li>Session at studio up to 40minutes photography. </li><li>In our graduation theme.&nbsp;</li><li>Cake and balloons.&nbsp;</li><li>10 edited photos print size (13 x 18).</li></ul>                      <!--                       <h5></h5>
                       <ul class="list-unstyled">
 						                                   </ul>
                        -->
@@ -173,7 +195,7 @@
     <div class="container" style="max-width: 1340px;">
       <div class="row">
         <div class="col-12">
-          <h2 class="shoots-Head">تابعنا بالإنستجرام</h2>
+          <h2 class="shoots-Head">Follow Us on Instagram</h2>
         </div>
       </div>
     </div>
@@ -184,7 +206,7 @@
     <div class="container" style="max-width: 1340px;">
       <div class="row">
         <div class="col-12">
-          <h2 class="shoots-Head">من نحن</h2>
+          <h2 class="shoots-Head">About Us</h2>
         </div>
       </div>
     </div>
@@ -196,7 +218,7 @@
         <div class="col-md-5 p-3 p-md-5">
           <h2 class="mb-5">Photography</h2>
           <h5 class="mb-4">Creative Photography Theme</h5>
-                          <p class="about-para"><p><b></b><i></i>Myshoots by Ghalia ! since 2012 </p><p>The Kids Photographer is all about timeless and creative photography.&nbsp;</p><p>We believe that beautiful kids photography should be something that it cherished and handed down from generation to generation.&nbsp;</p><p>Something that we show our children and their children as they grow, and a way to capture a moment in time that passes ever so quickly.</p><p>&nbsp;Our creative team is constantly setting new trends, creating beautiful new poses and designing new props to compliment your little cuties,&nbsp;</p><p>and help you create memories that will last a lifetime.<i></i><b></b></p></p>
+                          <p class="about-para"><p><b></b>Myshoots by Ghalia ! since 2012&nbsp;</p><p>The Kids Photographer is all about timeless and creative photography. </p><p>We believe that beautiful kids photography should be something that it cherished and handed down from generation to generation.</p>Something that we show our children and their children as they grow, and a way to capture a moment in time that passes ever so quickly.<p>&nbsp;Our creative team is constantly setting new trends, creating beautiful new poses and designing new props to compliment your little cuties,</p><p>and help you create memories that will last a lifetime.<b></b><br></p></p>
           <a href="index8e23.html?page=galleries" class="btn btn-lg btn-outline-secondary px-5 mt-5">Gallery</a>
         </div>
       </div>

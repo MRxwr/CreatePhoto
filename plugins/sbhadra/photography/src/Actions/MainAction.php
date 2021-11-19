@@ -6,7 +6,9 @@ use Illuminate\Support\Arr;
 use Juzaweb\Abstracts\Action;
 use Juzaweb\Facades\HookAction;
 use Sbhadra\Photography\Models\Package;
+use Sbhadra\Photography\Models\Service;
 use Sbhadra\Photography\Models\Booking;
+use Sbhadra\Photography\Models\Timeslot;
 
 class MainAction extends Action
 {
@@ -31,6 +33,18 @@ class MainAction extends Action
             'menu_position' => 32,
             'menu_icon' => 'fa fa-list',
         ]);
+        HookAction::registerPostType('services', [
+            'label' => trans('sbph::app.services'),
+            'model' => Service::class,
+            'menu_position' => 34,
+            'menu_icon' => 'fa fa-list',
+        ]);
+        HookAction::registerPostType('timeslots', [
+            'label' => trans('sbph::app.timeslots'),
+            'model' => Timeslot::class,
+            'menu_position' => 34,
+            'menu_icon' => 'fa fa-list',
+        ]);
     }
 
     public function registerBooking()
@@ -38,7 +52,7 @@ class MainAction extends Action
         HookAction::registerPostType('bookings', [
             'label' => trans('sbph::app.bookings'),
             'model' => Booking::class,
-            'menu_position' => 33,
+            'menu_position' => 36,
             'menu_icon' => 'fa fa-list',
         ]);
     }

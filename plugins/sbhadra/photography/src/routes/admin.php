@@ -13,3 +13,5 @@
 
 Route::postTypeResource('packages', 'PackageController');
 Route::Resource('services', 'ServiceController');
+Route::Resource('timeslots', 'TimeslotController');
+Route::Resource('bookings', 'BookingController');

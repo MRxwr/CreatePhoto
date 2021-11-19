@@ -12,7 +12,7 @@ class Service extends Model
     use PostTypeModel;
     use HasTranslations;
     protected $table = 'services';
-    public $translatable = ['title','description','content'];
+    public $translatable = ['title','description'];
     protected $postType = 'services';
     protected $fillable = [
         'title',

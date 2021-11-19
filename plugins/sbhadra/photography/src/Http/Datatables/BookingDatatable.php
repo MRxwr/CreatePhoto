@@ -1,11 +1,11 @@
 <?php
 
-namespace Sbhadra\Slider\Http\Datatables;
+namespace Sbhadra\Photography\Http\Datatables;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Juzaweb\Http\Datatables\PostTypeDataTable;
-use Sbhadra\Slider\Models\Slider;
+use Sbhadra\Photography\Models\Booking;
 
 class BookingDatatable extends PostTypeDataTable
 {
@@ -24,13 +24,7 @@ class BookingDatatable extends PostTypeDataTable
     public function columns()
     {
         return [
-            'thumbnail' => [
-                'label' => trans('sbsl::app.thumbnail'),
-                'width' => '10%',
-                'formatter' => function ($value, $row, $index) {
-                    return '<img src="'. $row->getThumbnail() .'" class="w-100" />';
-                }
-            ],
+            
             'title' => [
                 'label' => trans('sbsl::app.name'),
                 'formatter' => [$this, 'rowActionsFormatter']
@@ -60,7 +54,7 @@ class BookingDatatable extends PostTypeDataTable
      */
     public function query($data)
     {
-        $query = Slider::query();
+        $query = Booking::query();
         if ($keyword = Arr::get($data, 'keyword')) {
             $query->where(function (Builder $q) use ($keyword) {
                 $q->where('title', 'like', '%'. $keyword .'%');
@@ -75,7 +69,7 @@ class BookingDatatable extends PostTypeDataTable
     {
         switch ($action) {
             case 'delete':
-                Slider::destroy($ids);
+                Booking::destroy($ids);
                 break;
         }
     }

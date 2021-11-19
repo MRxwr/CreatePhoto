@@ -11,12 +11,12 @@ class Package extends Model
     use PostTypeModel;
     use HasTranslations;
     protected $table = 'packages';
-    public $translatable = ['title','description','content'];
+    public $translatable = ['title','content'];
     protected $postType = 'packages';
     protected $fillable = [
         'title',
         'thumbnail',
-        'description',
+        'content',
         'slug',
         'is_extra',
         'time',

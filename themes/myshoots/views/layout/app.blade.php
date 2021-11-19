@@ -20,24 +20,24 @@
     @endif
 
     <title>{{ $title }}</title>
-    <link href="jw-styles/themes/myshoots/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom fonts for this template -->
-<link href="jw-styles/themes/myshoots/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-<link href="jw-styles/themes/myshoots/assets/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+<link href="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link href="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
-    <link href="jw-styles/cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style-nrtl7f56.css?az=2">
+    <link href="{{asset('/')}}jw-styles/cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{asset('/')}}assets/css/style-nrtl7f56.css?az=2">
   <!--Owl Carousel CSS-->
-<link rel="stylesheet" href="jw-styles/themes/myshoots/assets/vendor/owlcarousel/owl.carousel.css">
-<link rel="stylesheet" href="jw-styles/themes/myshoots/assets/vendor/owlcarousel/owl.theme.default.css">
+<link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/owlcarousel/owl.carousel.css">
+<link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/owlcarousel/owl.theme.default.css">
   <!--Lightbox gallery-->
-<link rel="stylesheet" href="jw-styles/themes/myshoots/assets/css/lightbox.min.css">
+<link rel="stylesheet" href="{{asset('/')}}/jw-styles/themes/myshoots/assets/css/lightbox.min.css">
 <!-- Custom styles for this template -->
-<link href="jw-styles/themes/myshoots/assets/css/landing-page9830.css?y=2" rel="stylesheet">
+<link href="{{asset('/')}}jw-styles/themes/myshoots/assets/css/landing-page9830.css?y=2" rel="stylesheet">
 
        <!-- Data table CSS -->
-  <link href="admin/assets/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>	
+  <link href="{{asset('/')}}admin/assets/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>	
 
     <style>
     td.disabled.day {
@@ -65,12 +65,12 @@
 
     @include('theme::footer')
  <!-- Bootstrap core JavaScript -->
- <script src="jw-styles/themes/myshoots/assets/vendor/jquery/jquery.min.js"></script>
-  <script src="jw-styles/themes/myshoots/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="jw-styles/themes/myshoots/assets/vendor/js/lightbox-plus-jquery.min.js"></script>
+ <script src="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/js/lightbox-plus-jquery.min.js"></script>
     <!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript" src="/cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="/cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/> 
+<script type="text/javascript" src="https:/cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/> 
 <style>
     .datepicker-inline{
        width: 100%;
@@ -92,11 +92,11 @@
         container: container,
         todayHighlight: true,
         daysOfWeekDisabled: [4,5,6],
-        datesDisabled: ["11-11-2021","02-11-2021","08-12-2021","14-11-2021","29-12-2021","04-06-2021","01-06-2021","16-06-2021","02-06-2021","06-06-2021","22-06-2021","09-06-2021","21-06-2021","08-06-2021","13-06-2021","20-06-2021","15-06-2021","11-04-2021","28-03-2021","12-04-2021","12-04-2021","09-05-2021","27-01-2021","27-01-2021","28-04-2021","25-01-2021","29-03-2021","30-03-2021","31-03-2021","01-04-2021"],
+        datesDisabled: [""],
         autoclose: true,
         //startDate: truncateDate(new Date()),
         startDate: new Date(2021,07,01),
-	    endDate: new Date(2021,12,01),
+	      endDate: new Date(2021,12,01),
         icons: {
                     time: "fa fa-clock-o",
                     date: "fa fa-calendar",
@@ -143,9 +143,9 @@ function truncateDate(date) {
         });
     });
   </script> -->
-  <script src="assets/vendor/js/jquery.payform.min.js"></script>
-  <script src="assets/vendor/js/script.js"></script>
-  <script src="assets/vendor/owlcarousel/owl.carousel.js"></script>
+  <script src="{{asset('/')}}assets/vendor/js/jquery.payform.min.js"></script>
+  <script src="{{asset('/')}}assets/vendor/js/script.js"></script>
+  <script src="{{asset('/')}}assets/vendor/owlcarousel/owl.carousel.js"></script>
   <script>
      $(document).ready(function() {
        $('.instagram-carousel').owlCarousel({
@@ -203,8 +203,8 @@ function truncateDate(date) {
 
     </script>
         	<!-- Data table JavaScript -->
-	<script src="admin/assets/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-	<script src="admin/assets/style/dist/js/dataTables-data.js"></script>
+	<script src="{{asset('/')}}admin/assets/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="{{asset('/')}}admin/assets/style/dist/js/dataTables-data.js"></script>
    
 <script>
 $(document).ready(function(){

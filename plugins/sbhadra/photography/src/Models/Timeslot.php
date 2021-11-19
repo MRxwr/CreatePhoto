@@ -12,7 +12,10 @@ class Timeslot extends Model
     use PostTypeModel;
     use HasTranslations;
     protected $table = 'timeslots';
+    protected $postType = 'timeslots';
     protected $fillable = [
+        'title',
+        'slug',
         'starttime',
         'endtime',
         'status',

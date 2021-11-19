@@ -4,11 +4,13 @@ namespace Sbhadra\Photography\Providers;
 
 use Juzaweb\Support\ServiceProvider;
 use Sbhadra\Photography\Actions\MainAction;
+use Illuminate\Support\Facades\Schema;
 
 class PhotographyServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        Schema::defaultStringLength(191);
         $this->registerAction([
             MainAction::class
         ]);

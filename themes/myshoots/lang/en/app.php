@@ -15,8 +15,10 @@
 return [
     'filter_movies' => 'Filter movies',
     'home' => 'Home',
-    'player_reload' => 'Player reload',
-    'player_loading' => 'Player loading...',
+    'contact-us' => 'Contact us',
+    'reservations' => 'Reservations',
+    'reservations-check' => 'Reservations Check',
+    'reservations-confirm' => 'Reservations Confirm',
     'add_to_bookmark' => 'Add to bookmark',
     'player_autonext' => 'Player autonext...',
     'press_enter_to_search' => 'Press Enter to search',

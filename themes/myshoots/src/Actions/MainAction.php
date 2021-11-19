@@ -56,6 +56,22 @@ class MainAction extends Action
             'name' => trans('theme::app.home'),
             'view' => 'templates.home',
         ]);
+        HookAction::registerThemeTemplate('home', [
+            'name' => trans('theme::app.home'),
+            'view' => 'templates.home',
+        ]);
+        HookAction::registerThemeTemplate('contact-us', [
+            'name' => trans('theme::app.contact-us'),
+            'view' => 'templates.contact-us',
+        ]);
+        HookAction::registerThemeTemplate('reservations', [
+            'name' => trans('theme::app.reservations'),
+            'view' => 'templates.reservations',
+        ]);
+        HookAction::registerThemeTemplate('reservations-check', [
+            'name' => trans('theme::app.reservations-check'),
+            'view' => 'templates.reservations-check',
+        ]);
     }
 
     public function registerSidebars()
@@ -73,17 +89,17 @@ class MainAction extends Action
 
     public function registerWidgets()
     {
-        HookAction::registerWidget('slider_movie', [
-            'label' => trans('theme::app.slider_movie'),
-            'description' => trans('theme::app.slider_movie_description'),
-            'widget' => new SliderMovie(),
-        ]);
+        // HookAction::registerWidget('slider_movie', [
+        //     'label' => trans('theme::app.slider_movie'),
+        //     'description' => trans('theme::app.slider_movie_description'),
+        //     'widget' => new SliderMovie(),
+        // ]);
 
-        HookAction::registerWidget('genre_movie', [
-            'label' => trans('theme::app.genre_movie'),
-            'description' => trans('theme::app.genre_movie_description'),
-            'widget' => new GenreMovie(),
-        ]);
+        // HookAction::registerWidget('genre_movie', [
+        //     'label' => trans('theme::app.genre_movie'),
+        //     'description' => trans('theme::app.genre_movie_description'),
+        //     'widget' => new GenreMovie(),
+        // ]);
 
         HookAction::registerWidget('slider', [
             'label' => trans('theme::app.slider'),
@@ -91,10 +107,10 @@ class MainAction extends Action
             'widget' => new SliderWidget(),
         ]);
 
-        HookAction::registerWidget('popular_movies', [
-            'label' => trans('theme::app.popular_movies'),
-            'description' => trans('theme::app.popular_movies_description'),
-            'widget' => new PopularWidget(),
-        ]);
+        // HookAction::registerWidget('popular_movies', [
+        //     'label' => trans('theme::app.popular_movies'),
+        //     'description' => trans('theme::app.popular_movies_description'),
+        //     'widget' => new PopularWidget(),
+        // ]);
     }
 }

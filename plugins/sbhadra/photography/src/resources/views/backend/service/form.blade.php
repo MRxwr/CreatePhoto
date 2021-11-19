@@ -12,7 +12,7 @@
                     'required' => true,
                     'class' => empty($model->slug) ? 'generate-slug' : '',
                 ]) }}
-
+                
                 {{ Field::editor($model, 'content') }}
 
                 @do_action('post_type.'. $postType .'.form.left')
@@ -24,11 +24,8 @@
                 {{ Field::select($model, 'status', [
                     'options' => $model->getStatuses()
                 ]) }}
-
+                {{ Field::text($model, 'price') }}
                 {{ Field::image($model, 'thumbnail') }}
-
-                {{ Field::slug($model, 'slug') }}
-
                 @do_action('post_type.'. $postType .'.form.right', $model)
             </div>
         </div>
