@@ -44,6 +44,14 @@ class MainAction extends Action
         });
     }
 
+
+    public function addHeaderSlider()
+    {
+        $this->addAction('theme.slider', function () {
+            echo e(view('theme::components.header_script'));
+        });
+    }
+
     public function addStyles()
     {
         //HookAction::enqueueFrontendScript('main', 'assets/js/main.js');
