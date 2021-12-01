@@ -10,8 +10,10 @@
         {!! $post->getContent() !!}                                
         <h5>Extra Charges</h5>
         <ul class="list-unstyled">
-						<li>- Add photo 5 KD.</li><li>- Add small album 25 KD.</li>
-            <li>- Add big album 35 KD.</li><li>- Add flash memory 5 KD.</li>
+						<li>- Add photo 5 KD.</li>
+            <li>- Add small album 25 KD.</li>
+            <li>- Add big album 35 KD.</li>
+            <li>- Add flash memory 5 KD.</li>
             <li>- Brothers Package 5 KD.</li>                      
           </ul>
         </div>
@@ -23,6 +25,7 @@
           <div class="row d-md-flex align-items-end">
             <div class="col-md-8">
               <div class="form-group"> <!-- Date input -->
+                <input type="hidden" name="package_id" id="package_id" value="{{ $post->id }}">
                 <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text" disabled />
                 <div id="bookingdate"></div>
               </div>

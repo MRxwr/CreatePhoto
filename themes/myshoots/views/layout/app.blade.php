@@ -118,8 +118,9 @@ function truncateDate(date) {
 	 $(document).ready(function(){
 		  $('#booknow').click(function(){
 		 var date = $("#date").val();
+     var package_id = $("#package_id").val();
 		 if(date != ""){
-		  window.location.href = "index82e1.html?page=personal-information&amp;id=16&amp;date="+date;
+		  window.location.href = "{{url('/reservations')}}?id="+package_id+"&date="+date;
 		 } else{
 			alert("Please select date!"); 
 			return false;

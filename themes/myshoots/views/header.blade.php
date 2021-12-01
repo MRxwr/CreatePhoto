@@ -10,23 +10,23 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto mx-md-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="{{url('/')}}">Home</a>
+          <a class="nav-link" href="{{url('/')}}">@lang('theme::app.home')</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{url('/galleries')}}">Gallery</a>
+          <a class="nav-link" href="{{url('/galleries')}}">@lang('theme::app.gallery')</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{url('/reservations-check')}}">Reservations</a>
+          <a class="nav-link" href="{{url('/reservations-check')}}">@lang('theme::app.reservations')</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{url('/contact-us')}}">Contact Us</a>
+          <a class="nav-link" href="{{url('/contact-us')}}">@lang('theme::app.contact-us')</a>
         </li>
         <li class="nav-item dropdown d-block d-lg-none">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           en          </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{url('/')}}?lang=ar">Arabic</a>
-            <a class="dropdown-item" href="{{url('/')}}?lang=en">English</a> 
+            <a class="dropdown-item" href="{{url('/')}}?lang=ar">@lang('theme::app.arabic')</a>
+            <a class="dropdown-item" href="{{url('/')}}?lang=en">@lang('theme::app.english')</a> 
           </div>
         </li>
       </ul>
@@ -37,8 +37,8 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">en</a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item ar" id="lang_ar" href="{{url('/')}}?lang=ar">Arabic</a>
-          <a class="dropdown-item en" id="lang_en" href="{{url('/')}}?lang=en">English</a>
+          <a class="dropdown-item ar" id="lang_ar" href="{{url('/')}}?lang=ar">@lang('theme::app.arabic')</a>
+          <a class="dropdown-item en" id="lang_en" href="{{url('/')}}?lang=en">@lang('theme::app.english')</a>
           </div>
         </li>
       </ul>
