@@ -35,8 +35,7 @@
     <div class="d-none d-lg-block">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          en          </a>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">en</a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <a class="dropdown-item ar" id="lang_ar" href="{{url('/')}}?lang=ar">Arabic</a>
           <a class="dropdown-item en" id="lang_en" href="{{url('/')}}?lang=en">English</a>
@@ -56,37 +55,7 @@
           <a href="{{url('/')}}" title="{{ get_config('title') }}"><img src="{{ upload_url(get_config('logo')) }}" title="{{ get_config('title') }}" class="w-75 img-fluid .d-sm-none .d-md-block mx-auto py-4"></a>
         </div>
         <div class="col-md-7">
-          <div id="demo" class="carousel slide" data-ride="carousel">
-
-            <!-- Indicators -->
-            <ul class="carousel-indicators">
-                        <li data-target="#demo" data-slide-to="0"  class="active" ></li>
-                        <li data-target="#demo" data-slide-to="1" ></li>
-                        <li data-target="#demo" data-slide-to="2" ></li>
-                        </ul>
-          
-            <!-- The slideshow -->
-            <div class="carousel-inner">
-			              <div class="carousel-item   active ">
-                <img src="uploads/images/925786-52496E58-1732-4965-82AD-7B5E0CEF83B4.jpg" class="img-fluid d-block mx-auto" alt="">
-              </div>
-                            <div class="carousel-item  ">
-                <img src="uploads/images/932085-2F77769D-4807-4FD3-B6D2-D1AC09BD134E.jpg" class="img-fluid d-block mx-auto" alt="">
-              </div>
-                            <div class="carousel-item  ">
-                <img src="uploads/images/865304-F2C0F8A1-3D7E-4361-A994-2CE026A89D83.jpg" class="img-fluid d-block mx-auto" alt="">
-              </div>
-                          </div>
-          
-            <!-- Left and right controls -->
-            <a class="carousel-control-prev" href="#demo" data-slide="prev">
-              <span class="carousel-control-prev-icon"></span>
-            </a>
-            <a class="carousel-control-next" href="#demo" data-slide="next">
-              <span class="carousel-control-next-icon"></span>
-            </a>
-          
-          </div>
+           @do_action('theme.slider')
         </div>
       </div>
     </div>

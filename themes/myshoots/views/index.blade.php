@@ -12,6 +12,7 @@
       </div>
       <div class="row no-gutters">
               <!-- Package Div Start -->
+              @do_action('theme.home_packages')
            <div class="col-md-6 col-sm-6 col-12">
               <a href="index51ce.html?page=reservations&amp;id=6">
               <div class="package-card card m-2">
