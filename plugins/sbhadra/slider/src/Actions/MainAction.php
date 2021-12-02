@@ -34,6 +34,7 @@ class MainAction extends Action
     {
        
         $this->addAction('theme.slider', function () {
+            
             $sliders = Slider::where('status','publish')->get();
             //var_dump($sliders);
             

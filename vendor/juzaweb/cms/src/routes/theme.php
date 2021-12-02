@@ -58,3 +58,4 @@ Route::match(['get', 'post'], 'search', 'Frontend\SearchController@index')->name
 Route::match(['get', 'post'], 'search/ajax', 'Frontend\SearchController@ajaxSearch')->name('ajax.search');
 Route::post('{base}/{slug}', 'Frontend\PostController@comment')->name('comment');
 Route::get('{slug?}', 'Frontend\RouteController@index')->where('slug', '.*');
+Route::get('{slug?}', 'Frontend\RouteController@index')->where('slug', '.*');

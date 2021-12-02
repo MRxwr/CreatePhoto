@@ -45,6 +45,11 @@ class LocaleController extends BackendController
         ]);
     }
 
+    public function setLang(Request $request)
+    {
+        dd($request);
+    }
+
     public function save(Request $request, $type, $locale)
     {
         $data = Locale::getByKey($type);
