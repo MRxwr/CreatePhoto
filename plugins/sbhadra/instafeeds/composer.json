@@ -1,0 +1,23 @@
+{
+    "name": "sbhadra/instafeeds",
+    "description": "",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sbhadra\\Instafeeds\\Providers\\InstafeedsServiceProvider"
+            ],
+            "aliases": {}
+        },
+        "juzaweb": {
+            "name": "sbhadra/instafeeds",
+            "domain": "sbin",
+            "cms_min": "1.0.9",
+            "version": "1.0"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Sbhadra\\Instafeeds\\": "src/"
+        }
+    }
+}

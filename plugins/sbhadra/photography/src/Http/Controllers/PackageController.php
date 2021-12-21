@@ -9,6 +9,7 @@ use Sbhadra\Photography\Http\Datatables\PackageDatatable;
 use Sbhadra\Photography\Models\Package;
 use Sbhadra\Photography\Models\Service;
 use Sbhadra\Photography\Models\Timeslot;
+use Illuminate\Http\Request;
 
 class PackageController extends BackendController
 {
@@ -20,7 +21,7 @@ class PackageController extends BackendController
     public function form($id = null) {
         $model = Package::firstOrNew(['id' => $id]);
         $services = Service::all();
-        $timeslots = Timeslot::all();
+        $timeslots = Timeslot::all();  
         return view('sbph::backend.package.form', [
             'model' => $model,
             'services' => $services,
@@ -29,6 +30,48 @@ class PackageController extends BackendController
         ]);
     }
 
+    public function create($id = null) {
+        $model = Package::firstOrNew(['id' => $id]);
+        $services = Service::all();
+        $timeslots = Timeslot::all();  
+        //dd($services);
+        return view('sbph::backend.package.form', [
+            'model' => $model,
+            'services' => $services,
+            'timeslots' => $timeslots,
+            'postType'=>'package',
+            'title' => $model->name ?: trans('sbph::app.add_new')
+        ]);
+    }
+    public function edit($id = null) {
+        $model = Package::firstOrNew(['id' => $id]);
+        $services = Service::all();
+        $timeslots = Timeslot::all();  
+        //dd($services);
+        return view('sbph::backend.package.form', [
+            'model' => $model,
+            'services' => $services,
+            'timeslots' => $timeslots,
+            'postType'=>'package',
+            'title' => $model->name ?: trans('sbph::app.add_new')
+        ]);
+    }
+    protected function afterSave(Request $request, $model){
+        $model->services()->sync($request->services);
+        $model->slots()->sync($request->slots);
+       }
+    
+      protected function afterUpdate(Request $request, $model){
+         // dd($request->services);
+        $model->services()->sync($request->services);
+        $model->slots()->sync($request->slots);
+      }
+    protected function beforeUpdate(Request $request, $model, ...$params)
+    {
+        //
+    }
+
+ 
     // Make validator for store and update
     protected function validator(array $attributes)
     {

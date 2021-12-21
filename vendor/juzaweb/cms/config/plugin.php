@@ -14,6 +14,7 @@ return [
         'files' => [
             'routes/admin' => 'src/routes/admin.php',
             'routes/api' => 'src/routes/api.php',
+            'routes/web' => 'src/routes/web.php',
             'views/index' => 'src/resources/views/index.blade.php',
             'lang/en' => 'src/resources/lang/en/content.php',
             'composer' => 'composer.json',
@@ -23,6 +24,7 @@ return [
         'replacements' => [
             'routes/admin' => ['LOWER_NAME', 'STUDLY_NAME'],
             'routes/api' => ['LOWER_NAME'],
+            'routes/web' => ['LOWER_NAME'],
             'webpack' => ['LOWER_NAME'],
             'json' => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE', 'PROVIDER_NAMESPACE'],
             'views/index' => ['LOWER_NAME'],

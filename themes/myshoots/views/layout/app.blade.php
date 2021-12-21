@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" dir ="{{(app()->getLocale()=='ar'?'rtl':'ltr' )}}" >
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,23 +22,23 @@
     <title>{{ $title }}</title>
     <link href="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Custom fonts for this template -->
-<link href="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-<link href="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
-    <link href="{{asset('/')}}jw-styles/cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css" rel="stylesheet">
+  <!-- Custom fonts for this template -->
+  <link href="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  @if(app()->getLocale()=='ar')
+  <link href="{{asset('/')}}jw-styles/cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css" rel="stylesheet">
   <link rel="stylesheet" href="{{asset('/')}}assets/css/style-nrtl7f56.css?az=2">
-  <!--Owl Carousel CSS-->
-<link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/owlcarousel/owl.carousel.css">
-<link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/owlcarousel/owl.theme.default.css">
+  @endif
+    <!--Owl Carousel CSS-->
+  <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/owlcarousel/owl.carousel.css">
+  <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/owlcarousel/owl.theme.default.css">
   <!--Lightbox gallery-->
-<link rel="stylesheet" href="{{asset('/')}}/jw-styles/themes/myshoots/assets/css/lightbox.min.css">
+  <link rel="stylesheet" href="{{asset('/')}}/jw-styles/themes/myshoots/assets/css/lightbox.min.css">
 <!-- Custom styles for this template -->
-<link href="{{asset('/')}}jw-styles/themes/myshoots/assets/css/landing-page9830.css?y=2" rel="stylesheet">
-
+  <link href="{{asset('/')}}jw-styles/themes/myshoots/assets/css/landing-page9830.css?y=2" rel="stylesheet">
        <!-- Data table CSS -->
   <link href="{{asset('/')}}admin/assets/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>	
-
     <style>
     td.disabled.day {
     color: #e7888c!important; 
@@ -65,11 +65,11 @@
 
     @include('theme::footer')
  <!-- Bootstrap core JavaScript -->
- <script src="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/jquery/jquery.min.js"></script>
   <script src="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/js/lightbox-plus-jquery.min.js"></script>
     <!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript" src="https:/cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+  <script type="text/javascript" src="https:/cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/> 
 <style>
     .datepicker-inline{
@@ -103,7 +103,6 @@
                     up: "fa fa-arrow-up",
                     down: "fa fa-arrow-down"
                 },
-      
       };
       date_input.datepicker(options).on('changeDate', showTestDate);
       function showTestDate(){

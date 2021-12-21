@@ -21,4 +21,8 @@ class Service extends Model
         'price',
         'status',
     ];
+    public function packages()
+    {
+        return $this->belongsToMany('Sbhadra\Photography\Models\Package');
+    }
 }

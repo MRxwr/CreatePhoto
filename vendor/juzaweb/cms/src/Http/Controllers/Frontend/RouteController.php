@@ -16,19 +16,30 @@ namespace Juzaweb\Http\Controllers\Frontend;
 
 use Illuminate\Support\Facades\App;
 use Juzaweb\Http\Controllers\FrontendController;
+use Illuminate\Support\Facades\Route;
 
 class RouteController extends FrontendController
 {
     public function index($slug = null)
     {
+        $routeCollection = Route::getRoutes();
+        //dd($routeCollection);
+        $routes = [];
+        $currentRoute = $slug;
+        // foreach ($routeCollection  as $route){
+        //     if (strpos($route->uri, $currentRoute) !== false){
+        //        dd($route);
+        //         //$routes[] = $route->uri;
+        //     }
+        // }
         $slug = explode('/', $slug);
         $base = apply_filters('theme.permalink.base', $slug[0], $slug);
         $permalink = $this->getPermalinks($base);
-
+        //dd($permalink);
         if ($permalink && $callback = $permalink->get('callback')) {
             return $this->callController($callback, 'index', $slug);
         }
-
+        do_action('theme.call_controller', $callback='PageController', $method='index', $slug);
         return $this->callController(
             PageController::class,
             'index',

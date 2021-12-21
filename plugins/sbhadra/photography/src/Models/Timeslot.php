@@ -20,4 +20,8 @@ class Timeslot extends Model
         'endtime',
         'status',
     ];
+    public function packages()
+    {
+        return $this->belongsToMany('Sbhadra\Photography\Models\Package');
+    }
 }

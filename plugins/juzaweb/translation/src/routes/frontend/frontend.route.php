@@ -1,4 +1,4 @@
 <?php
 
-Route::get('setlocal', 'LocaleController@setLang')->name('setlocal');
+Route::get('setlocal', 'LangsController@index')->name('setlocal');
 

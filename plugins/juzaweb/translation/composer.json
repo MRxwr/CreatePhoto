@@ -4,7 +4,9 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Juzaweb\\Translation\\Providers\\TranslationServiceProvider"
+                "Juzaweb\\Translation\\Providers\\TranslationServiceProvider",
+                "Juzaweb\\Translation\\Providers\\RouteServiceProvider"
+
             ]
         },
         "juzaweb": {

@@ -25,6 +25,7 @@ Route::group([
     Route::post('register', 'Auth\RegisterController@register');
     Route::post('forgot-password', 'Auth\ForgotPasswordController@forgotPassword');
     Route::post('reset-password', 'Auth\ResetPasswordController@resetPassword');
+    
 });
 
 Route::group([
@@ -54,8 +55,14 @@ Route::group([
 Route::match(['get', 'post'], 'ajax/{slug}', 'Frontend\AjaxController@ajax')->name('ajax');
 
 Route::get('/', 'Frontend\HomeController@index')->name('home');
+Route::post('/payment', 'Frontend\PaymentController@index')->name('payment');
+Route::get('/payment/success', 'Frontend\PaymentController@getSuccess')->name('payment.success');
+Route::get('/payment/failed', 'Frontend\PaymentController@getFailed')->name('payment.failed');
+
 Route::match(['get', 'post'], 'search', 'Frontend\SearchController@index')->name('search');
 Route::match(['get', 'post'], 'search/ajax', 'Frontend\SearchController@ajaxSearch')->name('ajax.search');
 Route::post('{base}/{slug}', 'Frontend\PostController@comment')->name('comment');
+
+  
 Route::get('{slug?}', 'Frontend\RouteController@index')->where('slug', '.*');
-Route::get('{slug?}', 'Frontend\RouteController@index')->where('slug', '.*');
+//Route::get('{slug?}', 'Frontend\RouteController@index')->where('slug', '.*');

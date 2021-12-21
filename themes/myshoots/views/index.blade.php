@@ -17,17 +17,9 @@
     </div>
   </section>
   <!--Package End-->
-  <section class="pb-0">
-    <div class="container" style="max-width: 1340px;">
-      <div class="row">
-        <div class="col-12">
-          <h2 class="shoots-Head">@lang('theme::app.follow_us_on_instagram')</h2>
-        </div>
-      </div>
-    </div>
-  </section>
-  <iframe name="frame" style="width:100%; min-height:350px;" id="frame" src="pages/insta.html" allowtransparency="true" frameborder="0"></iframe>
-
+  
+  @apply_filters('theme.instafeed.home');
+  
   <section class="pb-0">
     <div class="container" style="max-width: 1340px;">
       <div class="row">

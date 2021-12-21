@@ -55,7 +55,7 @@ class PluginController extends BackendController
 
         $updater = new UpdateManager('plugin', $request->post('plugin'));
         if ($updater->checkUpdate()) {
-            $updater->update();
+            //$updater->update();
         }
 
         return $this->success([

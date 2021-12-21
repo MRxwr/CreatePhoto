@@ -72,6 +72,10 @@ class MainAction extends Action
             'name' => trans('theme::app.contact-us'),
             'view' => 'templates.contact-us',
         ]);
+        HookAction::registerThemeTemplate('gallery', [
+            'name' => trans('theme::app.gallery'),
+            'view' => 'templates.gallery',
+        ]);
         HookAction::registerThemeTemplate('reservations', [
             'name' => trans('theme::app.reservations'),
             'view' => 'templates.reservations',

@@ -397,9 +397,9 @@ class ModuleGenerator extends Generator
                 'module' => $this->getName(),
                 '--master' => true,
             ]);
-            /*$this->console->call('plugin:route-provider', [
+            $this->console->call('plugin:route-provider', [
                 'module' => $this->getName(),
-            ]);*/
+            ]);
         }
 
         if (GenerateConfigReader::read('controller')->generate() === true) {

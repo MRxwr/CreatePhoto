@@ -9,7 +9,7 @@ use Sbhadra\Photography\Models\Package;
 use Sbhadra\Photography\Models\Service;
 use Sbhadra\Photography\Models\Booking;
 use Sbhadra\Photography\Models\Timeslot;
-
+use Sbhadra\Photography\Http\Controllers\PaymentController;
 class MainAction extends Action
 {
     /**
@@ -23,6 +23,8 @@ class MainAction extends Action
         $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerBooking']);
         $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerTaxonomies']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addPackagesInHomepage']);
+        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addReservationHooks']);
+        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addDoPaymentsAction']);
         //$this->addAction(self::BACKEND_CALL_ACTION, [$this, 'addAdminMenus']);
     }
 
@@ -77,6 +79,42 @@ class MainAction extends Action
         });
 
     }
+    public function addReservationHooks(){
+        
+        if(\Request::segment(1) =="reservations" && !empty($_REQUEST)){
+            if(isset($_REQUEST['id'])){
+              $package = Package::find($_REQUEST['id']);
+                add_filters('theme.reservation.data', function() {
+                    $package = Package::find($_REQUEST['id']);
+                    return '<input type="hidden" id="id" name="id" value="'. $package->id.'" />
+                            <input type="hidden" id="booking_price" name="package_price" value="'. $package->price.'" />
+                            <div class="form-group row">
+                                <label for="" class="col-sm-5 col-md-4 col-form-label">Package Choosen:</label>
+                                <div class="col-sm-7 col-md-8">
+                                    <input type="text" readonly class="form-control-plaintext" id="" value="'. $package->title.'">
+                                </div>
+                            </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-5 col-md-4 col-form-label">Date:</label>
+                            <div class="col-sm-7 col-md-8">
+                            <input type="text" readonly class="form-control-plaintext" name="booking_date" id="booking_date" value="'.$_REQUEST['date'].'">
+                        </div>
+                       </div>';
+               }, 10, 1);
+
+               add_filters('theme.reservation.time', function() {
+                $package = Package::find($_REQUEST['id']);
+                   return $this->getPackageTimeslots($package);
+               }, 10, 1);
+
+               add_filters('theme.reservation.services', function() {
+                $package = Package::find($_REQUEST['id']);
+                   return $this->getPackageExService($package);
+               }, 10, 1);
+ 
+            }
+        }
+    }
     public function registerBooking()
     {
         HookAction::registerPostType('bookings', [
@@ -91,53 +129,57 @@ class MainAction extends Action
         HookAction::registerTaxonomy('types', 'packages', [
             'label' => trans('sbph::app.types'),
             'menu_position' => 6, 
-        ]);
-
-        // HookAction::registerTaxonomy('countries', 'movies', [
-        //     'label' => trans('mymo::app.countries'),
-        //     'menu_position' => 7,
-        //     'supports' => [
-        //         'thumbnail'
-        //     ],
-        // ]);
-
-        // HookAction::registerTaxonomy('actors', 'movies', [
-        //     'label' => trans('mymo::app.actors'),
-        //     'menu_box' => false,
-        //     'menu_position' => 7,
-        //     'supports' => [
-        //         'thumbnail'
-        //     ],
-        // ]);
-
-        // HookAction::registerTaxonomy('directors', 'movies', [
-        //     'label' => trans('mymo::app.directors'),
-        //     'menu_position' => 7,
-        //     'menu_box' => false,
-        //     'supports' => [
-        //         'thumbnail'
-        //     ],
-        // ]);
-
-        // HookAction::registerTaxonomy('writers', 'movies', [
-        //     'label' => trans('mymo::app.writers'),
-        //     'menu_position' => 7,
-        //     'menu_box' => false,
-        //     'supports' => [
-        //         'thumbnail'
-        //     ],
-        // ]);
-
-        // HookAction::registerTaxonomy('years', 'movies', [
-        //     'label' => trans('mymo::app.years'),
-        //     'menu_position' => 8,
-        //     'show_in_menu' => false,
-        //     'menu_box' => false,
-        //     'supports' => [],
-        // ]);
-        
+        ]); 
     }
 
+    static function getPackageTimeslots($package){
+        $html ='';
+        
+        if($package->slots){
+            $html .='<div class="form-group row">';
+            $html .='<label for="" class="col-sm-5 col-md-4 col-form-label">Preffered Time:</label>';
+            $html .='<div class="col-sm-7 col-md-8">';
+            $html .='<select class="form-control form-control-lg" id="booking_time" name="booking_time" style="max-width: 300px;" required>';
+            $html .='<option value=""  >Select Time</option>';
+             foreach($package->slots as $slot){
+                $html .='<option value="'.$slot->id.'">'.$slot->starttime.' - '.$slot->endtime.'</option>';
+             }
+            $html .='</select>';
+            $html .='</div>';
+            $html .='</div>';
+        }
+        return $html;
+    }
 
+    static function getPackageExService($package){
+        $html ='';
+        if($package->services){
+            $html .='<div class="form-group row">';
+            $html .='<label for="" class="col-sm-5 col-md-4 col-form-label">Preffered Time:</label>';
+            $html .='<div class="col-sm-7 col-md-8">';
+             foreach($package->services as $service){
+               $html .='<div class="form-check">
+               <input class="form-check-input" type="checkbox" value="'.$service->id.'" name="service_item[]">
+               <label class="form-check-label" for="defaultCheck1">
+                 <span class="form-control-plaintext">'.$service->title.' - '.$service->price.' KD.</span>
+               </label>
+             </div>';
+             }
+            $html .='</div>';
+            $html .='</div>';
+        }
+        return $html;
+    }
+    public function addDoPaymentsAction(){
+        $this->addAction('theme.payment.index', function () {
+             app('Sbhadra\Photography\Http\Controllers\PaymentController')->doPayment();
+        });
+        $this->addAction('theme.payment.success', function () {
+            app('Sbhadra\Photography\Http\Controllers\PaymentController')->doSuccess();
+       });
+       $this->addAction('theme.payment.failed', function () {
+            app('Sbhadra\Photography\Http\Controllers\PaymentController')->doFailed();
+         });
+    }
 
 }
