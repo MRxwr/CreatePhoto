@@ -11,9 +11,6 @@ class HomeController extends FrontendController
     public function index()
     {
         do_action('theme.home.index');
-
-        
-
         if ($pageId = jw_home_page()) {
             return App::call('Juzaweb\Http\Controllers\Frontend\PageController@detail', ['id' => $pageId]);
         }

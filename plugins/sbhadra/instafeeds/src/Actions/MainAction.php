@@ -28,7 +28,7 @@ class MainAction extends Action
             <div class="container" style="max-width: 1340px;">
               <div class="row">
                 <div class="col-12">
-                  <h2 class="shoots-Head">'.lang('theme::app.follow_us_on_instagram').'</h2>
+                  <h2 class="shoots-Head">Follow us on instagram</h2>
                 </div>
               </div>
             </div>

@@ -14,4 +14,5 @@
 Route::postTypeResource('packages', 'PackageController');
 Route::Resource('services', 'ServiceController');
 Route::Resource('timeslots', 'TimeslotController');
+Route::get('/booking/details/{id}', 'BookingController@getBookingDetails')->name('admin.bookings.view');
 Route::Resource('bookings', 'BookingController');

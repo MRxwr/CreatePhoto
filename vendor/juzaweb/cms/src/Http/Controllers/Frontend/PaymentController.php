@@ -11,19 +11,25 @@ class PaymentController extends FrontendController
     public function index()
     {
         do_action('theme.payment.index');
-        
+        if ($pageId = get_payment_page()) {
+            return App::call('Juzaweb\Http\Controllers\Frontend\PageController@detail', ['id' => $pageId]);
+        }
     }
 
     public function getSuccess()
     {
         do_action('theme.payment.success');
-        
+        if ($pageId = jw_success_page()) {
+            return App::call('Juzaweb\Http\Controllers\Frontend\PageController@detail', ['id' => $pageId]);
+        }
     }
 
     public function getFailed()
     {
         do_action('theme.payment.failed');
-        
+        if ($pageId = jw_failed_page()) {
+            return App::call('Juzaweb\Http\Controllers\Frontend\PageController@detail', ['id' => $pageId]);
+        }
     }
 
     

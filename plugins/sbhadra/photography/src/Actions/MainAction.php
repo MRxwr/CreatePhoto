@@ -134,7 +134,8 @@ class MainAction extends Action
 
     static function getPackageTimeslots($package){
         $html ='';
-        
+        $booked_slot =Booking::where('package_id',$package->id)->where('status','yes')->pluck('booking_time')->toArray();
+        //dd($booked_slot);
         if($package->slots){
             $html .='<div class="form-group row">';
             $html .='<label for="" class="col-sm-5 col-md-4 col-form-label">Preffered Time:</label>';
@@ -142,8 +143,10 @@ class MainAction extends Action
             $html .='<select class="form-control form-control-lg" id="booking_time" name="booking_time" style="max-width: 300px;" required>';
             $html .='<option value=""  >Select Time</option>';
              foreach($package->slots as $slot){
-                $html .='<option value="'.$slot->id.'">'.$slot->starttime.' - '.$slot->endtime.'</option>';
-             }
+                if(!in_array($slot->id,$booked_slot)){
+                    $html .='<option value="'.$slot->id.'">'.$slot->starttime.' - '.$slot->endtime.'</option>';
+                }
+               }
             $html .='</select>';
             $html .='</div>';
             $html .='</div>';

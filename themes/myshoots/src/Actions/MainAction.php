@@ -84,6 +84,14 @@ class MainAction extends Action
             'name' => trans('theme::app.reservations-check'),
             'view' => 'templates.reservations-check',
         ]);
+        HookAction::registerThemeTemplate('success', [
+            'name' => trans('theme::app.success'),
+            'view' => 'templates.sucess',
+        ]);
+        HookAction::registerThemeTemplate('failed', [
+            'name' => trans('theme::app.failed'),
+            'view' => 'templates.failed',
+        ]);
     }
 
     public function registerSidebars()

@@ -19,6 +19,18 @@ return [
     'add_new'=>'Add New',
     'add'=>'Add',
     'thumbnail'=>'Thumbnail',
+    'bookingid'=>'Booking Id',
+    'customer_name'=>' Customer name',
+    'mobile_number'=>'Mobile number',
+    'booking_date'=>'Booking date',
+    'booking_time'=>'Booking time',
+    'booking_price'=>'Booking price',
+    'status'=>'Status',
+    'invoiceId'=>' Invoice Id',
+    'baby_name'=>'baby name',
+    'baby_age'=>'baby age',
+    'instructions'=>'Instructions',
+    'refunded'=>'Refunded',
     'actions'=>'Actions',
     'created_at'=>'Created at'
 ];

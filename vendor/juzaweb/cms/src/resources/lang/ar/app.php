@@ -382,4 +382,7 @@ return [
     'plugin_name_not_found' => 'Plugin :name not found',
     'delete_theme_confirm' => 'Are you sure you want to delete this theme?',
     'email_does_not_exists' => 'Email does not exists.',
+    'your_paymentpage'=>'Set your Payment page',
+    'your_successpage'=>'Set your Success page',
+    'your_failedpage'=>'Set your Failed page',
 ];

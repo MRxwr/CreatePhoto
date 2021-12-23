@@ -27,7 +27,7 @@
                         <div class="mb-2">
                             <select name="home_page" class="form-control select-show_on_front load-pages" data-placeholder="--- {{ trans('juzaweb::app.select', ['name' => trans('juzaweb::app.page')]) }} ---" {{ get_config('show_on_front', 'posts') == 'posts' ? 'disabled' : '' }}>
                                 @if($page = jw_get_page(get_config('home_page')))
-                                    <option value="{{ $page->id }}">{{ $page->name }}</option>
+                                    <option value="{{ $page->id }}" selected>{{ $page->name }}</option>
                                 @endif
                             </select>
                         </div>
@@ -35,7 +35,51 @@
                         <div class="mb-2">
                             <select name="post_page" class="form-control select-show_on_front load-pages" data-placeholder="--- {{ trans('juzaweb::app.select', ['name' => trans('juzaweb::app.page')]) }} ---" {{ get_config('show_on_front', 'posts') == 'posts' ? 'disabled' : '' }}>
                                 @if($page = jw_get_page(get_config('post_page')))
-                                    <option value="{{ $page->id }}">{{ $page->name }}</option>
+                                    <option value="{{ $page->id }}" selected>{{ $page->name }}</option>
+                                @endif
+                            </select>
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label">{{ trans('juzaweb::app.your_paymentpage') }}</label>
+                    <div class="col-md-6">
+                        <div class="mb-2">
+                            <select name="payment_page" class="form-control select-show_on_front load-pages" data-placeholder="--- {{ trans('juzaweb::app.select', ['name' => trans('juzaweb::app.page')]) }} ---">
+                                @if($page = jw_get_page(get_config('payment_page')))
+                                    <option value="{{ $page->id }}" selected>{{ $page->name }}</option>
+                                @endif
+                            </select>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label">{{ trans('juzaweb::app.your_successpage') }}</label>
+                    <div class="col-md-6">
+                        
+                        <div class="mb-2">
+                            <select name="success_page" class="form-control select-show_on_front load-pages" data-placeholder="--- {{ trans('juzaweb::app.select', ['name' => trans('juzaweb::app.page')]) }} ---" >
+                                @if($page = jw_get_page(get_config('success_page')))
+                                    <option value="{{ $page->id }}" selected>{{ $page->name }}</option>
+                                @endif
+                            </select>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label">{{ trans('juzaweb::app.your_failedpage') }}</label>
+                    <div class="col-md-6">
+                        
+                        <div class="mb-2">
+                            <select name="failed_page" class="form-control select-show_on_front load-pages" data-placeholder="--- {{ trans('juzaweb::app.select', ['name' => trans('juzaweb::app.page')]) }} ---" >
+                                @if($page = jw_get_page(get_config('failed_page')))
+                                    <option value="{{ $page->id }}" selected>{{ $page->name }}</option>
                                 @endif
                             </select>
                         </div>

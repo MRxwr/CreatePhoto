@@ -33,6 +33,7 @@ class BookingController extends BackendController
         return $dataTable;
     }
 
+
     protected function getModel()
     {
         return Booking::class;
@@ -42,4 +43,14 @@ class BookingController extends BackendController
     {
         return trans('sbph::app.bookings');
     }
+
+    public function getBookingDetails($id){
+        $model = Booking::firstOrNew(['id' => $id]);
+        return view('sbph::backend.booking.show', [
+            'model' => $model,
+            'postType'=>'booking',
+            'title' => $model->name ?: trans('sbph::app.booking')
+        ]);;
+    }
 }
+

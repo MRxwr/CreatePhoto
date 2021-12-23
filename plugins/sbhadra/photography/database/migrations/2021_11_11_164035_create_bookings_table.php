@@ -17,8 +17,8 @@ class CreateBookingsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('package_id');
             $table->string('transaction_id', 250)->nullable();
-            $table->date('booking_date')->nullable();
-            $table->string('booking_time', 150)->nullable();
+            $table->string('booking_date')->nullable();
+            $table->integer('timeslot_id');
             $table->tinyInteger('is_filming')->default(0);
             $table->string('rating', 25)->nullable();
             $table->decimal('booking_price',10,2)->default(0.00);

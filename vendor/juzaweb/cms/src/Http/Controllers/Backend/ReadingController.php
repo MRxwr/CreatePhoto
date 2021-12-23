@@ -37,11 +37,18 @@ class ReadingController extends BackendController
             'show_on_front',
             'home_page',
             'post_page',
+            'payment_page',
+            'success_page',
+            'failed_page', 
         ]);
 
         if (Arr::get($settings, 'show_on_front') == 'posts') {
             $settings['home_page'] = null;
             $settings['post_page'] = null;
+            // $settings['payment_page'] = null;
+            // $settings['success_page'] = null;
+            // $settings['failed_page'] = null;
+            
         }
 
         foreach ($settings as $key => $value) {

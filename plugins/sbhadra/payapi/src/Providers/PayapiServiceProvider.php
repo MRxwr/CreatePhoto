@@ -3,12 +3,16 @@
 namespace Sbhadra\Payapi\Providers;
 
 use Juzaweb\Support\ServiceProvider;
+use Sbhadra\Payapi\Actions\MainAction;
 
 class PayapiServiceProvider extends ServiceProvider
 {
     public function boot()
     {
         //
+        $this->registerAction([
+            MainAction::class
+        ]);
     }
 
     /**

@@ -113,6 +113,27 @@ if (! function_exists('home_page')) {
     }
 }
 
+if (! function_exists('payment_page')) {
+    function jw_payment_page()
+    {
+        return apply_filters('get_payment_page', get_config('payment_page'));
+    }
+}
+
+if (! function_exists('success_page')) {
+    function jw_success_page()
+    {
+        return apply_filters('get_success_page', get_config('success_page'));
+    }
+}
+
+if (! function_exists('failed_page')) {
+    function jw_failed_page()
+    {
+        return apply_filters('get_failed_page', get_config('failed_page'));
+    }
+}
+
 if (! function_exists('get_name_template_part')) {
     /**
      * Get template part name.

@@ -26,22 +26,65 @@ class BookingDatatable extends PostTypeDataTable
         return [
             
             'title' => [
-                'label' => trans('sbsl::app.name'),
-                'formatter' => [$this, 'rowActionsFormatter']
+                'label' => trans('sbph::app.bookingid'),
+                'formatter' => function ($value, $row, $index) {
+                    return $row->title;
+                }
+            ],
+            'package' => [
+                'label' => trans('sbph::app.package'),
+                'formatter' => function ($value, $row, $index) {
+                    return $row->package->title;
+                }
+            ],
+            'customer_name' => [
+                'label' => trans('sbph::app.customer_name'),
+                'formatter' => function ($value, $row, $index) {
+                    return $row->customer_name;
+                }
+            ],
+            'mobile_number' => [
+                'label' => trans('sbph::app.mobile_number'),
+                'formatter' => function ($value, $row, $index) {
+                    return $row->mobile_number;
+                }
+            ],
+            'booking_date' => [
+                'label' => trans('sbph::app.booking_date'),
+                'formatter' => function ($value, $row, $index) {
+                    return $row->booking_date;
+                }
+            ],
+            'status' => [
+                'label' => trans('sbph::app.status'),
+                'formatter' => function ($value, $row, $index) {
+                    return $row->status;
+                }
             ],
             'created_at' => [
                 'label' => trans('sbsl::app.created_at'),
-                'width' => '15%',
+                'width' => '14%',
                 'align' => 'center',
                 'formatter' => function ($value, $row, $index) {
                     return jw_date_format($row->created_at);
                 }
             ],
             'actions' => [
-                'label' => trans('sbsl::app.actions'),
-                'width' => '15%',
-                'sortable' => false
-                
+                'label' => trans('sbph::app.actions'),
+                'width' => '5%',
+                'sortable' => false,
+                'formatter' => function ($value, $row, $index) {
+                    $view_details = route('admin.bookings.view', [$row->id]);
+                    return '<div class="dropdown d-inline-block mb-2 mr-2">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        Options
+                        </button>
+                            <div class="dropdown-menu" role="menu" style="">
+                            <a href="'.$view_details.'" class="dropdown-item"> <i class=" fa fa-eye"></i> View</a>
+                            </div>
+                        </div>
+                    </div>';
+                }
             ]
         ];
     }

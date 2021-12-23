@@ -22,16 +22,7 @@ class RouteController extends FrontendController
 {
     public function index($slug = null)
     {
-        $routeCollection = Route::getRoutes();
-        //dd($routeCollection);
-        $routes = [];
-        $currentRoute = $slug;
-        // foreach ($routeCollection  as $route){
-        //     if (strpos($route->uri, $currentRoute) !== false){
-        //        dd($route);
-        //         //$routes[] = $route->uri;
-        //     }
-        // }
+        
         $slug = explode('/', $slug);
         $base = apply_filters('theme.permalink.base', $slug[0], $slug);
         $permalink = $this->getPermalinks($base);
