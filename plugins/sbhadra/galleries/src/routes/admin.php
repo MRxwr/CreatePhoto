@@ -12,3 +12,4 @@
 */
 
 
+Route::postTypeResource('galleries', 'GalleriesController');

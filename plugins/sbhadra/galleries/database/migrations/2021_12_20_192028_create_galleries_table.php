@@ -13,9 +13,13 @@ class CreateGalleriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sbga_galleries', function (Blueprint $table) {
+        Schema::create('galleries', function (Blueprint $table) {
             $table->bigIncrements('id');
-
+            $table->string('title', 250);
+            $table->string('slug', 250)->unique()->index();
+            $table->longText('description', 300)->nullable();
+            $table->string('thumbnail', 250)->nullable();
+            $table->string('status', 50)->default('no');
             $table->timestamps();
         });
     }

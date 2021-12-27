@@ -3,12 +3,17 @@
 namespace Sbhadra\Galleries\Providers;
 
 use Juzaweb\Support\ServiceProvider;
+use Sbhadra\Galleries\Actions\MainAction;
+use Illuminate\Support\Facades\Schema;
 
 class GalleriesServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        //
+        Schema::defaultStringLength(191);
+        $this->registerAction([
+            MainAction::class
+        ]);
     }
 
     /**

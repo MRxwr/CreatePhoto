@@ -11,18 +11,14 @@ class Gallery extends Model
 {
     use PostTypeModel;
     use HasTranslations;
-    protected $table = 'services';
+    protected $table = 'galleries';
     public $translatable = ['title','description'];
-    protected $postType = 'services';
+    protected $postType = 'galleries';
     protected $fillable = [
         'title',
         'thumbnail',
         'description',
-        'price',
         'status',
     ];
-    public function packages()
-    {
-        return $this->belongsToMany('Sbhadra\Photography\Models\Package');
-    }
+    
 }

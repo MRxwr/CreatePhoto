@@ -1,11 +1,11 @@
 <?php
 
-namespace Sbhadra\Photography\Http\Datatables;
+namespace Sbhadra\Galleries\Http\Datatables;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Juzaweb\Http\Datatables\PostTypeDataTable;
-use Sbhadra\Gallaries\Models\Gallery;
+use Sbhadra\Galleries\Models\Gallery;
 
 class GalleryDatatable extends PostTypeDataTable
 {
@@ -35,12 +35,6 @@ class GalleryDatatable extends PostTypeDataTable
                 'label' => trans('sbph::app.name'),
                 'formatter' => [$this, 'rowActionsFormatter']
             ],
-            'price' => [
-                'label' => trans('sbph::app.price'),
-                'formatter' => function ($value, $row, $index) {
-                    return $row->price;
-                }
-            ],
             'created_at' => [
                 'label' => trans('sbph::app.created_at'),
                 'width' => '15%',
@@ -51,7 +45,7 @@ class GalleryDatatable extends PostTypeDataTable
             ],
             'actions' => [
                 'label' => trans('sbph::app.actions'),
-                'width' => '15%',
+                'width' => '10%',
                 'sortable' => false
             ]
         ];
@@ -65,7 +59,7 @@ class GalleryDatatable extends PostTypeDataTable
      */
     public function query($data)
     {
-        $query = Service::query();
+        $query = Gallery::query();
         if ($keyword = Arr::get($data, 'keyword')) {
             $query->where(function (Builder $q) use ($keyword) {
                 $q->where('title', 'like', '%'. $keyword .'%');
@@ -80,7 +74,7 @@ class GalleryDatatable extends PostTypeDataTable
     {
         switch ($action) {
             case 'delete':
-                Service::destroy($ids);
+                Gallery::destroy($ids);
                 break;
         }
     }
