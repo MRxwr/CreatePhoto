@@ -11,4 +11,8 @@
 |
 */
 
-
+Route::get('booking-calendar','CalendarController@index')->name('admin.booking-calendar');
+Route::post('save/calendar-date','CalendarController@dateSave')->name('admin.calendar-date');
+Route::get('calendar-setting','CalendarController@setting')->name('admin.calendar-setting');
+Route::post('save/calendar-setting','CalendarController@settingSave')->name('admin.calendar-setting');
+Route::get('get-booking-json','AjaxController@getBookingJson')->name('admin.booking-json');

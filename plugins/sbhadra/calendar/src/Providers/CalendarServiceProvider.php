@@ -3,12 +3,15 @@
 namespace Sbhadra\Calendar\Providers;
 
 use Juzaweb\Support\ServiceProvider;
+use Sbhadra\Calendar\Actions\MainAction;
 
 class CalendarServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        //
+        $this->registerAction([
+            MainAction::class
+        ]);
     }
 
     /**

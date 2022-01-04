@@ -54,7 +54,12 @@
     @do_action('theme.header')
 
     @yield('header')
-
+    <script>
+      var startDate='2022-01-01';
+      var endDate='2046-12-31';
+      var datesDisabled = [""];
+      var daysOfWeekDisabled = [5,6]
+    </script>
 </head>
 <body class="{{ isset($post) ? 'single-post': '' }} {{ body_class() }}">
     @do_action('theme.after_body')
@@ -81,22 +86,26 @@
     width: 100%;
 }
   </style>
+   @if(isset($post))
+    @apply_filters('theme.calendar.hooks',$post);
+   @endif
   <script>
+
   $(document).ready(function(){
       var date_input=$('#bookingdate'); //our date input has the name "date"
       var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
       var options={
         format: "dd-mm-yyyy",
-	    inline:true,
+	      inline:true,
         sideBySide: true,
         container: container,
         todayHighlight: true,
-        daysOfWeekDisabled: [4,5,6],
-        datesDisabled: [""],
+        daysOfWeekDisabled: daysOfWeekDisabled,
+        datesDisabled:datesDisabled,
         autoclose: true,
         //startDate: truncateDate(new Date()),
-        startDate: new Date(2021,07,01),
-	      endDate: new Date(2021,12,01),
+        startDate: new Date(startDate),
+	      endDate: new Date(endDate),
         icons: {
                     time: "fa fa-clock-o",
                     date: "fa fa-calendar",
@@ -128,21 +137,7 @@ function truncateDate(date) {
 	  })
   </script>
   
-<!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
 
-  $(document).ready(function () {
-        $("#datepicker").datepicker({
-			dateFormat: 'mm-dd-yy',
-            onSelect: function (dateText, inst) {
-                var date = $(this).val();
-				$('#date').val(date);
-            }
-        });
-    });
-  </script> -->
   <script src="{{asset('/')}}assets/vendor/js/jquery.payform.min.js"></script>
   <script src="{{asset('/')}}assets/vendor/js/script.js"></script>
   <script src="{{asset('/')}}assets/vendor/owlcarousel/owl.carousel.js"></script>
