@@ -47,13 +47,12 @@ class PaymentController extends FrontendController
              Session::push('booking_data', $payment_data);
             $status = do_action('theme.payment.method',$payment_data);
          }
-
     }
     public function doSuccess(){
-
+        $status = do_action('theme.payment.method_success');
     }
     public function doFailed(){
-
+        $status = do_action('theme.payment.method_failed');
     }
 
 }

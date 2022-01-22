@@ -7,7 +7,8 @@ use Juzaweb\Abstracts\Action;
 use Juzaweb\Facades\HookAction;
 use Sbhadra\Calendar\Models\Calendar;
 use Sbhadra\Calendar\Models\CalendarSetting;
-
+use Sbhadra\Photography\Models\Booking;
+use Illuminate\Support\Facades\DB;
 class MainAction extends Action
 {
     /**
@@ -19,6 +20,7 @@ class MainAction extends Action
     {
           $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerCalender']);
           $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'getCalenderHooks']);
+          
  
     }
 
@@ -47,12 +49,26 @@ class MainAction extends Action
     static function getCalenderHooks($post){
         
         add_filters('theme.calendar.hooks', function($post){
-            $package_id = $post->id;
+            $package_id = $post->id; 
+            $slots = count($post->slots);
+            $bookings = DB::table('bookings')
+                 ->select('booking_date', DB::raw('count(*) as total'))
+                 ->where('status','Yes')
+                 ->where('package_id',$package_id)
+                 ->groupBy('booking_date')
+                 ->get();  
+                 $datesDisabled_array =array('13-01-2022');
+                 foreach($bookings as $booking){
+                    if($booking->total ==$slots ){
+                        array_push($datesDisabled_array,$booking->booking_date);
+                    }
+                 }
+               $datesDisabled = json_encode($datesDisabled_array);
             $setting = CalendarSetting::find(1);   
             return '<script>
             var startDate="'.$setting->start_date.'";
             var endDate="'.$setting->end_date.'";
-            var datesDisabled = [""];
+            var datesDisabled = '.$datesDisabled.';
             var daysOfWeekDisabled = '.$setting->close_days.'
             </script>';
        }, 20, 1);

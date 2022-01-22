@@ -31,7 +31,7 @@
     <div class="container-fluid p-0 bg-light">
       <div class="row no-gutters align-items-center">
         <div class="col-md-7">
-          <img src="assets/img/shoots-about.png" class="img-fluid d-block mx-auto">
+          <img src="{{asset('/')}}jw-styles/themes/myshoots/assets/img/shoots-about.png" class="img-fluid d-block mx-auto">
         </div>
         <div class="col-md-5 p-3 p-md-5">
           <h2 class="mb-5">Photography</h2>

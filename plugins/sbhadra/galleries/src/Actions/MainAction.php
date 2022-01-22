@@ -18,7 +18,7 @@ class MainAction extends Action
     {
         $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerGallery']);
         $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerTaxonomies']);
-        //$this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addPackagesInHomepage']);
+        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'getGalleyExImages']);
  
     }
 
@@ -43,25 +43,27 @@ class MainAction extends Action
 
    
 
-    static function getPackageExService($package){
+    static function getGalleyExImages(){
+        add_filters('theme.galleries', function(){
+        $galleries = Gallery::get();
         $html ='';
-
-        if($package->services){
-            $html .='<div class="form-group row">';
-            $html .='<label for="" class="col-sm-5 col-md-4 col-form-label">Preffered Time:</label>';
-            $html .='<div class="col-sm-7 col-md-8">';
-             foreach($package->services as $service){
-               $html .='<div class="form-check">
-               <input class="form-check-input" type="checkbox" value="'.$service->id.'" name="select_extra_item[]">
-               <label class="form-check-label" for="defaultCheck1">
-                 <span class="form-control-plaintext">'.$service->title.' - '.$service->price.' KD.</span>
-               </label>
+        if($galleries){
+           
+            $html .='<div class="mt-3 gallery-grid">';
+             foreach($galleries as $image){
+               $html .='          
+               <div class="column">        
+               <a class="example-image-link" img-id="gm-0" href="'.$image->getThumbnail().'" data-lightbox="example-set" data-title="">
+                 <img src="'.$image->getThumbnail().'" style="width:100%">
+              </a>
+              </div>
              </div>';
              }
             $html .='</div>';
-            $html .='</div>';
+           
         }
         return $html;
+     });
     }
 
 }

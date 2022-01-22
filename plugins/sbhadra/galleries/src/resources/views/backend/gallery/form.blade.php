@@ -24,7 +24,7 @@
                 {{ Field::select($model, 'status', [
                     'options' => $model->getStatuses()
                 ]) }}
-                {{ Field::text($model, 'price') }}
+                
                 {{ Field::image($model, 'thumbnail') }}
                 @do_action('post_type.'. $postType .'.form.right', $model)
             </div>

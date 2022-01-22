@@ -10,6 +10,7 @@ use Sbhadra\Photography\Models\Service;
 use Sbhadra\Photography\Models\Booking;
 use Sbhadra\Photography\Models\Timeslot;
 use Sbhadra\Photography\Http\Controllers\PaymentController;
+use Illuminate\Support\Facades\DB;
 class MainAction extends Action
 {
     /**
@@ -25,6 +26,7 @@ class MainAction extends Action
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addPackagesInHomepage']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addReservationHooks']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addDoPaymentsAction']);
+        //$this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'getCalenderHooks']);
         //$this->addAction(self::BACKEND_CALL_ACTION, [$this, 'addAdminMenus']);
     }
 
@@ -134,7 +136,7 @@ class MainAction extends Action
 
     static function getPackageTimeslots($package){
         $html ='';
-        $booked_slot =Booking::where('package_id',$package->id)->where('status','yes')->pluck('booking_time')->toArray();
+        $booked_slot =Booking::where('package_id',$package->id)->where('status','yes')->pluck('timeslot_id')->toArray();
         //dd($booked_slot);
         if($package->slots){
             $html .='<div class="form-group row">';
@@ -183,6 +185,31 @@ class MainAction extends Action
        $this->addAction('theme.payment.failed', function () {
             app('Sbhadra\Photography\Http\Controllers\PaymentController')->doFailed();
          });
+    }
+
+    static function getCalenderHooks($post){
+        add_filters('theme.calendar.hooks', function($post){
+            $package_id = $post->id; 
+            $slots = count($post->slots);
+            $bookings = DB::table('bookings')
+                 ->select('booking_date', DB::raw('count(*) as total'))
+                 ->where('status','Yes')
+                 ->where('package_id',$package_id)
+                 ->groupBy('booking_date')
+                 ->get();  
+                 $datesDisabled_array =array();
+                 foreach($bookings as $booking){
+                    if($booking->total ==$slots ){
+                        $datesDisabled_array[] =  $booking->booking_date;
+                    }
+                 }
+               $datesDisabled = implode(',', $datesDisabled_array );
+            return '<script>
+            alert("hhhh");
+                   var datesDisabled = ['.$datesDisabled.'];
+               </script>';
+       }, 10, 1);
+        
     }
 
 }

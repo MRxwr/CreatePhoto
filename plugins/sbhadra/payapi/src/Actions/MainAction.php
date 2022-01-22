@@ -35,6 +35,11 @@ class MainAction extends Action
         add_action('theme.payment.method', function($payment_data) {
             app('Sbhadra\Payapi\Http\Controllers\PayapiController')->doPayment($payment_data);
         }, 10, 1);   
+        add_action('theme.payment.method_success', function($payment_data) {
+            app('Sbhadra\Payapi\Http\Controllers\PayapiController')->paymentSuccess();
+        }, 10, 1);   
     }
+
+    
     
 }

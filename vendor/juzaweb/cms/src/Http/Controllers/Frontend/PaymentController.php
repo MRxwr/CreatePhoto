@@ -20,6 +20,7 @@ class PaymentController extends FrontendController
     {
         do_action('theme.payment.success');
         if ($pageId = jw_success_page()) {
+            echo  $pageId;
             return App::call('Juzaweb\Http\Controllers\Frontend\PageController@detail', ['id' => $pageId]);
         }
     }
@@ -28,6 +29,7 @@ class PaymentController extends FrontendController
     {
         do_action('theme.payment.failed');
         if ($pageId = jw_failed_page()) {
+            echo  $pageId;
             return App::call('Juzaweb\Http\Controllers\Frontend\PageController@detail', ['id' => $pageId]);
         }
     }

@@ -57,7 +57,7 @@
     <script>
       var startDate='2022-01-01';
       var endDate='2046-12-31';
-      var datesDisabled = [""];
+      var datesDisabled = ["13-01-2022"];
       var daysOfWeekDisabled = [5,6]
     </script>
 </head>
@@ -86,7 +86,7 @@
     width: 100%;
 }
   </style>
-   @if(isset($post))
+   @if(isset($post) &&Request::segment(1)=='package' )
     @apply_filters('theme.calendar.hooks',$post);
    @endif
   <script>

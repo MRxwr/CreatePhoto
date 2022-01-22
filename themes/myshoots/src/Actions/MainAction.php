@@ -86,7 +86,7 @@ class MainAction extends Action
         ]);
         HookAction::registerThemeTemplate('success', [
             'name' => trans('theme::app.success'),
-            'view' => 'templates.sucess',
+            'view' => 'templates.success',
         ]);
         HookAction::registerThemeTemplate('failed', [
             'name' => trans('theme::app.failed'),
