@@ -40,8 +40,9 @@ class ServeCommand extends Command
      */
     public function handle()
     {
+        echo public_path();
         chdir(public_path());
-
+        //chdir('/');
         $this->line("<info>Laravel development server started:</info> http://{$this->host()}:{$this->port()}");
 
         passthru($this->serverCommand(), $status);
