@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Juzaweb CMS - The Best for Laravel Project
+ * CreatePhoto - The Best for Laravel Project
  *
- * @package juzaweb/laravel-cms
+ * @package juzaweb/CreatePhoto
  * @author The Anh Dang
  *
  * Developed based on Laravel Framework
- * Github: https://github.com/juzaweb/laravel-cms
+ * Github: https://github.com/juzaweb/CreatePhoto
  */
 
 $uri = urldecode(
