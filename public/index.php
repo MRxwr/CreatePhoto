@@ -46,9 +46,10 @@ require $autoloadPath;
 */
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
-$app->bind('path.public', function() {
-    return base_path().'/public_html';
-  });
+// set the public path to this directory
+// $app->bind('path.public', function() {
+//     return __DIR__;
+// });
   
 
 /*

@@ -7,7 +7,12 @@
  * @link       https://juzaweb.com/cms
  * @license    MIT
  */
-
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    $exitCode = Artisan::call('config:cache');
+    echo public_path();
+    return 'DONE'; //Return anything
+});
 require __DIR__ . '/installer.php';
 
 Route::group([
