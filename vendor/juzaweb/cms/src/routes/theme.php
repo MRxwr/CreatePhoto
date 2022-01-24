@@ -10,7 +10,8 @@
 Route::get('/clear-cache', function() {
     $exitCode = Artisan::call('cache:clear');
     $exitCode = Artisan::call('config:cache');
-    echo public_path();
+    Artisan::call('storage:link');
+    //echo public_path();
     return 'DONE'; //Return anything
 });
 require __DIR__ . '/installer.php';
