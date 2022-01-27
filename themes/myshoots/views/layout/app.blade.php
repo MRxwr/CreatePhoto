@@ -139,7 +139,6 @@ function truncateDate(date) {
   
 
   <script src="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/js/jquery.payform.min.js"></script>
-  <script src="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/js/script.js"></script>
   <script src="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/owlcarousel/owl.carousel.js"></script>
   <script>
      $(document).ready(function() {
