@@ -74,7 +74,8 @@
   <script src="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/js/lightbox-plus-jquery.min.js"></script>
     <!-- Bootstrap Date-Picker Plugin -->
-  <script type="text/javascript" src="https:/cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/> 
 <style>
     .datepicker-inline{
