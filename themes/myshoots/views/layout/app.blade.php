@@ -27,7 +27,7 @@
   <link href="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
   @if(app()->getLocale()=='ar')
-  <link href="{{asset('/')}}jw-styles/cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css" rel="stylesheet">
   <link rel="stylesheet" href="{{asset('/')}}assets/css/style-nrtl7f56.css?az=2">
   @endif
     <!--Owl Carousel CSS-->
