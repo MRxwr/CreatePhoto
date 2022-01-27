@@ -87,7 +87,7 @@
 }
   </style>
    @if(isset($post) &&Request::segment(1)=='package' )
-    @apply_filters('theme.calendar.hooks',$post);
+    @apply_filters('theme.calendar.hooks',$post)
    @endif
   <script>
 
