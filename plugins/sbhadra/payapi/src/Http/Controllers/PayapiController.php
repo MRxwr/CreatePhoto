@@ -1,5 +1,4 @@
 <?php
-
 namespace Sbhadra\Payapi\Http\Controllers;
 use Juzaweb\Http\Controllers\FrontendController;
 use Juzaweb\Http\Controllers\BackendController;
@@ -11,9 +10,7 @@ class PayapiController extends FrontendController
 {
     public function doPayment($payment_data)
     {
-        //dd($payment_data);
         
-       // Make Post Fields Array
         $params = [
             'endpoint' => 'PaymentRequestExicute',
             'apikey' => 'CKW-1640114323-2537',
@@ -42,13 +39,13 @@ class PayapiController extends FrontendController
             'SourceInfo' => '',
             'Suppliers[0][SupplierCode]' => '3',
             'Suppliers[0][ProposedShare]' => 'null',
-            'Suppliers[0][InvoiceShare]' => '19.5'
+            'Suppliers[0][InvoiceShare]' => '0.00'
         ];
 
         $curl = curl_init();
-        $certificate_location = 'C:\wamp64\bin\php\php7.2.33\extras\ssl\cacert.pem';
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, $certificate_location);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $certificate_location);
+        // $certificate_location = 'C:\wamp64\bin\php\php7.2.33\extras\ssl\cacert.pem';
+        // curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, $certificate_location);
+        // curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $certificate_location);
         curl_setopt_array($curl, array(
             CURLOPT_URL => "https://createkwservers.com/payapi/api/v2/index.php",
             CURLOPT_RETURNTRANSFER => true,
@@ -98,6 +95,7 @@ class PayapiController extends FrontendController
     public function paymentSuccess(){
         
         if(isset($_REQUEST['paymentId'])){
+            $payment_data = Session::get('booking_data');
             $paymentId = $_REQUEST['paymentId'];
             $params = [
                 'endpoint' => 'PaymentStatusCheck',
@@ -106,9 +104,9 @@ class PayapiController extends FrontendController
                 'KeyType' => 'invoiceid'
             ];
             $curl = curl_init();
-            $certificate_location = 'C:\wamp64\bin\php\php7.2.33\extras\ssl\cacert.pem';
-            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, $certificate_location);
-            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $certificate_location);
+            // $certificate_location = 'C:\wamp64\bin\php\php7.2.33\extras\ssl\cacert.pem';
+            // curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, $certificate_location);
+            // curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $certificate_location);
             curl_setopt_array($curl, array(
             CURLOPT_URL => 'https://createkwservers.com/payapi/api/v2/index.php',
             CURLOPT_RETURNTRANSFER => true,
@@ -137,17 +135,14 @@ class PayapiController extends FrontendController
                 if($res->type == 'success' && isset($res->data->InvoiceId)){
                     $booking = Booking::find($payment_data['booking_id']);
                     $booking->status =  'Yes';
-                if($booking->save()){
-                    
-                    exit();
-                    
+                    if($booking->save()){
+                       
+                    }
                 }
-            }
-
-            exit;
             //$booking_data = Session::get("booking_data");
             //dd($booking_data);
+            }
         }
-       
     }
 }
+ 
