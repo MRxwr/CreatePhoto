@@ -28,7 +28,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
   @if(app()->getLocale()=='ar')
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css" rel="stylesheet">
-  <link rel="stylesheet" href="{{asset('/')}}assets/css/style-nrtl7f56.css?az=2">
+  <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/myshoots/assets/css/style-nrtl7f56.css?az=2">
   @endif
     <!--Owl Carousel CSS-->
   <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/owlcarousel/owl.carousel.css">
@@ -138,9 +138,9 @@ function truncateDate(date) {
   </script>
   
 
-  <script src="{{asset('/')}}assets/vendor/js/jquery.payform.min.js"></script>
-  <script src="{{asset('/')}}assets/vendor/js/script.js"></script>
-  <script src="{{asset('/')}}assets/vendor/owlcarousel/owl.carousel.js"></script>
+  <script src="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/js/jquery.payform.min.js"></script>
+  <script src="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/js/script.js"></script>
+  <script src="{{asset('/')}}jw-styles/themes/myshoots/assets/vendor/owlcarousel/owl.carousel.js"></script>
   <script>
      $(document).ready(function() {
        $('.instagram-carousel').owlCarousel({
