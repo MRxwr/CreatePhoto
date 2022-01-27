@@ -38,7 +38,7 @@
 <!-- Custom styles for this template -->
   <link href="{{asset('/')}}jw-styles/themes/myshoots/assets/css/landing-page9830.css?y=2" rel="stylesheet">
        <!-- Data table CSS -->
-  <link href="{{asset('/')}}admin/assets/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>	
+  <link href="{{asset('/')}}backend/assets/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>	
     <style>
     td.disabled.day {
     color: #e7888c!important; 
@@ -192,8 +192,8 @@ function truncateDate(date) {
     }
     </script>
     <!-- Data table JavaScript -->
-	<script src="{{asset('/')}}admin/assets/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-	<script src="{{asset('/')}}admin/assets/style/dist/js/dataTables-data.js"></script>
+	<script src="{{asset('/')}}backend/assets/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="{{asset('/')}}backend/assets/style/dist/js/dataTables-data.js"></script>
 <script>
 $(document).ready(function(){
     
