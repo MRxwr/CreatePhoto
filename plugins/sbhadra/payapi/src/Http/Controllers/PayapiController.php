@@ -103,7 +103,7 @@ class PayapiController extends FrontendController
                 'endpoint' => 'PaymentStatusCheck',
                 'apikey' => 'CKW-1640114323-2537',
                 'Key' => $paymentId,
-                'KeyType' => 'invoiceid'
+                'KeyType' => 'paymentId'
             ];
             $curl = curl_init();
             // $certificate_location = 'C:\wamp64\bin\php\php7.2.33\extras\ssl\cacert.pem';
