@@ -1,7 +1,7 @@
 @extends('juzaweb::layouts.frontend')
 
 @section('content')
-
+@php(dd($booking = \Sbhadra\Photography\Models\Booking::find(base64_decode($_REQUEST['bsid']));))
 <section>
     <div class="container">
       <div class="row">

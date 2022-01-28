@@ -22,8 +22,8 @@ class PayapiController extends FrontendController
             'CustomerMobile' => $payment_data['mobile_number'],
             'CustomerEmail' => 'nasserhatab@gmail.com',
             'InvoiceValue' =>  ($payment_data['pay_amount']?$payment_data['pay_amount']:$payment_data['booking_price']),
-            'CallBackUrl' => url('payment/success'),
-            'ErrorUrl' =>  url('payment/failed'),
+            'CallBackUrl' => url('payment/success').'/?bsid='.$bsid,
+            'ErrorUrl' =>  url('payment/failed').'/?bsid='.$bsid,
             'Language' => 'en',
             'CustomerReference' => 'Ref 0003',
             'CustomerAddress[Block]' => '4',
@@ -97,7 +97,7 @@ class PayapiController extends FrontendController
     public function paymentSuccess(){
        
         if(isset($_REQUEST['paymentId'])){
-            $payment_data = Session::get('booking_data');
+            $bsid = base64_decode($_REQUEST['bsid']);
             $paymentId = $_REQUEST['paymentId'];
             $params = [
                 'endpoint' => 'PaymentStatusCheck',
@@ -136,7 +136,7 @@ class PayapiController extends FrontendController
                 $res = json_decode($response);
                 //dd($res);
                 if($res->type == 'success' && isset($res->data->InvoiceId)){
-                     $booking = Booking::find($payment_data['booking_id']);
+                     $booking = Booking::find($bsid);
                      $booking->transaction_id =  $res->data->InvoiceId;
                      $booking->status =  'Yes';
                      if($booking->save()){
