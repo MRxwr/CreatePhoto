@@ -97,7 +97,7 @@ class PayapiController extends FrontendController
        
         if(isset($_REQUEST['paymentId'])){
             $payment_data = Session::get('booking_data');
-            //dd($payment_data);
+            dd($payment_data);
             $paymentId = $_REQUEST['paymentId'];
             $params = [
                 'endpoint' => 'PaymentStatusCheck',
