@@ -93,7 +93,7 @@ class PayapiController extends FrontendController
        
     }
     public function paymentSuccess(){
-        
+       
         if(isset($_REQUEST['paymentId'])){
             $payment_data = Session::get('booking_data');
             //dd($payment_data);

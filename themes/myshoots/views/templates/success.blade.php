@@ -1,6 +1,7 @@
 @extends('juzaweb::layouts.frontend')
 
 @section('content')
+@dd($payment_data);
 <section>
     <div class="container">
       <div class="row">
