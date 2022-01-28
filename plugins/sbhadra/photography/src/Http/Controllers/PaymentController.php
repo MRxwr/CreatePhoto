@@ -45,6 +45,7 @@ class PaymentController extends FrontendController
             $booking->services()->sync($request['service_item']);
             $payment_data['booking_id'] = $booking->id;
               Session::put('booking_data', $booking);
+              session(['booking_data' => $booking]);
             $status = do_action('theme.payment.method',$payment_data);
          }
     }

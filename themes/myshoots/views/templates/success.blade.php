@@ -1,7 +1,7 @@
 @extends('juzaweb::layouts.frontend')
 
 @section('content')
-@php(dd(\Session::all()))
+
 <section>
     <div class="container">
       <div class="row">

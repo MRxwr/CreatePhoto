@@ -140,7 +140,7 @@ class PayapiController extends FrontendController
                      $booking->transaction_id =  $res->data->InvoiceId;
                      $booking->status =  'Yes';
                      if($booking->save()){
-                        Session::set('booking_data', $booking);
+                        dd($payment_data);
                      }
                 }else{
                     
