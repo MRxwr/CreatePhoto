@@ -133,13 +133,13 @@ class PayapiController extends FrontendController
                 return redirect()->back()->withErrors(['msg' => 'The Message']);
             } else {
                 $res = json_decode($response);
-                dd($res);
+                //dd($res);
                 if($res->type == 'success' && isset($res->data->InvoiceId)){
-                    $booking = Booking::find($payment_data['booking_id']);
-                    $booking->status =  'Yes';
-                    if($booking->save()){
+                    // $booking = Booking::find($payment_data['booking_id']);
+                    // $booking->status =  'Yes';
+                    // if($booking->save()){
                        
-                    }
+                    // }
                 }else{
                     
                 }
