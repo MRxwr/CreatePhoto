@@ -75,12 +75,13 @@ class PayapiController extends FrontendController
                     $PaymentURL = $res->data->PaymentURL;
                     $InvoiceId = $res->data->InvoiceId;
                     $booking = Booking::find($payment_data['booking_id']);
-                    $booking->transaction_id =  $InvoiceId;
+                    $booking->transaction_id =  '';
                 if($booking->save()){
                     //var_dump($booking);
                     //return redirect()->away($PaymentURL);
                     //return \Redirect::intended($PaymentURL);
                     //echo '<script>window.location.replace("'.'");</script>';
+                    Session::put('booking_data', $payment_data);
                     header("Location: ".$PaymentURL);
                     exit();
                     
@@ -135,11 +136,12 @@ class PayapiController extends FrontendController
                 $res = json_decode($response);
                 //dd($res);
                 if($res->type == 'success' && isset($res->data->InvoiceId)){
-                    // $booking = Booking::find($payment_data['booking_id']);
-                    // $booking->status =  'Yes';
-                    // if($booking->save()){
-                       
-                    // }
+                     $booking = Booking::find($payment_data['booking_id']);
+                     $booking->transaction_id =  $res->data->InvoiceId;
+                     $booking->status =  'Yes';
+                     if($booking->save()){
+                        Session::put('booking_data', $payment_data);
+                     }
                 }else{
                     
                 }

@@ -1,10 +1,7 @@
 @extends('juzaweb::layouts.frontend')
 
 @section('content')
-<?php
-$payment_data = $_SESSION['payment_data'];
-dd($payment_data)
-?>
+@php(dd(Session::get('booking_data')))
 <section>
     <div class="container">
       <div class="row">
