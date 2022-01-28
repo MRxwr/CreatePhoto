@@ -2,7 +2,7 @@
 
 @section('content')
 <?php
-$payment_data = \Session::get('booking_data');
+$payment_data = $_SESSION['payment_data'];
 dd($payment_data)
 ?>
 <section>
