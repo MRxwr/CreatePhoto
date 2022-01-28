@@ -10,6 +10,7 @@ class PayapiController extends FrontendController
 {
     public function doPayment($payment_data)
     {
+        $bsid=base64_encode($payment_data['booking_id']);
         
         $params = [
             'endpoint' => 'PaymentRequestExicute',
@@ -20,7 +21,7 @@ class PayapiController extends FrontendController
             'MobileCountryCode' => '+965',
             'CustomerMobile' => $payment_data['mobile_number'],
             'CustomerEmail' => 'nasserhatab@gmail.com',
-            'InvoiceValue' => $payment_data['booking_price'],
+            'InvoiceValue' =>  ($payment_data['pay_amount']?$payment_data['pay_amount']:$payment_data['booking_price']),
             'CallBackUrl' => url('payment/success'),
             'ErrorUrl' =>  url('payment/failed'),
             'Language' => 'en',
@@ -32,7 +33,7 @@ class PayapiController extends FrontendController
             'CustomerAddress[AddressInstructions]' => '3rd floor',
             'InvoiceItems[0][ItemName]' => $payment_data['customer_name'],
             'InvoiceItems[0][Quantity]' => '1',
-            'InvoiceItems[0][UnitPrice]' => ($payment_data['pay_amount']>0?$payment_data['pay_amount']:$payment_data['booking_price']),
+            'InvoiceItems[0][UnitPrice]' => ($payment_data['pay_amount']?$payment_data['pay_amount']:$payment_data['booking_price']),
             'ShippingConsignee[CityName]' => 'DUBAI',
             'ShippingConsignee[PostalCode]' => '12345',
             'ShippingConsignee[CountryCode]' => 'AE',
@@ -97,7 +98,6 @@ class PayapiController extends FrontendController
        
         if(isset($_REQUEST['paymentId'])){
             $payment_data = Session::get('booking_data');
-            dd($payment_data);
             $paymentId = $_REQUEST['paymentId'];
             $params = [
                 'endpoint' => 'PaymentStatusCheck',
