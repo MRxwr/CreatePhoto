@@ -5,6 +5,7 @@ yarn-error.log
 .env
 
 # Laravel 4 specific
+.env
 bootstrap/compiled.php
 app/storage/
 
