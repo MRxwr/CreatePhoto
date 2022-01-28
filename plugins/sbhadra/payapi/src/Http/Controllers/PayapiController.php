@@ -106,9 +106,9 @@ class PayapiController extends FrontendController
                 'KeyType' => 'invoiceid'
             ];
             $curl = curl_init();
-            $certificate_location = 'C:\wamp64\bin\php\php7.2.33\extras\ssl\cacert.pem';
-            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, $certificate_location);
-            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $certificate_location);
+            // $certificate_location = 'C:\wamp64\bin\php\php7.2.33\extras\ssl\cacert.pem';
+            // curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, $certificate_location);
+            // curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $certificate_location);
             curl_setopt_array($curl, array(
             CURLOPT_URL => 'https://createkwservers.com/payapi/api/v2/index.php',
             CURLOPT_RETURNTRANSFER => true,
@@ -134,13 +134,13 @@ class PayapiController extends FrontendController
                 return redirect()->back()->withErrors(['msg' => 'The Message']);
             } else {
                 $res = json_decode($response);
-                //dd($res);
+                dd($res);
                 if($res->type == 'success' && isset($res->data->InvoiceId)){
                      $booking = Booking::find($bsid);
                      $booking->transaction_id =  $res->data->InvoiceId;
                      $booking->status =  'Yes';
                      if($booking->save()){
-                        dd($payment_data);
+                        dd($booking);
                      }
                 }else{
                     
