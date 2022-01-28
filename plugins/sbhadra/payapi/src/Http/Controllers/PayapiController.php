@@ -98,7 +98,7 @@ class PayapiController extends FrontendController
        
         if(isset($_REQUEST['paymentId'])){
             $bsid = base64_decode($_REQUEST['bsid']);
-            $paymentId = $_REQUEST['paymentId'];
+            echo $paymentId = $_REQUEST['paymentId'];
             $params = [
                 'endpoint' => 'PaymentStatusCheck',
                 'apikey' => 'CKW-1640114323-2537',
