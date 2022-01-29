@@ -135,10 +135,10 @@ class PayapiController extends FrontendController
             } else {
                 $res = json_decode($response);
                 dd($res);
-                if($res->type == 'success' && isset($res->data->InvoiceId)){
+                if($res->type == 'success' && isset($res->data->Data->InvoiceId)){
                      echo 'ok';
                      $booking = Booking::find($bsid);
-                     $booking->transaction_id =  $res->data->InvoiceId;
+                     $booking->transaction_id =  $res->data->Data->InvoiceId;
                      $booking->status =  'Yes';
                      $booking->save();
                 }else{
