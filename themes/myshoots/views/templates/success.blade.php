@@ -33,7 +33,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="" class="col-sm-5 col-md-4 col-form-label">@lang('sbph::app.booking_date')<:</label>
+              <label for="" class="col-sm-5 col-md-4 col-form-label">@lang('sbph::app.booking_date'):</label>
               <div class="col-sm-7 col-md-8">
                 <input type="text" readonly class="form-control-plaintext" id="" value="{{$booking->booking_date}}">
               </div>
