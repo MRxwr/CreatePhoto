@@ -29,6 +29,7 @@ return [
     'baby_age' => 'Baby Age',
     'customer_name' => 'Customer Name',
     'sidebar' => 'Sidebar',
+    'goto_home'=>'Go to Home',
     'day' => 'Day',
     'week' => 'Week',
     'month' => 'Month',
