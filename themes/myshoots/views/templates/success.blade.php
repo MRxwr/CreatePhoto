@@ -17,7 +17,7 @@
             <div class="form-group row">
               <label for="" class="col-sm-5 col-md-4 col-form-label">@lang('theme::app.reservation_number')</label>
               <div class="col-sm-7 col-md-8">
-                <input type="text" readonly class="form-control-plaintext" id="" value="<?//=$orderId?>">
+                <input type="text" readonly class="form-control-plaintext" id="" value="<?=$booking->transaction_id?>">
               </div>
             </div>
             <div class="form-group row">

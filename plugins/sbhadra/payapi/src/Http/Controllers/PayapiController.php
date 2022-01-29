@@ -98,7 +98,7 @@ class PayapiController extends FrontendController
        
         if(isset($_REQUEST['paymentId'])){
             $bsid = base64_decode($_REQUEST['bsid']);
-            echo $paymentId = $_REQUEST['paymentId'];
+            $paymentId = $_REQUEST['paymentId'];
             $params = [
                 'endpoint' => 'PaymentStatusCheck',
                 'apikey' => 'CKW-1640114323-2537',
@@ -134,14 +134,12 @@ class PayapiController extends FrontendController
                 return redirect()->back()->withErrors(['msg' => 'The Message']);
             } else {
                 $res = json_decode($response);
-                dd($res);
+                //dd($res);
                 if($res->type == 'success' && isset($res->data->InvoiceId)){
                      $booking = Booking::find($bsid);
                      $booking->transaction_id =  $res->data->InvoiceId;
                      $booking->status =  'Yes';
-                     if($booking->save()){
-                        dd($booking);
-                     }
+                     $booking->save();
                 }else{
                     
                 }
