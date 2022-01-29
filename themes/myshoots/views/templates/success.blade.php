@@ -14,58 +14,64 @@
         </div>
         <div class="col-md-10 col-sm-10">
           <div class="personal-information">
-            <div class="form-group row">
-              <label for="" class="col-sm-5 col-md-4 col-form-label">@lang('theme::app.reservation_number')</label>
+          <div class="form-group row">
+              <label for="" class="col-sm-5 col-md-4 col-form-label">@lang('sbph::app.bookingid'):</label>
               <div class="col-sm-7 col-md-8">
-                <input type="text" readonly class="form-control-plaintext" id="" value="<?=$booking->transaction_id?>">
+                <input type="text" readonly class="form-control-plaintext" id="" value="{{$booking->title}}">
               </div>
             </div>
             <div class="form-group row">
-              <label for="" class="col-sm-5 col-md-4 col-form-label">@lang('theme::app.package_choosen'):</label>
+              <label for="" class="col-sm-5 col-md-4 col-form-label">@lang('sbph::app.invoiceId'):</label>
               <div class="col-sm-7 col-md-8">
-                <input type="text" readonly class="form-control-plaintext" id="" value="<?//=$post_title?>">
+                <input type="text" readonly class="form-control-plaintext" id="" value="{{$booking->transaction_id}}">
               </div>
             </div>
             <div class="form-group row">
-              <label for="" class="col-sm-5 col-md-4 col-form-label">@lang('theme::app.date'):</label>
+              <label for="" class="col-sm-5 col-md-4 col-form-label">@lang('sbph::app.package'):</label>
               <div class="col-sm-7 col-md-8">
-                <input type="text" readonly class="form-control-plaintext" id="" value="<?//=$booking_date;?>">
+                <input type="text" readonly class="form-control-plaintext" id="" value="{{$booking->package->title}}">
               </div>
             </div>
             <div class="form-group row">
-              <label for="" class="col-sm-5 col-md-4 col-form-label">@lang('theme::app.preffered_time'):</label>
+              <label for="" class="col-sm-5 col-md-4 col-form-label">@lang('sbph::app.booking_date')<:</label>
               <div class="col-sm-7 col-md-8">
-                <input type="text" readonly class="form-control-plaintext" id="" value="<?//=$booking_time;?>">
+                <input type="text" readonly class="form-control-plaintext" id="" value="{{$booking->booking_date}}">
               </div>
             </div>
             <div class="form-group row">
-              <label for="" class="col-sm-5 col-md-4 col-form-label">@lang('theme::app.customer_name'):</label>
+              <label for="" class="col-sm-5 col-md-4 col-form-label">@lang('sbph::app.booking_time'):</label>
               <div class="col-sm-7 col-md-8">
-                <input type="text" readonly class="form-control-plaintext" id="" value="<?//=$booking['customer_name'];?>">
+                <input type="text" readonly class="form-control-plaintext" id="" value="{{$booking->timeslot->title}} [{{$booking->timeslot->starttime}} to {{$booking->timeslot->endtime}}]">
               </div>
             </div>
             <div class="form-group row">
-              <label for="" class="col-sm-5 col-md-4 col-form-label">@lang('theme::app.mobile_number'):</label>
+              <label for="" class="col-sm-5 col-md-4 col-form-label"> @lang('sbph::app.customer_name'):</label>
               <div class="col-sm-7 col-md-8">
-                <input type="text" readonly class="form-control-plaintext" id="" value="<?//=$booking['mobile_number'];?>">
+                <input type="text" readonly class="form-control-plaintext" id="" value="{{$booking->customer_name}}">
               </div>
             </div>
             <div class="form-group row">
-              <label for="" class="col-sm-5 col-md-4 col-form-label">@lang('theme::app.baby_name'):</label>
+              <label for="" class="col-sm-5 col-md-4 col-form-label">@lang('sbph::app.mobile_number'):</label>
               <div class="col-sm-7 col-md-8">
-                <input type="text" readonly class="form-control-plaintext" id="" value="<?//=$booking['baby_name'];?>">
+                <input type="text" readonly class="form-control-plaintext" id="" value="{{$booking->mobile_number}}">
               </div>
             </div>
             <div class="form-group row">
-              <label for="" class="col-sm-5 col-md-4 col-form-label">@lang('theme::app.baby_age'):</label>
+              <label for="" class="col-sm-5 col-md-4 col-form-label">@lang('sbph::app.baby_name'):</label>
               <div class="col-sm-7 col-md-8">
-                <input type="text" readonly class="form-control-plaintext" id="" value="<?//=$booking['baby_age'];?> Years">
+                <input type="text" readonly class="form-control-plaintext" id="" value="{{$booking->baby_name}}">
               </div>
             </div>
             <div class="form-group row">
-              <label for="" class="col-sm-5 col-md-4 col-form-label">@lang('theme::app.instructions'):</label>
+              <label for="" class="col-sm-5 col-md-4 col-form-label">@lang('sbph::app.baby_age'):</label>
               <div class="col-sm-7 col-md-8">
-                <input type="text" readonly class="form-control-plaintext" id="" value="<?//=$booking['instructions'];?>">
+                <input type="text" readonly class="form-control-plaintext" id="" value="{{$booking->baby_age}}  Years">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="" class="col-sm-5 col-md-4 col-form-label">@lang('sbph::app.instructions'):</label>
+              <div class="col-sm-7 col-md-8">
+                <input type="text" readonly class="form-control-plaintext" id="" value="{{$booking->instructions}}">
               </div>
             </div>
           </div>
