@@ -32,5 +32,11 @@ return [
     'instructions'=>'Instructions',
     'refunded'=>'Refunded',
     'actions'=>'Actions',
-    'created_at'=>'Created at'
+    'created_at'=>'Created at',
+    'action' => 'Action',
+    'cancel' => 'Cancel',
+    'reschedule' => 'Reschedule',
+    'sms' => 'SMS',
+    'refund' => 'Refund',
+    'refunded' => 'Refunded'
 ];

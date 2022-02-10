@@ -58,7 +58,7 @@
         </div>
         <div class="row">
             <div class="col-md-3"> @lang('sbph::app.refunded')</div>
-            <div class="col-md-9">{{$model->refunded}} </div>
+            <div class="col-md-9">@if($model->refunded==0) No @else Yes @endif </div>
         </div>
         <div class="row">
             <div class="col-md-3"> @lang('sbph::app.status')</div>
@@ -67,6 +67,37 @@
         <div class="row">
             <div class="col-md-3"> @lang('sbph::app.created_at')</div>
             <div class="col-md-9">{{$model->created_at}} </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"> @lang('sbph::app.action')</div>
+            <div class="col-md-9">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary">Cancel</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myReschedule">Reschedule</button>
+                    <button type="button" class="btn btn-primary">SMS</button>
+                    <button type="button" class="btn btn-primary">Refund</button>
+                </div> 
+                <!-- Modal -->
+                    <div id="myReschedule" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Booking Reschedule</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Some text in the modal.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                            </div>
+
+                        </div>
+                    </div>
+            </div>
         </div>
         
 @endsection
