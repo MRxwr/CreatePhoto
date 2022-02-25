@@ -38,5 +38,9 @@ return [
     'reschedule' => 'Reschedule',
     'sms' => 'SMS',
     'refund' => 'Refund',
-    'refunded' => 'Refunded'
+    'refunded' => 'Refunded',
+    'total_incomplete_bookings' => 'total incomplete bookings',
+    'total_success_bookings' => 'total Success bookings',
+    'total_complete_bookings' => 'total Completed bookings',
+    'total_cancel_bookings' => 'total canceled bookings',
 ];

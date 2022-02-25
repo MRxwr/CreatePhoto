@@ -15,4 +15,8 @@ Route::postTypeResource('packages', 'PackageController');
 Route::Resource('services', 'ServiceController');
 Route::Resource('timeslots', 'TimeslotController');
 Route::get('/booking/details/{id}', 'BookingController@getBookingDetails')->name('admin.bookings.view');
+Route::get('/booking/add-new/{id}', 'BookingController@addNewBooking')->name('admin.bookings.addnew');
+Route::get('/booking/cancel/{id}', 'BookingController@getBookingCancel')->name('admin.bookings.cancel');
+Route::get('/booking/refund/{id}', 'BookingController@getBookingRefund')->name('admin.bookings.refund');
+Route::get('/booking/send-sms/{id}', 'BookingController@getBookingSendSMS')->name('admin.bookings.sendsms');
 Route::Resource('bookings', 'BookingController');

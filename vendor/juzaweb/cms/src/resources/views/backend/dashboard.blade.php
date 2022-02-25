@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @do_action('backend.dashboard.view')
+@do_action('backend.dashboard.view')
 
 
 @endsection

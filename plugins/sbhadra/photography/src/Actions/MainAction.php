@@ -27,7 +27,7 @@ class MainAction extends Action
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addReservationHooks']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addDoPaymentsAction']);
         //$this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'getCalenderHooks']);
-        //$this->addAction(self::BACKEND_CALL_ACTION, [$this, 'addAdminMenus']);
+        $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'GetDashboardHooks']);
     }
 
     public function registerPackage()
@@ -205,11 +205,27 @@ class MainAction extends Action
                  }
                $datesDisabled = implode(',', $datesDisabled_array );
             return '<script>
-            alert("hhhh");
                    var datesDisabled = ['.$datesDisabled.'];
                </script>';
        }, 10, 1);
         
     }
+
+    public   function GetDashboardHooks(){
+        $this->addAction('backend.dashboard.view', function () {
+            $html ='<div class="row">';
+             $incomplete_booking =Booking::where('status','No')->count();
+            $html .='<div class="col-md-3"><div class="card"><div class="height-20 d-flex flex-column jw__g13__head"></div><div class="card card-borderless mb-0"><div class="card-header border-bottom-0"><div class="d-flex"><div class="text-dark text-uppercase font-weight-bold mr-auto">'. trans('sbph::app.total_incomplete_bookings').'</div><div class="text-gray-6">'.$incomplete_booking.'</div></div></div></div></div></div>';
+            $success_booking =Booking::where('status','Yes')->count();
+            $html .='<div class="col-md-3"><div class="card"><div class="height-20 d-flex flex-column jw__g13__head"></div><div class="card card-borderless mb-0"><div class="card-header border-bottom-0"><div class="d-flex"><div class="text-dark text-uppercase font-weight-bold mr-auto">'. trans('sbph::app.total_success_bookings').'</div><div class="text-gray-6">'.$success_booking.'</div></div></div></div></div></div>';
+            $complete_booking =Booking::where('status','Completed')->count();
+            $html .='<div class="col-md-3"><div class="card"><div class="height-20 d-flex flex-column jw__g13__head"></div><div class="card card-borderless mb-0"><div class="card-header border-bottom-0"><div class="d-flex"><div class="text-dark text-uppercase font-weight-bold mr-auto">'. trans('sbph::app.total_complete_bookings').'</div><div class="text-gray-6">'.$complete_booking.'</div></div></div></div></div></div>';
+            $cancel_booking =Booking::where('status','cancel')->count();
+            $html .='<div class="col-md-3"><div class="card"><div class="height-20 d-flex flex-column jw__g13__head"></div><div class="card card-borderless mb-0"><div class="card-header border-bottom-0"><div class="d-flex"><div class="text-dark text-uppercase font-weight-bold mr-auto">'. trans('sbph::app.total_cancel_bookings').'</div><div class="text-gray-6">'.$cancel_booking.'</div></div></div></div></div></div>';
+            $html .='</div>';
+            echo $html;
+       });
+       
+    } 
 
 }
