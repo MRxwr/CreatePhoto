@@ -8,7 +8,7 @@
             $currentUrl =  implode('/', $url); 
             $action = $model->id ?
                 str_replace('/edit', '', $currentUrl) :
-                str_replace('/create', '', $currentUrl);
+                str_replace('', '', $currentUrl);
         } else {
             $action = '';
         }
