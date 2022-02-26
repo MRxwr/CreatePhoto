@@ -1,10 +1,14 @@
 @php
     if (!isset($action)) {
         $currentUrl = url()->current();
+        
         if (isset($model)) {
+            $url = explode('/', $currentUrl);
+            array_pop($url);
+            $currentUrl =  implode('/', $url); 
             $action = $model->id ?
                 str_replace('/edit', '', $currentUrl) :
-                //str_replace('/create', '', $currentUrl);
+                str_replace('/create', '', $currentUrl);
         } else {
             $action = '';
         }
