@@ -4,7 +4,7 @@
         if (isset($model)) {
             $action = $model->id ?
                 str_replace('/edit', '', $currentUrl) :
-                str_replace('/create', '', $currentUrl);
+                //str_replace('/create', '', $currentUrl);
         } else {
             $action = '';
         }
