@@ -51,7 +51,7 @@
     <div class="container-fluid p-0">
       <div class="row no-gutters align-items-center">
         <div class="col-md-5 d-none d-md-block">
-          <a href="{{url('/')}}" title="{{ get_config('title') }}"><img src="{{ upload_url(get_config('logo')) }}" title="{{ get_config('title') }}" class="w-75 img-fluid .d-sm-none .d-md-block mx-auto py-4"></a>
+          <a href="{{url('/')}}" title="{{ get_config('title') }}"><img src="{{ upload_url(get_config('logo')) }}" title="{{ get_config('title') }}" class="w-25 img-fluid .d-sm-none .d-md-block mx-auto py-4"></a>
         </div>
         <div class="col-md-7">
            @do_action('theme.slider')

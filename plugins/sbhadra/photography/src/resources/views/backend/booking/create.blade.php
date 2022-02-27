@@ -7,8 +7,10 @@
       var datesDisabled = ["13-01-2022"];
       var daysOfWeekDisabled = [5,6]
     </script>
+    <form action="" method="get">
     <div class="row" >
-            <div class="col-md-6">
+        
+            <div class="col-md-7">
             <div class="form-group row">
                     <label for="" class="col-sm-5 col-md-4 col-form-label">Select Package:</label>
                             <div class="col-sm-7 col-md-8">
@@ -20,14 +22,16 @@
                             </div>
                     </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-7">
             <div class="form-group"> <!-- Date input -->
                 <input type="hidden" name="package_id" id="package_id" value="{{ $post->id }}">
                 <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text" disabled />
                 <div id="bookingdate"></div>
               </div>
             </div>
+
     </div>
+    </form>
     <div class="row" style="display:none">
     @component('juzaweb::components.form_resource', [
         'model' => $model,
