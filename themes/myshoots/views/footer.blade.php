@@ -23,7 +23,7 @@
             
           </ul>
 
-          <p class="mb-3 text-center" style="text-align: center !important;"><a href="#"><i class="far fa-envelope mr-1"></i> Hello@myshootskw.com</a></p>
+          <p class="mb-3 text-center" style="text-align: center !important;"><a href="#"><i class="far fa-envelope mr-1"></i> contact@createstudio.com</a></p>
           
           <p class="text-muted mb-5 text-uppercase text-center" style="text-align: center !important;">COPYRIGHT {{date('Y')}} - {{ get_config('title') }}  - KUWAIT</p>
           <p class="theme-color text-center" style="text-align: center !important;">Powered by <a href="http://www.create-kw.com/" target="_blank" class="text-muted">Create-kw.com</a></p>
