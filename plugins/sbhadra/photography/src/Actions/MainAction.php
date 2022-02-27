@@ -26,7 +26,8 @@ class MainAction extends Action
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addPackagesInHomepage']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addReservationHooks']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addDoPaymentsAction']);
-        //$this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'getCalenderHooks']);
+        $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'getCalenderHooksAdmin']);
+        $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'addReservationHooksAdmin']);
         $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'GetDashboardHooks']);
     }
 
@@ -113,9 +114,74 @@ class MainAction extends Action
                 $package = Package::find($_REQUEST['id']);
                    return $this->getPackageExService($package);
                }, 10, 1);
+
+               $this->addAction('admin.reservation.data', function() {
+                $package = Package::find($_REQUEST['id']);
+                echo '<input type="hidden" id="id" name="id" value="'. $package->id.'" />
+                        <input type="hidden" id="booking_price" name="package_price" value="'. $package->price.'" />
+                        <div class="form-group row">
+                            <label for="" class="col-sm-5 col-md-4 col-form-label">Package Choosen:</label>
+                            <div class="col-sm-7 col-md-8">
+                                <input type="text" readonly class="form-control-plaintext" id="" value="'. $package->title.'">
+                            </div>
+                        </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-5 col-md-4 col-form-label">Date:</label>
+                        <div class="col-sm-7 col-md-8">
+                        <input type="text" readonly class="form-control-plaintext" name="booking_date" id="booking_date" value="'.$_REQUEST['date'].'">
+                    </div>
+                   </div>';
+           }, 10, 1);
+
+           $this->addAction('admin.reservation.time', function() {
+            $package = Package::find($_REQUEST['id']);
+               echo $this->getPackageTimeslots($package);
+           }, 10, 1);
+
+           $this->addAction('admin.reservation.services', function() {
+            $package = Package::find($_REQUEST['id']);
+               echo $this->getPackageExService($package);
+           }, 10, 1);
+
  
             }
         }
+    }
+    public function addReservationHooksAdmin(){
+
+            if(isset($_REQUEST['id'])){
+              $package = Package::find($_REQUEST['id']);
+               $this->addAction('admin.reservation.data', function() {
+                $package = Package::find($_REQUEST['id']);
+                echo '<input type="hidden" id="id" name="id" value="'. $package->id.'" />
+                        <input type="hidden" id="booking_price" name="package_price" value="'. $package->price.'" />
+                        <div class="form-group row">
+                            <label for="" class="col-sm-5 col-md-4 col-form-label">Package Choosen:</label>
+                            <div class="col-sm-7 col-md-8">
+                                <input type="text" readonly class="form-control-plaintext" id="" value="'. $package->title.'">
+                            </div>
+                        </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-5 col-md-4 col-form-label">Date:</label>
+                        <div class="col-sm-7 col-md-8">
+                        <input type="text" readonly class="form-control-plaintext" name="booking_date" id="booking_date" value="'.$_REQUEST['date'].'">
+                    </div>
+                   </div>';
+           }, 10, 1);
+
+           $this->addAction('admin.reservation.time', function() {
+            $package = Package::find($_REQUEST['id']);
+               echo $this->getPackageTimeslots($package);
+           }, 10, 1);
+
+           $this->addAction('admin.reservation.services', function() {
+            $package = Package::find($_REQUEST['id']);
+               echo $this->getPackageExService($package);
+           }, 10, 1);
+
+ 
+            }
+        
     }
     public function registerBooking()
     {
@@ -207,6 +273,34 @@ class MainAction extends Action
             return '<script>
                    var datesDisabled = ['.$datesDisabled.'];
                </script>';
+       }, 10, 1);
+        
+    }
+
+    public function getCalenderHooksAdmin(){
+        $this->addAction('admin.calendar.hooks', function(){
+            if(isset($_REQUEST['id'])){
+            $post = Package::find($_REQUEST['id']);
+            //var_dump($post);
+             $package_id = $post->id; 
+            $slots = count($post->slots);
+            $bookings = DB::table('bookings')
+                 ->select('booking_date', DB::raw('count(*) as total'))
+                 ->where('status','Yes')
+                 ->where('package_id',$package_id)
+                 ->groupBy('booking_date')
+                 ->get();  
+                 $datesDisabled_array =array();
+                 foreach($bookings as $booking){
+                    if($booking->total ==$slots ){
+                        $datesDisabled_array[] =  $booking->booking_date;
+                    }
+                 }
+               $datesDisabled = implode(',', $datesDisabled_array );
+            echo '<script>
+                   var datesDisabled = ['.$datesDisabled.'];
+               </script>';
+                }
        }, 10, 1);
         
     }

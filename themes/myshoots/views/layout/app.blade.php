@@ -57,7 +57,7 @@
     <script>
       var startDate='2022-01-01';
       var endDate='2046-12-31';
-      var datesDisabled = ["13-01-2022"];
+      var datesDisabled = ["13-03-2022"];
       var daysOfWeekDisabled = [5,6]
     </script>
 </head>
