@@ -1,17 +1,16 @@
 @extends('juzaweb::layouts.backend')
-
 @section('content')
 <script>
       var startDate='2022-01-01';
       var endDate='2046-12-31';
       var datesDisabled = ["13-01-2022"];
       var daysOfWeekDisabled = [5,6]
-    </script>
+</script>
     @php
-    $id =0;
-    @if(isset($_REQUEST['id']))
-       $id = @(!empty($_REQUEST)?$_REQUEST['id']:0 );
-    @endif
+      $id =0;
+       @if(isset($_REQUEST['id']))
+         $id = @(isset($_REQUEST['id'])?$_REQUEST['id']:0 );
+       @endif
         
     @endphp
     <div class="form">
