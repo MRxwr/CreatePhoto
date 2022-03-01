@@ -6,13 +6,13 @@
       var datesDisabled = ["13-01-2022"];
       var daysOfWeekDisabled = [5,6]
 </script>
-    @php
-      $id =0;
-       @if(isset($_REQUEST['id']))
+    <?php 
+        $id =0;
+       if(isset($_REQUEST['id'])){
          $id = @(isset($_REQUEST['id'])?$_REQUEST['id']:0 );
-       @endif
+        }
         
-    @endphp
+     ?>
     <div class="form">
          <form action="{{url()->current()}}" method="get">
           <div class="row">
