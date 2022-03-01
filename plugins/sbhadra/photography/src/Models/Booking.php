@@ -16,7 +16,24 @@ class Booking extends Model
 
    // protected $postType = 'sliders';
     protected $table = 'bookings';
-    protected $fillable = [];
+  
+    protected $fillable = [
+        'title',
+        'slug',
+        'package_id',
+        'transaction_id',
+        'booking_date',
+        'timeslot_id',
+        'is_filming',
+        'rating',
+        'booking_price',
+        'customer_name',
+        'mobile_number',
+        'baby_name',
+        'baby_age',
+        'instructions',
+        'status',
+    ];
     public function services(){
         return $this->BelongsToMany(Service::class, 'booking_service')->withTimestamps();
     }

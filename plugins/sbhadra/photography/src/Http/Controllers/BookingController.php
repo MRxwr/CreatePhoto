@@ -6,8 +6,10 @@ use Juzaweb\Traits\PostTypeController;
 use Illuminate\Support\Facades\Validator;
 use Juzaweb\Http\Controllers\BackendController;
 use Sbhadra\Photography\Http\Datatables\BookingDatatable;
-use Sbhadra\Photography\Models\Booking;
 use Sbhadra\Photography\Models\Package;
+use Sbhadra\Photography\Models\Service;
+use Sbhadra\Photography\Models\Booking;
+use Sbhadra\Photography\Models\Timeslot;
 use Illuminate\Http\Request;
 
 class BookingController extends BackendController
@@ -58,7 +60,7 @@ class BookingController extends BackendController
     }
     public function create(Request $request) {
         $id=($request->id?$request->id:null);
-        $model = Package::firstOrNew(['id' => $id]);
+        $model = Package::firstOrNew(['id' => 0]);
         $packages= Package::all();  
         return view('sbph::backend.booking.create', [
             'model' => $model,
@@ -68,6 +70,21 @@ class BookingController extends BackendController
             'title' => $model->name ?: trans('sbph::app.add_new')
         ]);
     }
+    // public function store(Request $request){
+    //     return $request->all;
+    // }
+    protected function afterSave(Request $request, $model){
+        $services = Service::whereIn('id', $request['service_item'])->get();
+        $booking_price =$request['package_price'];
+        foreach($services as $service){
+            $booking_price =$booking_price+$service->price;
+        }
+        $model->booking_price = $booking_price;
+        $model->timeslot_id = $request['booking_time'];
+        $model->save();
+        $model->services()->sync($request['service_item']);
+       }
+    
     public function getBookingCancel(Request $request,$id){
         $model = Booking::firstOrNew(['id' => $id]);
         $model->status ='cancel';

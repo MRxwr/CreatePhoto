@@ -7,16 +7,20 @@
       var datesDisabled = ["13-01-2022"];
       var daysOfWeekDisabled = [5,6]
     </script>
-    <form action="" method="get">
-    <div class="row" >
+    @php
+       $id =(!empty($_REQUEST)?$_REQUEST['id']:0 );
         
+    @endphp
+    <div class="form">
+         <form action="{{url()->current()}}" method="get">
+          <div class="row">
             <div class="col-md-7">
-            <div class="form-group row">
+              <div class="form-group row">
                     <label for="" class="col-sm-5 col-md-4 col-form-label">Select Package:</label>
                             <div class="col-sm-7 col-md-8">
-                                <select class="form-control form-control-lg" name="package_id">
+                                <select class="form-control form-control-lg" name="id" onchange="packageRedirect(this.value);">
                                     @foreach($packages as $package)
-                                    <option value="{{$package->id}}"> {{$package->title}}</option>
+                                    <option value="{{$package->id}}" @if($id==$package->id) selected="selected" @endif> {{$package->title}}</option>
                                     @endforeach
                                 </select> 
                             </div>
@@ -25,23 +29,27 @@
             <div class="col-md-7">
             <div class="form-group"> <!-- Date input -->
                 <input type="hidden" name="package_id" id="package_id" value="{{ $post->id }}">
-                <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text" disabled />
+                <input class="form-control" id="date" name="date" value="@if(isset($_REQUEST['date'])) {{$_REQUEST['date']}} @endif " placeholder="MM/DD/YYY" type="text"/>
                 <div id="bookingdate"></div>
               </div>
+              <div class="btn-group float-right"><button type="submit" class="btn btn-success px-5"><i class="fa fa-save"></i> Next</button> </div>
             </div>
-
+            </div>
+        </form>
     </div>
-    </form>
-    <div class="row" style="display:none">
+
+   
+
+    <div @if(isset($_REQUEST['date']) && ($_REQUEST['date']!='') ) style="display:block" @else style="display:none" @endif>
+
     @component('juzaweb::components.form_resource', [
         'model' => $model,
     ])
-        
+    <div class="row">
             <div class="col-md-8">
-               
-              <section>
-                <div class="container">
                 <div class="row">
+                <input type="hidden" name="title" id="title" value="CPBK{{time()}}">
+                <input type="hidden" name="slug" id="slug" value="CPBK{{time()}}">
                     <div class="col-12">
                     <h2 class="shoots-Head2">Personal Information</h2>
                     </div>
@@ -95,8 +103,7 @@
                         @do_action('admin.reservation.fields');
                     </div>
                 </div>
-                </div>
-            </section>
+                
 
                 @do_action('post_type.'. $postType .'.form.left')
 
@@ -104,7 +111,8 @@
 
             <div class="col-md-4">
             
-               @do_action('post_type.'. $postType .'.form.right', $model)
+               
+            </div>
             </div>
             @endcomponent
         </div>
@@ -124,7 +132,10 @@
         @do_action('admin.calendar.hooks')
  
         <script>
-
+        var packageRedirect = function(id){
+            var durl = "{{url()->current()}}?id="+id+"&date=''";
+            window.location = durl;
+        }
         $(document).ready(function(){
             var date_input=$('#bookingdate'); //our date input has the name "date"
             var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";

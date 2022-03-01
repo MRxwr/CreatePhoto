@@ -115,33 +115,7 @@ class MainAction extends Action
                    return $this->getPackageExService($package);
                }, 10, 1);
 
-               $this->addAction('admin.reservation.data', function() {
-                $package = Package::find($_REQUEST['id']);
-                echo '<input type="hidden" id="id" name="id" value="'. $package->id.'" />
-                        <input type="hidden" id="booking_price" name="package_price" value="'. $package->price.'" />
-                        <div class="form-group row">
-                            <label for="" class="col-sm-5 col-md-4 col-form-label">Package Choosen:</label>
-                            <div class="col-sm-7 col-md-8">
-                                <input type="text" readonly class="form-control-plaintext" id="" value="'. $package->title.'">
-                            </div>
-                        </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-5 col-md-4 col-form-label">Date:</label>
-                        <div class="col-sm-7 col-md-8">
-                        <input type="text" readonly class="form-control-plaintext" name="booking_date" id="booking_date" value="'.$_REQUEST['date'].'">
-                    </div>
-                   </div>';
-           }, 10, 1);
-
-           $this->addAction('admin.reservation.time', function() {
-            $package = Package::find($_REQUEST['id']);
-               echo $this->getPackageTimeslots($package);
-           }, 10, 1);
-
-           $this->addAction('admin.reservation.services', function() {
-            $package = Package::find($_REQUEST['id']);
-               echo $this->getPackageExService($package);
-           }, 10, 1);
+              
 
  
             }
@@ -153,8 +127,8 @@ class MainAction extends Action
               $package = Package::find($_REQUEST['id']);
                $this->addAction('admin.reservation.data', function() {
                 $package = Package::find($_REQUEST['id']);
-                echo '<input type="hidden" id="id" name="id" value="'. $package->id.'" />
-                        <input type="hidden" id="booking_price" name="package_price" value="'. $package->price.'" />
+                echo '<input type="hidden" id="package_id" name="package_id" value="'. $package->id.'" />
+                        <input type="hidden" id="package_price" name="package_price" value="'. $package->price.'" />
                         <div class="form-group row">
                             <label for="" class="col-sm-5 col-md-4 col-form-label">Package Choosen:</label>
                             <div class="col-sm-7 col-md-8">
