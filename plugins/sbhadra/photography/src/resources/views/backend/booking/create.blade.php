@@ -8,7 +8,10 @@
       var daysOfWeekDisabled = [5,6]
     </script>
     @php
-       $id =(!empty($_REQUEST)?$_REQUEST['id']:0 );
+    $id =0;
+    @if(isset($_REQUEST['id']))
+       $id = @(!empty($_REQUEST)?$_REQUEST['id']:0 );
+    @endif
         
     @endphp
     <div class="form">
