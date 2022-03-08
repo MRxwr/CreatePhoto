@@ -203,8 +203,8 @@ $(document).ready(function(){
 	if(searchquery != ''){
     $('#bars1').show();
 		$.ajax({
-				type:'POST',
-				url:'pages/getBookingDetailsAjax.php',
+				type:'GET',
+				url:'?ajaxpage=getBookingDetailsAjax',
 				data: dataString,
 				success:function(html){
           setTimeout(() => {
@@ -245,19 +245,7 @@ $("#booking_time").change(function(){
 				}
 			}); 
 			
-			function fetchdata(){
-				$.ajax({
-				type:'POST',
-				url:'pages/sessionOutAjax.php',
-				data: dataString,
-				success:function(result){
-					if(result == 1){
-						 alert("Session Out!!!");
-						 window.location.href = 'index0265.html?page=reservations&amp;id=16';
-					  }
-				   }
-				}); 
-			}
+		
 			setInterval(fetchdata,900000);
   });
   

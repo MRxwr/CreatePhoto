@@ -23,6 +23,7 @@ class MainAction extends Action
         $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerPackage']);
         $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerBooking']);
         $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerTaxonomies']);
+        $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'getBookingDetailsAjax']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addPackagesInHomepage']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addReservationHooks']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addDoPaymentsAction']);
@@ -295,5 +296,105 @@ class MainAction extends Action
        });
        
     } 
+    
+    public function getBookingDetailsAjax(){
+        if(isset($_REQUEST['ajaxpage']) && $_REQUEST['ajaxpage']=='getBookingDetailsAjax'){
+           $searchquery = $_REQUEST['searchquery'];
+           $bookings = Booking::where('transaction_id',$searchquery)->get();
+           if(!$bookings->isEmpty()){
+            echo $this->bookingViewRander($bookings);
+           }else{
+               $bookings = Booking::where('title',$searchquery)->get();
+               if(!$bookings->isEmpty()){
+                   echo $this->bookingViewRander($bookings);
+                }else{
+                    $bookings = Booking::where('mobile_number',$searchquery)->get();
+                    if(!$bookings->isEmpty()){
+                        echo $this->bookingViewRander($bookings);
+                    }else{
+                        echo 'No Search Data Found!!!';
+                    }
+                }
+
+           }
+        exit;
+        }
+    }
+
+    static function bookingViewRander($bookings){
+       //dd($bookings);
+       $html = '';
+       $html .= ' <div class="panel panel-default card-view">
+       <div class="panel-heading">
+           <div class="pull-left">
+               <h2 class="shoots-Head">'.trans('sbph::app.search_result').'</h2>
+           </div>
+           <div class="clearfix"></div>
+       </div>
+       <div class="panel-wrapper">
+           <div class="panel-body">
+               <div class="table-wrap">
+                   <div class="table-responsive">
+                       <table id="datable_1" class="table table-hover display  pb-30" >
+                           <thead>
+                               <tr>
+                                   <th>'.  trans('sbph::app.bookingid').'</th>
+                                   <th>'.  trans('sbph::app.invoiceId').'</th>
+                                   <th>'. trans('sbph::app.package').'</th>
+                                   <th>'.  trans('sbph::app.booking_date').'</th>
+                                   <th>'.  trans('sbph::app.booking_time').'</th>
+                                   <th>'.  trans('sbph::app.booking_price').'</th>
+                                   <th>'.  trans('sbph::app.customer_name').'</th>
+                                   <th>'.  trans('sbph::app.mobile_number').'</th>
+                                   <th>'.  trans('sbph::app.baby_name').'</th>
+                                   <th>'.  trans('sbph::app.baby_age').'</th>
+                                   <th>'.  trans('sbph::app.instructions').'</th>
+                                  
+                                  
+                               </tr>
+                           </thead>
+                           <tfoot>
+                               <tr>
+                               <th>'.  trans('sbph::app.bookingid').'</th>
+                               <th>'.  trans('sbph::app.invoiceId').'</th>
+                               <th>'. trans('sbph::app.package').'</th>
+                               <th>'.  trans('sbph::app.booking_date').'</th>
+                               <th>'.  trans('sbph::app.booking_time').'</th>
+                               <th>'.  trans('sbph::app.booking_price').'</th>
+                               <th>'.  trans('sbph::app.customer_name').'</th>
+                               <th>'.  trans('sbph::app.mobile_number').'</th>
+                               <th>'.  trans('sbph::app.baby_name').'</th>
+                               <th>'.  trans('sbph::app.baby_age').'</th>
+                               <th>'.  trans('sbph::app.instructions').'</th>
+                               
+                               </tr>
+                           </tfoot>
+                           <tbody>';
+                               foreach($bookings as $key=>$booking){ 
+                                    $html .= '<tr>';
+                                    $html .= '<td>'.$booking->title.'</td>';
+                                    $html .= '<td>'.$booking->transaction_id.'</td>';
+                                    $html .= '<td>'.$booking->package->title.'</td>';
+                                    $html .= '<td>'.$booking->booking_date.'</td>';
+                                    $html .= '<td>'.$booking->timeslot->title.' ['.$booking->timeslot->starttime.' to '.$booking->timeslot->endtime.'] </td>';
+                                    $html .= '<td>'.$booking->booking_price.' KD</td>';
+                                    $html .= '<td>'.$booking->customer_name.'</td>';
+                                    $html .= '<td>'.$booking->mobile_number.'</td>';
+                                    $html .= '<td>'.$booking->baby_name.'</td>';
+                                    $html .= '<td>'.$booking->instructions.'</td>';
+                                    $html .= '<td> </td>';
+                                    $html .= ' </tr>';
+                               }
+                            $html .= '</tbody>
+                       </table>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>';
+   
+       $html .= '';
+        return $html ;
+    }
 
 }

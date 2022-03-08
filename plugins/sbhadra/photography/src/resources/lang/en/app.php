@@ -43,4 +43,5 @@ return [
     'total_success_bookings' => 'total Success bookings',
     'total_complete_bookings' => 'total Completed bookings',
     'total_cancel_bookings' => 'total canceled bookings',
+    'search_result'=>'Search result',
 ];

@@ -10,8 +10,7 @@
         $id =0;
        if(isset($_REQUEST['id'])){
          $id = @(isset($_REQUEST['id'])?$_REQUEST['id']:0 );
-        }
-        
+        } 
      ?>
     <div class="form">
          <form action="{{url()->current()}}" method="get">
