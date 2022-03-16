@@ -55,22 +55,8 @@
                                       @endif
                                         
                                     </div>
-                                    <div class="package-head bg-light radius15 mh53 py-1 px-3 mb-3 d-inline-flex align-items-center">
-                                        <h4 class="fs23">
-                                            Theme:
-                                        </h4>
-                                    </div>
-                                    <div class="package-body text-muted mb-5 pb-4 pt-3">
-                                        <select class="form-control teheme2">
-                                            <option value="1">
-                                                Choose Your Theme Category
-                                            </option>
-                                            <option value="2">
-                                                Choose Your Theme Category 2
-                                            </option>
-                                        </select>
-                                        
-                                    </div>
+                                    @apply_filters('theme.cstudio.theme_category')
+                                    
                                 </div>
                                 <div class="col-sm-6 ps-xl-5 mb-sm-5 mb-5 d-none d-sm-block">
                                     <img src="{{ $post->getThumbnail() }}" alt="{{ $post->getTitle() }}" class="w-100 mt-xl-0 mt-4">
@@ -81,70 +67,15 @@
                     </div>
                 </div>
             </div>
+            
             <div class="container-fluid mb-5 overflow-hidden">
                 <div class="ps-xxl-5 ms-xxl-5">
                     <div class="row ps-xxl-4">
-                        <div class="col-xl-10 pe-xxl-0">
-                            <div class="theme_select_slider owl-carousel owl-theme">
-                                <div class="theme-select">
-                                    <label class="container_radio themeCheck">
-                                        <label for="slect1" class="d-inline-block">Blue Birthday</label>
-                                        <input type="radio" id="slect1" name="themeCheck">
-                                        <span class="checkmark"></span>
-                                        <a href="{{asset('/')}}jw-styles/themes/cstudio/assets/img/themeCheck.jpg" class="themeCheck_img image-link border">
-                                            <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/themeCheck.jpg" alt="img" class="w-100">
-                                        </a>
-                                    </label>
-                                </div>
-                                <div class="theme-select">
-                                    <label class="container_radio themeCheck">
-                                        <label for="slect12" class="d-inline-block">Violet Birthday  Birthday</label>
-                                        <input type="radio" id="slect12" name="themeCheck">
-                                        <span class="checkmark"></span>
-                                        <a href="{{asset('/')}}jw-styles/themes/cstudio/assets/img/themeCheck2.jpg" class="themeCheck_img image-link border">
-                                            <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/themeCheck2.jpg" alt="img" class="w-100">
-                                        </a>
-                                    </label>
-                                </div>
-                                <div class="theme-select">
-                                    <label class="container_radio themeCheck">
-                                        <label for="slect13" class="d-inline-block">Golden Birthday</label>
-                                        <input type="radio" id="slect13" name="themeCheck">
-                                        <span class="checkmark"></span>
-                                        <a href="{{asset('/')}}jw-styles/themes/cstudio/assets/img/themeCheck3.jpg" class="themeCheck_img image-link border">
-                                            <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/themeCheck3.jpg" alt="img" class="w-100">
-                                        </a>
-                                    </label>
-                                </div>
-                                <div class="theme-select">
-                                    <label class="container_radio themeCheck">
-                                        <label for="slect14" class="d-inline-block">Girlish</label>
-                                        <input type="radio" id="slect14" name="themeCheck">
-                                        <span class="checkmark"></span>
-                                        <a href="{{asset('/')}}jw-styles/themes/cstudio/assets/img/themeCheck4.jpg" class="themeCheck_img image-link border">
-                                            <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/themeCheck4.jpg" alt="img" class="w-100">
-                                        </a>
-                                    </label>
-                                </div>
-                                <div class="theme-select">
-                                    <label class="container_radio themeCheck">
-                                        <label for="slect15" class="d-inline-block">Blue Birthday</label>
-                                        <input type="radio" id="slect15" name="themeCheck">
-                                        <span class="checkmark"></span>
-                                        <a href="{{asset('/')}}jw-styles/themes/cstudio/assets/img/themeCheck.jpg" class="themeCheck_img image-link border">
-                                            <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/themeCheck.jpg" alt="img" class="w-100">
-                                        </a>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-12 pt-5 d-flex align-items-center justify-content-center">
-                            <button class='owl-arrow MyPrevButton'>Previous</button>
-                            <button class='owl-arrow MyNextButton'>Next</button>
-                        </div>
+                        @apply_filters('theme.cstudio.themes') 
                     </div>
                 </div>
             </div>
+
             <div class="container">
                 <div class="px-xxl-5">
                     <div class="row">
