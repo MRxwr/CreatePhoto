@@ -1,18 +1,22 @@
 @extends('juzaweb::layouts.frontend')
 
 @section('content')
-<section>
-    <div class="container">
-      <div class="row">
-        <div class="col-12 text-center">
-            <!-- <button class="btn btn-sm theme-bg text-uppercase text-white" onclick="one()">Single Grid</button> -->
-            <button class="btn btn-sm theme-bg text-uppercase text-white" onclick="two()">Double Grid</button>
-            <button class="btn btn-sm theme-bg text-uppercase text-white active" onclick="four()">4 Grids</button>
-        </div>
-        <div class="col-lg-8 col-md-10 mx-auto">
-          @apply_filters('theme.galleries');
-        </div>   
-      </div>
-    </div>  
-  </section>
+
+  <!-- filter-section -->
+  <section class="filter-section pt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12 pb-5">
+                        <div class="site-title position-relative d-flex align-items-center">
+                            <div class="bg-white">
+                                <h3 class="fs30 text-300 SegoeUIL pe-4">
+                                    Gallery
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @apply_filters('theme.cstudio.galleries');
+            </div>
+        </section>
 @endsection

@@ -19,6 +19,7 @@ class MainAction extends Action
         $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerGallery']);
         $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerTaxonomies']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'getGalleyExImages']);
+        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'getCstudioGalleyExImages']);
  
     }
 
@@ -61,6 +62,36 @@ class MainAction extends Action
              }
             $html .='</div>';
            
+        }
+        return $html;
+     });
+    }
+
+    static function getCstudioGalleyExImages(){
+        add_filters('theme.cstudio.galleries', function(){
+        $galleries = Gallery::get();
+        $html ='';
+        if($galleries){
+            $html .='<div class="row">
+                    <div class="col-xl-12 px-sm-0 mb-4 filter_btn">
+                        <button class="filter-button d-inline-block active" data-filter="all">All</button>
+                        <button class="filter-button d-inline-block" data-filter="family">Family  Package</button>
+                        <button class="filter-button d-inline-block" data-filter="themes">Themes Package</button>
+                        <button class="filter-button d-inline-block" data-filter="birthday">Birthday  Package</button>
+                    </div>
+                </div>';
+            $html .='<div class="row portfolio-grid justify-content-center">';
+             foreach($galleries as $image){
+               $html .='<div class="col-sm-4 col-6 px-0 gallery_product filter family">
+                        <div class="filter-item position-relative d-flex align-items-center justify-content-center">
+                            <img src="'.$image->getThumbnail().'" alt="img" class="w-100">
+                            <a href="'.$image->getThumbnail().'" class="image-link bg-ovarley w-100 h-100 position-absolute d-flex align-items-center justify-content-center">
+                                <img src="'.asset('/').'jw-styles/themes/cstudio/assets/img/zoom.svg" alt="img" class="mw-100 position-absolute">
+                            </a>
+                        </div>
+                    </div>';
+             }
+            $html .='</div>';
         }
         return $html;
      });

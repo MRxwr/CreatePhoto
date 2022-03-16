@@ -88,35 +88,43 @@ class MainAction extends Action
         if(\Request::segment(1) =="reservations" && !empty($_REQUEST)){
             if(isset($_REQUEST['id'])){
               $package = Package::find($_REQUEST['id']);
-                add_filters('theme.reservation.data', function() {
+                add_filters('theme.reservation.data', function($type) {
                     $package = Package::find($_REQUEST['id']);
-                    return '<input type="hidden" id="id" name="id" value="'. $package->id.'" />
-                            <input type="hidden" id="booking_price" name="package_price" value="'. $package->price.'" />
-                            <div class="form-group row">
-                                <label for="" class="col-sm-5 col-md-4 col-form-label">Package Choosen:</label>
-                                <div class="col-sm-7 col-md-8">
-                                    <input type="text" readonly class="form-control-plaintext" id="" value="'. $package->title.'">
+                      return '<input type="hidden" id="id" name="id" value="'. $package->id.'" />
+                                <input type="hidden" id="booking_price" name="package_price" value="'. $package->price.'" />
+                            <div class="col-sm-12 pe-xl-5">
+                                <div class="package-head bg-light radius15 mh53 py-1 px-3 mb-3 d-inline-flex align-items-center">
+                                    <h4 class="fs23"> Package Chosen: '. $package->title.'</h4>
+                                    <input type="hidden" readonly class="form-control-plaintext" id="" value="'. $package->title.'">
                                 </div>
                             </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-5 col-md-4 col-form-label">Date:</label>
-                            <div class="col-sm-7 col-md-8">
-                            <input type="text" readonly class="form-control-plaintext" name="booking_date" id="booking_date" value="'.$_REQUEST['date'].'">
-                        </div>
-                       </div>';
+                            <div class="col-sm-12 pe-xl-5">
+                                <div class="package-head bg-light radius15 mh53 py-1 px-3 mb-3 d-inline-flex align-items-center">
+                                    <h4 class="fs23"> Date: '.$_REQUEST['date'].'</h4>
+                                    <input type="hidden" readonly class="form-control-plaintext" name="booking_date" id="booking_date" value="'.$_REQUEST['date'].'">
+                                </div>
+                            </div>';
                }, 10, 1);
 
                add_filters('theme.reservation.time', function() {
                 $package = Package::find($_REQUEST['id']);
                    return $this->getPackageTimeslots($package);
                }, 10, 1);
-
+               
+             add_filters('cstudio.reservation.time', function() {
+                $package = Package::find($_REQUEST['id']);
+                   return $this->getPackageCstudioTimeslots($package);
+               }, 10, 1);
+               
                add_filters('theme.reservation.services', function() {
                 $package = Package::find($_REQUEST['id']);
                    return $this->getPackageExService($package);
                }, 10, 1);
 
-              
+               add_filters('cstudio.reservation.services', function() {
+                $package = Package::find($_REQUEST['id']);
+                   return $this->getPackageCstudioExService($package);
+               }, 10, 1);
 
  
             }
@@ -197,6 +205,37 @@ class MainAction extends Action
         return $html;
     }
 
+static function getPackageCstudioTimeslots($package){
+        $html ='';
+        $booked_slot =Booking::where('package_id',$package->id)->where('status','yes')->pluck('timeslot_id')->toArray();
+        //dd($booked_slot);
+        if($package->slots){
+           
+            $html .='<div class="col-sm-12 pe-xl-5">';
+            $html .='<div class="package-head bg-light radius15 mh53 py-1 px-3 mb-3 d-inline-flex align-items-center">';
+            $html .='<h4 class="fs23">Available Time Slots:</h4><input type="hidden" id="booking_time" name="booking_time">';
+            $html .='</div></div>';
+            $html .='<div class="col-sm-12 pe-xl-5 timeSelect">';
+             foreach($package->slots as $slot){
+                if(!in_array($slot->id,$booked_slot)){
+                    $html .='<div data-id="'.$slot->id.'" class="package-head open bg-white border radius15 mh53 py-1 px-2 mb-3 me-2 d-inline-flex align-items-center">
+                    '.$slot->starttime.' - '.$slot->endtime.'
+                        </div>';
+                    
+                }else{
+                    $html .='<div data-id="'.$slot->id.'" class="package-head disable bg-white border radius15 mh53 py-1 px-2 mb-3 me-2 d-inline-flex align-items-center">
+                    '.$slot->starttime.' - '.$slot->endtime.'
+                        </div>';
+                }
+               }
+            
+            $html .='</div>';
+        }
+        return $html;
+    }
+
+    
+
     static function getPackageExService($package){
         $html ='';
         if($package->services){
@@ -216,6 +255,39 @@ class MainAction extends Action
         }
         return $html;
     }
+
+    static function getPackageCstudioExService($package){
+        $html ='';
+        if($package->services){                     
+            $html .='<div class="col-sm-12 pe-xl-5 pt-4">';
+            $html .='<div class="package-head bg-light radius15 mh53 py-1 px-3 mb-4 d-inline-flex align-items-center">';
+            $html .='<h4 class="fs23">Extras:</h4>';
+            $html .='</div></div>';
+            $html .='<div class="col-xxl-9">';
+            $html .='<div class="row px-xl-2">';
+                                      
+             foreach($package->services as $service){
+                $html .='<div class="col-xxl-6 mb-xl-5 mb-3">'; 
+                $html .='<label class="container_radio d-flex align-items-center">
+                    Extra Charge For '.$service->title.'
+                    <input type="checkbox" value="'.$service->id.'" name="service_item[]">
+                    <span class="checkmark"></span>
+                        <div class="bg-light text-dark radius15 mh53 py-1 px-3 ms-2 d-inline-flex align-items-center">
+                            <h4 class="fs23">
+                            '.$service->price.' KD
+                            </h4>
+                        </div>
+                  </label>';
+                $html .='</div>';
+
+             }
+            
+            $html .='</div>';
+            $html .='</div>';
+        }
+        return $html;
+    }
+
     public function addDoPaymentsAction(){
         $this->addAction('theme.payment.index', function () {
              app('Sbhadra\Photography\Http\Controllers\PaymentController')->doPayment();

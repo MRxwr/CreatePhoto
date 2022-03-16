@@ -12,7 +12,7 @@
                     'required' => true,
                     'class' => empty($model->slug) ? 'generate-slug' : '',
                 ]) }}
-
+                {{ Field::slug($model, 'slug') }}
                 {{ Field::editor($model, 'content') }}
 
                 @do_action('post_type.'. $postType .'.form.left')
@@ -26,8 +26,6 @@
                 ]) }}
 
                 {{ Field::image($model, 'thumbnail') }}
-
-                {{ Field::slug($model, 'slug') }}
 
                 @do_action('post_type.'. $postType .'.form.right', $model)
             </div>

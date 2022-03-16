@@ -1,37 +1,45 @@
 
 <!-- Footer -->
-<footer class="footer text-center " >
-    <div class="container">
-      <div class="row">
-        <div class="col-12 h-100 text-center my-auto">
-          <ul class="list-inline mb-5">
-            <li class="list-inline-item">
-              <a href="#">
-                <i class="fab fa-instagram fa-fw fa-2x"></i>
-              </a>
-            </li>
-            <li class="list-inline-item mr-3">
-              <a href="#">
-                <i class="fab fa-twitter-square fa-fw fa-2x"></i>
-              </a>
-            </li>
-            <li class="list-inline-item mr-3">
-              <a href="#">
-                <i class="fab fa-facebook fa-fw fa-2x"></i>
-              </a>
-            </li>
-            
-          </ul>
-
-          <p class="mb-3 text-center" style="text-align: center !important;"><a href="#"><i class="far fa-envelope mr-1"></i> contact@createstudio.com</a></p>
-          
-          <p class="text-muted mb-5 text-uppercase text-center" style="text-align: center !important;">COPYRIGHT {{date('Y')}} - {{ get_config('title') }}  - KUWAIT</p>
-          <p class="theme-color text-center" style="text-align: center !important;">Powered by <a href="http://www.create-kw.com/" target="_blank" class="text-muted">Create-kw.com</a></p>
-
-        </div>
-      </div>
-    </div>
-  </footer>
+<footer class="site-footer bg-dark text-white d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 offset-xl-4 col-sm-6 d-flex align-items-center justify-content-center">
+                        <p>
+                            Powered by <a href="www.Create-kw.com" class="text-white">Create-kw.com</a>
+                        </p>
+                    </div>
+                    <div class="col-xl-4 col-sm-6 d-flex align-items-center justify-content-center mt-4 mt-sm-0">
+                        <ul class="social-list d-flex align-items-center">
+                            <li class="ms-3">
+                                <a href="#">
+                                    <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/in.svg" alt="img">
+                                </a>
+                            </li>
+                            <li class="ms-3">
+                                <a href="#">
+                                    <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/tw.svg" alt="img">
+                                </a>
+                            </li>
+                            <li class="ms-3">
+                                <a href="#">
+                                    <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/fb.svg" alt="img">
+                                </a>
+                            </li>
+                            <li class="ms-3">
+                                <a href="#">
+                                    <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/sn.svg" alt="img">
+                                </a>
+                            </li>
+                            <li class="ms-3">
+                                <a href="#">
+                                    <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/wh.svg" alt="img">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
 <!-- <footer id="footer" class="clearfix">
     {{--<div class="container footer-columns">
         <div class="row container">

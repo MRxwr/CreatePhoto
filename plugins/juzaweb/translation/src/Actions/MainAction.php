@@ -32,14 +32,13 @@ class MainAction extends Action
     }
     public function changeLanguageAction()
     {
-        $this->addAction('theme.home.index', function () {
-            $lang = '';
+        
+            $lang = 'en';
             if(isset($_REQUEST['lang'])){
                 $lang = $_REQUEST['lang'];
             }else{
                 $lang = 'ar';
             }
-            
             if($lang=='' && Session::get('locale')==''){
                 $lang = 'en';
             }else if($lang=='' && Session::get('locale')!=''){
@@ -47,6 +46,10 @@ class MainAction extends Action
             }
             Session::put('locale', $lang);
             app()->setLocale(Session::get('locale'));
-        });
+            add_filters('theme.language.hooks', function() {
+                $lang=Session::get('locale');
+                echo 'language['.$lang.']';
+            }, 10, 1);
+        
     }
 }
