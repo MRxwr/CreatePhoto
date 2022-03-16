@@ -2,13 +2,17 @@
 
 namespace Sbhadra\Packagethemes\Providers;
 
+
+use Sbhadra\Packagethemes\Actions\MainAction;
 use Juzaweb\Support\ServiceProvider;
 
 class PackageThemesServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        //
+        $this->registerAction([
+            MainAction::class
+        ]);
     }
 
     /**

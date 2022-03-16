@@ -12,3 +12,4 @@
 */
 
 
+Route::postTypeResource('package-themes', 'PackageThemesController');

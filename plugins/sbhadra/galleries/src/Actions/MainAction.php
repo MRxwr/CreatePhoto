@@ -5,7 +5,9 @@ namespace Sbhadra\Galleries\Actions;
 use Illuminate\Support\Arr;
 use Juzaweb\Abstracts\Action;
 use Juzaweb\Facades\HookAction;
+use Juzaweb\Models\Taxonomy;
 use Sbhadra\Galleries\Models\Gallery;
+use Illuminate\Support\Facades\DB;
 
 class MainAction extends Action
 {
@@ -72,17 +74,27 @@ class MainAction extends Action
         $galleries = Gallery::get();
         $html ='';
         if($galleries){
+            $taxonomies = Taxonomy::where('post_type','galleries')->where('taxonomy','album')->get();
+            //dd($taxonomies);
+            $texo ='';
+            foreach($taxonomies as $taxonomy ){
+                $texo .='<button class="filter-button d-inline-block" data-filter="'.$taxonomy->slug.'"> '.$taxonomy->name.' </button>';
+            }
             $html .='<div class="row">
                     <div class="col-xl-12 px-sm-0 mb-4 filter_btn">
                         <button class="filter-button d-inline-block active" data-filter="all">All</button>
-                        <button class="filter-button d-inline-block" data-filter="family">Family  Package</button>
-                        <button class="filter-button d-inline-block" data-filter="themes">Themes Package</button>
-                        <button class="filter-button d-inline-block" data-filter="birthday">Birthday  Package</button>
+                        '.$texo.'
                     </div>
                 </div>';
             $html .='<div class="row portfolio-grid justify-content-center">';
              foreach($galleries as $image){
-               $html .='<div class="col-sm-4 col-6 px-0 gallery_product filter family">
+                    $albums = $image->getTaxonomies('album');
+                    $alb='';
+                    foreach($albums as $album ){
+                        $alb = $alb .' '.$album->slug;
+                    }
+                
+                   $html .='<div class="col-sm-4 col-6 px-0 gallery_product filter '.$alb.'">
                         <div class="filter-item position-relative d-flex align-items-center justify-content-center">
                             <img src="'.$image->getThumbnail().'" alt="img" class="w-100">
                             <a href="'.$image->getThumbnail().'" class="image-link bg-ovarley w-100 h-100 position-absolute d-flex align-items-center justify-content-center">

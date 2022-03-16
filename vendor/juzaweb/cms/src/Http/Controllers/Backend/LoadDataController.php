@@ -45,7 +45,7 @@ class LoadDataController extends BackendController
         $query = Taxonomy::query();
         $query->select([
             'id',
-            'name as text',
+            'name',
         ]);
 
         if ($postType) {
@@ -65,7 +65,12 @@ class LoadDataController extends BackendController
         }
 
         $paginate = $query->paginate(10);
-        $data['results'] = $query->get();
+        $items =  $query->get();
+        foreach($items as $item ){
+            $item->text = $item->name;
+        }
+        //$data['results'] = $query->get();
+        $data['results'] = $items;
 
         if ($paginate->nextPageUrl()) {
             $data['pagination'] = ['more' => true];
@@ -226,4 +231,5 @@ class LoadDataController extends BackendController
 
         return response()->json($data);
     }
+    
 }

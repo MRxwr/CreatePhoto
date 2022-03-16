@@ -9,7 +9,7 @@ use Sbhadra\Packagethemes\Models\Theme;
 
 class ThemeDatatable extends PostTypeDataTable
 {
-    protected $tvSeries;
+   // protected $tvSeries;
 
     public function mount($postType)
     {
@@ -35,12 +35,7 @@ class ThemeDatatable extends PostTypeDataTable
                 'label' => trans('sbph::app.name'),
                 'formatter' => [$this, 'rowActionsFormatter']
             ],
-            'price' => [
-                'label' => trans('sbph::app.price'),
-                'formatter' => function ($value, $row, $index) {
-                    return $row->price;
-                }
-            ],
+            
             'created_at' => [
                 'label' => trans('sbph::app.created_at'),
                 'width' => '15%',

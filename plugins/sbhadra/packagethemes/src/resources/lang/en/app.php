@@ -1,5 +1,8 @@
 <?php
 
 return [
-    'name' => 'Name'
+    'name' => 'Name',
+    'themes' => 'Package Themes',
+    'theme' => 'Package Theme',
+    'categories' => 'Categories'
 ];

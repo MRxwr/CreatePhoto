@@ -31,6 +31,7 @@ class TaxonomyController extends BackendController
 
     protected function getDataTable($taxonomy)
     {
+        
         $setting = $this->getSetting($taxonomy);
         $dataTable = new TaxonomyDataTable();
         $dataTable->mountData($setting->toArray());

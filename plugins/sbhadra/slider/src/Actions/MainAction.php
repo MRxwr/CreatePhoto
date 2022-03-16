@@ -18,6 +18,7 @@ class MainAction extends Action
     {
         $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerSlider']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addHeaderSlider']);
+        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addCstudioHeaderSlider']);
         //$this->addAction(self::BACKEND_CALL_ACTION, [$this, 'addAdminMenus']);
     }
 
@@ -68,33 +69,23 @@ class MainAction extends Action
     {
        
         $this->addAction('theme.cstudio.slider', function () {
-            
             $sliders = Slider::where('status','publish')->get();
             //var_dump($sliders);
             $html='';
            if($sliders ){
-            $html .= '<div id="demo" class="carousel slide" data-ride="carousel">';
-            $html .= ' <ul class="carousel-indicators">';
-                foreach($sliders as $key=>$slider){
-                    $html .=  '<li data-target="#demo" data-slide-to="0"  class="'.($key==0?'active':'').'" ></li>';
-                }
-                $html=  '</ul>';
-                $html=  '<div class="carousel-inner">';
-                foreach($sliders as $key=>$slider){
-                    $html .=  '<div class="carousel-item '.($key==0?'active':'').' ">';
-                    $html .=  '<img src="'. upload_url($slider->thumbnail) .'" class="img-fluid d-block mx-auto" alt="">';
-                    $html .=  '</div>';
+                $html .= '<section class="hero-slider">';
+                $html=  '<div class="container"><div class="row"> <div class="col-xl-12 px-0"><div class="hero-slick">';
+                    foreach($sliders as $key=>$slider){
+                        $html .=  '<div class="hero-item">
+                            <img src="'. upload_url($slider->thumbnail) .'" alt="img" class="mw-100 d-sm-block d-none">
+                            <img src="'. upload_url($slider->thumbnail) .'" alt="img" class="mw-100 d-sm-none d-block">
+                        </div>';
+                    }
+                $html .=  ' </div></div> </div></div>';
+                $html .=  '</section>';
+            }
+            echo $html;
 
-                }
-                $html .=  '</div>';
-                $html .=  '<a class="carousel-control-prev" href="#demo" data-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </a>
-                    <a class="carousel-control-next" href="#demo" data-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                    </a>';
-                $html .=  '</div>';
-          }
         });
     }
 

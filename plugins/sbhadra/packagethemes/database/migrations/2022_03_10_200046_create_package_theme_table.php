@@ -22,6 +22,10 @@ class CreatePackageThemeTable extends Migration
             $table->string('status', 50)->default('no');
             $table->timestamps();
         });
+        Schema::table('bookings', function($table) {
+            $table->integer('theme_id');
+        });
+        
     }
 
     /**
@@ -32,5 +36,6 @@ class CreatePackageThemeTable extends Migration
     public function down()
     {
         Schema::dropIfExists('package_themes');
+        
     }
 }

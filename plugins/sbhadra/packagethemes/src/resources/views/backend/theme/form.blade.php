@@ -18,13 +18,10 @@
                 @do_action('post_type.'. $postType .'.form.left')
 
             </div>
-
             <div class="col-md-4">
-
                 {{ Field::select($model, 'status', [
                     'options' => $model->getStatuses()
-                ]) }}
-                {{ Field::text($model, 'price') }}
+                ]) }} 
                 {{ Field::image($model, 'thumbnail') }}
                 @do_action('post_type.'. $postType .'.form.right', $model)
             </div>

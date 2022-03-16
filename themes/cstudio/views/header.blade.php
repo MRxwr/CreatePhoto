@@ -35,22 +35,5 @@
             </div>
         </header>
       <!-- hero-slider -->
-      <section class="hero-slider">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12 px-0">
-                        <div class="hero-slick">
-                            <div class="hero-item">
-                                <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/hero1.jpg" alt="img" class="mw-100 d-sm-block d-none">
-                                <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/hero1_m.jpg" alt="img" class="mw-100 d-sm-none d-block">
-                            </div>
-                            <div class="hero-item">
-                                <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/hero1.jpg" alt="img" class="mw-100 d-sm-block d-none">
-                                <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/hero1_m.jpg" alt="img" class="mw-100 d-sm-none d-block">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      @do_action('theme.cstudio.slider')
         <!-- hero-slider -->

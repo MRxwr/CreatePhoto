@@ -29,17 +29,17 @@ class PackageThemesController extends BackendController
     protected function getDataTable()
     {
         $dataTable = new ThemeDatatable();
-        $dataTable->mountData('themes', 0);
+        $dataTable->mountData('package-themes', 0);
         return $dataTable;
     }
 
     protected function getModel()
     {
-        return Service::class;
+        return Theme::class;
     }
 
     protected function getTitle()
     {
-        return trans('sbsu::app.questions');
+        return trans('sbpa::app.themes');
     }
 }
