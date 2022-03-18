@@ -150,8 +150,7 @@
                                                       </ul>
                                                   </div>
                                                   <div class="modal-footer d-flex align-items-center justify-content-center mb-3">
-                                                  <button type="submit"  name="submit"  class="btn btn-md btn-light fs25 radius30" > Procced to payment</button>
-                                                      
+                                                    <button type="submit"  name="submit"  class="btn btn-md btn-light fs25 radius30" > Procced to payment</button>
                                                   </div>
                                               </div>
                                           </div>
@@ -167,5 +166,14 @@
             </div>
         </section>
         <!-- Personal Informations -->
-    
+@endsection
+@section('footer')
+     <script>
+        $(".open_time").on('click', function(event){
+            $( ".open_time" ).removeClass("active");
+            $(this).addClass("active");
+            $('#booking_time').val(this.id);
+            //alert(this.id);
+        });
+    </script>
 @endsection

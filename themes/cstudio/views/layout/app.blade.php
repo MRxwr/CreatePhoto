@@ -264,8 +264,8 @@ function formSuccess(){
     $( "#msgSubmit" ).removeClass( "hidden" );
 }
 </script>  
-    @yield('footer')
-    @do_action('theme.footer')
+      @yield('footer')
+      @do_action('theme.footer')
     
     </body>
 </html>

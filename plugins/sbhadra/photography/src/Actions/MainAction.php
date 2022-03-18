@@ -218,12 +218,12 @@ static function getPackageCstudioTimeslots($package){
             $html .='<div class="col-sm-12 pe-xl-5 timeSelect">';
              foreach($package->slots as $slot){
                 if(!in_array($slot->id,$booked_slot)){
-                    $html .='<div data-id="'.$slot->id.'" class="package-head open bg-white border radius15 mh53 py-1 px-2 mb-3 me-2 d-inline-flex align-items-center">
+                    $html .='<div id="'.$slot->id.'" class="package-head open_time bg-white border radius15 mh53 py-1 px-2 mb-3 me-2 d-inline-flex align-items-center">
                     '.$slot->starttime.' - '.$slot->endtime.'
                         </div>';
                     
                 }else{
-                    $html .='<div data-id="'.$slot->id.'" class="package-head disable bg-white border radius15 mh53 py-1 px-2 mb-3 me-2 d-inline-flex align-items-center">
+                    $html .='<div id="'.$slot->id.'" class="package-head disable bg-white border radius15 mh53 py-1 px-2 mb-3 me-2 d-inline-flex align-items-center">
                     '.$slot->starttime.' - '.$slot->endtime.'
                         </div>';
                 }
