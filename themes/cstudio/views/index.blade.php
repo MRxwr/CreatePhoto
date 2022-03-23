@@ -107,7 +107,7 @@
                     <!-- instagram-item -->
                     <div class="col-xl-3 col-sm-3 col-6 px-0">
                         <div class="instagram-item position-relative d-flex align-items-center justify-content-center">
-                            <img src="img/in_avatar.jpg" alt="img" class="w-100">
+                            <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/in_avatar.jpg" alt="img" class="w-100">
                             <a href="https://www.instagram.com" class="bg-ovarley w-100 h-100 position-absolute d-flex align-items-center justify-content-center">
                                 <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/in.svg" alt="img" class="mw-100 position-absolute">
                             </a>
@@ -117,7 +117,7 @@
                     <!-- instagram-item -->
                     <div class="col-xl-3 col-sm-3 col-6 px-0">
                         <div class="instagram-item position-relative d-flex align-items-center justify-content-center">
-                            <img src="img/in_avatar1.jpg" alt="img" class="w-100">
+                            <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/in_avatar1.jpg" alt="img" class="w-100">
                             <a href="https://www.instagram.com" class="bg-ovarley w-100 h-100 position-absolute d-flex align-items-center justify-content-center">
                                 <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/in.svg" alt="img" class="mw-100 position-absolute">
                             </a>
@@ -127,7 +127,7 @@
                     <!-- instagram-item -->
                     <div class="col-xl-3 col-sm-3 col-6 px-0">
                         <div class="instagram-item position-relative d-flex align-items-center justify-content-center">
-                            <img src="img/in_avatar2.jpg" alt="img" class="w-100">
+                            <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/in_avatar2.jpg" alt="img" class="w-100">
                             <a href="https://www.instagram.com" class="bg-ovarley w-100 h-100 position-absolute d-flex align-items-center justify-content-center">
                                 <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/in.svg" alt="img" class="mw-100 position-absolute">
                             </a>
@@ -137,7 +137,7 @@
                     <!-- instagram-item -->
                     <div class="col-xl-3 col-sm-3 col-6 px-0">
                         <div class="instagram-item position-relative d-flex align-items-center justify-content-center">
-                            <img src="img/in_avatar3.jpg" alt="img" class="w-100">
+                            <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/in_avatar3.jpg" alt="img" class="w-100">
                             <a href="https://www.instagram.com" class="bg-ovarley w-100 h-100 position-absolute d-flex align-items-center justify-content-center">
                                 <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/in.svg" alt="img" class="mw-100 position-absolute">
                             </a>
@@ -147,7 +147,7 @@
                     <!-- instagram-item -->
                     <div class="col-xl-3 col-sm-3 col-6 px-0">
                         <div class="instagram-item position-relative d-flex align-items-center justify-content-center">
-                            <img src="img/in_avatar4.jpg" alt="img" class="w-100">
+                            <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/in_avatar4.jpg" alt="img" class="w-100">
                             <a href="https://www.instagram.com" class="bg-ovarley w-100 h-100 position-absolute d-flex align-items-center justify-content-center">
                                 <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/in.svg" alt="img" class="mw-100 position-absolute">
                             </a>
@@ -157,7 +157,7 @@
                     <!-- instagram-item -->
                     <div class="col-xl-3 col-sm-3 col-6 px-0">
                         <div class="instagram-item position-relative d-flex align-items-center justify-content-center">
-                            <img src="img/in_avatar5.jpg" alt="img" class="w-100">
+                            <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/in_avatar5.jpg" alt="img" class="w-100">
                             <a href="https://www.instagram.com" class="bg-ovarley w-100 h-100 position-absolute d-flex align-items-center justify-content-center">
                                 <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/in.svg" alt="img" class="mw-100 position-absolute">
                             </a>
@@ -167,7 +167,7 @@
                     <!-- instagram-item -->
                     <div class="col-xl-3 col-sm-3 col-6 px-0">
                         <div class="instagram-item position-relative d-flex align-items-center justify-content-center">
-                            <img src="img/in_avatar6.jpg" alt="img" class="w-100">
+                            <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/in_avatar6.jpg" alt="img" class="w-100">
                             <a href="https://www.instagram.com" class="bg-ovarley w-100 h-100 position-absolute d-flex align-items-center justify-content-center">
                                 <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/in.svg" alt="img" class="mw-100 position-absolute">
                             </a>
@@ -177,7 +177,7 @@
                     <!-- instagram-item -->
                     <div class="col-xl-3 col-sm-3 col-6 px-0">
                         <div class="instagram-item position-relative d-flex align-items-center justify-content-center">
-                            <img src="img/in_avatar7.jpg" alt="img" class="w-100">
+                            <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/in_avatar7.jpg" alt="img" class="w-100">
                             <a href="https://www.instagram.com" class="bg-ovarley w-100 h-100 position-absolute d-flex align-items-center justify-content-center">
                                 <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/in.svg" alt="img" class="mw-100 position-absolute">
                             </a>

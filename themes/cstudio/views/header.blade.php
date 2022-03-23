@@ -3,8 +3,8 @@
                 <div class="row">
                     <div class="col-xl-4 col-8 d-flex align-items-center">
                         <div class="site-logo">
-                        <a href="{{url('/')}}" title="{{ get_config('title') }}"> <img src="{{ upload_url(get_config('logo')) }}" alt="img" class="mw-100 d-sm-block d-none" title="{{ get_config('title') }}"> </a>
-                        <a href="{{url('/')}}" title="{{ get_config('title') }}"> <img src="{{ upload_url(get_config('logo')) }}" alt="img" class="mw-100 d-sm-none d-block" title="{{ get_config('title') }}"></a>
+                        <a href="{{url('/')}}" title="{{ get_config('title') }}"> <img src="{{ upload_url(get_config('logo')) }}" alt="img" style="height: 70px;" class="mw-100 d-sm-block d-none" title="{{ get_config('title') }}"> </a>
+                        <a href="{{url('/')}}" title="{{ get_config('title') }}"> <img src="{{ upload_url(get_config('logo')) }}" alt="img" style="height: 70px;" class="mw-100 d-sm-none d-block" title="{{ get_config('title') }}"></a>
                         </div>
                     </div>
                     <div class="col-xl-8 col-4 d-flex align-items-center justify-content-end">
