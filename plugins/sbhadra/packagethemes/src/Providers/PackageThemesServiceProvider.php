@@ -7,7 +7,7 @@ use Sbhadra\Packagethemes\Actions\MainAction;
 use Illuminate\Support\Facades\Schema;
 
 
-class PackagethemesServiceProvider extends ServiceProvider
+class PackageThemesServiceProvider extends ServiceProvider
 {
     public function boot()
     {
