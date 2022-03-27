@@ -6,7 +6,10 @@ use Illuminate\Support\Arr;
 use Juzaweb\Abstracts\Action;
 use Juzaweb\Facades\HookAction;
 use Sbhadra\Coupons\Models\Coupon;
+use Sbhadra\Photography\Models\Booking;
+use Juzaweb\Models\Taxonomy;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 class MainAction extends Action
 {
     /**
