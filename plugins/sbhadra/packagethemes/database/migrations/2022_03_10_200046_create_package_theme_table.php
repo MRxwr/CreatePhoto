@@ -23,7 +23,7 @@ class CreatePackageThemeTable extends Migration
             $table->timestamps();
         });
         Schema::table('bookings', function($table) {
-            $table->integer('theme_id');
+            $table->integer('theme_id')->nullable();
         });
         
     }

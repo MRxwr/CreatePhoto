@@ -29,13 +29,13 @@ class QuestionController extends BackendController
     protected function getDataTable()
     {
         $dataTable = new QuestionDatatable();
-        $dataTable->mountData('questions', 0);
+        $dataTable->mountData('question', 0);
         return $dataTable;
     }
 
     protected function getModel()
     {
-        return Service::class;
+        return Question::class;
     }
 
     protected function getTitle()

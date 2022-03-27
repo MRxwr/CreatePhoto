@@ -10,6 +10,8 @@ use Sbhadra\Photography\Models\Booking;
 use Sbhadra\Packagethemes\Models\Theme;
 use Juzaweb\Models\Taxonomy;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Session;
 class MainAction extends Action
 {
     /**
@@ -21,6 +23,7 @@ class MainAction extends Action
     {
         $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerPackage']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'getPackageThemes']);
+        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'doProcessPackageThemes']);
         
     }
 
@@ -72,7 +75,7 @@ class MainAction extends Action
                         $html .='<div class="theme-select">
                         <label class="container_radio themeCheck">
                             <label for="slect'.$theme->id.'" class="d-inline-block">'.$theme->title.'</label>
-                            <input type="radio" id="slect'.$theme->id.'" name="theme_id">
+                            <input type="radio" id="slect'.$theme->id.'" value="'.$theme->id.'" name="theme_id">
                             <span class="checkmark"></span>
                             <a href="'.$theme->getThumbnail().'" class="themeCheck_img image-link border">
                                 <img src="'.$theme->getThumbnail().'" alt="img" class="w-100">
@@ -89,6 +92,15 @@ class MainAction extends Action
             return $html;
          });
     }
-    
+    public function doProcessPackageThemes(){
+        add_action('theme.booking.extra', function($payment_data) {
+            $booking = Booking::find($payment_data['booking_id']);
+            if(isset($payment_data['theme_id'])){
+                $theme_id =  $payment_data['theme_id'];
+                $booking->theme_id =  $theme_id ;
+            }
+            $booking->save();
+        }, 10, 1);
+    }
 
 }

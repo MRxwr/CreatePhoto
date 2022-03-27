@@ -35,12 +35,7 @@ class SurveyDatatable extends PostTypeDataTable
                 'label' => trans('sbph::app.name'),
                 'formatter' => [$this, 'rowActionsFormatter']
             ],
-            'price' => [
-                'label' => trans('sbph::app.price'),
-                'formatter' => function ($value, $row, $index) {
-                    return $row->price;
-                }
-            ],
+            
             'created_at' => [
                 'label' => trans('sbph::app.created_at'),
                 'width' => '15%',
@@ -69,7 +64,7 @@ class SurveyDatatable extends PostTypeDataTable
         if ($keyword = Arr::get($data, 'keyword')) {
             $query->where(function (Builder $q) use ($keyword) {
                 $q->where('title', 'like', '%'. $keyword .'%');
-                $q->orWhere('description', 'like', '%'. $keyword .'%');
+                
             });
         }
 

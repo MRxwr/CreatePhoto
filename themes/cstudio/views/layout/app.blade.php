@@ -163,8 +163,14 @@
           $('#booknow').click(function(){
               var date = $("#date").val();
               var package_id = $("#package_id").val();
+              var theme_id = $("input[name='theme_id']:checked").val();
+              var params='';
               if(date != ""){
-                window.location.href = "{{url('/reservations')}}?id="+package_id+"&date="+date;
+                params = "&date="+date;
+                if(theme_id>0){
+                  params = params +"&theme_id="+theme_id;
+                }
+                window.location.href = "{{url('/reservations')}}?id="+package_id+params;
               } else{
                 alert("Please select date!"); 
                 return false;

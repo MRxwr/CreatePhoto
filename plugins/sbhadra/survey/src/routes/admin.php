@@ -11,4 +11,5 @@
 |
 */
 
-
+Route::Resource('survey', 'SurveyController');
+Route::Resource('question', 'QuestionController');

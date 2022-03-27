@@ -136,11 +136,94 @@ class PayapiController extends FrontendController
                 $res = json_decode($response);
                 //dd($res);
                 if($res->type == 'success' && isset($res->data->Data->InvoiceId)){
-                     echo 'ok';
+                     //echo 'ok';
+                     $orderid = $res->data->Data->InvoiceId;
                      $booking = Booking::find($bsid);
                      $booking->transaction_id =  $res->data->Data->InvoiceId;
                      $booking->status =  'Yes';
-                     $booking->save();
+                     if($booking->save()){
+                         $slot = $booking->timeslot->starttime .'To'. $booking->timeslot->endtime;
+                         $booking_date = $booking->booking_date;
+                         $rptest=["[bdate]","[time]","[orderId]"];
+                         $nptext = [$booking_date,$slot,$orderid];
+                         $data= array(
+                            'message'=>str_replace($rptest,$nptext,trans('sbpa::app.sussess_message')),
+                            'mobile'=>$booking->booking_date,
+                            'code'=>'91',
+                         );
+                        do_action('booking.sms.index',$data);
+                     }
+                     
+                }else{
+                    
+                }
+            //$booking_data = Session::get("booking_data");
+            //dd($booking_data);
+            }
+        }
+    }
+
+    public function paymentRefunded(){
+       
+        if(isset($_REQUEST['paymentId'])){
+            $bsid = base64_decode($_REQUEST['bsid']);
+            $paymentId = $_REQUEST['paymentId'];
+            $params = [
+                'endpoint' => 'PaymentStatusCheck',
+                'apikey' => 'CKW-1640114323-2537',
+                'Key' => $paymentId,
+                'KeyType' => 'paymentId'
+            ];
+            $curl = curl_init();
+            // $certificate_location = 'C:\wamp64\bin\php\php7.2.33\extras\ssl\cacert.pem';
+            // curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, $certificate_location);
+            // curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $certificate_location);
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://createkwservers.com/payapi/api/v2/index.php',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => json_encode($params),
+            CURLOPT_HTTPHEADER => array(
+                // Set here requred headers
+                "accept: */*",
+                "accept-language: en-US,en;q=0.8",
+                "content-type: application/json",
+            ),
+           ));
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+            curl_close($curl);
+            if ($err) {
+                echo "cURL Error #:" . $err;
+                return redirect()->back()->withErrors(['msg' => 'The Message']);
+            } else {
+                $res = json_decode($response);
+                //dd($res);
+                if($res->type == 'success' && isset($res->data->Data->InvoiceId)){
+                     //echo 'ok';
+                     $orderid = $res->data->Data->InvoiceId;
+                     $booking = Booking::find($bsid);
+                     $booking->transaction_id =  $res->data->Data->InvoiceId;
+                     $booking->status =  'refunded';
+                     if($booking->save()){
+                         $slot = $booking->timeslot->starttime .'To'. $booking->timeslot->endtime;
+                         $booking_date = $booking->booking_date;
+                         $rptest=["[bdate]","[time]","[orderId]"];
+                         $nptext = [$booking_date,$slot,$orderid];
+                         $data= array(
+                            'message'=>str_replace($rptest,$nptext,trans('sbpa::app.sussess_message')),
+                            'mobile'=>$booking->booking_date,
+                            'code'=>'91',
+                         );
+                         do_action('booking.sms.index',$data);
+                        
+                     }
+                     
                 }else{
                     
                 }

@@ -1,15 +1,12 @@
 <?php
 
-namespace Sbhadra\Photography\Actions;
+namespace Sbhadra\Survey\Actions;
 
 use Illuminate\Support\Arr;
 use Juzaweb\Abstracts\Action;
 use Juzaweb\Facades\HookAction;
-use Sbhadra\Photography\Models\Package;
-use Sbhadra\Photography\Models\Service;
-use Sbhadra\Photography\Models\Booking;
-use Sbhadra\Photography\Models\Timeslot;
-use Sbhadra\Photography\Http\Controllers\PaymentController;
+use Sbhadra\Survey\Models\Survey;
+use Sbhadra\Survey\Models\Question;
 use Illuminate\Support\Facades\DB;
 class MainAction extends Action
 {
@@ -20,381 +17,36 @@ class MainAction extends Action
      */
     public function handle()
     {
-        $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerPackage']);
-        $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerBooking']);
-        $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerTaxonomies']);
-        $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'getBookingDetailsAjax']);
-        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addPackagesInHomepage']);
-        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addReservationHooks']);
-        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addDoPaymentsAction']);
-        $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'getCalenderHooksAdmin']);
-        $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'addReservationHooksAdmin']);
-        $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'GetDashboardHooks']);
+        $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerSurvey']);
+        // $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerBooking']);
+        // $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerTaxonomies']);
+        // $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'getBookingDetailsAjax']);
+        // $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addPackagesInHomepage']);
+        // $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addReservationHooks']);
+        // $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addDoPaymentsAction']);
+        // $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'getCalenderHooksAdmin']);
+        // $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'addReservationHooksAdmin']);
+        // $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'GetDashboardHooks']);
     }
 
-    public function registerPackage()
+    public function registerSurvey()
     {
-        HookAction::registerPostType('packages', [
-            'label' => trans('sbph::app.packages'),
-            'model' => Package::class,
-            'menu_position' => 32,
+        
+        HookAction::registerPostType('survey', [
+            'label' => trans('sbsu::app.survey'),
+            'model' => Survey::class,
+            'menu_position' => 38,
             'menu_icon' => 'fa fa-list',
         ]);
-        HookAction::registerPostType('services', [
-            'label' => trans('sbph::app.services'),
-            'model' => Service::class,
-            'menu_position' => 34,
+        HookAction::registerPostType('question', [
+            'label' => trans('sbsu::app.questions'),
+            'model' => Question::class,
+            'parent' => 'survey',
+            'menu_position' => 39,
             'menu_icon' => 'fa fa-list',
         ]);
-        HookAction::registerPostType('timeslots', [
-            'label' => trans('sbph::app.timeslots'),
-            'model' => Timeslot::class,
-            'menu_position' => 34,
-            'menu_icon' => 'fa fa-list',
-        ]);
-    }
-    public function addPackagesInHomepage()
-    {
-        $this->addAction('theme.home_packages', function () {
-            $packages = Package::where('status','publish')->get();
-            if($packages){
-                //var_dump($packages);
-                foreach($packages as $key=>$package){
-                    echo '<div class="col-md-6 col-sm-6 col-12">
-                    <a href="'.url('package/'.$package->slug).'">
-                    <div class="package-card card m-2">
-                      <div class="card-body p-2">
-                        <div class="row align-items-center no-gutters">
-                          <div class="col-lg-7 col-md-8 col-sm-12 order-lg-1 order-md-1 order-sm-2 order-2">
-                          <h5 class="package-head">'.$package->title.'</h5>
-                            '.$package->content.'                    
-                            <p class="theme-color package-price-tag text-right"><span>Price:</span><span class="ml-2">'.$package->price.' KD</span></p>
-                          </div>
-                          <div class="col-lg-5 col-md-4 order-lg-3 order-md-2 order-sm-1 order-1">
-                            <img src="'. upload_url($package->thumbnail) .'" class="img-rounded img-fluid d-block mx-auto mb-md-0 mb-3">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    </a>
-                  </div>';
-                }
-             }
-        });
-
-    }
-    public function addReservationHooks(){
-        
-        if(\Request::segment(1) =="reservations" && !empty($_REQUEST)){
-            if(isset($_REQUEST['id'])){
-              $package = Package::find($_REQUEST['id']);
-                add_filters('theme.reservation.data', function() {
-                    $package = Package::find($_REQUEST['id']);
-                    return '<input type="hidden" id="id" name="id" value="'. $package->id.'" />
-                            <input type="hidden" id="booking_price" name="package_price" value="'. $package->price.'" />
-                            <div class="form-group row">
-                                <label for="" class="col-sm-5 col-md-4 col-form-label">Package Choosen:</label>
-                                <div class="col-sm-7 col-md-8">
-                                    <input type="text" readonly class="form-control-plaintext" id="" value="'. $package->title.'">
-                                </div>
-                            </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-5 col-md-4 col-form-label">Date:</label>
-                            <div class="col-sm-7 col-md-8">
-                            <input type="text" readonly class="form-control-plaintext" name="booking_date" id="booking_date" value="'.$_REQUEST['date'].'">
-                        </div>
-                       </div>';
-               }, 10, 1);
-
-               add_filters('theme.reservation.time', function() {
-                $package = Package::find($_REQUEST['id']);
-                   return $this->getPackageTimeslots($package);
-               }, 10, 1);
-
-               add_filters('theme.reservation.services', function() {
-                $package = Package::find($_REQUEST['id']);
-                   return $this->getPackageExService($package);
-               }, 10, 1);
-
-              
-
- 
-            }
-        }
-    }
-    public function addReservationHooksAdmin(){
-
-            if(isset($_REQUEST['id'])){
-              $package = Package::find($_REQUEST['id']);
-               $this->addAction('admin.reservation.data', function() {
-                $package = Package::find($_REQUEST['id']);
-                echo '<input type="hidden" id="package_id" name="package_id" value="'. $package->id.'" />
-                        <input type="hidden" id="package_price" name="package_price" value="'. $package->price.'" />
-                        <div class="form-group row">
-                            <label for="" class="col-sm-5 col-md-4 col-form-label">Package Choosen:</label>
-                            <div class="col-sm-7 col-md-8">
-                                <input type="text" readonly class="form-control-plaintext" id="" value="'. $package->title.'">
-                            </div>
-                        </div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-5 col-md-4 col-form-label">Date:</label>
-                        <div class="col-sm-7 col-md-8">
-                        <input type="text" readonly class="form-control-plaintext" name="booking_date" id="booking_date" value="'.$_REQUEST['date'].'">
-                    </div>
-                   </div>';
-           }, 10, 1);
-
-           $this->addAction('admin.reservation.time', function() {
-            $package = Package::find($_REQUEST['id']);
-               echo $this->getPackageTimeslots($package);
-           }, 10, 1);
-
-           $this->addAction('admin.reservation.services', function() {
-            $package = Package::find($_REQUEST['id']);
-               echo $this->getPackageExService($package);
-           }, 10, 1);
-
- 
-            }
         
     }
-    public function registerBooking()
-    {
-        HookAction::registerPostType('bookings', [
-            'label' => trans('sbph::app.bookings'),
-            'model' => Booking::class,
-            'menu_position' => 36,
-            'menu_icon' => 'fa fa-list',
-        ]);
-    }
-    public function registerTaxonomies()
-    {
-        HookAction::registerTaxonomy('types', 'packages', [
-            'label' => trans('sbph::app.types'),
-            'menu_position' => 6, 
-        ]); 
-    }
-
-    static function getPackageTimeslots($package){
-        $html ='';
-        $booked_slot =Booking::where('package_id',$package->id)->where('status','yes')->pluck('timeslot_id')->toArray();
-        //dd($booked_slot);
-        if($package->slots){
-            $html .='<div class="form-group row">';
-            $html .='<label for="" class="col-sm-5 col-md-4 col-form-label">Preffered Time:</label>';
-            $html .='<div class="col-sm-7 col-md-8">';
-            $html .='<select class="form-control form-control-lg" id="booking_time" name="booking_time" style="max-width: 300px;" required>';
-            $html .='<option value=""  >Select Time</option>';
-             foreach($package->slots as $slot){
-                if(!in_array($slot->id,$booked_slot)){
-                    $html .='<option value="'.$slot->id.'">'.$slot->starttime.' - '.$slot->endtime.'</option>';
-                }
-               }
-            $html .='</select>';
-            $html .='</div>';
-            $html .='</div>';
-        }
-        return $html;
-    }
-
-    static function getPackageExService($package){
-        $html ='';
-        if($package->services){
-            $html .='<div class="form-group row">';
-            $html .='<label for="" class="col-sm-5 col-md-4 col-form-label">Preffered Time:</label>';
-            $html .='<div class="col-sm-7 col-md-8">';
-             foreach($package->services as $service){
-               $html .='<div class="form-check">
-               <input class="form-check-input" type="checkbox" value="'.$service->id.'" name="service_item[]">
-               <label class="form-check-label" for="defaultCheck1">
-                 <span class="form-control-plaintext">'.$service->title.' - '.$service->price.' KD.</span>
-               </label>
-             </div>';
-             }
-            $html .='</div>';
-            $html .='</div>';
-        }
-        return $html;
-    }
-    public function addDoPaymentsAction(){
-        $this->addAction('theme.payment.index', function () {
-             app('Sbhadra\Photography\Http\Controllers\PaymentController')->doPayment();
-        });
-        $this->addAction('theme.payment.success', function () {
-            app('Sbhadra\Photography\Http\Controllers\PaymentController')->doSuccess();
-       });
-       $this->addAction('theme.payment.failed', function () {
-            app('Sbhadra\Photography\Http\Controllers\PaymentController')->doFailed();
-         });
-    }
-
-    static function getCalenderHooks($post){
-        add_filters('theme.calendar.hooks', function($post){
-            $package_id = $post->id; 
-            $slots = count($post->slots);
-            $bookings = DB::table('bookings')
-                 ->select('booking_date', DB::raw('count(*) as total'))
-                 ->where('status','Yes')
-                 ->where('package_id',$package_id)
-                 ->groupBy('booking_date')
-                 ->get();  
-                 $datesDisabled_array =array();
-                 foreach($bookings as $booking){
-                    if($booking->total ==$slots ){
-                        $datesDisabled_array[] =  $booking->booking_date;
-                    }
-                 }
-               $datesDisabled = implode(',', $datesDisabled_array );
-            return '<script>
-                   var datesDisabled = ['.$datesDisabled.'];
-               </script>';
-       }, 10, 1);
-        
-    }
-
-    public function getCalenderHooksAdmin(){
-        $this->addAction('admin.calendar.hooks', function(){
-            if(isset($_REQUEST['id'])){
-            $post = Package::find($_REQUEST['id']);
-            //var_dump($post);
-             $package_id = $post->id; 
-            $slots = count($post->slots);
-            $bookings = DB::table('bookings')
-                 ->select('booking_date', DB::raw('count(*) as total'))
-                 ->where('status','Yes')
-                 ->where('package_id',$package_id)
-                 ->groupBy('booking_date')
-                 ->get();  
-                 $datesDisabled_array =array();
-                 foreach($bookings as $booking){
-                    if($booking->total ==$slots ){
-                        $datesDisabled_array[] =  $booking->booking_date;
-                    }
-                 }
-               $datesDisabled = implode(',', $datesDisabled_array );
-            echo '<script>
-                   var datesDisabled = ['.$datesDisabled.'];
-               </script>';
-                }
-       }, 10, 1);
-        
-    }
-
-    public   function GetDashboardHooks(){
-        $this->addAction('backend.dashboard.view', function () {
-            $html ='<div class="row">';
-             $incomplete_booking =Booking::where('status','No')->count();
-            $html .='<div class="col-md-3"><div class="card"><div class="height-20 d-flex flex-column jw__g13__head"></div><div class="card card-borderless mb-0"><div class="card-header border-bottom-0"><div class="d-flex"><div class="text-dark text-uppercase font-weight-bold mr-auto">'. trans('sbph::app.total_incomplete_bookings').'</div><div class="text-gray-6">'.$incomplete_booking.'</div></div></div></div></div></div>';
-            $success_booking =Booking::where('status','Yes')->count();
-            $html .='<div class="col-md-3"><div class="card"><div class="height-20 d-flex flex-column jw__g13__head"></div><div class="card card-borderless mb-0"><div class="card-header border-bottom-0"><div class="d-flex"><div class="text-dark text-uppercase font-weight-bold mr-auto">'. trans('sbph::app.total_success_bookings').'</div><div class="text-gray-6">'.$success_booking.'</div></div></div></div></div></div>';
-            $complete_booking =Booking::where('status','Completed')->count();
-            $html .='<div class="col-md-3"><div class="card"><div class="height-20 d-flex flex-column jw__g13__head"></div><div class="card card-borderless mb-0"><div class="card-header border-bottom-0"><div class="d-flex"><div class="text-dark text-uppercase font-weight-bold mr-auto">'. trans('sbph::app.total_complete_bookings').'</div><div class="text-gray-6">'.$complete_booking.'</div></div></div></div></div></div>';
-            $cancel_booking =Booking::where('status','cancel')->count();
-            $html .='<div class="col-md-3"><div class="card"><div class="height-20 d-flex flex-column jw__g13__head"></div><div class="card card-borderless mb-0"><div class="card-header border-bottom-0"><div class="d-flex"><div class="text-dark text-uppercase font-weight-bold mr-auto">'. trans('sbph::app.total_cancel_bookings').'</div><div class="text-gray-6">'.$cancel_booking.'</div></div></div></div></div></div>';
-            $html .='</div>';
-            echo $html;
-       });
-       
-    } 
-    
-    public function getBookingDetailsAjax(){
-        if(isset($_REQUEST['ajaxpage']) && $_REQUEST['ajaxpage']=='getBookingDetailsAjax'){
-           $searchquery = $_REQUEST['searchquery'];
-           $bookings = Booking::where('transaction_id',$searchquery)->get();
-           if(!$bookings->isEmpty()){
-            echo $this->bookingViewRander($bookings);
-           }else{
-               $bookings = Booking::where('title',$searchquery)->get();
-               if(!$bookings->isEmpty()){
-                   echo $this->bookingViewRander($bookings);
-                }else{
-                    $bookings = Booking::where('mobile_number',$searchquery)->get();
-                    if(!$bookings->isEmpty()){
-                        echo $this->bookingViewRander($bookings);
-                    }else{
-                        echo 'No Search Data Found!!!';
-                    }
-                }
-
-           }
-        exit;
-        }
-    }
-
-    static function bookingViewRander($bookings){
-       //dd($bookings);
-       $html = '';
-       $html .= ' <div class="panel panel-default card-view">
-       <div class="panel-heading">
-           <div class="pull-left">
-               <h2 class="shoots-Head">'.trans('sbph::app.search_result').'</h2>
-           </div>
-           <div class="clearfix"></div>
-       </div>
-       <div class="panel-wrapper">
-           <div class="panel-body">
-               <div class="table-wrap">
-                   <div class="table-responsive">
-                       <table id="datable_1" class="table table-hover display  pb-30" >
-                           <thead>
-                               <tr>
-                                   <th>'.  trans('sbph::app.bookingid').'</th>
-                                   <th>'.  trans('sbph::app.invoiceId').'</th>
-                                   <th>'. trans('sbph::app.package').'</th>
-                                   <th>'.  trans('sbph::app.booking_date').'</th>
-                                   <th>'.  trans('sbph::app.booking_time').'</th>
-                                   <th>'.  trans('sbph::app.booking_price').'</th>
-                                   <th>'.  trans('sbph::app.customer_name').'</th>
-                                   <th>'.  trans('sbph::app.mobile_number').'</th>
-                                   <th>'.  trans('sbph::app.baby_name').'</th>
-                                   <th>'.  trans('sbph::app.baby_age').'</th>
-                                   <th>'.  trans('sbph::app.instructions').'</th>
-                                  
-                                  
-                               </tr>
-                           </thead>
-                           <tfoot>
-                               <tr>
-                               <th>'.  trans('sbph::app.bookingid').'</th>
-                               <th>'.  trans('sbph::app.invoiceId').'</th>
-                               <th>'. trans('sbph::app.package').'</th>
-                               <th>'.  trans('sbph::app.booking_date').'</th>
-                               <th>'.  trans('sbph::app.booking_time').'</th>
-                               <th>'.  trans('sbph::app.booking_price').'</th>
-                               <th>'.  trans('sbph::app.customer_name').'</th>
-                               <th>'.  trans('sbph::app.mobile_number').'</th>
-                               <th>'.  trans('sbph::app.baby_name').'</th>
-                               <th>'.  trans('sbph::app.baby_age').'</th>
-                               <th>'.  trans('sbph::app.instructions').'</th>
-                               
-                               </tr>
-                           </tfoot>
-                           <tbody>';
-                               foreach($bookings as $key=>$booking){ 
-                                    $html .= '<tr>';
-                                    $html .= '<td>'.$booking->title.'</td>';
-                                    $html .= '<td>'.$booking->transaction_id.'</td>';
-                                    $html .= '<td>'.$booking->package->title.'</td>';
-                                    $html .= '<td>'.$booking->booking_date.'</td>';
-                                    $html .= '<td>'.$booking->timeslot->title.' ['.$booking->timeslot->starttime.' to '.$booking->timeslot->endtime.'] </td>';
-                                    $html .= '<td>'.$booking->booking_price.' KD</td>';
-                                    $html .= '<td>'.$booking->customer_name.'</td>';
-                                    $html .= '<td>'.$booking->mobile_number.'</td>';
-                                    $html .= '<td>'.$booking->baby_name.'</td>';
-                                    $html .= '<td>'.$booking->instructions.'</td>';
-                                    $html .= '<td> </td>';
-                                    $html .= ' </tr>';
-                               }
-                            $html .= '</tbody>
-                       </table>
-                   </div>
-               </div>
-           </div>
-       </div>
-   </div>';
    
-       $html .= '';
-        return $html ;
-    }
 
 }

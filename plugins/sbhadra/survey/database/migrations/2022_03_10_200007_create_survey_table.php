@@ -17,7 +17,7 @@ class CreateSurveyTable extends Migration
             $table->bigIncrements('id');
             $table->string('title', 250);
             $table->string('slug', 250)->unique()->index();
-            $table->integer('booking_id', 11)->default(0);
+            $table->integer('booking_id')->nullable(0);
             $table->string('customer_name', 100)->nullable('no');
             $table->string('customer_mobile', 15)->nullable('no');
             $table->longText('result')->nullable();

@@ -17,7 +17,13 @@ class MainAction extends Action
     }
 
     public function addDoKwtSMSAction(){
-        $this->addAction('booking.sms.index', function ($mobile,$message,$code) {
+        $this->addAction('booking.sms.index', function ($data) {
+            $arabic = ['١','٢','٣','٤','٥','٦','٧','٨','٩','٠'];
+            $english = [ 1 ,  2 ,  3 ,  4 ,  5 ,  6 ,  7 ,  8 ,  9 , 0];
+	        $phone = str_replace($arabic, $english, $data['mobile']);
+	        $mobile = $phone;
+            $message=$data['message'];
+            $code=$data['code'];
             $this->sendkwtsms($mobile,$message,$code); 
         });  
     }
@@ -38,7 +44,7 @@ class MainAction extends Action
 				if ($err){
 					return $err;
 				}else{
-					  return $response;	
+					return $response;	
 				}
 	}
 

@@ -46,7 +46,8 @@ class PaymentController extends FrontendController
             $payment_data['booking_id'] = $booking->id;
               Session::put('booking_data', $booking);
               session(['booking_data' => $booking]);
-            $status = do_action('theme.payment.method',$payment_data);
+              $status = do_action('theme.booking.extra',$payment_data);
+              $status = do_action('theme.payment.method',$payment_data);
          }
     }
     public function doSuccess(){

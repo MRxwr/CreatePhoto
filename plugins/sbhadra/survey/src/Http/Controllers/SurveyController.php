@@ -29,13 +29,13 @@ class SurveyController extends BackendController
     protected function getDataTable()
     {
         $dataTable = new SurveyDatatable();
-        $dataTable->mountData('surveys', 0);
+        $dataTable->mountData('survey', 0);
         return $dataTable;
     }
 
     protected function getModel()
     {
-        return Service::class;
+        return Survey::class;
     }
 
     protected function getTitle()

@@ -3,6 +3,8 @@
 namespace Sbhadra\Survey\Models;
 
 use Juzaweb\Models\Model;
+use Juzaweb\Traits\PostTypeModel;
+use Spatie\Translatable\HasTranslations;
 
 class survey extends Model
 {
@@ -18,8 +20,5 @@ class survey extends Model
         // 'price',
         'status',
     ];
-    public function packages()
-    {
-        return $this->belongsToMany('Sbhadra\Photography\Models\Package');
-    }
+   
 }

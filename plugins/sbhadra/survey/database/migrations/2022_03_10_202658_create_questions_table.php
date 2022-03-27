@@ -17,7 +17,6 @@ class CreateQuestionsTable extends Migration
             $table->bigIncrements('id');
             $table->longText('title');
             $table->string('slug', 250)->unique()->index();
-            $table->string('thumbnail', 250)->nullable();
             $table->longText('options')->nullable();
             $table->tinyInteger('question_type')->default(0);
             $table->string('status', 50)->default('no');

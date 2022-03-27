@@ -89,8 +89,13 @@ class MainAction extends Action
             if(isset($_REQUEST['id'])){
               $package = Package::find($_REQUEST['id']);
                 add_filters('theme.reservation.data', function($type) {
+                    $theme_field='';
                     $package = Package::find($_REQUEST['id']);
+                      if(isset($_REQUEST['theme_id'])){
+                        $theme_field ='<input type="hidden" id="theme_id" name="theme_id" value="'. $_REQUEST['theme_id'].'" />';
+                      }
                       return '<input type="hidden" id="id" name="id" value="'. $package->id.'" />
+                                '.$theme_field.'
                                 <input type="hidden" id="booking_price" name="package_price" value="'. $package->price.'" />
                             <div class="col-sm-12 pe-xl-5">
                                 <div class="package-head bg-light radius15 mh53 py-1 px-3 mb-3 d-inline-flex align-items-center">
