@@ -2,9 +2,10 @@
 
 namespace Sbhadra\Packagethemes\Providers;
 
-
-use Sbhadra\Packagethemes\Actions\MainAction;
 use Juzaweb\Support\ServiceProvider;
+use Sbhadra\Packagethemes\Actions\MainAction;
+use Illuminate\Support\Facades\Schema;
+
 
 class PackageThemesServiceProvider extends ServiceProvider
 {
