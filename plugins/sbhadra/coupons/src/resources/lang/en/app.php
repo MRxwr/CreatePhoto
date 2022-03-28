@@ -3,6 +3,8 @@
 return [
     'name' => 'Name',
     'coupons' =>'Coupons',
+    'coupon' =>'Coupon',
+    'coupon_code' =>'Coupon code',
     'coupon_validity' =>'Coupon validity',
     'coupon_code' =>'Coupon code',
     'coupon_discount' =>'Coupon discount',
@@ -11,4 +13,5 @@ return [
     'validity_from'=>'Coupon validity From',
     'validity_to'=>'Coupon validity To',
     'status' =>'Status',
+    'apply' =>'Apply',
 ];

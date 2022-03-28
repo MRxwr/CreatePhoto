@@ -181,7 +181,7 @@
   
 <script>
 $(document).ready(function(){
-    
+  calculate_price();
 	$('#book-btn').click(function(){
 		var searchquery = $("input#bookingid").val();
     var dataString = 'searchquery='+searchquery;
@@ -269,9 +269,28 @@ function submitForm(){
 function formSuccess(){
     $( "#msgSubmit" ).removeClass( "hidden" );
 }
-</script>  
+  $("body").on("click", ".xprice", function(e) {
+    //alert('okey')
+    calculate_price();
+  });
+
+  var calculate_price = function(){
+    var exprice = 0;
+    var package_price = $('#booking_price').val()
+    setTimeout( function() 
+      {
+        $("input:checkbox[name='service_item[]']:checked").each(function(){
+            exprice = parseFloat(exprice) + parseFloat($(this).attr('data-exprice'));
+          });
+          var itemval=30.500;
+          var total_price =  (parseFloat(package_price) + parseFloat(exprice)); 
+          localStorage.setItem("total_price",total_price);
+          $('#totalprice').text(total_price+'KD');
+      }, 2000);
+      
+  }
+ </script>  
       @yield('footer')
       @do_action('theme.footer')
-    
     </body>
 </html>
