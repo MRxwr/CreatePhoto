@@ -75,13 +75,13 @@
                                             <textarea class="border" rows="6" placeholder="Instructions" name="instructions" id="instructions"></textarea>
                                         </div>
                                         @apply_filters('theme.reservation.fields')
-                                        @do_action('theme.coupon.fields')
+                                        @do_action('theme.coupon.fields') 
                                     </div>
                                 </div>
                                 <div class="col-sm-12 pe-xl-5 pt-4">
-                                     <div style="width:220px;"  class="package-head bg-success radius15 mh67 py-1 px-3 mb-4   align-items-center"> 
+                                    <div style="width:220px;"  class="package-head bg-success radius15 mh67 py-1 px-3 mb-4   align-items-center"> 
                                        <h4 id="totalprice" class="fs23 text-success" style="padding: 20px;"></h4>
-                                          </div>
+                                    </div>
                                     <div class="package-head bg-danger radius15 mh67 py-1 px-3 mb-4 d-inline-flex align-items-center">
                                         <h4 class="fs23 text-danger">
                                             Deposit: <span class="text-600">30.500 KD</span> Please note that the deposit is non refundable
