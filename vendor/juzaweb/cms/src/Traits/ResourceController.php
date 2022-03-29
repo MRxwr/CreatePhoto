@@ -252,7 +252,9 @@ trait ResourceController
      *
      * @return \Juzaweb\Abstracts\DataTable
      */
-    abstract protected function getDataTable(...$params);
+     protected function getDataTable(...$params){
+         //
+     }
 
     /**
      * Validator for store and update
@@ -260,7 +262,9 @@ trait ResourceController
      * @param array $attributes
      * @return Validator|array
      */
-    abstract protected function validator(array $attributes, ...$params);
+     protected function validator(array $attributes, ...$params){
+         //
+     }
 
     /**
      * Get model resource
@@ -268,7 +272,9 @@ trait ResourceController
      * @param array $params
      * @return string // namespace model
      */
-    abstract protected function getModel(...$params);
+    protected function getModel(...$params){
+//
+    }
 
     /**
      * Get title resource
@@ -276,5 +282,7 @@ trait ResourceController
      * @param array $params
      * @return string
      */
-    abstract protected function getTitle(...$params);
+     protected function getTitle(...$params){
+         //
+     }
 }

@@ -80,30 +80,28 @@
     @endphp
     <div class="dropdown user-menu">
         <a href="" class="dropdown-toggle text-nowrap" data-toggle="dropdown" aria-expanded="false" data-offset="5,15">
-            <img class="dropdown-toggle-avatar img-circle" src="{{ $user->getAvatar() }}" alt="User avatar" width="30" height="30"/>
+            <img class="dropdown-toggle-avatar rounded-circle img-circle" src="{{ $user->getAvatar() }}" alt="User avatar" width="30" height="30"/>
         </a>
 
         <ul class="dropdown-menu dropdown-menu-right" role="menu">
-
-             
                 <!-- User image -->
                 <li class="user-header">
-                    <img src="{{ $user->getAvatar() }}" style="width:100px; height:100px;" class="img-circle" alt="User Image">
-                    <p>{{ $user->name}} - Web Developer</p>
+                    <img src="{{ $user->getAvatar() }}" style="width:100px; height:100px;" class="img-circle rounded-circle" alt="User Image">
+                    <p style="color:black">{{ $user->name}} - Web Developer</p>
                 </li>
               
                 <!-- Menu Footer-->
                 <li class="user-footer">
                     <div class="pull-left">
-                    <a class="btn btn-default " href="{{ route('admin.users.edit', [$user->id]) }}">
-                        <i class="dropdown-icon fe fe-user"></i>
+                    <a class="btn btn-primary  " href="{{ route('admin.users.edit', [$user->id]) }}">
+                        <i class="dropdown-icon fa fa-user"></i>
                         {{ trans('juzaweb::app.profile') }}
                     </a>
                     </div>
                     <div class="pull-right">
-                    <a href="{{ route('logout') }}" class="btn btn-default " data-turbolinks="false">
-                        <i class="dropdown-icon fe fe-log-out"></i> {{ trans('juzaweb::app.logout') }}
-                    </a>
+                        <a href="{{ route('logout') }}" class="btn btn-primary  " data-turbolinks="false">
+                            <i class="dropdown-icon fa fa-sign-out"></i> {{ trans('juzaweb::app.logout') }}
+                        </a>
                     </div>
                 </li>
             </ul>

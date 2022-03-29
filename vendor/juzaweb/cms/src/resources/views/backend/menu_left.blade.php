@@ -14,6 +14,7 @@
             $strChild = '';
             $hasActive = false;
             foreach($item->getChildrens() as $child) {
+
                 if (empty($segment2)) {
                     $active = empty($child->getUrl());
                 } else {
@@ -34,8 +35,9 @@
 
             <li class="juzaweb__menuLeft__item juzaweb__menuLeft__submenu juzaweb__menuLeft__item-{{ $item->get('slug') }} @if($hasActive) juzaweb__menuLeft__submenu--toggled @endif">
                 <span class="juzaweb__menuLeft__item__link">
-                    <i class="juzaweb__menuLeft__item__icon {{ $item->get('icon') }}"></i>
+                    
                     <span class="juzaweb__menuLeft__item__title">{{ $item->get('title') }}</span>
+                    <i class="juzaweb__menuLeft__item__icon {{ $item->get('icon') }}"></i>
                 </span>
 
                 <ul class="juzaweb__menuLeft__navigation" @if($hasActive) style="display: block;" @endif>

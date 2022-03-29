@@ -9,6 +9,7 @@
             $strChild = '';
             $hasActive = false;
             foreach($item->getChildrens() as $child) {
+
                 if (empty($segment2)) {
                     $active = empty($child->getUrl());
                 } else {
@@ -25,7 +26,7 @@
                     'active' => $active
                 ])->render();
             }
-            ?><li class="juzaweb__menuLeft__item juzaweb__menuLeft__submenu juzaweb__menuLeft__item-<?php echo e($item->get('slug')); ?> <?php if($hasActive): ?> juzaweb__menuLeft__submenu--toggled <?php endif; ?>"><span class="juzaweb__menuLeft__item__link"><i class="juzaweb__menuLeft__item__icon <?php echo e($item->get('icon')); ?>"></i> <span class="juzaweb__menuLeft__item__title"><?php echo e($item->get('title')); ?></span></span><ul class="juzaweb__menuLeft__navigation" <?php if($hasActive): ?> style="display: block;" <?php endif; ?>><?php echo $strChild; ?></ul></li> <?php else: ?> <?php $__env->startComponent('juzaweb::backend.items.menu_left_item', [
+            ?><li class="juzaweb__menuLeft__item juzaweb__menuLeft__submenu juzaweb__menuLeft__item-<?php echo e($item->get('slug')); ?> <?php if($hasActive): ?> juzaweb__menuLeft__submenu--toggled <?php endif; ?>"><span class="juzaweb__menuLeft__item__link"><span class="juzaweb__menuLeft__item__title"><?php echo e($item->get('title')); ?></span> <i class="juzaweb__menuLeft__item__icon <?php echo e($item->get('icon')); ?>"></i></span><ul class="juzaweb__menuLeft__navigation" <?php if($hasActive): ?> style="display: block;" <?php endif; ?>><?php echo $strChild; ?></ul></li> <?php else: ?> <?php $__env->startComponent('juzaweb::backend.items.menu_left_item', [
                 'adminUrl' => $adminUrl,
                 'item' => $item,
                 'active' => request()->is($adminPrefix .'/'. $item->get('url') . '*'),

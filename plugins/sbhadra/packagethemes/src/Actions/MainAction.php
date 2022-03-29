@@ -24,7 +24,7 @@ class MainAction extends Action
         $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerPackage']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'getPackageThemes']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'doProcessPackageThemes']);
-        
+        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'getThemesByCategory']);
     }
 
     public function registerPackage()
@@ -57,8 +57,8 @@ class MainAction extends Action
                     </h4>
                 </div>
                 <div class="package-body text-muted mb-5 pb-4 pt-3">
-                    <select class="form-control teheme2">
-                        <option value="1">All</option>
+                    <select class="form-control teheme2" id="package_category">
+                        <option value="0">All</option>
                     '.$options.'
                     </select>
                 </div>';
@@ -91,7 +91,37 @@ class MainAction extends Action
             }
             return $html;
          });
+
+         add_action('theme.footer', function() {
+            $html = '<script>
+                    $("#package_category").change(function() {
+                        var categoryid = $("#package_category").val();
+                        $.ajax({
+                            type: "GET",
+                            url: "?ajaxpage=getThemesByCategory",
+                            data: "categoryid=" + categoryid ,
+                            success : function(res){
+                                $( "#th_result" ).html( data );
+                            }
+                         });
+                    });
+               </script>';
+           echo  $html;
+        }, 15, 1);
+
     }
+    public function getThemesByCategory(){
+        if(isset($_REQUEST['ajaxpage']) && $_REQUEST['ajaxpage'] =='getThemesByCategory' ){
+            if(isset($_REQUEST['categoryid'])){
+                $taxonomy = Taxonomy::where('slug', $_REQUEST['categoryid'])->firstOrFail();
+                $postType = $taxonomy->getPostType('model');
+                $posts = $postType::paginate();
+                dd($posts);
+            }
+        exit;
+       }
+    }
+   
     public function doProcessPackageThemes(){
         add_action('theme.booking.extra', function($payment_data) {
             $booking = Booking::find($payment_data['booking_id']);

@@ -3020,6 +3020,7 @@ return array(
     'Juzaweb\\Http\\Controllers\\Frontend\\AssetController' => $vendorDir . '/juzaweb/cms/src/Http/Controllers/Frontend/AssetController.php',
     'Juzaweb\\Http\\Controllers\\Frontend\\HomeController' => $vendorDir . '/juzaweb/cms/src/Http/Controllers/Frontend/HomeController.php',
     'Juzaweb\\Http\\Controllers\\Frontend\\PageController' => $vendorDir . '/juzaweb/cms/src/Http/Controllers/Frontend/PageController.php',
+    'Juzaweb\\Http\\Controllers\\Frontend\\PaymentController' => $vendorDir . '/juzaweb/cms/src/Http/Controllers/Frontend/PaymentController.php',
     'Juzaweb\\Http\\Controllers\\Frontend\\PostController' => $vendorDir . '/juzaweb/cms/src/Http/Controllers/Frontend/PostController.php',
     'Juzaweb\\Http\\Controllers\\Frontend\\ProfileController' => $vendorDir . '/juzaweb/cms/src/Http/Controllers/Frontend/ProfileController.php',
     'Juzaweb\\Http\\Controllers\\Frontend\\RouteController' => $vendorDir . '/juzaweb/cms/src/Http/Controllers/Frontend/RouteController.php',

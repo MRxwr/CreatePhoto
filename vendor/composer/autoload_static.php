@@ -3651,6 +3651,7 @@ class ComposerStaticInit3f60cc683beac6e9bb1a6cd9551f9b8c
         'Juzaweb\\Http\\Controllers\\Frontend\\AssetController' => __DIR__ . '/..' . '/juzaweb/cms/src/Http/Controllers/Frontend/AssetController.php',
         'Juzaweb\\Http\\Controllers\\Frontend\\HomeController' => __DIR__ . '/..' . '/juzaweb/cms/src/Http/Controllers/Frontend/HomeController.php',
         'Juzaweb\\Http\\Controllers\\Frontend\\PageController' => __DIR__ . '/..' . '/juzaweb/cms/src/Http/Controllers/Frontend/PageController.php',
+        'Juzaweb\\Http\\Controllers\\Frontend\\PaymentController' => __DIR__ . '/..' . '/juzaweb/cms/src/Http/Controllers/Frontend/PaymentController.php',
         'Juzaweb\\Http\\Controllers\\Frontend\\PostController' => __DIR__ . '/..' . '/juzaweb/cms/src/Http/Controllers/Frontend/PostController.php',
         'Juzaweb\\Http\\Controllers\\Frontend\\ProfileController' => __DIR__ . '/..' . '/juzaweb/cms/src/Http/Controllers/Frontend/ProfileController.php',
         'Juzaweb\\Http\\Controllers\\Frontend\\RouteController' => __DIR__ . '/..' . '/juzaweb/cms/src/Http/Controllers/Frontend/RouteController.php',
