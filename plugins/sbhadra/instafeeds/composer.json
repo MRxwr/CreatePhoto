@@ -12,7 +12,7 @@
             "name": "sbhadra/instafeeds",
             "domain": "sbin",
             "cms_min": "1.0.9",
-            "version": "1.0"
+            "version": "1.2"
         }
     },
     "autoload": {

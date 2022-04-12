@@ -26,10 +26,35 @@ class PluginController extends BackendController
         $this->api = $api;
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $offset = $request->get('offset', 0);
+        $limit = $request->get('limit', 50);
+
+        $results = [];
+        $plugins = Plugin::all();
+        foreach ($plugins as $plugin) {
+            $item = [
+                'id' => $plugin->get('name'),
+                'name' => $plugin->getDisplayName(),
+                'description' => $plugin->get('description'),
+                'version' => $plugin->getVersion(),
+                'status' => $plugin->isEnabled() ?
+                    'active' : 'inactive',
+            ];
+            $results[] = $item;
+        }
+        
+        //dd($plugins);
+
+        $total = count($results);
+        $page = (int) round(($offset + $limit) / $limit);
+        $data = ArrayPagination::make($results);
+        $data = $data->paginate($limit, $page);
+       
         return view('juzaweb::backend.plugin.index', [
             'title' => trans('juzaweb::app.plugins'),
+            'plugins' => $data,
         ]);
     }
 

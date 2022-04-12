@@ -12,7 +12,7 @@
             "name": "sbhadra/coupons",
             "domain": "sbco",
             "cms_min": "1.0.9",
-            "version": "1.0"
+            "version": "3.0"
         }
     },
     "autoload": {

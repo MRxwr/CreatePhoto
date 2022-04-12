@@ -13,9 +13,9 @@
 
     <div class="row" id="theme-list">
         @if($currentTheme)
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="card">
-                <div class="height-200 d-flex flex-column jw__g13__head" style="background-image: url('{{ $currentTheme['screenshot'] }}')">
+                <div class="height-500 d-flex flex-column jw__g13__head" style="background-image: url('{{ $currentTheme['screenshot'] }}')">
                 </div>
 
                 <div class="card card-borderless mb-0">
@@ -35,9 +35,9 @@
         @endif
 
         @foreach($themes as $theme)
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="card">
-                <div class="height-200 d-flex flex-column jw__g13__head" style="background-image: url('{{ $theme['screenshot'] }}')">
+                <div class="height-500 d-flex flex-column jw__g13__head" style="background-image: url('{{ $theme['screenshot'] }}')">
                 </div>
 
                 <div class="card card-borderless mb-0">

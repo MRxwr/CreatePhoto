@@ -4,11 +4,11 @@
     <div class="row">
         <div class="col-md-6"></div>
 
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
             <div class="btn-group float-right">
                 <a href="{{ route('admin.plugin.install') }}" class="btn btn-success" data-turbolinks="false"><i class="fa fa-plus-circle"></i> @lang('juzaweb::app.add_new')</a>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div class="row mb-2">
@@ -25,7 +25,7 @@
                 <button type="submit" class="btn btn-primary px-2 mb-2" id="apply-action">{{ trans('juzaweb::app.apply') }}</button>
             </form>
         </div>
-
+        
         <div class="col-md-9">
             <form method="get" class="form-inline" id="form-search">
                 <div class="form-group mb-2 mr-1">
@@ -46,6 +46,59 @@
             </form>
         </div>
     </div>
+        <div class="col-md-12">
+            <div class="row">
+                @foreach($plugins as $plugin)
+                    <div class="col-md-3  ">
+                        <div class="card rounded-lg m-3">
+                            <div class="height-150 d-flex flex-column jw__g13__head bg-success text-white p-3" >
+                                <h4 class="text-white text-uppercase font-weight-bold mr-auto">{{$plugin['name']}}</h4>
+                                
+                            </div>
+                            <div class="height-50 d-flex flex-column jw__g13__head  p-3" >
+                                <p>{{$plugin['description']}}</p>
+                                <h5>Version : {{$plugin['version']}}</h5>
+                                <h5>Author : CreateKW</h5>
+                            </div>
+                            <div class="card card-borderless mb-0">
+                                <div class="card-header border-bottom-0">
+                                    <div class="d-flex">
+                                            <div class="text-dark text-uppercase font-weight-bold mr-auto">
+                                                @if($plugin['status']=='active')
+                                                        <button class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i>
+</button>
+                                                @endif
+                                            </div>                                
+                                            <div class="text-gray-6">
+                                                @if($plugin['status']=='active')
+                                                    <form action="{{ route('admin.plugin.bulk-actions') }}" method="post">
+                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                                        <input type="hidden" name="ids[]" value="{{$plugin['id']}}">
+                                                        <input type="hidden" name="action" value="deactivate">
+                                                        <button class="btn btn-danger">Deactivate</button>
+                                                    </form>
+                                                @else
+                                                    <form action="{{ route('admin.plugin.bulk-actions') }}" method="post">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                                    <input type="hidden" name="ids[]" value="{{$plugin['id']}}">
+                                                    <input type="hidden" name="action" value="activate">
+                                                    <button class="btn btn-success">Activate</button>
+                                                    </form>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                     @endforeach   
+
+            </div>
+        </div>
+
+        
+    
 
     <div class="table-responsive mb-5">
         <table class="table juzaweb-table">
@@ -74,9 +127,9 @@
             return `<span class='text-success'>${juzaweb.lang.active}</span>`;
         }
 
-        var table = new JuzawebTable({
-            url: '{{ route('admin.plugin.get-data') }}',
-            action_url: '{{ route('admin.plugin.bulk-actions') }}',
-        });
+        // var table = new JuzawebTable({
+        //     url: '{{ route('admin.plugin.get-data') }}',
+        //     action_url: '{{ route('admin.plugin.bulk-actions') }}',
+        // });
     </script>
 @endsection

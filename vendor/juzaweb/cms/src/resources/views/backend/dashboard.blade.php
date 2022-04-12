@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-md-3">
-            <div class="card border-0 bg-gray-2">
+            <div class="card border-0 bg-warning text-white">
                 <div class="card-body">
                     <div class="d-flex flex-wrap align-items-center">
                         <i class="fa fa-list font-size-50 mr-3"></i>
@@ -23,7 +23,7 @@
                     <div class="d-flex flex-wrap align-items-center">
                         <i class="fa fa-list font-size-50 mr-3"></i>
                         <div>
-                            <div class="font-size-21 font-weight-bold">pages</div>
+                            <div class="font-size-21 font-weight-bold">Pages</div>
                             <div class="font-size-15">15</div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                     <div class="d-flex flex-wrap align-items-center">
                         <i class="fa fa-hdd-o font-size-50 mr-3"></i>
                         <div>
-                            <div class="font-size-21 font-weight-bold">files</div>
+                            <div class="font-size-21 font-weight-bold">Media Files</div>
                             <div class="font-size-15">32</div>
                         </div>
                     </div>
@@ -59,18 +59,18 @@
             </div>
         </div>
     </div>
-
-    <div class="row">
+    @do_action('backend.dashboard.view')
+    <!-- <div class="row">
         <div class="col-md-12">
             <div id="curve_chart" style="width: 100%; height: 300px"></div>
         </div>
-    </div>
+    </div> -->
 
     <div class="row mt-3">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h5>Users</h5>
+                    <h5>Taday's Booking</h5>
                 </div>
 
                 <div class="card-body">
@@ -78,7 +78,7 @@
                         <thead>
                             <tr>
                                 <th data-formatter="index_formatter" data-width="5%">#</th>
-                                <th data-field="name">NAme</th>
+                                <th data-field="name">Name</th>
                                 <th data-field="created" data-width="30%" data-align="center">12.36.25</th>
                             </tr>
                         </thead>
@@ -99,7 +99,7 @@
                             <tr>
                                 <th data-formatter="index_formatter" data-width="5%">#</th>
                                 <th data-field="title">ssss</th>
-                                <th data-field="views" data-width="10%">}</th>
+                                <th data-field="views" data-width="10%"></th>
                                 <th data-field="created" data-width="30%" data-align="center"></th>
                             </tr>
                         </thead>
@@ -109,7 +109,7 @@
         </div>
     </div>
 
-    @do_action('backend.dashboard.view')
+    
 
     <script type="text/javascript">
         setTimeout(function () {

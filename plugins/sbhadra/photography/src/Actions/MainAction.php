@@ -360,14 +360,66 @@ static function getPackageCstudioTimeslots($package){
         $this->addAction('backend.dashboard.view', function () {
             $html ='<div class="row">';
              $incomplete_booking =Booking::where('status','No')->count();
-            $html .='<div class="col-md-3"><div class="card"><div class="height-20 d-flex flex-column jw__g13__head"></div><div class="card card-borderless mb-0"><div class="card-header border-bottom-0"><div class="d-flex"><div class="text-dark text-uppercase font-weight-bold mr-auto">'. trans('sbph::app.total_incomplete_bookings').'</div><div class="text-gray-6">'.$incomplete_booking.'</div></div></div></div></div></div>';
+            $html .='<div class="col-md-3">
+                        <div class="card  border-0 bg-gray-2">
+                            <div class="card-body">
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <i class="fa fa-list font-size-50 mr-3"></i>
+                                    <div>
+                                        <div class="font-size-21 font-weight-bold">'. trans('sbph::app.total_incomplete_bookings').'</div>
+                                        <div class="font-size-15">'.$incomplete_booking.'</div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>';
             $success_booking =Booking::where('status','Yes')->count();
-            $html .='<div class="col-md-3"><div class="card"><div class="height-20 d-flex flex-column jw__g13__head"></div><div class="card card-borderless mb-0"><div class="card-header border-bottom-0"><div class="d-flex"><div class="text-dark text-uppercase font-weight-bold mr-auto">'. trans('sbph::app.total_success_bookings').'</div><div class="text-gray-6">'.$success_booking.'</div></div></div></div></div></div>';
+            
+            $html .='<div class="col-md-3">
+                        <div class="card  border-0 bg-primary text-white">
+                            <div class="card-body">
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <i class="fa fa-list font-size-50 mr-3"></i>
+                                    <div>
+                                        <div class="font-size-21 font-weight-bold">'.trans('sbph::app.total_success_bookings').'</div>
+                                        <div class="font-size-15">'.$success_booking.'</div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>';
             $complete_booking =Booking::where('status','Completed')->count();
-            $html .='<div class="col-md-3"><div class="card"><div class="height-20 d-flex flex-column jw__g13__head"></div><div class="card card-borderless mb-0"><div class="card-header border-bottom-0"><div class="d-flex"><div class="text-dark text-uppercase font-weight-bold mr-auto">'. trans('sbph::app.total_complete_bookings').'</div><div class="text-gray-6">'.$complete_booking.'</div></div></div></div></div></div>';
+            $html .='<div class="col-md-3">
+                        <div class="card  border-0 bg-success text-white">
+                            <div class="card-body">
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <i class="fa fa-list font-size-50 mr-3"></i>
+                                    <div>
+                                        <div class="font-size-21 font-weight-bold">'.trans('sbph::app.total_complete_bookings').'</div>
+                                        <div class="font-size-15">'.$complete_booking.'</div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>';
+            
             $cancel_booking =Booking::where('status','cancel')->count();
-            $html .='<div class="col-md-3"><div class="card"><div class="height-20 d-flex flex-column jw__g13__head"></div><div class="card card-borderless mb-0"><div class="card-header border-bottom-0"><div class="d-flex"><div class="text-dark text-uppercase font-weight-bold mr-auto">'. trans('sbph::app.total_cancel_bookings').'</div><div class="text-gray-6">'.$cancel_booking.'</div></div></div></div></div></div>';
+            $html .='<div class="col-md-3">
+                        <div class="card  border-0 bg-danger text-white">
+                            <div class="card-body">
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <i class="fa fa-list font-size-50 mr-3"></i>
+                                    <div>
+                                        <div class="font-size-21 font-weight-bold">'.trans('sbph::app.total_cancel_bookings').'</div>
+                                        <div class="font-size-15">'.$cancel_booking.'</div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>';
+            
             $html .='</div>';
+
             echo $html;
        });
        
