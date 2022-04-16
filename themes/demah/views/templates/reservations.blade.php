@@ -1,6 +1,10 @@
 @extends('juzaweb::layouts.frontend')
 
 @section('content')
+<!-- breadcrumbs -->
+@do_action('theme.breadcrumbs') 
+  
+  <!-- breadcrumbs -->
  <!-- Personal Informations -->
  <section class="personal-info py-5">
             <div class="container">
@@ -22,7 +26,7 @@
             </div>
             <div class="container">
                  <div class="row justify-content-center">
-                    <div class="col-xxl-12">
+                    <div class="col-xxl-8">
                         <div class="ps-xxl-5 ms-xxl-5">
                             <div class="row ps-xxl-4">
                                 @apply_filters('theme.cstudio.themes') 
@@ -32,12 +36,10 @@
                 </div>
                 <form class="personal-information" method="post" action="{{url('payment')}}">
                 {!! csrf_field() !!}
-                
+                <input type="hidden" id="theme_id" name="theme_id" value="" />
                 <div class="row justify-content-center">
                     <div class="col-xxl-12">
                         <!-- package-item -->
-                       
-
                         <div class="px-xxl-5">
                             <div class="row package-item">
                             @apply_filters('theme.reservation.data')
@@ -54,32 +56,32 @@
                                 </div>
                                 <div class="col-xxl-8 pe-xl-5 pt-4">
                                     <div class="personal-form row">
-                                        <div class="col-xxl-6 pb-3">
+                                        <div class="col-xxl-10 pb-3">
                                             <label>
                                                @lang('sbph::app.customer_name'): 
                                             </label>
                                             <input type="text" class="border" id="customer_name" name="customer_name" required >
                                         </div>
                                         <input type="hidden" class="form-control form-control-lg" id="customer_email" name="customer_email" value="hello@myshootskw.com" required>
-                                        <div class="col-xxl-6 pb-3">
+                                        <div class="col-xxl-10 pb-3">
                                             <label>
                                             @lang('sbph::app.baby_name'):
                                             </label>
                                             <input type="text" class="border" id="baby_name" name="baby_name">
                                         </div>
-                                        <div class="col-xxl-6 pb-3">
+                                        <div class="col-xxl-10 pb-3">
                                             <label>
                                               @lang('sbph::app.mobile_number'):
                                             </label>
                                             <input type="text" class="border" id="mobile_number" name="mobile_number" required>
                                         </div>
-                                        <div class="col-xxl-6 pb-3">
+                                        <div class="col-xxl-10 pb-3">
                                             <label>
                                             @lang('sbph::app.baby_age'):
                                             </label>
                                             <input type="text" class="border"  id="baby_age" name="baby_age">
                                         </div>
-                                        <div class="col-xxl-12 py-3">
+                                        <div class="col-xxl-10 py-3">
                                             <label class="opacity0">
                                                 @lang('sbph::app.instructions'):
                                             </label>
@@ -98,7 +100,6 @@
                                             Deposit: <span class="text-600">30.500 KD</span> Please note that the deposit is non refundable
                                             
                                         </h4>
-                                        
                                         <p class="theme-color pl-2">
                                           0.500 is the payment gateway transaction fees.
                                         </p>
@@ -191,4 +192,15 @@
             //alert(this.id);
         });
     </script>
+    <script>
+    $(document).ready(function(){
+        $("input[name='theme_id']").click(function(){
+            var radioValue = $("input[name='theme_id']:checked").val();
+            if(radioValue){
+                //alert("Your are a - " + radioValue);
+                $('#theme_id').val(radioValue);
+            }
+        });
+    });
+</script>
 @endsection

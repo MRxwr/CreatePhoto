@@ -29,6 +29,7 @@ class MainAction extends Action
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addBodyClass']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addFrontCategories']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addThemeExtraFields']);
+        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'doProcessPackageThemes']);
        
     }
 public function packageThemeField(){
@@ -112,29 +113,7 @@ public function addBodyClass()
             if($packages){
                 //var_dump($packages);
                   foreach($packages as $key=>$package){
-                    // echo '<div class="row package-item">
-                    //     <div class="col-sm-6 pe-xl-5">
-                    //         <div class="package-head bg-light radius5 py-1 px-3 mb-5 d-flex align-items-center justify-content-between">
-                    //             <h4 class="fs25 ps-xl-4">'.$package->title.'</h4>
-                    //             <p class="fs18 d-flex align-items-center">
-                    //                 <img src="'.url('jw-styles/themes/cstudio/assets/img/timer.svg').'" alt="img" class="me-2">
-                    //                 60 Minutes 
-                    //             </p>
-                    //         </div>
-                    //         <div class="package-body text-muted">
-                    //         '.str_replace('<ul>',' <ul class="package-list ps-4">',$package->content).' 
-                    //         </div>
-                    //         <div class="package-footer mt-4">
-                    //             <a href="'.url('package/'.$package->slug).'" class="btn btn-light radius25 px-4 py-0">
-                    //                 <span class="pe-2"> Book Now </span>
-                    //                 <span class="border-left ps-2">  '.$package->price.' KD </span>
-                    //             </a>
-                    //         </div>
-                    //     </div>
-                    //     <div class="col-sm-6 ps-xl-5">
-                    //         <img src="'. upload_url($package->thumbnail) .'" alt="img" class="w-100 mt-xl-0 mt-4 radius25">
-                    //     </div>
-                    // </div>';
+                   
                     if(($key+1) % 2 != 0){
                         $slug = ($package->is_theme_category==1?url('/theme-categoris?slug='.$package->slug):url('package/'.$package->slug.'?cat=all'));
                         echo   ' <div class="row py-5 my-5">         
@@ -291,34 +270,49 @@ public function addThemeExtraFields(){
     $this->addAction('theme.reservation.exfields', function() {
         $package = Package::find($_REQUEST['id']);
         //dd($package);
+        echo '<div class="col-xxl-8 pe-xl-5 pt-4">
+        <div class="personal-form row">
+            <div class="col-xxl-10 pb-3">
+            <label> Pictures type : </label> 
+               <input type="radio" class="" style="margin: 15px; width: 30px; min-height: 25px;" name="pictures_type" id="pictures_type1" value="Electonic">Electonic
+               <input type="radio" class="" style="margin: 15px; width: 30px; min-height: 25px;"  name="pictures_type" id="pictures_type2" value="Printed + Electonic">Printed + Electonic
+            </div>
+            </div>
+         </div>';
         if( $package->is_pieces==1){
            echo '<div class="col-sm-12 pe-xl-5">
                     <div class="personal-form row">
                         <div class="col-xxl-8 pb-3">
                          <label>Number of Pieces :</label> 
-                         <input type="number" class="form-control" name="number_of_pieces" id="number_of_pieces" value="13-04-2022">
+                         <input type="number" class="form-control" name="number_of_pieces" id="number_of_pieces" value="">
+                         <input type="hidden"  name="rate_per_pieces" id="rate_per_pieces" value="'.$package->rate_per_pieces.'">
                        </div>
                        <div class="col-xxl-8 pb-3">
                          <label> </label> 
                          <div class="package-head bg-danger radius15 mh67 py-1 px-3 mb-4 d-inline-flex align-items-center">
-                            <h4 class="fs23 text-danger">Each piece will cost  <span class="text-600">10 KD</span></h4>
+                            <h4 class="fs23 text-danger">Each piece will cost  <span class="text-600">'.$package->rate_per_pieces.' KD</span></h4>
                          </div>
                        </div>
                     </div>
-                </div>';
-          }else{
-            echo '<div class="col-xxl-8 pe-xl-5 pt-4">
-                    <div class="personal-form row">
-                        <div class="col-xxl-10 pb-3">
-                        <label> Pictures type : </label> 
-                           <input type="radio" class="" style="margin: 15px; width: 30px; min-height: 25px;" name="pictures_type" id="pictures_type1" value="Electonic">Electonic
-                           <input type="radio" class="" style="margin: 15px; width: 30px; min-height: 25px;"  name="pictures_type" id="pictures_type2" value="Printed + Electonic">Printed + Electonic
-                        </div>
-                        </div>
                 </div>';
           }
        }, 15, 1);
     }
 
- 
+    public function doProcessPackageThemes(){
+        add_action('theme.booking.extra', function($payment_data) {
+            $booking = Booking::find($payment_data['booking_id']);
+            if(isset($payment_data['pictures_type'])){
+                $booking->pictures_type =  $payment_data['pictures_type'] ;
+            }
+            if(isset($payment_data['number_of_pieces'])){
+                $booking->number_of_pieces =  $payment_data['number_of_pieces'] ;
+            }
+            if(isset($payment_data['rate_per_pieces'])){
+                $booking->rate_per_pieces =  $payment_data['rate_per_pieces'] ;
+            }
+            $booking->save();
+        }, 25, 1);
+    }
+
 }

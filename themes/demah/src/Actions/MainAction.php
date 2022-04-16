@@ -25,6 +25,7 @@ class MainAction extends Action
     {
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'cStudioThemePackages']);
         $this->addAction(Action::JUZAWEB_INIT_ACTION, [$this, 'registerTemplates']);
+        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addBreadcrumbs']);
         
        
         // $this->addAction(Action::WIDGETS_INIT, [$this, 'registerSidebars']);
@@ -47,6 +48,23 @@ class MainAction extends Action
         });
     }
 
+    public function addBreadcrumbs(){
+        $this->addAction('theme.breadcrumbs', function () {
+            echo  '<section class="breadcrumbs bg-muted">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <ul class="breadcrumbs_list d-flex align-items-center">
+                                    <li><a href="'.url('/').'" class="fs45 text-700 text-primary CarrinadyB">Home </a></li>
+                                    <li><a href="#" class="fs45 text-700 text-primary CarrinadyB"> Graduation</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>';
+                });
+    }
     public function addStyles()
     {
         //HookAction::enqueueFrontendScript('main', 'assets/js/main.js');
