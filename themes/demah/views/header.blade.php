@@ -1,4 +1,4 @@
-     <header class="site-header d-flex align-items-center">
+<header class="site_header bg-primary pt-sm-3 pb-2 d-flex align-items-center">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-4 col-8 d-flex align-items-center">
@@ -35,5 +35,5 @@
             </div>
         </header>
       <!-- hero-slider -->
-      @do_action('theme.cstudio.slider')
+      <!-- @do_action('theme.cstudio.slider') -->
         <!-- hero-slider -->

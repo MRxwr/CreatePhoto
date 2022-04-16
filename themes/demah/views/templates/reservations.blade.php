@@ -21,18 +21,29 @@
                 </div>
             </div>
             <div class="container">
-            <form class="personal-information" method="post" action="{{url('payment')}}">
+                 <div class="row justify-content-center">
+                    <div class="col-xxl-12">
+                        <div class="ps-xxl-5 ms-xxl-5">
+                            <div class="row ps-xxl-4">
+                                @apply_filters('theme.cstudio.themes') 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form class="personal-information" method="post" action="{{url('payment')}}">
                 {!! csrf_field() !!}
-            
+                
                 <div class="row justify-content-center">
                     <div class="col-xxl-12">
                         <!-- package-item -->
+                       
+
                         <div class="px-xxl-5">
                             <div class="row package-item">
                             @apply_filters('theme.reservation.data')
 
                             @apply_filters('cstudio.reservation.time')
-           
+                            @do_action('theme.reservation.exfields')
                             @apply_filters('cstudio.reservation.services')
                                 <div class="col-sm-12 pe-xl-5 pt-4">
                                     <div class="package-head bg-light radius15 mh53 py-1 px-3 mb-4 d-inline-flex align-items-center">

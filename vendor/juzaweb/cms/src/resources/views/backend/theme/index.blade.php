@@ -1,7 +1,7 @@
 @extends('juzaweb::layouts.backend')
 
 @section('content')
-    <div class="row mb-2">
+    <!-- <div class="row mb-2">
         <div class="col-md-6"></div>
 
         <div class="col-md-6">
@@ -9,13 +9,13 @@
                 <a href="{{ route('admin.themes.install') }}" class="btn btn-success" data-turbolinks="false"><i class="fa fa-plus-circle"></i> @lang('juzaweb::app.add_new')</a>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="row" id="theme-list">
         @if($currentTheme)
         <div class="col-md-3">
             <div class="card">
-                <div class="height-500 d-flex flex-column jw__g13__head" style="background-image: url('{{ $currentTheme['screenshot'] }}')">
+                <div class="height-500 d-flex flex-column jw__g13__head" style="background-image: url('{{ $currentTheme['screenshot'] }}'); background-position: center; background-repeat: no-repeat; background-size: cover;">
                 </div>
 
                 <div class="card card-borderless mb-0">
@@ -25,7 +25,7 @@
                                 {{ $currentTheme['name'] }}
                             </div>
                             <div class="text-gray-6">
-                                <button class="btn btn-secondary" disabled> {{ trans('juzaweb::app.activated') }}</button>
+                                <button class="btn btn-success" disabled> {{ trans('juzaweb::app.activated') }}</button>
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
         @foreach($themes as $theme)
         <div class="col-md-3">
             <div class="card">
-                <div class="height-500 d-flex flex-column jw__g13__head" style="background-image: url('{{ $theme['screenshot'] }}')">
+                <div class="height-500 d-flex flex-column jw__g13__head" style="background-image: url('{{ $theme['screenshot'] }}'); background-position: center; background-repeat: no-repeat; background-size: cover;">
                 </div>
 
                 <div class="card card-borderless mb-0">

@@ -55,7 +55,7 @@
                                       @endif
                                         
                                     </div>
-                                    @apply_filters('theme.cstudio.theme_category')
+                                    <!-- @apply_filters('theme.cstudio.theme_category') -->
                                     
                                 </div>
                                 <div class="col-sm-6 ps-xl-5 mb-sm-5 mb-5 d-none d-sm-block">
@@ -68,13 +68,7 @@
                 </div>
             </div>
             
-            <div class="container-fluid mb-5 overflow-hidden">
-                <div class="ps-xxl-5 ms-xxl-5">
-                    <div class="row ps-xxl-4">
-                        @apply_filters('theme.cstudio.themes') 
-                    </div>
-                </div>
-            </div>
+            
 
             <div class="container">
                 <div class="px-xxl-5">
@@ -88,6 +82,8 @@
                         </div>
                         <div class="col-xl-4">
                             <input type="hidden" name="package_id" id="package_id" value="{{ $post->id }}">
+                            <input type="hidden" name="theme_category" id="theme_category" value="@if($_REQUEST['cat']){{$_REQUEST['cat']}} @endif">
+                            
                             <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="hidden"  />
                             <div id="bookingdate"></div>
                         </div>

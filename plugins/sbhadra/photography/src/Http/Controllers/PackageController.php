@@ -59,12 +59,14 @@ class PackageController extends BackendController
     protected function afterSave(Request $request, $model){
         $model->services()->sync($request->services);
         $model->slots()->sync($request->slots);
+        @do_action('plugin.package.update', $model);
        }
     
       protected function afterUpdate(Request $request, $model){
          // dd($request->services);
         $model->services()->sync($request->services);
         $model->slots()->sync($request->slots);
+        @do_action('plugin.package.update', $model);
       }
     protected function beforeUpdate(Request $request, $model, ...$params)
     {

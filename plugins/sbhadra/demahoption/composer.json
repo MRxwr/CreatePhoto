@@ -1,0 +1,23 @@
+{
+    "name": "sbhadra/demahoption",
+    "description": "",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sbhadra\\Demahoption\\Providers\\DemahOptionServiceProvider"
+            ],
+            "aliases": {}
+        },
+        "juzaweb": {
+            "name": "sbhadra/demahoption",
+            "domain": "sbde",
+            "cms_min": "1.0.9",
+            "version": "1.2"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Sbhadra\\Demahoption\\": "src/"
+        }
+    }
+}

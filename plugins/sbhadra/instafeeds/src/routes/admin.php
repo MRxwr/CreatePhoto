@@ -11,4 +11,4 @@
 |
 */
 
-
+Route::postTypeResource('instafeed', 'InstafeedsController');

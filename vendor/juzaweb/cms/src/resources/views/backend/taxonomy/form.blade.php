@@ -42,8 +42,6 @@
                 </div>
                 @endif
             </div>
-
-            @if(in_array('thumbnail', $setting->get('supports', [])))
             <div class="col-md-4">
                 @component('juzaweb::components.form_image', [
                     'name' => 'thumbnail',
@@ -51,7 +49,7 @@
                     'value' => $model->thumbnail
                 ])@endcomponent
             </div>
-            @endif
+           
 
             <input type="hidden" name="post_type" value="{{ $postType }}">
             <input type="hidden" name="taxonomy" value="{{ $taxonomy }}">

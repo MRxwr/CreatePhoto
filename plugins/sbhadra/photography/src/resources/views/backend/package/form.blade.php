@@ -62,6 +62,7 @@
                         @endforeach
                     </select>
                 </div>
+                
                 @do_action('post_type.'. $postType .'.form.right', $model)
             </div>
         </div>

@@ -28,6 +28,16 @@
                 ])
                 @endcomponent
 
+               
+            <div class="col-md-6">
+                @component('juzaweb::components.form_image', [
+                    'name' => 'thumbnail',
+                    'label' => trans('juzaweb::app.thumbnail'),
+                    'value' => ''
+                ])@endcomponent
+            </div>
+           
+
                 @if(in_array('hierarchical', $setting->get('supports', [])))
                     <div class="form-group">
                         <label class="col-form-label" for="parent_id">{{ trans('juzaweb::app.parent') }}</label>

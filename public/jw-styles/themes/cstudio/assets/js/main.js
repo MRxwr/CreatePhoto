@@ -107,21 +107,11 @@ $(document).ready(function(){
 });
 
 // calendar
-// $(function() {
+$(function() {
 
-//   rome(inline_cal, { 
-//       time: false,
-//       min: '2022-03-01', max: '2022-04-31',
-//       //dateValidator: rome.val.except('2022-03-18','2022-03-24'),
-//     //   dateValidator: function (d) {
-//     //     return moment(d).day() !== 6;
-        
-//     //   }
-//      }).on('data', function (value) {
-//     date.value = value;
-//   });
+  rome(inline_cal, { time: false });
 
-// })
+});
 
 
 // gallery filter

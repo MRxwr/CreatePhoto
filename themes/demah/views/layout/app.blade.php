@@ -22,26 +22,26 @@
 		   <!-- site title -->
 		   <title>{{ $title }}</title>
 		<!-- bootstrap css -->
-		<link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/css/bootstrap.min.css">
 		<!-- slicknav css -->
-        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/assets/css/slicknav.min.css">
+        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/css/slicknav.min.css">
         <!-- calender css -->
-        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/assets/css/calender.css">
+        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/css/calender.css">
 
 		<!-- owl carousel css -->
-        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/assets/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/assets/css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/css/owl.theme.default.min.css">
 		<!-- magnific css -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
 		<!-- slick slider css -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
 <!-- main stylesheet -->
-<link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/assets/css/rome.css">
+<link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/css/rome.css">
 		<!-- main stylesheet -->
-        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/assets/style.css">
+        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/style.css">
 
 		<!-- responsive stylesheet -->
-        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/assets/css/responsive.css">
+        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/css/responsive.css">
 
 		<!-- ==== HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries ==== -->
         <!--[if lt IE 9]>
@@ -58,7 +58,7 @@
           var daysOfWeekDisabled = [5,6]
         </script>
 	</head>
-	<body class="common-style">
+	<body class="common-style home_bg">
         @do_action('theme.after_body')
         <!-- site-header -->
          @include('theme::header')
@@ -163,12 +163,17 @@
           $('#booknow').click(function(){
               var date = $("#date").val();
               var package_id = $("#package_id").val();
+              var theme_category = $("#theme_category").val();
+              //alert(package_id);
               var theme_id = $("input[name='theme_id']:checked").val();
               var params='';
               if(date != ""){
                 params = "&date="+date;
                 if(theme_id>0){
                   params = params +"&theme_id="+theme_id;
+                }
+                if(theme_category){
+                  params = params +"&category="+theme_category;
                 }
                 window.location.href = "{{url('/reservations')}}?id="+package_id+params;
               } else{

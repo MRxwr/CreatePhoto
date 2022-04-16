@@ -1,43 +1,55 @@
 
 <!-- Footer -->
-<footer class="site-footer bg-dark text-white d-flex align-items-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-4 offset-xl-4 col-sm-6 d-flex align-items-center justify-content-center">
-                        <p>
-                            Powered by <a href="www.Create-kw.com" class="text-white">Create-kw.com</a>
-                        </p>
-                    </div>
-                    <div class="col-xl-4 col-sm-6 d-flex align-items-center justify-content-center mt-4 mt-sm-0">
-                        <ul class="social-list d-flex align-items-center">
-                            <li class="ms-3">
+<footer class="site_footer py-5">
+    <div class="container py-lg-5 my-lg-5"> 
+                <div class="row py-5">
+                    <div class="col-lg-9 Montserrat fs23">
+                        <ul class="social_list mb-4 d-flex align-items-center">
+                            <li class="ms-4">
                                 <a href="#">
-                                    <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/in.svg" alt="img">
+                                    <img src="{{asset('/')}}jw-styles/themes/demah/assets/img/in.svg" alt="img">
                                 </a>
                             </li>
-                            <li class="ms-3">
+                            <li class="ms-4">
                                 <a href="#">
-                                    <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/tw.svg" alt="img">
+                                    <img src="{{asset('/')}}jw-styles/themes/demah/assets/img/tw.svg" alt="img">
                                 </a>
                             </li>
-                            <li class="ms-3">
+                            <li class="ms-4">
                                 <a href="#">
-                                    <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/fb.svg" alt="img">
+                                    <img src="{{asset('/')}}jw-styles/themes/demah/assets/img/fb.svg" alt="img">
                                 </a>
                             </li>
-                            <li class="ms-3">
+                            <li class="ms-4">
                                 <a href="#">
-                                    <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/sn.svg" alt="img">
+                                    <img src="{{asset('/')}}jw-styles/themes/demah/assets/img/sn.svg" alt="img">
                                 </a>
                             </li>
-                            <li class="ms-3">
+                            <li class="ms-4">
                                 <a href="#">
-                                    <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/wh.svg" alt="img">
+                                    <img src="{{asset('/')}}jw-styles/themes/demah/assets/img/wh.svg" alt="img">
                                 </a>
                             </li>
                         </ul>
+                        <a href="mailto:Hello@demahstudio.com" class="text-muted mb-4">
+                            Hello@demahstudio.com
+                        </a>
+                        <p class="mb-4">
+                            Copyright 2022 - <a href="#" class="text-dark">DEMAH studio</a> - Kuwait
+                        </p>
+                        <p>
+                            Developed by <a href="http://create-kw.com/" target="_blank" class="text-dark">Create-kw.com</a>
+                        </p>
+                    </div>
+                    <div class="col-lg-3 mt-lg-0 mt-4 d-lg-flex justify-content-center">
+                        <!-- to top button -->
+                        <a class="to_top" role="button">
+                            <img src="{{asset('/')}}jw-styles/themes/demah/assets/img/to_top.svg" alt="img">
+                        </a>
+                        <!-- to top button -->
                     </div>
                 </div>
+               
             </div>
         </footer>
 <!-- <footer id="footer" class="clearfix">

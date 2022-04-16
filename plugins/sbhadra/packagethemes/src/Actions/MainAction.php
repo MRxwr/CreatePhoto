@@ -25,6 +25,7 @@ class MainAction extends Action
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'getPackageThemes']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'doProcessPackageThemes']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'getThemesByCategory']);
+        
     }
 
     public function registerPackage()
@@ -65,6 +66,8 @@ class MainAction extends Action
             
             return $html;
          });
+
+        
        
         add_filters('theme.cstudio.themes', function(){
             $themes = Theme::get();
@@ -132,5 +135,7 @@ class MainAction extends Action
             $booking->save();
         }, 10, 1);
     }
+
+
 
 }
