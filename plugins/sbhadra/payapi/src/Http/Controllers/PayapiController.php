@@ -4,6 +4,8 @@ use Juzaweb\Http\Controllers\FrontendController;
 use Juzaweb\Http\Controllers\BackendController;
 use Sbhadra\Photography\Models\Booking;
 use Illuminate\Http\Request;
+use Juzaweb\Abstracts\Action;
+use Juzaweb\Facades\HookAction;
 use Session;
 
 class PayapiController extends FrontendController
@@ -152,7 +154,7 @@ class PayapiController extends FrontendController
                             'code'=>'+965',
                          );
                         do_action('booking.sms.index',$data);
-                        dd($data);
+                        //dd($data);
                      }
                      
                 }else{
