@@ -165,6 +165,20 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-xl-6">
+                                            <div class="row">
+                                                <div class="col-sm-4 col-6 bg-light">
+                                                    <p class="fs20">
+                                                        @lang('sbph::app.status'):
+                                                    </p>
+                                                </div>
+                                                <div class="col-sm-8 col-6">
+                                                    <p class="fs20">
+                                                        {{$booking->status}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

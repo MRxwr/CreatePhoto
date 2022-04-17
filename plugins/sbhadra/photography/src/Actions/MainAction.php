@@ -543,6 +543,21 @@ foreach($bookings as $key=>$booking){
                             <div class="row">
                                 <div class="col-sm-4 col-6 bg-light">
                                     <p class="fs20">
+                                    '.  trans('sbph::app.invoiceId').'
+                                        
+                                    </p>
+                                </div>
+                                <div class="col-sm-8 col-6">
+                                    <p class="fs20">
+                                        '.$booking->transaction_id.'
+                                    </p>
+                                </div>
+                            </div>
+                         </div>
+                        <div class="col-xl-6">
+                            <div class="row">
+                                <div class="col-sm-4 col-6 bg-light">
+                                    <p class="fs20">
                                     '.  trans('sbph::app.customer_name').'
                                     </p>
                                 </div>
@@ -635,6 +650,21 @@ foreach($bookings as $key=>$booking){
                                 </div>
                             </div>
                         </div>
+                        <div class="col-xl-6">
+                            <div class="row">
+                                <div class="col-sm-4 col-6 bg-light">
+                                    <p class="fs20">
+                                    '.  trans('sbph::app.status').'
+                                        
+                                    </p>
+                                </div>
+                                <div class="col-sm-8 col-6">
+                                    <p class="fs20">
+                                        '.$booking->status.'
+                                    </p>
+                                </div>
+                            </div>
+                         </div>
                     </div>
                 </div>
             </div>
