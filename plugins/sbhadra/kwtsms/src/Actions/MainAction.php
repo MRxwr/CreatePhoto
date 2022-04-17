@@ -18,7 +18,7 @@ class MainAction extends Action
 
     public function addDoKwtSMSAction(){
         $this->addAction('booking.sms.index', function ($data) {
-            dd($data);
+            
             $arabic = ['١','٢','٣','٤','٥','٦','٧','٨','٩','٠'];
             $english = [ 1 ,  2 ,  3 ,  4 ,  5 ,  6 ,  7 ,  8 ,  9 , 0];
 	        $phone = str_replace($arabic, $english, $data['mobile']);

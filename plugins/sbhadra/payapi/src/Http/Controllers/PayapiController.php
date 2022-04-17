@@ -152,6 +152,7 @@ class PayapiController extends FrontendController
                             'code'=>'+965',
                          );
                         do_action('booking.sms.index',$data);
+                        dd($data);
                      }
                      
                 }else{
