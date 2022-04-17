@@ -520,7 +520,8 @@ static function getPackageCstudioTimeslots($package){
 //            </div>
 //        </div>
 //    </div>';
-            $html=' <div class="row package-item">
+foreach($bookings as $key=>$booking){ 
+            $html .=' <div class="row package-item">
                <div class="col-sm-12 mb-xl-4 pb-5">
                 <div class="details-form">
                     <div class="row">
@@ -648,6 +649,7 @@ static function getPackageCstudioTimeslots($package){
                 </p>
             </div>
             </div>';
+        }
    
        $html .= '';
         return $html ;
