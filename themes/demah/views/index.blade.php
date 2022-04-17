@@ -14,7 +14,7 @@
                     <div class="col-lg-12">
                         <h4 class="fs107 CarrinadyB text-primary">
                             <!-- choose a package -->
-                            @lang('theme::app.our_packages')
+                            @trans('theme::app.our_packages')
                         </h4>
                     </div>
                 </div>
