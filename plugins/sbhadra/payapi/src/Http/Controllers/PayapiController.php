@@ -149,7 +149,7 @@ class PayapiController extends FrontendController
                          $data= array(
                             'message'=>str_replace($rptest,$nptext,trans('sbpa::app.sussess_message')),
                             'mobile'=>$booking->booking_date,
-                            'code'=>'91',
+                            'code'=>'+965',
                          );
                         do_action('booking.sms.index',$data);
                      }

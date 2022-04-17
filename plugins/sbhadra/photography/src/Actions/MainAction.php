@@ -452,74 +452,202 @@ static function getPackageCstudioTimeslots($package){
     static function bookingViewRander($bookings){
        //dd($bookings);
        $html = '';
-       $html .= ' <div class="panel panel-default card-view">
-       <div class="panel-heading">
-           <div class="pull-left">
-               <h2 class="shoots-Head">'.trans('sbph::app.search_result').'</h2>
-           </div>
-           <div class="clearfix"></div>
-       </div>
-       <div class="panel-wrapper">
-           <div class="panel-body">
-               <div class="table-wrap">
-                   <div class="table-responsive">
-                       <table id="datable_1" class="table table-hover display  pb-30" >
-                           <thead>
-                               <tr>
-                                   <th>'.  trans('sbph::app.bookingid').'</th>
-                                   <th>'.  trans('sbph::app.invoiceId').'</th>
-                                   <th>'. trans('sbph::app.package').'</th>
-                                   <th>'.  trans('sbph::app.booking_date').'</th>
-                                   <th>'.  trans('sbph::app.booking_time').'</th>
-                                   <th>'.  trans('sbph::app.booking_price').'</th>
-                                   <th>'.  trans('sbph::app.customer_name').'</th>
-                                   <th>'.  trans('sbph::app.mobile_number').'</th>
-                                   <th>'.  trans('sbph::app.baby_name').'</th>
-                                   <th>'.  trans('sbph::app.baby_age').'</th>
-                                   <th>'.  trans('sbph::app.instructions').'</th>
+//        $html .= ' <div class="panel panel-default card-view">
+//        <div class="panel-heading">
+//            <div class="pull-left">
+//                <h2 class="shoots-Head">'.trans('sbph::app.search_result').'</h2>
+//            </div>
+//            <div class="clearfix"></div>
+//        </div>
+//        <div class="panel-wrapper">
+//            <div class="panel-body">
+//                <div class="table-wrap">
+//                    <div class="table-responsive">
+//                        <table id="datable_1" class="table table-hover display  pb-30" >
+//                            <thead>
+//                                <tr>
+//                                    <th>'.  trans('sbph::app.bookingid').'</th>
+//                                    <th>'.  trans('sbph::app.invoiceId').'</th>
+//                                    <th>'. trans('sbph::app.package').'</th>
+//                                    <th>'.  trans('sbph::app.booking_date').'</th>
+//                                    <th>'.  trans('sbph::app.booking_time').'</th>
+//                                    <th>'.  trans('sbph::app.booking_price').'</th>
+//                                    <th>'.  trans('sbph::app.customer_name').'</th>
+//                                    <th>'.  trans('sbph::app.mobile_number').'</th>
+//                                    <th>'.  trans('sbph::app.baby_name').'</th>
+//                                    <th>'.  trans('sbph::app.baby_age').'</th>
+//                                    <th>'.  trans('sbph::app.instructions').'</th>
                                   
                                   
-                               </tr>
-                           </thead>
-                           <tfoot>
-                               <tr>
-                               <th>'.  trans('sbph::app.bookingid').'</th>
-                               <th>'.  trans('sbph::app.invoiceId').'</th>
-                               <th>'. trans('sbph::app.package').'</th>
-                               <th>'.  trans('sbph::app.booking_date').'</th>
-                               <th>'.  trans('sbph::app.booking_time').'</th>
-                               <th>'.  trans('sbph::app.booking_price').'</th>
-                               <th>'.  trans('sbph::app.customer_name').'</th>
-                               <th>'.  trans('sbph::app.mobile_number').'</th>
-                               <th>'.  trans('sbph::app.baby_name').'</th>
-                               <th>'.  trans('sbph::app.baby_age').'</th>
-                               <th>'.  trans('sbph::app.instructions').'</th>
+//                                </tr>
+//                            </thead>
+//                            <tfoot>
+//                                <tr>
+//                                <th>'.  trans('sbph::app.bookingid').'</th>
+//                                <th>'.  trans('sbph::app.invoiceId').'</th>
+//                                <th>'. trans('sbph::app.package').'</th>
+//                                <th>'.  trans('sbph::app.booking_date').'</th>
+//                                <th>'.  trans('sbph::app.booking_time').'</th>
+//                                <th>'.  trans('sbph::app.booking_price').'</th>
+//                                <th>'.  trans('sbph::app.customer_name').'</th>
+//                                <th>'.  trans('sbph::app.mobile_number').'</th>
+//                                <th>'.  trans('sbph::app.baby_name').'</th>
+//                                <th>'.  trans('sbph::app.baby_age').'</th>
+//                                <th>'.  trans('sbph::app.instructions').'</th>
                                
-                               </tr>
-                           </tfoot>
-                           <tbody>';
-                               foreach($bookings as $key=>$booking){ 
-                                    $html .= '<tr>';
-                                    $html .= '<td>'.$booking->title.'</td>';
-                                    $html .= '<td>'.$booking->transaction_id.'</td>';
-                                    $html .= '<td>'.$booking->package->title.'</td>';
-                                    $html .= '<td>'.$booking->booking_date.'</td>';
-                                    $html .= '<td>'.$booking->timeslot->title.' ['.$booking->timeslot->starttime.' to '.$booking->timeslot->endtime.'] </td>';
-                                    $html .= '<td>'.$booking->booking_price.' KD</td>';
-                                    $html .= '<td>'.$booking->customer_name.'</td>';
-                                    $html .= '<td>'.$booking->mobile_number.'</td>';
-                                    $html .= '<td>'.$booking->baby_name.'</td>';
-                                    $html .= '<td>'.$booking->instructions.'</td>';
-                                    $html .= '<td> </td>';
-                                    $html .= ' </tr>';
-                               }
-                            $html .= '</tbody>
-                       </table>
-                   </div>
-               </div>
-           </div>
-       </div>
-   </div>';
+//                                </tr>
+//                            </tfoot>
+//                            <tbody>';
+//                                foreach($bookings as $key=>$booking){ 
+//                                     $html .= '<tr>';
+//                                     $html .= '<td>'.$booking->title.'</td>';
+//                                     $html .= '<td>'.$booking->transaction_id.'</td>';
+//                                     $html .= '<td>'.$booking->package->title.'</td>';
+//                                     $html .= '<td>'.$booking->booking_date.'</td>';
+//                                     $html .= '<td>'.$booking->timeslot->title.' ['.$booking->timeslot->starttime.' to '.$booking->timeslot->endtime.'] </td>';
+//                                     $html .= '<td>'.$booking->booking_price.' KD</td>';
+//                                     $html .= '<td>'.$booking->customer_name.'</td>';
+//                                     $html .= '<td>'.$booking->mobile_number.'</td>';
+//                                     $html .= '<td>'.$booking->baby_name.'</td>';
+//                                     $html .= '<td>'.$booking->instructions.'</td>';
+//                                     $html .= '<td> </td>';
+//                                     $html .= ' </tr>';
+//                                }
+//                             $html .= '</tbody>
+//                        </table>
+//                    </div>
+//                </div>
+//            </div>
+//        </div>
+//    </div>';
+            $html=' <div class="row package-item">
+               <div class="col-sm-12 mb-xl-4 pb-5">
+                <div class="details-form">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="row">
+                                <div class="col-sm-4 col-6 bg-light">
+                                    <p class="fs20">
+                                    '.  trans('sbph::app.bookingid').'
+                                    </p>
+                                </div>
+                                <div class="col-sm-8 col-6">
+                                    <p class="fs20">
+                                    '.$booking->title.'
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="row">
+                                <div class="col-sm-4 col-6 bg-light">
+                                    <p class="fs20">
+                                    '.  trans('sbph::app.customer_name').'
+                                    </p>
+                                </div>
+                                <div class="col-sm-8 col-6">
+                                    <p class="fs20">
+                                    '.$booking->customer_name.'
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="row">
+                                <div class="col-sm-4 col-6 bg-light">
+                                    <p class="fs20">'. trans('sbph::app.package').'</p>
+                                </div>
+                                <div class="col-sm-8 col-6">
+                                    <p class="fs20">
+                                    '.$booking->package->title.'
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="row">
+                                <div class="col-sm-4 col-6 bg-light">
+                                    <p class="fs20">
+                                    '.  trans('sbph::app.mobile_number').'
+                                    </p>
+                                </div>
+                                <div class="col-sm-8 col-6">
+                                    <p class="fs20">
+                                     '.$booking->mobile_number.'
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="row">
+                                <div class="col-sm-4 col-6 bg-light">
+                                    <p class="fs20">
+                                    '.  trans('sbph::app.booking_date').'
+                                    </p>
+                                </div>
+                                <div class="col-sm-8 col-6">
+                                    <p class="fs20">
+                                    '.$booking->booking_date.'
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="row">
+                                <div class="col-sm-4 col-6 bg-light">
+                                    <p class="fs20">
+                                    '.  trans('sbph::app.baby_name').'
+                                    </p>
+                                </div>
+                                <div class="col-sm-8 col-6">
+                                    <p class="fs20">
+                                    '.$booking->baby_name.'
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="row">
+                                <div class="col-sm-4 col-6 bg-light">
+                                    <p class="fs20">
+                                    '.  trans('sbph::app.booking_time').'
+                                    </p>
+                                </div>
+                                <div class="col-sm-8 col-6">
+                                    <p class="fs20">
+                                    '.$booking->timeslot->title.' ['.$booking->timeslot->starttime.' to '.$booking->timeslot->endtime.']
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="row">
+                                <div class="col-sm-4 col-6 bg-light">
+                                    <p class="fs20">
+                                    '.  trans('sbph::app.baby_age').'
+                                    </p>
+                                </div>
+                                <div class="col-sm-8 col-6">
+                                    <p class="fs20">
+                                    '.$booking->baby_age.'
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 pb-5">
+                <div class="package-head bg-light radius15 mh53 py-1 px-3 mb-2 d-inline-flex align-items-center">
+                    <h4 class="fs23">
+                    '.  trans('sbph::app.instructions').'
+                    </h4>
+                </div>
+                <p class="fs20">
+                '.$booking->instructions.'
+                </p>
+            </div>
+            </div>';
    
        $html .= '';
         return $html ;
