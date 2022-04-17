@@ -13,7 +13,6 @@ $('#phn-menu').slicknav({
     prependTo:'#nav-menu'
 });
 
-
 $(document).ready(function(){
     function rtl_owl(){
     if ($('html').hasClass("rtl")) {
