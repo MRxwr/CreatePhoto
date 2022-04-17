@@ -64,6 +64,8 @@ return [
     'book_now' => 'Book Now',
     'session_reservation' => 'Session Reservation',
     'extra_charges' => 'Extra Charges',
+    'picked_for_you' => 'Picked for you',
+    'Personal_Informations' => 'Personal Informations',
 
    
 ];

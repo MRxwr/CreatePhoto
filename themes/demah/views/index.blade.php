@@ -7,9 +7,6 @@
           <!-- hero_section -->
           @do_action('theme.home.about')
         <!-- hero_section -->
-       
-
-
         <!-- package_section -->
         <section class="package_section">
             <div class="container">

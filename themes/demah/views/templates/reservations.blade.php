@@ -15,7 +15,7 @@
                                 <div class="site-title position-relative d-flex align-items-center">
                                     <div class="bg-white">
                                         <h3 class="fs30 text-300 SegoeUIL pe-4">
-                                            Personal Informations
+                                            @lang('theme::app.Personal_Informations')
                                         </h3>
                                     </div>
                                 </div>
@@ -29,7 +29,7 @@
                     <div class="col-xxl-8">
                         <div class="ps-xxl-5 ms-xxl-5">
                             <div class="row ps-xxl-4">
-                                @apply_filters('theme.cstudio.themes') 
+                            @apply_filters('theme.cstudio.themes') 
                             </div>
                         </div>
                     </div>

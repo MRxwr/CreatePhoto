@@ -293,7 +293,7 @@ public function addThemeExtraFields(){
        add_filters('theme.cstudio.themes', function(){
         $themes = Theme::get();
         //dd($themes);
-        if(isset($_REQUEST['category'])){
+        if(isset($_REQUEST['category']) && $_REQUEST['category']!='all'){
                 $taxonomy = Taxonomy::where('slug', $_REQUEST['category'])->firstOrFail();
                 $postType = $taxonomy->getPostType('model');
                 $themes = $postType::paginate();
