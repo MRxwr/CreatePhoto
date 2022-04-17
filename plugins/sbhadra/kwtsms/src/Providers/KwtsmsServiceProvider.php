@@ -3,12 +3,16 @@
 namespace Sbhadra\Kwtsms\Providers;
 
 use Juzaweb\Support\ServiceProvider;
+use Sbhadra\Kwtsms\Actions\MainAction;
 
 class KwtsmsServiceProvider extends ServiceProvider
 {
     public function boot()
     {
         //
+        $this->registerAction([
+            MainAction::class
+        ]);
     }
 
     /**
