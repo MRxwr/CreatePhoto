@@ -74,7 +74,7 @@ Author URI  : https://www.tigertemplate.com
 }
 body {
   font-family: 'Arial', sans-serif;
-  font-size: 14px;
+  font-size: 24px;
   font-weight: 400;
   position: relative;
   color: #464041;
@@ -475,9 +475,11 @@ ul li{list-style-type: none;}
 	transform: translateY(-50%);
 }
 .btn-light {
-  color: #000;
-	background-color: #F5F5F5;
-	border-color: #F5F5F5;
+  color: #fff;
+    background-color: #DBD6D0 !important;
+    border-color: #DBD6D0 !important;
+    box-shadow: none !important;
+  
 }
 .package-section .package-item:not(:last-child) {
 	margin-bottom: 60px;
@@ -532,7 +534,7 @@ ul li{list-style-type: none;}
 .container_radio > label {
 	padding-left: 35px;
 	padding-bottom: 12px;
-  font-size: 27px;
+  font-size: 22px;
   font-weight: 600;
 }
 

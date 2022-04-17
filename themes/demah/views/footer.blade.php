@@ -52,6 +52,7 @@
                
             </div>
         </footer>
+       
 <!-- <footer id="footer" class="clearfix">
     {{--<div class="container footer-columns">
         <div class="row container">

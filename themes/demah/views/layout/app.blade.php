@@ -22,7 +22,7 @@
 		   <!-- site title -->
 		   <title>{{ $title }}</title>
 		<!-- bootstrap css -->
-		<link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/css/bootstrap.min.css">
+		    <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/css/bootstrap.min.css">
 		<!-- slicknav css -->
         <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/css/slicknav.min.css">
         <!-- calender css -->
@@ -35,10 +35,15 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
 		<!-- slick slider css -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-<!-- main stylesheet -->
-<link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/css/rome.css">
+    <!-- main stylesheet -->
+      <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/css/rome.css">
 		<!-- main stylesheet -->
         <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/style.css">
+       
+        @if(app()->getLocale()=='ar')
+          <!-- rtl stylesheet -->
+          <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/css/rtl.css">
+        @endif
 
 		<!-- responsive stylesheet -->
         <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/css/responsive.css">
@@ -71,25 +76,25 @@
         <!-- site-footer -->
 
 		<!-- jquery script -->
-        <script src="{{asset('/')}}jw-styles/themes/cstudio/assets/js/jquery.min.js"></script>
+        <script src="{{asset('/')}}jw-styles/themes/demah/assets/js/jquery.min.js"></script>
 
         <!-- bootstrap script -->
-		    <script src="{{asset('/')}}jw-styles/themes/cstudio/assets/js/bootstrap.bundle.min.js"></script>
+		    <script src="{{asset('/')}}jw-styles/themes/demah/assets/js/bootstrap.bundle.min.js"></script>
         <!-- calendar script -->
-		    <script src="{{asset('/')}}jw-styles/themes/cstudio/assets/js/calendar.js"></script>
+		    <script src="{{asset('/')}}jw-styles/themes/demah/assets/js/calendar.js"></script>
 
          <!-- magnific Script -->
          <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
         <!-- slicknav Script -->
-        <script src="{{asset('/')}}jw-styles/themes/cstudio/assets/js/jquery.slicknav.min.js"></script>
-        <script src="{{asset('/')}}jw-styles/themes/cstudio/assets/js/owl.carousel.min.js"></script>
+        <script src="{{asset('/')}}jw-styles/themes/demah/assets/js/jquery.slicknav.min.js"></script>
+        <script src="{{asset('/')}}jw-styles/themes/demah/assets/js/owl.carousel.min.js"></script>
 
         <!-- slick slider Script -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
         <!-- main script -->
-        <script src="{{asset('/')}}jw-styles/themes/cstudio/assets/js/rome.js"></script>
+        <script src="{{asset('/')}}jw-styles/themes/demah/assets/js/rome.js"></script>
         <!-- main script -->
-        <script src="{{asset('/')}}jw-styles/themes/cstudio/assets/js/main.js"></script>
+        <script src="{{asset('/')}}jw-styles/themes/demah/assets/js/main.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/> 
         <style>

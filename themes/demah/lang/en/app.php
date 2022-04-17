@@ -1,13 +1,13 @@
 <?php
 /**
- * MYMO CMS - Free Laravel CMS
+ * Create CMS - Free Laravel CMS
  *
- * @package    mymocms/mymocms
- * @author     The Anh Dang <dangtheanh16@gmail.com>
- * @link       https://github.com/mymocms/mymocms
+ * @package    creatKw/demah
+ * @author     The Anh Dang <sbhadra0@gmail.com>
+ * @link       https://create-kw.com
  * @license    MIT
  *
- * Created by The Anh.
+ * Created by Sonjoy Bhadra.
  * Date: 6/11/2021
  * Time: 9:23 PM
  */
@@ -57,6 +57,12 @@ return [
     'country' => 'Country',
     'countries' => 'Countries',
     'status' => 'Status',
-
-   
+    'name' => 'Name',
+    'about-us' => 'About us',
+    'available' => 'Available',
+    'reserved' => 'Reserved',
+    'book_now' => 'Book Now',
+    'session_reservation' => 'Session Reservation',
+    'extra_charges' => 'Extra Charges',
+     'picked_for_you' => 'Picked for you',
 ];

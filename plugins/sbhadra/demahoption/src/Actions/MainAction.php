@@ -9,7 +9,9 @@ use Sbhadra\Photography\Models\Package;
 use Sbhadra\Photography\Models\Service;
 use Sbhadra\Photography\Models\Booking;
 use Sbhadra\Photography\Models\Timeslot;
+use Sbhadra\Packagethemes\Models\Theme;
 use Juzaweb\Models\Taxonomy;
+use Juzaweb\Models\Page;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -30,6 +32,7 @@ class MainAction extends Action
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addFrontCategories']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addThemeExtraFields']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'doProcessPackageThemes']);
+        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'getHomeAboutContent']);
        
     }
 public function packageThemeField(){
@@ -126,9 +129,7 @@ public function addBodyClass()
 
                             <div class="col-xxl-4 offset-xxl-1 pe-xxl-5 col-xl-5 d-flex align-items-center">
                                 <div class="pack_content position-relative d-flex align-items-center justify-content-center">
-                                    <h4 class="position-absolute fs296 CarrinadyB text-primary pe-xl-5">
-                                        01
-                                    </h4>
+                                    <h4 class="position-absolute fs296 CarrinadyB text-primary pe-xl-5">'.($key+1).'</h4>
                                     <div class="pack_info">
                                         <h4 class="fs107 CarrinadyB text-primary text-uppercase mb-xl-5 pb-5">
                                         '.$package->title.'
@@ -136,9 +137,7 @@ public function addBodyClass()
                                         <p class="fs24 pb-5 mb-4">
                                         '.str_replace('<ul>',' <ul class="package-list ps-4">',$package->content).' 
                                         </p>
-                                        <a href="'.$slug .'" class="btn btn-xl btn-primary mt-3 fs24">
-                                            Book Now
-                                        </a>
+                                        <a href="'.$slug .'" class="btn btn-xl btn-primary mt-3 fs24">'.trans('sbde::app.BookNow').'</a>
                                     </div>
                                 </div>
                             </div>
@@ -161,9 +160,7 @@ public function addBodyClass()
                         
                         <div class="col-xxl-4 offset-xxl-0 ps-xxl-5 col-xl-5 offset-xl-1 d-flex align-items-center">
                             <div class="pack_content position-relative d-flex align-items-center justify-content-center">
-                                <h4 class="position-absolute fs296 CarrinadyB text-primary">
-                                    02
-                                </h4>
+                                <h4 class="position-absolute fs296 CarrinadyB text-primary">'.($key+1).'</h4>
                                 <div class="pack_info">
                                     <h4 class="fs107 CarrinadyB text-primary text-uppercase mb-xl-5 pb-5">
                                     '.$package->title.'
@@ -171,9 +168,7 @@ public function addBodyClass()
                                     <p class="fs24 pb-5 mb-4">
                                     '.str_replace('<ul>',' <ul class="package-list ps-4">',$package->content).' 
                                     </p>
-                                    <a href="'.$slug .'" class="btn btn-xl btn-primary mt-3 fs24">
-                                        Book Now
-                                    </a>
+                                    <a href="'.$slug .'" class="btn btn-xl btn-primary mt-3 fs24">'.trans('sbde::app.BookNow').'</a>
                                 </div>
                             </div>
                         </div>
@@ -253,9 +248,7 @@ public function addFrontCategories()
                                     <p class="fs24 pb-5 mb-4">
                                     '.str_replace('<ul>',' <ul class="package-list ps-4">',$taxonomies->content).' 
                                     </p>
-                                    <a href="'.$slug .'" class="btn btn-xl btn-primary mt-3 fs24">
-                                        Book Now
-                                    </a>
+                                    <a href="'.$slug .'" class="btn btn-xl btn-primary mt-3 fs24">'.trans('sbde::app.BookNow').'</a>
                                 </div>
                             </div>
                         </div>
@@ -273,17 +266,17 @@ public function addThemeExtraFields(){
         echo '<div class="col-xxl-8 pe-xl-5 pt-4">
         <div class="personal-form row">
             <div class="col-xxl-10 pb-3">
-            <label> Pictures type : </label> 
-               <input type="radio" class="" style="margin: 15px; width: 30px; min-height: 25px;" name="pictures_type" id="pictures_type1" value="Electonic">Electonic
-               <input type="radio" class="" style="margin: 15px; width: 30px; min-height: 25px;"  name="pictures_type" id="pictures_type2" value="Printed + Electonic">Printed + Electonic
+            <label>'.trans('sbde::app.Pictures_type').': </label> 
+               <input type="radio" class="" style="margin: 15px; width: 30px; min-height: 25px;" name="pictures_type" id="pictures_type1" value="Electonic">'.trans('sbde::app.Electonic').'
+               <input type="radio" class="" style="margin: 15px; width: 30px; min-height: 25px;"  name="pictures_type" id="pictures_type2" value="Printed + Electonic">'.trans('sbde::app.Printed_Electonic').'
             </div>
             </div>
          </div>';
         if( $package->is_pieces==1){
-           echo '<div class="col-sm-12 pe-xl-5">
+           echo '<div class="col-xxl-10 pe-xl-5">
                     <div class="personal-form row">
                         <div class="col-xxl-8 pb-3">
-                         <label>Number of Pieces :</label> 
+                         <label>'.trans('sbde::app.Number_of_Pieces').':</label> 
                          <input type="number" class="form-control" name="number_of_pieces" id="number_of_pieces" value="">
                          <input type="hidden"  name="rate_per_pieces" id="rate_per_pieces" value="'.$package->rate_per_pieces.'">
                        </div>
@@ -297,6 +290,39 @@ public function addThemeExtraFields(){
                 </div>';
           }
        }, 15, 1);
+       add_filters('theme.cstudio.themes', function(){
+        $themes = Theme::get();
+        //dd($themes);
+        if(isset($_REQUEST['category'])){
+                $taxonomy = Taxonomy::where('slug', $_REQUEST['category'])->firstOrFail();
+                $postType = $taxonomy->getPostType('model');
+                $themes = $postType::paginate();
+                //dd($themes);
+        }     
+        $html ='';
+        if(!empty($themes)){
+                $html .='<div class="col-xl-10 pe-xxl-0">
+                <div class="theme_select_slider owl-carousel owl-theme">';
+                foreach($themes as $theme){
+                    $html .='<div class="theme-select">
+                    <label class="container_radio themeCheck">
+                        <label for="slect'.$theme->id.'" class="d-inline-block">'.$theme->title.'</label>
+                        <input type="radio" id="slect'.$theme->id.'" value="'.$theme->id.'" name="theme_id">
+                        <span class="checkmark"></span>
+                        <a href="'.$theme->getThumbnail().'" class="themeCheck_img image-link border">
+                            <img src="'.$theme->getThumbnail().'" alt="img" class="w-100">
+                        </a>
+                    </label>
+                </div>';
+                 }
+                $html .='</div> </div>';
+                $html .='<div class="col-xl-12 pt-5 d-flex align-items-center justify-content-center">
+                <button class="owl-arrow MyPrevButton">Previous</button>
+                <button class="owl-arrow MyNextButton">Next</button>
+            </div>';
+        }
+        return $html;
+     });
     }
 
     public function doProcessPackageThemes(){
@@ -313,6 +339,31 @@ public function addThemeExtraFields(){
             }
             $booking->save();
         }, 25, 1);
+    }
+
+    public function getHomeAboutContent(){
+        $this->addAction('theme.home.about', function() {
+            $page = Page::where('slug','about')->first();
+            if($page){
+            echo '<section class="hero_section py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 d-flex align-items-center">
+                            <div class="hero_info pe-xl-4">
+                                <h4 class="fs107 CarrinadyB text-primary">'.$page->title.'</h4>
+                                '.str_replace('<p>','<p class="fs24 mt-4">',$page->content).'
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mt-lg-0 mt-4">
+                            <div class="hero_img">
+                                <img src="'.upload_url($page->thumbnail).'" alt="img" class="mw-100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>';
+             }
+        });
     }
 
 }
