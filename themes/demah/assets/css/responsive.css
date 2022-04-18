@@ -250,7 +250,11 @@ Author URI  : https://www.tigertemplate.com
 	.package_section .row.py-5 > div {
 		justify-content: center !important;
 	}
-	
+	.btn-xl {
+		min-height: 83px;
+		width: 336px;
+		max-width: 100%;
+	  }
 
 }
 
@@ -285,6 +289,11 @@ Author URI  : https://www.tigertemplate.com
 	.to_top img {
 		width: 46px;
 	}
+	.btn-xl {
+		min-height: 83px;
+		width: 336px;
+		max-width: 100%;
+	  }
 
 }
 
