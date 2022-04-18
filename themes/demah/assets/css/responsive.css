@@ -304,6 +304,9 @@ Author URI  : https://www.tigertemplate.com
 	  .personal-form > div label {
 		width: 100%;
 	  }
+	  .personal-information{
+		  margin-top: 20px;
+	  }
 
 }
 
