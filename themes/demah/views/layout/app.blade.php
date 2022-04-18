@@ -284,12 +284,18 @@ function formSuccess(){
     calculate_price();
   });
 
+  $("body").on("click", "#number_of_pieces", function(e) {
+    //alert('okey')
+
+    calculate_price();
+  });
+
   var calculate_price = function(){
     var exprice = 0;
     var package_price = $('#booking_price').val()
     setTimeout( function() 
       {
-        $("input:checkbox[name='service_item[]']:checked").each(function(){
+          $("input:checkbox[name='service_item[]']:checked").each(function(){
             exprice = parseFloat(exprice) + parseFloat($(this).attr('data-exprice'));
           });
           var itemval=30.500;
