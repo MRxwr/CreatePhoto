@@ -10,6 +10,8 @@ use Sbhadra\Photography\Models\Package;
 use Sbhadra\Photography\Models\Service;
 use Sbhadra\Photography\Models\Booking;
 use Sbhadra\Photography\Models\Timeslot;
+use Juzaweb\Abstracts\Action;
+use Juzaweb\Facades\HookAction;
 use Illuminate\Http\Request;
 
 class BookingController extends BackendController
@@ -88,27 +90,63 @@ class BookingController extends BackendController
     public function getBookingCancel(Request $request,$id){
         $model = Booking::firstOrNew(['id' => $id]);
         $model->status ='cancel';
-        $model->save();
+        if($model->save()){
+            $slot = $model->timeslot->starttime .'To'. $model->timeslot->endtime;
+            $booking_date = $model->booking_date;
+            $rptest=["[bdate]","[time]","[orderId]"];
+            $nptext = [$booking_date,$slot,$orderid];
+            $data= array(
+            'message'=>str_replace($rptest,$nptext,trans('sbkw::app.sussess_message')),
+            'mobile'=>$model->mobile_number,
+            'code'=>'+965',
+            );
+           do_action('booking.sms.index',$data);
+        } 
         //dd($model);
         return redirect()->back()->with('success', 'This booking successfully cancled');  
     }
+   public function getBookingComplete(Request $request,$id){
+        $model = Booking::firstOrNew(['id' => $id]);
+        $model->status ='completed';
+        if($model->save()){
+            do_action('booking.complete.index',$model);
+        }
+        //dd($model);
+        return redirect()->back()->with('success', 'This booking successfully cancled');  
+    }
+    
     public function getBookingCompleted(Request $request,$id){
         $model = Booking::firstOrNew(['id' => $id]);
         $model->status ='completed';
-        $model->save();          
+        if($model->save()){
+            do_action('booking.complete.index',$model);
+        }        
         return redirect()->back()->with('success', 'This booking successfully completed');  
     }
     public function getBookingRefund(Request $request,$id){
         $model = Booking::firstOrNew(['id' => $id]);
         $model->refunded =1;
-        $model->save();         
+        if($model->save()){
+            do_action('booking.refund.index',$model);
+        }       
         
         return redirect()->back()->with('success', 'This booking successfully refunded');  
     }
     public function getBookingSendSMS(Request $request,$id){
         $model = Booking::firstOrNew(['id' => $id]);
         $model->sms =1;
-        $model->save();            
+        if($model->save()){
+            $slot = $model->timeslot->starttime .'To'. $model->timeslot->endtime;
+            $booking_date = $model->booking_date;
+            $rptest=["[bdate]","[time]","[orderId]"];
+            $nptext = [$booking_date,$slot,$orderid];
+            $data= array(
+            'message'=>str_replace($rptest,$nptext,trans('sbkw::app.sussess_message')),
+            'mobile'=>$model->mobile_number,
+            'code'=>'+965',
+            );
+           do_action('booking.sms.index',$data);
+        }           
         return redirect()->back()->with('success', 'This booking successfully Sended'); 
     }
 }

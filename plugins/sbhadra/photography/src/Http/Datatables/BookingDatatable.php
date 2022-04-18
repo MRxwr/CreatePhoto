@@ -88,6 +88,7 @@ class BookingDatatable extends PostTypeDataTable
                             <a href="'.$booking_cancel.'" class="dropdown-item"> <i class=" fa fa-times"></i> Cancel</a>
                             <a href="'.$booking_refund.'" class="dropdown-item"> <i class=" fa fa-undo"></i> Refund</a>
                             <a href="'.$booking_sendsms.'" class="dropdown-item"> <i class=" fa fa-mobile"></i> Send Sms</a>
+                            <a href="'.$booking_sendsms.'" class="dropdown-item"> <i class=" fa fa-mobile"></i> Completed</a>
                             </div>
                         </div>
                     </div>';

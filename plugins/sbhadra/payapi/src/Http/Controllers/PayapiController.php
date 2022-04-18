@@ -150,7 +150,7 @@ class PayapiController extends FrontendController
                          $nptext = [$booking_date,$slot,$orderid];
                          $data= array(
                             'message'=>str_replace($rptest,$nptext,trans('sbkw::app.sussess_message')),
-                            'mobile'=>$booking->booking_date,
+                            'mobile'=>$booking->mobile_number,
                             'code'=>'+965',
                          );
                         do_action('booking.sms.index',$data);
