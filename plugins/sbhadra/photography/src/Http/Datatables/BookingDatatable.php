@@ -78,6 +78,8 @@ class BookingDatatable extends PostTypeDataTable
                     $booking_cancel = route('admin.bookings.cancel', [$row->id]);
                     $booking_refund = route('admin.bookings.refund', [$row->id]);
                     $booking_sendsms = route('admin.bookings.sendsms', [$row->id]);
+                    $booking_complete = route('admin.bookings.complete', [$row->id]);
+                    
                     return '<div class="dropdown d-inline-block mb-2 mr-2">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         Options
@@ -88,7 +90,7 @@ class BookingDatatable extends PostTypeDataTable
                             <a href="'.$booking_cancel.'" class="dropdown-item"> <i class=" fa fa-times"></i> Cancel</a>
                             <a href="'.$booking_refund.'" class="dropdown-item"> <i class=" fa fa-undo"></i> Refund</a>
                             <a href="'.$booking_sendsms.'" class="dropdown-item"> <i class=" fa fa-mobile"></i> Send Sms</a>
-                            <a href="'.$booking_sendsms.'" class="dropdown-item"> <i class=" fa fa-mobile"></i> Completed</a>
+                            <a href="'.$booking_complete.'" class="dropdown-item"> <i class=" fa fa-mobile"></i> Completed</a>
                             </div>
                         </div>
                     </div>';
