@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------
 [Responsive Stylesheet]
 
-Project     : p1-myshoots
+Project     : p2-demahStudio
 Version     : 1.0
 Author      : Md Ekramul Hassan Avi
 Author URI  : https://www.tigertemplate.com
@@ -14,14 +14,29 @@ Author URI  : https://www.tigertemplate.com
 @media screen and (max-width: 1500px) {}
 
 @media screen and (max-width: 1400px) {
-
-	.container_radio > label{font-size: 24px;}
+	
+	.posLB,.posRB{
+		display: none !important;
+	}
+	.site_menu > ul > li > a {
+		font-size: 18px;
+	}
 
 }
 
-@media screen and (max-width: 1399.99px) {
+@media screen and (max-width: 1200px) {
 
-	
+	.home_bg::before {
+		left: 20px;
+		width: 174px;
+	}
+	.site_menu {
+		font-size: 18px !important;
+	}
+	.cat_list {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
 
 }
 
@@ -121,7 +136,7 @@ Author URI  : https://www.tigertemplate.com
 	.slicknav_nav li {
 		margin: 0 !important;
 		border-radius: 0 !important;
-		background-color: #fff;
+		background-color: #CEB8A3;
 	}
 	.slicknav_nav a:hover,.slicknav_nav a.active {
 		background-color: transparent;
@@ -130,7 +145,7 @@ Author URI  : https://www.tigertemplate.com
 	}
 	.slicknav_nav li a {
 		padding: 15px;
-		color: #000;
+		color: #fff;
 		text-align: center !important;
 		width: 100%;
 	}
@@ -143,7 +158,7 @@ Author URI  : https://www.tigertemplate.com
 		box-shadow: none;
 	}
 	.slicknav_nav {
-		background-color: #fff;
+		background-color: #CEB8A3;
 		position: fixed;
 		width: 100%;
 		left: 0;
@@ -188,12 +203,12 @@ Author URI  : https://www.tigertemplate.com
 		left: 0;
 		display: block !important;
 		text-align: left;
-		background-image: url("../img/logo_m.png");
+		background-image: url("../img/logo.png");
 		background-position: center;
 		background-repeat: no-repeat;
 		height: 44px;
 		font-size: 0;
-		background-size: 183px;
+		background-size: 130px;
 	}
 	.slicknav_nav ul {
 		margin: 0;
@@ -219,100 +234,31 @@ Author URI  : https://www.tigertemplate.com
 		display: none;
 	}
 	/*menus css*/
+
 	
-	.details-form > .row > div:nth-child(2) {
-		border-top: 1px solid rgba(112,112,112,0.3) !important;
-	}
-
-	.common-style .fs32{font-size: 25px;}
-	.common-style .fs30{font-size: 24px;}
-	.common-style .fs28,.filter_btn button{font-size: 23px;}
-	.common-style .fs27,.container_radio > label{font-size: 22px;}
-	.common-style .fs25{font-size: 19px;}
+	.common-style .fs107{font-size: 80px;}
+	.common-style .fs75{font-size: 50px;}
+	.common-style .fs45{font-size: 35px;}
 	.common-style .fs24{font-size: 20px;}
-	.common-style .fs23,.personal-form > div label,
-	.container_radio:not(.themeCheck){font-size: 19px;}
-	.common-style .fs22{font-size: 18px;}
-	.common-style .fs20{font-size: 17px;}
-	.common-style .fs19{font-size: 16px;}
-	.common-style .fs18{font-size: 15px;}
-	.common-style .fs17{font-size: 14px;}
+	.common-style .fs23{font-size: 19px;}
+	.common-style .fs20{font-size: 18px;}
 
-	.common-style .mh53,.btn {
-		min-height: 43px;
+	.pack_info {
+		width: 437px;
+		max-width: 100%;
 	}
-	.common-style .mh67 {
-		min-height: 57px;
+	.package_section .row.py-5 > div {
+		justify-content: center !important;
 	}
-	.common-style .mh63 {
-		min-height: 53px;
-	}
-
-	.survey-box {
-		padding: 40px 20px;
-	}
-	.slick-dots {
-		bottom: 4px;
-	}
-
-	.container_radio > label {
-		padding-left: 25px;
-		font-size: 14px;
-	}
-	.checkmark {
-		top: 0px;
-		left: 0;
-		height: 20px;
-		width: 20px;
-	}
-	.rd-day-body,.rd-day-head {
-		width: 38px !important;
-		height: 38px !important;
-		font-size: 14px;
-	}
-	.rd-month-label {
-		font-size: 23px;
-	}
-	.rd-days {
-		margin-top: 0;
-	}
-	.owl-arrow {
-		min-height: 40px;
-		border-radius: 8px;
-		min-width: 80px;
-		font-size: 14px;
-	}
-	.container_radio {
-		padding-left: 30px;
-	}
-	.container_radio:not(.themeCheck) .checkmark {
-		top: 8px;
-	}
-	.personal-form > div {
-		display: block;
-	}
-	.personal-form > div label {
-		min-width: 100%;
-		margin-bottom: 8px;
-	}
-	.personal-form .opacity0 {
-		display: none;
-	}
-	.container_radio .checkmark::after {
-		left: 6px;
-		top: 1px;
-		width: 7px;
-		height: 13px;
-	}
-	.personal-info .container_radio, .personal-info .container_radio h4 {
-		font-size: 14px !important;
-	}
+	
 
 }
 
-@media screen and (max-width: 992px) {
-
+@media screen and (max-width: 991.99px) {
 	
+	.home_bg::before {
+		display: none;
+	}
 
 }
 
@@ -320,82 +266,66 @@ Author URI  : https://www.tigertemplate.com
 
 @media screen and (max-width: 576px) {
 
-	.common-style .fs32{font-size: 23px;}
-	.common-style .fs30{font-size: 22px;}
-	.common-style .fs28,.filter_btn button{font-size: 22px;}
-	.common-style .fs27{font-size: 21px;}
-	.common-style .fs25{font-size: 20px;}
-	.common-style .fs24{font-size: 19px;}
-	.common-style .fs23,.personal-form > div label,
-	.container_radio:not(.themeCheck){font-size: 18px;}
-	.common-style .fs22{font-size: 17px;}
+	.common-style .fs107{font-size: 60px;}
+	.common-style .fs75{font-size: 30px;}
+	.common-style .fs45{font-size: 25px;}
+	.common-style .fs24{font-size: 18px;}
+	.common-style .fs23{font-size: 17px;}
 	.common-style .fs20{font-size: 16px;}
-	.common-style .fs19{font-size: 15px;}
-	.common-style .fs18{font-size: 14px;}
 
-	.common-style .mh53 {
-		min-height: 33px;
+	.pack_content {
+		width: 100%;
 	}
-	.common-style .mh67 {
-		min-height: 47px;
+	.pack_content .position-absolute {
+		top: 60px;
 	}
-	.common-style .mh63 {
-		min-height: 43px;
+	.btn-xl {
+		min-height: 54px;
+	}
+	.to_top img {
+		width: 46px;
 	}
 
 }
 
 @media screen and (min-width: 1200px) {
 
-	.mt--165{
-		margin-top: -165px;
-		margin-bottom: -165px;
-	}
+	
 
 }
 
 @media screen and (min-width: 992px) {
 
-	.modal-lg {
-		max-width: 900px;
-	}
+	
 
 }
 
 @media screen and (min-width: 1199.99px) {
 
-	.site-header .row > div {
-		padding: 0 !important;
-	}
-
-}
-
-@media (max-width: 1500px) and (min-width: 1400px) {
-
-	.container, .container-lg, .container-md, .container-sm, .container-xl {
-		max-width: 1400px;
-	}
-	.personal-info .col-xxl-9,.reservation-details .col-xxl-8 {
-		width: 100%;
-	}
-	.personal-info .col-xxl-8 {
-		width: 80%;
-	}
+	
 
 }
 
 @media screen and (min-width: 1500px) {
 
 	.container, .container-lg, .container-md, .container-sm, .container-xl {
-		max-width: 1470px;
+		max-width: 1464px;
 	}
 
 }
 
-@media screen and (min-width: 1800px) {
+@media screen and (min-width: 1600px) {
 
 	.container, .container-lg, .container-md, .container-sm, .container-xl {
-		max-width: 1750px;
+		max-width: 1564px;
+	}
+
+}
+
+@media screen and (min-width: 1700px) {
+
+	.container, .container-lg, .container-md, .container-sm, .container-xl {
+		max-width: 1664px;
 	}
 
 }
