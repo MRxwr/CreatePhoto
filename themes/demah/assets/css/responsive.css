@@ -244,7 +244,7 @@ Author URI  : https://www.tigertemplate.com
 	.common-style .fs20{font-size: 18px;}
 
 	.pack_info {
-		width: 437px;
+		width: 336px;
 		max-width: 100%;
 	}
 	.package_section .row.py-5 > div {
@@ -270,12 +270,12 @@ Author URI  : https://www.tigertemplate.com
 
 @media screen and (max-width: 576px) {
 
-	.common-style .fs107{font-size: 60px;}
-	.common-style .fs75{font-size: 30px;}
-	.common-style .fs45{font-size: 25px;}
-	.common-style .fs24{font-size: 18px;}
-	.common-style .fs23{font-size: 17px;}
-	.common-style .fs20{font-size: 16px;}
+	.common-style .fs107{font-size: 60px!important;}
+	.common-style .fs75{font-size: 30px!important;}
+	.common-style .fs45{font-size: 25px!important;}
+	.common-style .fs24{font-size: 18px!important;}
+	.common-style .fs23{font-size: 17px!important;}
+	.common-style .fs20{font-size: 16px!important;}
 
 	.pack_content {
 		width: 100%;
@@ -288,6 +288,10 @@ Author URI  : https://www.tigertemplate.com
 	}
 	.to_top img {
 		width: 46px;
+	}
+	.pack_info {
+		width: 340px!important;
+		max-width: 100%!important;
 	}
 	.btn-xl {
 		min-height: 83px;
