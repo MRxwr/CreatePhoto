@@ -46,7 +46,7 @@
         @endif
 
 		<!-- responsive stylesheet -->
-        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/css/responsive.css?v=105">
+        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/css/responsive.css?v=106">
 
 		<!-- ==== HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries ==== -->
         <!--[if lt IE 9]>
