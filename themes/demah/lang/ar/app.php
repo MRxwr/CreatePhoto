@@ -66,6 +66,12 @@ return [
     'extra_charges' => 'Extra Charges',
     'picked_for_you' => 'Picked for you',
     'Personal_Informations' => 'Personal Informations',
-
+    'Procced_to_payment'=>'Procced to payment',
+    'transaction_fees' => '0.500 KD is the payment gateway transaction fees.',
+    'Deposit'=>'Deposit : ',
+    'deposit_note'=>'Please note that the deposit is non refundable',
+    'Reservation_details'=>'Reservation details',
+    'Reservation_note'=>'Please enter you reservation number to view you reservation details',
+    'SMS_sent_note'=>'You can find the reservation number in the SMS sent by us.',
    
 ];

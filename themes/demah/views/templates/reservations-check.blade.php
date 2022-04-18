@@ -11,7 +11,7 @@
                                 <div class="site-title position-relative d-flex align-items-center">
                                     <div class="bg-white">
                                         <h3 class="fs30 text-300 SegoeUIL pe-4">
-                                            Reservation details
+                                            @lang('theme::app.Reservation_details')
                                         </h3>
                                     </div>
                                 </div>
@@ -24,7 +24,8 @@
                 <div class="row justify-content-center pb-5 mb-3">
                     <div class="col-xl-11 mb-4">
                         <h4 class="fs23 mb-3">
-                            Please enter you reservation number to view you reservation details
+                            @lang('theme::app.Reservation_note')
+                            
                         </h4>
                         <div class="personal-form">
                             <div class="d-flex align-items-center">
@@ -38,16 +39,15 @@
                     <div class="col-xl-11">
                         <div class="package-head bg-info radius15 mh53 py-1 px-3 d-inline-flex align-items-center">
                             <h4 class="fs20 text-info">
-                                You can find the reservation number in the SMS sent by us.
+                                @lang('theme::app.SMS_sent_note')
                             </h4>
                         </div>
                     </div>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-xxl-8">
-                    <div id="bookingDataDiv"></div>
                         <!-- reservation-item -->
-                       
+                           <div id="bookingDataDiv"></div>
                         <!-- reservation-item -->
                     </div>
                 </div>

@@ -43,7 +43,6 @@
                         <div class="px-xxl-5">
                             <div class="row package-item">
                             @apply_filters('theme.reservation.data')
-
                             @apply_filters('cstudio.reservation.time')
                             @do_action('theme.reservation.exfields')
                             @apply_filters('cstudio.reservation.services')
@@ -97,11 +96,11 @@
                                     </div>
                                     <div class="package-head bg-danger radius15 mh67 py-1 px-3 mb-4 d-inline-flex align-items-center">
                                         <h4 class="fs23 text-danger">
-                                            Deposit: <span class="text-600">30.500 KD</span> Please note that the deposit is non refundable
+                                        @lang('theme::app.Deposit') <span class="text-600">30.500 KD</span> @lang('theme::app.deposit_note') 
                                             
                                         </h4>
                                         <p class="theme-color pl-2">
-                                          0.500 is the payment gateway transaction fees.
+                                            @lang('theme::app.transaction_fees') 
                                         </p>
                                     </div>
                                     <!-- <label class="container_radio d-flex align-items-center">
@@ -166,7 +165,7 @@
                                                       </ul>
                                                   </div>
                                                   <div class="modal-footer d-flex align-items-center justify-content-center mb-3">
-                                                    <button type="submit"  name="submit"  class="btn btn-md btn-light fs25 radius30" > Procced to payment</button>
+                                                    <button type="submit"  name="submit"  class="btn btn-md btn-light fs25 radius30">  @lang('theme::app.Procced_to_payment')</button>
                                                   </div>
                                               </div>
                                           </div>

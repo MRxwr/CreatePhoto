@@ -94,9 +94,10 @@ class BookingController extends BackendController
             $slot = $model->timeslot->starttime .'To'. $model->timeslot->endtime;
             $booking_date = $model->booking_date;
             $rptest=["[bdate]","[time]","[orderId]"];
+            $orderid = $model->title;
             $nptext = [$booking_date,$slot,$orderid];
             $data= array(
-            'message'=>str_replace($rptest,$nptext,trans('sbkw::app.sussess_message')),
+            'message'=>str_replace($rptest,$nptext,trans('sbkw::app.cancel_message')),
             'mobile'=>$model->mobile_number,
             'code'=>'+965',
             );
@@ -112,7 +113,7 @@ class BookingController extends BackendController
             do_action('booking.complete.index',$model);
         }
         //dd($model);
-        return redirect()->back()->with('success', 'This booking successfully cancled');  
+        return redirect()->back()->with('success', 'This booking successfully completed');  
     }
     
     public function getBookingCompleted(Request $request,$id){
@@ -123,14 +124,15 @@ class BookingController extends BackendController
         }        
         return redirect()->back()->with('success', 'This booking successfully completed');  
     }
+
     public function getBookingRefund(Request $request,$id){
         $model = Booking::firstOrNew(['id' => $id]);
         $model->refunded =1;
         if($model->save()){
             do_action('booking.refund.index',$model);
         }       
-        
         return redirect()->back()->with('success', 'This booking successfully refunded');  
+        
     }
     public function getBookingSendSMS(Request $request,$id){
         $model = Booking::firstOrNew(['id' => $id]);
@@ -143,8 +145,8 @@ class BookingController extends BackendController
             $nptext = [$booking_date,$slot,$orderid];
             $data= array(
             'message'=>str_replace($rptest,$nptext,trans('sbkw::app.sussess_message')),
-            'mobile'=>'9475359786',
-            'code'=>'+91',
+            'mobile'=>$model->mobile_number,
+            'code'=>'+965',
             );
            do_action('booking.sms.index',$data);
         }           

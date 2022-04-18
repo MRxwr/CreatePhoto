@@ -38,6 +38,9 @@ class MainAction extends Action
         add_action('theme.payment.method_success', function($payment_data) {
             app('Sbhadra\Payapi\Http\Controllers\PayapiController')->paymentSuccess();
         }, 10, 1);   
+        add_action('booking.refund.index', function($payment_data) {
+            app('Sbhadra\Payapi\Http\Controllers\PayapiController')->paymentRefunded();
+        }, 10, 1);   
     }
 
     
