@@ -15,7 +15,7 @@
                                 <div class="site-title position-relative d-flex align-items-center">
                                     <div class="bg-white">
                                         <h3 class="fs30 text-300 SegoeUIL pe-4">
-                                            @trans('theme::app.Personal_Informations')
+                                        @lang('theme::app.Personal_Informations')
                                         </h3>
                                     </div>
                                 </div>
