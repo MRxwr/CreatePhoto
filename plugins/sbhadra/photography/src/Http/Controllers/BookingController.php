@@ -138,6 +138,7 @@ class BookingController extends BackendController
         if($model->save()){
             $slot = $model->timeslot->starttime .'To'. $model->timeslot->endtime;
             $booking_date = $model->booking_date;
+            $orderid = $model->title;
             $rptest=["[bdate]","[time]","[orderId]"];
             $nptext = [$booking_date,$slot,$orderid];
             $data= array(
