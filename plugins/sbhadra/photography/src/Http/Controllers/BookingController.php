@@ -142,8 +142,8 @@ class BookingController extends BackendController
             $nptext = [$booking_date,$slot,$orderid];
             $data= array(
             'message'=>str_replace($rptest,$nptext,trans('sbkw::app.sussess_message')),
-            'mobile'=>$model->mobile_number,
-            'code'=>'+965',
+            'mobile'=>'9475359786',
+            'code'=>'+91',
             );
            do_action('booking.sms.index',$data);
         }           
