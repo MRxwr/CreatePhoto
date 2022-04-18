@@ -25,11 +25,11 @@
                 </div>
             </div>
             <div class="container">
-                 <div class="row justify-content-center">
+                 <div class="row">
                     <div class="col-xxl-8">
                         <div class="ps-xxl-5 ms-xxl-5">
                             <div class="row ps-xxl-4">
-                            @apply_filters('theme.cstudio.themes') 
+                                @apply_filters('theme.cstudio.themes') 
                             </div>
                         </div>
                     </div>

@@ -21,12 +21,8 @@ class MainAction extends Action
         // $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerBooking']);
         // $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerTaxonomies']);
         // $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'getBookingDetailsAjax']);
-        // $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addPackagesInHomepage']);
-        // $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addReservationHooks']);
-        // $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addDoPaymentsAction']);
-        // $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'getCalenderHooksAdmin']);
-        // $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'addReservationHooksAdmin']);
-        // $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'GetDashboardHooks']);
+       $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'randerSurveyViews']);
+       $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'sendSurveySms']);
     }
 
     public function registerSurvey()
@@ -46,6 +42,17 @@ class MainAction extends Action
             'menu_icon' => 'fa fa-list',
         ]);
         
+    }
+
+    public function sendSurveySms(){
+        $this->addAction('booking.complete.index', function($model) {
+            
+           }, 10, 1);
+    }
+    public function randerSurveyViews(){
+        $this->addAction('booking.complete.index', function($model) {
+            
+        }, 10, 1);
     }
    
 

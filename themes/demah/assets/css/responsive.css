@@ -306,6 +306,9 @@ Author URI  : https://www.tigertemplate.com
 	  }
 	  .personal-information{
 		  margin-top: 20px;
+	   }
+	  .package-head {
+		  width: 100%;
 	  }
 
 }
