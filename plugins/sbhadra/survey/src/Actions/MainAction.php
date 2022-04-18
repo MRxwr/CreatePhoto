@@ -55,7 +55,7 @@ class MainAction extends Action
             $data= array(
                'message'=>str_replace($rptest,$nptext,trans('sbpa::app.survey_message')),
                'mobile'=>$model->mobile_number,
-               'code'=>'91',
+               'code'=>'+91',
             );
             do_action('booking.sms.index',$data);
         }, 10, 1);
