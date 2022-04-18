@@ -15,7 +15,7 @@
                                 <div class="site-title position-relative d-flex align-items-center">
                                     <div class="bg-white">
                                         <h3 class="fs30 text-300 SegoeUIL pe-4">
-                                        @lang('theme::app.Personal_Informations')
+                                             @lang('theme::app.Personal_Informations')
                                         </h3>
                                     </div>
                                 </div>
@@ -75,9 +75,7 @@
                                             <input type="text" class="border" id="mobile_number" name="mobile_number" required>
                                         </div>
                                         <div class="col-xxl-10 pb-3">
-                                            <label>
-                                            @lang('sbph::app.baby_age'):
-                                            </label>
+                                            <label>@lang('sbph::app.baby_age'):</label>
                                             <input type="text" class="border"  id="baby_age" name="baby_age">
                                         </div>
                                         <div class="col-xxl-10 py-3">

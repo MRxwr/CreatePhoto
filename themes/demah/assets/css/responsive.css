@@ -298,6 +298,12 @@ Author URI  : https://www.tigertemplate.com
 		width: 336px;
 		max-width: 100%;
 	  }
+	  .personal-form > div {
+		display: block;
+	  }
+	  .personal-form > div label {
+		width: 100%;
+	  }
 
 }
 
