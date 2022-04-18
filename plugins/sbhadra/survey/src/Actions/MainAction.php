@@ -46,8 +46,19 @@ class MainAction extends Action
 
     public function sendSurveySms(){
         $this->addAction('booking.complete.index', function($model) {
-            
-           }, 10, 1);
+            $slot = $model->timeslot->starttime .'To'. $model->timeslot->endtime;
+            $booking_date = $model->booking_date;
+            $code =base64_encode($model->id);
+            $link = url('survey/').'?survey='. $code;
+            $rptest=["[link]"];
+            $nptext = [$link ];
+            $data= array(
+               'message'=>str_replace($rptest,$nptext,trans('sbpa::app.sussess_message')),
+               'mobile'=>$model->booking_date,
+               'code'=>'91',
+            );
+            do_action('booking.sms.index',$data);
+        }, 10, 1);
     }
     public function randerSurveyViews(){
         $this->addAction('booking.complete.index', function($model) {
