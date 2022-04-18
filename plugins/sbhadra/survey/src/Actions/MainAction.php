@@ -53,8 +53,8 @@ class MainAction extends Action
             $rptest=["[link]"];
             $nptext = [$link ];
             $data= array(
-               'message'=>str_replace($rptest,$nptext,trans('sbpa::app.sussess_message')),
-               'mobile'=>$model->booking_date,
+               'message'=>str_replace($rptest,$nptext,trans('sbpa::app.survey_message')),
+               'mobile'=>$model->mobile_number,
                'code'=>'91',
             );
             do_action('booking.sms.index',$data);
