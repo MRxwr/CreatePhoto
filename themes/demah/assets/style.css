@@ -727,7 +727,7 @@ select.form-control.teheme2 {
   max-width: 100%;
   font-size: 23px;
 }
-.personal-form > div input {
+.personal-form > div input, .personal-form > div select  {
 	width: 100%;
 	max-width: 100%;
 	min-height: 38px;
