@@ -51,12 +51,13 @@ class MainAction extends Action
             $code =base64_encode($model->id);
             $link = url('survey/').'?survey='. $code;
             $rptest=["[link]"];
-            $nptext = [$link ];
+            $nptext = [$link];
             $data= array(
                'message'=>str_replace($rptest,$nptext,trans('sbpa::app.survey_message')),
                'mobile'=>$model->mobile_number,
                'code'=>'+91',
             );
+            dd($data);
             do_action('booking.sms.index',$data);
         }, 10, 1);
     }
