@@ -30,7 +30,7 @@
             </div>
             <div class="container">
                  <div class="row">
-                    <div class="col-xxl-10 justify-content-center">
+                    <div class="col-xxl-12 justify-content-center">
                         <div class="ps-xxl-5 ms-xxl-5">
                             <div class="row ps-xxl-4">
                                 @apply_filters('theme.cstudio.themes') 

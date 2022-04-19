@@ -57,13 +57,14 @@
 
         @yield('header')
         <script>
-          var startDate='2022-01-01';
+          var startDate=truncateDate(new Date());
           var endDate='2046-12-31';
           var datesDisabled = ["13-03-2022"];
           var daysOfWeekDisabled = [5,6]
         </script>
 	</head>
-	<body class="common-style home_bg">
+
+	<body class="common-style {{ isset($post) ? ' single-post': ' home_bg' }} {{ body_class() }}">
         @do_action('theme.after_body')
         <!-- site-header -->
          @include('theme::header')
