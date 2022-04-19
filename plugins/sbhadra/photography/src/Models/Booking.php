@@ -7,12 +7,14 @@ use Juzaweb\Traits\PostTypeModel;
 use Sbhadra\Photography\Models\Service;
 use Sbhadra\Photography\Models\Package;
 use Sbhadra\Photography\Models\Timeslot;
+use Sbhadra\Packagethemes\Models\Theme;
 use Spatie\Translatable\HasTranslations;
 
 class Booking extends Model
 {
     use PostTypeModel;
     use HasTranslations;
+    
 
    // protected $postType = 'sliders';
     protected $table = 'bookings';
@@ -43,4 +45,7 @@ class Booking extends Model
     public function timeslot(){
         return $this->belongsTo(Timeslot::class);
     }  
+    public function theme(){
+        return $this->belongsTo(Theme::class);
+    }
 }

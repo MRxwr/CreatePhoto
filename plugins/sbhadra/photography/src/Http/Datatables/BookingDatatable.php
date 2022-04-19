@@ -24,13 +24,23 @@ class BookingDatatable extends PostTypeDataTable
     public function columns()
     {
         return [
-            
+            'theme' => [
+                'label' => trans('sbpa::app.theme'),
+                'width' => '5%',
+                'formatter' => function ($value, $row, $index) {
+                    if($row->theme_id>0){
+                        return '<img src="'. $row->theme->getThumbnail() .'" class="w-100" style="width:100px" />';
+                    }
+                    
+                }
+            ],
             'title' => [
                 'label' => trans('sbph::app.bookingid'),
                 'formatter' => function ($value, $row, $index) {
                     return $row->title;
                 }
             ],
+            
             'package' => [
                 'label' => trans('sbph::app.package'),
                 'formatter' => function ($value, $row, $index) {
