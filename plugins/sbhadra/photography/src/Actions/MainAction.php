@@ -191,7 +191,12 @@ class MainAction extends Action
 
     static function getPackageTimeslots($package){
         $html ='';
-        $booked_slot =Booking::where('package_id',$package->id)->where('status','yes')->pluck('timeslot_id')->toArray();
+        if(isset($_REQUEST['date'])){
+            $booked_slot =Booking::where('package_id',$package->id)->where('booking_date',$_REQUEST['date'])->where('status','yes')->pluck('timeslot_id')->toArray();
+        }else{
+            $booked_slot =Booking::where('package_id',$package->id)->where('status','yes')->pluck('timeslot_id')->toArray();
+        }
+        
         //dd($booked_slot);
         if($package->slots){
             $html .='<div class="personal-form row">';
