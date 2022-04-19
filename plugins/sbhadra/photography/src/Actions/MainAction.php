@@ -118,7 +118,8 @@ class MainAction extends Action
                
              add_filters('cstudio.reservation.time', function() {
                 $package = Package::find($_REQUEST['id']);
-                   return $this->getPackageCstudioTimeslots($package);
+                return $this->getPackageTimeslots($package);
+                   //return $this->getPackageCstudioTimeslots($package);
                }, 10, 1);
                
                add_filters('theme.reservation.services', function() {
@@ -193,10 +194,10 @@ class MainAction extends Action
         $booked_slot =Booking::where('package_id',$package->id)->where('status','yes')->pluck('timeslot_id')->toArray();
         //dd($booked_slot);
         if($package->slots){
-            $html .='<div class="form-group row">';
-            $html .='<label for="" class="col-sm-5 col-md-4 col-form-label">Preffered Time:</label>';
-            $html .='<div class="col-sm-7 col-md-8">';
-            $html .='<select class="form-control form-control-lg" id="booking_time" name="booking_time" style="max-width: 300px;" required>';
+            $html .='<div class="personal-form row">';
+            $html .=' <div class="col-xxl-10 pb-3"><label for="" class="col-sm-5 col-md-4 col-form-label">Preffered Time:</label>';
+            //$html .='<div class="col-sm-7 col-md-8">';
+            $html .='<select class="border" id="booking_time" name="booking_time" style="max-width: 300px;" required>';
             $html .='<option value=""  >Select Time</option>';
              foreach($package->slots as $slot){
                 if(!in_array($slot->id,$booked_slot)){
