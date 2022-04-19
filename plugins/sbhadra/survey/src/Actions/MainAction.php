@@ -46,8 +46,6 @@ class MainAction extends Action
 
     public function sendSurveySms(){
         $this->addAction('booking.complete.index', function($model) {
-            $slot = $model->timeslot->starttime .'To'. $model->timeslot->endtime;
-            $booking_date = $model->booking_date;
             $code =base64_encode($model->id);
             $link = url('survey/').'?survey='. $code;
             $rptest=["[link]"];
@@ -57,7 +55,7 @@ class MainAction extends Action
                'mobile'=>$model->mobile_number,
                'code'=>'+91',
             );
-            dd($data);
+            
             do_action('booking.sms.index',$data);
         }, 10, 1);
     }
