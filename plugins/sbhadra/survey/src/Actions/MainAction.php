@@ -51,7 +51,7 @@ class MainAction extends Action
             $rptest=["[link]"];
             $nptext = [$link];
             $data= array(
-               'message'=>str_replace($rptest,$nptext,trans('sbpa::app.survey_message')),
+               'message'=>str_replace($rptest,$nptext,trans('sbkw::app.survey_message')),
                'mobile'=>$model->mobile_number,
                'code'=>'+91',
             );
