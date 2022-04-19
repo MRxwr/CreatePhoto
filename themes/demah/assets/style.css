@@ -717,6 +717,7 @@ select.form-control.teheme2 {
   border-radius: 5px;
   border: 1px solid rgba(112,112,112,0.29) !important;
   top: 15px;
+  margin: 0px -32px;
 }
 .opacity0{
   opacity: 0;
