@@ -199,7 +199,7 @@ class MainAction extends Action
         
         //dd($booked_slot);
         if($package->slots){
-            $html .='<div class="personal-form row">';
+            $html .='<div class="col-xxl-8 pe-xl-5 pt-4"><div class="personal-form row">';
             $html .=' <div class="col-xxl-10 pb-3"><label for="" >Preffered Time:</label>';
             //$html .='<div class="col-sm-7 col-md-8">';
             $html .='<select class="form-control border" id="booking_time" name="booking_time"  required>';
@@ -210,6 +210,7 @@ class MainAction extends Action
                 }
                }
             $html .='</select>';
+            $html .='</div>';
             $html .='</div>';
             $html .='</div>';
         }
