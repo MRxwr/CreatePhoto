@@ -46,7 +46,7 @@
         @endif
 
 		<!-- responsive stylesheet -->
-        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/css/responsive.css?v=111">
+        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/css/responsive.css?v=108">
 
 		<!-- ==== HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries ==== -->
         <!--[if lt IE 9]>
@@ -57,8 +57,8 @@
 
         @yield('header')
         <script>
-          var startDate=truncateDate(new Date());
-          var endDate='2046-12-31';
+          var startDate='2022-05-01';
+          var endDate='2023-12-31';
           var datesDisabled = ["13-03-2022"];
           var daysOfWeekDisabled = [5,6]
         </script>
@@ -142,8 +142,8 @@
                 datesDisabled:datesDisabled,
                 autoclose: true,
                 minDate: new Date(),
-                //startDate: truncateDate(new Date()),
-                startDate: new Date(startDate),
+                startDate: truncateDate(),
+                //startDate: new Date(startDate),
                 endDate: new Date(endDate),
                 icons: {
                             time: "fa fa-clock-o",
@@ -160,7 +160,15 @@
               }
             })
           function truncateDate(date) {
-            return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            //alert(startDate);
+            var date = new Date();
+            var st = new Date(startDate);
+            if(st.getTime()>date.getTime()){
+              return new Date(startDate);
+            }else{
+              return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            }
+            
           }
         </script>
   
