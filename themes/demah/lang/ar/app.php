@@ -73,5 +73,11 @@ return [
     'Reservation_details'=>'Reservation details',
     'Reservation_note'=>'Please enter you reservation number to view you reservation details',
     'SMS_sent_note'=>'You can find the reservation number in the SMS sent by us.',
+    'Choose_Preferred_Day'=>'Choose Preferred Day',
+    'Included_In_This_Package'=>'Included In This Package',
+    'Available_Sessions'=>'You Can Find Available Sessions At These Days.',
+    'Fully_Booked'=>'Fully Booked',
+    'Vacation'=>'Vacation.',
+    'Holiday_Or_Weekends'=>'Holiday Or Weekends.'
    
 ];

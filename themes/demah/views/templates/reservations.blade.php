@@ -66,7 +66,7 @@
                                             <input type="text" class="border" id="customer_name" name="customer_name" required >
                                         </div>
                                         <input type="hidden" class="form-control form-control-lg" id="customer_email" name="customer_email" value="hello@myshootskw.com" required>
-                                        <div class="col-xxl-10 pb-3">
+                                        <div class="col-xxl-10 pb-3" style="display:none">
                                             <label>
                                             @lang('sbph::app.baby_name'):
                                             </label>
@@ -83,10 +83,10 @@
                                             <input type="text" class="border"  id="baby_age" name="baby_age">
                                         </div>
                                         <div class="col-xxl-10 py-3">
-                                            <label class="opacity0">
+                                            <label class=".opacity0">
                                                 @lang('sbph::app.instructions'):
                                             </label>
-                                            <textarea class="border" rows="6" placeholder="Instructions" name="instructions" id="instructions"></textarea>
+                                            <textarea class="border" rows="6" placeholder="@lang('sbph::app.instructions')" name="instructions" id="instructions"></textarea>
                                         </div>
                                         @apply_filters('theme.reservation.fields')
                                         @do_action('theme.coupon.fields') 

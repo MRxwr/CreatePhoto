@@ -41,7 +41,8 @@
                                     </div>
                                     <div class="package-head bg-light radius15 mh53 py-1 px-3 mb-3 d-inline-flex align-items-center">
                                         <h4 class="fs23">
-                                            Extra Charges:
+                                        @lang('theme::app.extra_charges')
+                                            
                                         </h4>
                                     </div>
                                     <div class="package-body text-muted mb-5 pb-4 pt-3">
@@ -76,7 +77,7 @@
                         <div class="col-xl-12">
                             <div class="package-head bg-light radius15 mh53 py-1 px-3 mb-5 d-inline-flex align-items-center">
                                 <h4 class="fs23">
-                                    Choose Preferred Day:
+                                    @lang('theme::app.Choose_Preferred_Day'):
                                 </h4>
                             </div>
                         </div>
@@ -94,10 +95,10 @@
                                         <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/available.svg" alt="img" class="ms-2 me-3 mt-2">
                                         <div>
                                             <h4 class="fs25 mb-2">
-                                                Available. 
+                                               @lang('theme::app.available'):
                                             </h4>
                                             <h6 class="fs18">
-                                                You Can Find Available Sessions At These Days.
+                                                @lang('theme::app.Available_Sessions'):
                                             </h6>
                                         </div>
                                     </div>
@@ -107,10 +108,11 @@
                                         <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/reserved.svg" alt="img" class="ms-2 me-3 mt-2">
                                         <div>
                                             <h4 class="fs25 mb-2">
-                                                Reserved.
+                                            @lang('theme::app.reserved')
                                             </h4>
                                             <h6 class="fs18">
-                                                Fully Booked.
+                                                
+                                                @lang('theme::app.Fully_Booked')
                                             </h6>
                                         </div>
                                     </div>
@@ -120,10 +122,10 @@
                                         <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/vacation.svg" alt="img" class="ms-2 me-3 mt-2">
                                         <div>
                                             <h4 class="fs25 mb-2">
-                                                Vacation.
+                                                @lang('theme::app.Vacation')
                                             </h4>
                                             <h6 class="fs18">
-                                                Holiday Or Weekends.
+                                                @lang('theme::app.Holiday_Or_Weekends')
                                             </h6>
                                         </div>
                                     </div>

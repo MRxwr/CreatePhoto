@@ -70,8 +70,14 @@ return [
     'transaction_fees' => '0.500 KD is the payment gateway transaction fees.',
     'Deposit'=>'Deposit : ',
     'deposit_note'=>'Please note that the deposit is non refundable',
-     'Reservation_details'=>'Reservation details',
-     'Reservation_note'=>'Please enter you reservation number to view you reservation details',
-     'SMS_sent_note'=>'You can find the reservation number in the SMS sent by us.',
+    'Reservation_details'=>'Reservation details',
+    'Reservation_note'=>'Please enter you reservation number to view you reservation details',
+    'SMS_sent_note'=>'You can find the reservation number in the SMS sent by us.',
+    'Choose_Preferred_Day'=>'Choose Preferred Day',
+    'Included_In_This_Package'=>'Included In This Package',
+    'Available_Sessions'=>'You Can Find Available Sessions At These Days.',
+    'Fully_Booked'=>'Fully Booked',
+    'Vacation'=>'Vacation.',
+    'Holiday_Or_Weekends'=>'Holiday Or Weekends.'
 
 ];
