@@ -140,6 +140,7 @@
                 daysOfWeekDisabled: daysOfWeekDisabled,
                 datesDisabled:datesDisabled,
                 autoclose: true,
+                minDate: new Date(),
                 //startDate: truncateDate(new Date()),
                 startDate: new Date(startDate),
                 endDate: new Date(endDate),

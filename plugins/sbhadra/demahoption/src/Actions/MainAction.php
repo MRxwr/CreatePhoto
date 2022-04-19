@@ -302,8 +302,7 @@ public function addThemeExtraFields(){
         $html ='';
         if(!empty($themes)){
                 $html .='
-                <div class="col-xl-2 pe-xxl-0"></div>
-                <div class="col-xl-10 pe-xxl-0">
+                <div class="col-xl-12 pe-xxl-0">
                 <div class="theme_select_slider owl-carousel owl-theme">';
                 foreach($themes as $theme){
                     $html .='<div class="theme-select">

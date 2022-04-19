@@ -3,7 +3,11 @@
 @section('content')
 <!-- breadcrumbs -->
 @do_action('theme.breadcrumbs') 
-  
+  <style>
+      .owl-carousel .owl-stage-outer {
+        overflow: hidden!important;
+        }
+  </style>
   <!-- breadcrumbs -->
  <!-- Personal Informations -->
  <section class="personal-info py-5">
@@ -26,7 +30,7 @@
             </div>
             <div class="container">
                  <div class="row">
-                    <div class="col-xxl-8">
+                    <div class="col-xxl-10 justify-content-center">
                         <div class="ps-xxl-5 ms-xxl-5">
                             <div class="row ps-xxl-4">
                                 @apply_filters('theme.cstudio.themes') 

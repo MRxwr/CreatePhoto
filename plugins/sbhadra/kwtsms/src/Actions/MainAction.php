@@ -18,7 +18,6 @@ class MainAction extends Action
 
     public function addDoKwtSMSAction(){
         $this->addAction('booking.sms.index', function ($data) {
-          
             $arabic = ['١','٢','٣','٤','٥','٦','٧','٨','٩','٠'];
             $english = [ 1 ,  2 ,  3 ,  4 ,  5 ,  6 ,  7 ,  8 ,  9 , 0];
 	        $phone = str_replace($arabic, $english, $data['mobile']);
@@ -26,7 +25,7 @@ class MainAction extends Action
             $message=$data['message'];
             $code=$data['code'];
            $rsp = $this->sendkwtsms($mobile,$message,$code); 
-            dd($rsp);
+            //dd($rsp);
         });  
     }
 
