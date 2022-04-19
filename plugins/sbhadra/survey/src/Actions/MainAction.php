@@ -61,9 +61,9 @@ class MainAction extends Action
         }, 10, 1);
     }
     public function randerSurveyViews(){
-        $this->addAction('booking.complete.index', function($model) {
+        // $this->addAction('booking.complete.index', function($model) {
             
-        }, 10, 1);
+        // }, 10, 1);
     }
    
 
