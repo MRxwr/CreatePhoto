@@ -310,6 +310,9 @@ Author URI  : https://www.tigertemplate.com
 	  .package-head {
 		  width: 100%;
 	  }
+	  .container_radio:not(.themeCheck) .checkmark {
+		margin: 0px 0px;
+	  }
 
 }
 
