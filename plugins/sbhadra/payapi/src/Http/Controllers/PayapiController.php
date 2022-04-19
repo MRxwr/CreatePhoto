@@ -44,7 +44,8 @@ class PayapiController extends FrontendController
         //     'Suppliers[0][ProposedShare]' => 'null',
         //     'Suppliers[0][InvoiceShare]' => '0.00'
         // ];
-        $PaymentAPIKey = 'CKW-1640114323-2537';
+        //$PaymentAPIKey = 'CKW-1640114323-2537';
+        $PaymentAPIKey = 'CKW-1647563770-7774';
         $paymentMethod=1;
         $name = $payment_data['customer_name'];
         $phone1 = $payment_data['mobile_number'];
