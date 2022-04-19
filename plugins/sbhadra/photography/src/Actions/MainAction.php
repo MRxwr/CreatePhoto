@@ -274,7 +274,7 @@ static function getPackageCstudioTimeslots($package){
              foreach($package->services as $service){
                 $html .='<div class="col-xxl-6 mb-xl-5 mb-3">'; 
                 $html .='<label class="container_radio d-flex align-items-center">
-                    Extra Charge For '.$service->title.'
+                   '.$service->title.'
                     <input type="checkbox" class="xprice" data-exprice="'.$service->price.'" value="'.$service->id.'" name="service_item[]">
                     <span class="checkmark"></span>
                         <div class="bg-light text-dark radius15 mh53 py-1 px-3 ms-2 d-inline-flex align-items-center">
