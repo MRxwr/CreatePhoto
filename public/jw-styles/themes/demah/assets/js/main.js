@@ -31,7 +31,7 @@ $(document).ready(function(){
     nav:false,
     //navText: ["<button class='slick-prev slick-arrow'>Previous</button>","<button class='slick-prev slick-arrow'>Next</button>"],
     dots:false,
-    items:3,
+    items:4,
     rtl: rtl_owl(),
     responsive:{
         0:{

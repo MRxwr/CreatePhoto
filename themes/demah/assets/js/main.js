@@ -23,22 +23,39 @@ $(document).ready(function(){
     }}
   var owl = $('.theme_select_slider');
   owl.owlCarousel({
-      loop:false,
-      autoplay: false,
-      autoplayTimeout:2500,
-      smartSpeed:900,
-      margin:24,
-      nav:false,
-      //navText: ["<button class='slick-prev slick-arrow'>Previous</button>","<button class='slick-prev slick-arrow'>Next</button>"],
-      dots:false,
-      items:4,
-      rtl: rtl_owl(),
-      responsive : {
-        480 : { items : 1  }, // from zero to 480 screen width 4 items
-        768 : { items : 2  }, // from 480 screen widthto 768 6 items
-        1024 : { items : 4 }  // from 768 screen width to 1024 8 items 
-      }
-  });
+    loop:false,
+    autoplay: false,
+    autoplayTimeout:2500,
+    smartSpeed:900,
+    margin:24,
+    nav:false,
+    //navText: ["<button class='slick-prev slick-arrow'>Previous</button>","<button class='slick-prev slick-arrow'>Next</button>"],
+    dots:false,
+    items:4,
+    rtl: rtl_owl(),
+    responsive:{
+        0:{
+            items:1,
+            margin:10
+        },
+        600:{
+            items:2,
+            margin:15
+        },
+        1000:{
+            items:3,
+            margin:15
+        },
+        1200:{
+            items:3,
+            margin:15
+        },
+        1400:{
+            items:3,
+            margin:24
+        }
+    }
+});
 
   // Custom Button
   $('.MyNextButton').click(function() {
