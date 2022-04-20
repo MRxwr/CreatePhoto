@@ -473,34 +473,34 @@ static function getPackageCstudioTimeslots($package){
 //                        <table id="datable_1" class="table table-hover display  pb-30" >
 //                            <thead>
 //                                <tr>
-//                                    <th>'.  trans('sbph::app.bookingid').'</th>
-//                                    <th>'.  trans('sbph::app.invoiceId').'</th>
-//                                    <th>'. trans('sbph::app.package').'</th>
-//                                    <th>'.  trans('sbph::app.booking_date').'</th>
-//                                    <th>'.  trans('sbph::app.booking_time').'</th>
-//                                    <th>'.  trans('sbph::app.booking_price').'</th>
-//                                    <th>'.  trans('sbph::app.customer_name').'</th>
-//                                    <th>'.  trans('sbph::app.mobile_number').'</th>
-//                                    <th>'.  trans('sbph::app.baby_name').'</th>
-//                                    <th>'.  trans('sbph::app.baby_age').'</th>
-//                                    <th>'.  trans('sbph::app.instructions').'</th>
+//                                    <th>'.  trans('theme::app.bookingid').'</th>
+//                                    <th>'.  trans('theme::app.invoiceId').'</th>
+//                                    <th>'. trans('theme::app.package').'</th>
+//                                    <th>'.  trans('theme::app.booking_date').'</th>
+//                                    <th>'.  trans('theme::app.booking_time').'</th>
+//                                    <th>'.  trans('theme::app.booking_price').'</th>
+//                                    <th>'.  trans('theme::app.customer_name').'</th>
+//                                    <th>'.  trans('theme::app.mobile_number').'</th>
+//                                    <th>'.  trans('theme::app.baby_name').'</th>
+//                                    <th>'.  trans('theme::app.baby_age').'</th>
+//                                    <th>'.  trans('theme::app.instructions').'</th>
                                   
                                   
 //                                </tr>
 //                            </thead>
 //                            <tfoot>
 //                                <tr>
-//                                <th>'.  trans('sbph::app.bookingid').'</th>
-//                                <th>'.  trans('sbph::app.invoiceId').'</th>
-//                                <th>'. trans('sbph::app.package').'</th>
-//                                <th>'.  trans('sbph::app.booking_date').'</th>
-//                                <th>'.  trans('sbph::app.booking_time').'</th>
-//                                <th>'.  trans('sbph::app.booking_price').'</th>
-//                                <th>'.  trans('sbph::app.customer_name').'</th>
-//                                <th>'.  trans('sbph::app.mobile_number').'</th>
-//                                <th>'.  trans('sbph::app.baby_name').'</th>
-//                                <th>'.  trans('sbph::app.baby_age').'</th>
-//                                <th>'.  trans('sbph::app.instructions').'</th>
+//                                <th>'.  trans('theme::app.bookingid').'</th>
+//                                <th>'.  trans('theme::app.invoiceId').'</th>
+//                                <th>'. trans('theme::app.package').'</th>
+//                                <th>'.  trans('theme::app.booking_date').'</th>
+//                                <th>'.  trans('theme::app.booking_time').'</th>
+//                                <th>'.  trans('theme::app.booking_price').'</th>
+//                                <th>'.  trans('theme::app.customer_name').'</th>
+//                                <th>'.  trans('theme::app.mobile_number').'</th>
+//                                <th>'.  trans('theme::app.baby_name').'</th>
+//                                <th>'.  trans('theme::app.baby_age').'</th>
+//                                <th>'.  trans('theme::app.instructions').'</th>
                                
 //                                </tr>
 //                            </tfoot>
@@ -536,7 +536,7 @@ foreach($bookings as $key=>$booking){
                             <div class="row">
                                 <div class="col-sm-4 col-6 bg-light">
                                     <p class="fs20">
-                                    '.  trans('sbph::app.bookingid').'
+                                    '.  trans('theme::app.bookingid').'
                                     </p>
                                 </div>
                                 <div class="col-sm-8 col-6">
@@ -550,7 +550,7 @@ foreach($bookings as $key=>$booking){
                             <div class="row">
                                 <div class="col-sm-4 col-6 bg-light">
                                     <p class="fs20">
-                                    '.  trans('sbph::app.invoiceId').'
+                                    '.  trans('theme::app.invoiceId').'
                                         
                                     </p>
                                 </div>
@@ -565,7 +565,7 @@ foreach($bookings as $key=>$booking){
                             <div class="row">
                                 <div class="col-sm-4 col-6 bg-light">
                                     <p class="fs20">
-                                    '.  trans('sbph::app.customer_name').'
+                                    '.  trans('theme::app.customer_name').'
                                     </p>
                                 </div>
                                 <div class="col-sm-8 col-6">
@@ -578,7 +578,7 @@ foreach($bookings as $key=>$booking){
                         <div class="col-xl-6">
                             <div class="row">
                                 <div class="col-sm-4 col-6 bg-light">
-                                    <p class="fs20">'. trans('sbph::app.package').'</p>
+                                    <p class="fs20">'. trans('theme::app.package').'</p>
                                 </div>
                                 <div class="col-sm-8 col-6">
                                     <p class="fs20">
@@ -591,7 +591,7 @@ foreach($bookings as $key=>$booking){
                             <div class="row">
                                 <div class="col-sm-4 col-6 bg-light">
                                     <p class="fs20">
-                                    '.  trans('sbph::app.mobile_number').'
+                                    '.  trans('theme::app.mobile_number').'
                                     </p>
                                 </div>
                                 <div class="col-sm-8 col-6">
@@ -605,7 +605,7 @@ foreach($bookings as $key=>$booking){
                             <div class="row">
                                 <div class="col-sm-4 col-6 bg-light">
                                     <p class="fs20">
-                                    '.  trans('sbph::app.booking_date').'
+                                    '.  trans('theme::app.booking_date').'
                                     </p>
                                 </div>
                                 <div class="col-sm-8 col-6">
@@ -619,7 +619,7 @@ foreach($bookings as $key=>$booking){
                             <div class="row">
                                 <div class="col-sm-4 col-6 bg-light">
                                     <p class="fs20">
-                                    '.  trans('sbph::app.baby_name').'
+                                    '.  trans('theme::app.baby_name').'
                                     </p>
                                 </div>
                                 <div class="col-sm-8 col-6">
@@ -633,7 +633,7 @@ foreach($bookings as $key=>$booking){
                             <div class="row">
                                 <div class="col-sm-4 col-6 bg-light">
                                     <p class="fs20">
-                                    '.  trans('sbph::app.booking_time').'
+                                    '.  trans('theme::app.booking_time').'
                                     </p>
                                 </div>
                                 <div class="col-sm-8 col-6">
@@ -661,7 +661,7 @@ foreach($bookings as $key=>$booking){
                             <div class="row">
                                 <div class="col-sm-4 col-6 bg-light">
                                     <p class="fs20">
-                                    '.  trans('sbph::app.status').'
+                                    '.  trans('theme::app.status').'
                                         
                                     </p>
                                 </div>
@@ -678,7 +678,7 @@ foreach($bookings as $key=>$booking){
             <div class="col-sm-12 pb-5">
                 <div class="package-head bg-light radius15 mh53 py-1 px-3 mb-2 d-inline-flex align-items-center">
                     <h4 class="fs23">
-                    '.  trans('sbph::app.instructions').'
+                    '.  trans('theme::app.instructions').'
                     </h4>
                 </div>
                 <p class="fs20">

@@ -106,6 +106,7 @@ return [
     'baby_name'=>'baby name',
     'baby_age'=>'baby age',
     'instructions'=>'Instructions',
-
-   
+    'coupons' =>'Coupons',
+    'coupon' =>'Coupon',
+    'apply' =>'Apply',
 ];
