@@ -131,7 +131,7 @@ public function addBodyClass()
                                 <div class="pack_content position-relative d-flex align-items-center justify-content-center">
                                     <h4 class="position-absolute fs296 CarrinadyB text-primary pe-xl-5">'.($key+1).'</h4>
                                     <div class="pack_info">
-                                        <h4 class="fs107 CarrinadyB text-primary text-uppercase mb-xl-5 pb-5">
+                                        <h4 class="fs107 CarrinadyB text-primary text-uppercase mb-xl-5 pb-5 SegoeUIL">
                                         '.$package->title.'
                                         </h4>
                                         <p class="fs24 pb-5 mb-4">
@@ -162,7 +162,7 @@ public function addBodyClass()
                             <div class="pack_content position-relative d-flex align-items-center justify-content-center">
                                 <h4 class="position-absolute fs296 CarrinadyB text-primary">'.($key+1).'</h4>
                                 <div class="pack_info">
-                                    <h4 class="fs107 CarrinadyB text-primary text-uppercase mb-xl-5 pb-5">
+                                    <h4 class="fs107 CarrinadyB text-primary text-uppercase mb-xl-5 pb-5 SegoeUIL">
                                     '.$package->title.'
                                     </h4>
                                     <p class="fs24 pb-5 mb-4">
@@ -204,10 +204,10 @@ public function addFrontCategories()
                             <div class="col-xxl-4 offset-xxl-1 pe-xxl-5 col-xl-5 d-flex align-items-center">
                                 <div class="pack_content position-relative d-flex align-items-center justify-content-center">
                                     <h4 class="position-absolute fs296 CarrinadyB text-primary pe-xl-5">
-                                        01
+                                    '.($key+1).'
                                     </h4>
                                     <div class="pack_info">
-                                        <h4 class="fs107 CarrinadyB text-primary text-uppercase mb-xl-5 pb-5">
+                                        <h4 class="fs107 CarrinadyB text-primary text-uppercase mb-xl-5 pb-5 SegoeUIL">
                                         '.$taxonomies->name.'
                                         </h4>
                                         <p class="fs24 pb-5 mb-4">
@@ -239,10 +239,10 @@ public function addFrontCategories()
                         <div class="col-xxl-4 offset-xxl-0 ps-xxl-5 col-xl-5 offset-xl-1 d-flex align-items-center">
                             <div class="pack_content position-relative d-flex align-items-center justify-content-center">
                                 <h4 class="position-absolute fs296 CarrinadyB text-primary">
-                                    02
+                                '.($key+1).'
                                 </h4>
                                 <div class="pack_info">
-                                    <h4 class="fs107 CarrinadyB text-primary text-uppercase mb-xl-5 pb-5">
+                                    <h4 class="fs107 CarrinadyB text-primary text-uppercase mb-xl-5 pb-5 SegoeUIL">
                                     '.$taxonomies->name.'
                                     </h4>
                                     <p class="fs24 pb-5 mb-4">

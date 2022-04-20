@@ -40,14 +40,14 @@
                                           @do_action('theme.package_data')                                 
                                     </div>
                                     <div class="package-head bg-light radius15 mh53 py-1 px-3 mb-3 d-inline-flex align-items-center">
-                                        <h4 class="fs23">
+                                        <h4 class="fs23 SegoeUIL">
                                         @lang('theme::app.extra_charges')
                                             
                                         </h4>
                                     </div>
                                     <div class="package-body text-muted mb-5 pb-4 pt-3">
                                     @if($post->services)
-                                        <h5>@lang('theme::app.extra_charges')</h5>
+                                        <!-- <h5>@lang('theme::app.extra_charges')</h5> -->
                                         <ul class="package-list ps-4">
                                           @foreach($post->services as $service)
                                               <li> {{$service->title}}  {{$service->price}} KD</li>

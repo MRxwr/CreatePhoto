@@ -17,10 +17,12 @@ class AjaxController extends BackendController
         $data = array();
         if($bookings){
             foreach($bookings as $key=>$booking){
+                //dd($booking->timeslot);
                 $data[] = array(
                     'id'   => $booking->id,
-                    'title'   =>$booking->title.'-'.$booking->customer_name.'['.$booking->timeslot->starttime.''.$booking->timeslot->endtime.']',
+                    'title'   =>$booking->title.'-'.$booking->customer_name.'['.@$booking->timeslot['starttime'].'-'.@$booking->timeslot['endtime'].']',
                     'start'   =>date('Y-m-d', strtotime($booking->booking_date)) ,
+                    'description'   =>$booking->title.'-'.$booking->customer_name.'['.@$booking->timeslot['starttime'].'-'.@$booking->timeslot['endtime'].']',
                     //'end'   => $booking->booking_date,
                     //'allDay'=> true,
                     //'rendering'=> 'background',
