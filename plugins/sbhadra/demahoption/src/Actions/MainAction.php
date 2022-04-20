@@ -248,7 +248,7 @@ public function addFrontCategories()
                                     <p class="fs24 pb-5 mb-4">
                                     '.str_replace('<ul>',' <ul class="package-list ps-4">',$taxonomies->content).' 
                                     </p>
-                                    <a href="'.$slug .'" class="btn btn-xl btn-primary mt-3 fs24">'.trans('sbde::app.BookNow').'</a>
+                                    <a href="'.$slug .'" class="btn btn-xl btn-primary mt-3 fs24">'.trans('theme::app.BookNow').'</a>
                                 </div>
                             </div>
                         </div>
@@ -266,9 +266,9 @@ public function addThemeExtraFields(){
         echo '<div class="col-xxl-8 pe-xl-5 pt-4">
         <div class="personal-form row">
             <div class="col-xxl-10 pb-3">
-            <label>'.trans('sbde::app.Pictures_type').': </label> 
-               <input type="radio" class="" style="margin: 15px; width: 30px; min-height: 25px;" name="pictures_type" id="pictures_type1" value="Electonic">'.trans('sbde::app.Electonic').'
-               <input type="radio" class="" style="margin: 15px; width: 30px; min-height: 25px;"  name="pictures_type" id="pictures_type2" value="Printed + Electonic">'.trans('sbde::app.Printed_Electonic').'
+            <label>'.trans('theme::app.Pictures_type').': </label> 
+               <input type="radio" class="" style="margin: 15px; width: 30px; min-height: 25px;" name="pictures_type" id="pictures_type1" value="Electonic">'.trans('theme::app.Electonic').'
+               <input type="radio" class="" style="margin: 15px; width: 30px; min-height: 25px;"  name="pictures_type" id="pictures_type2" value="Printed + Electonic">'.trans('theme::app.Printed_Electonic').'
             </div>
             </div>
          </div>';
@@ -276,7 +276,7 @@ public function addThemeExtraFields(){
            echo '<div class="col-xxl-10 pe-xl-5">
                     <div class="personal-form row">
                         <div class="col-xxl-8 pb-3">
-                         <label>'.trans('sbde::app.Number_of_Pieces').':</label> 
+                         <label>'.trans('theme::app.Number_of_Pieces').':</label> 
                          <input type="number" class="form-control" name="number_of_pieces" id="number_of_pieces" value="">
                          <input type="hidden"  name="rate_per_pieces" id="rate_per_pieces" value="'.$package->rate_per_pieces.'">
                        </div>
@@ -318,8 +318,8 @@ public function addThemeExtraFields(){
                  }
                 $html .='</div> </div>';
                 $html .='<div class="col-xl-12  d-flex align-items-center justify-content-center">
-                <button class="owl-arrow MyPrevButton">'.trans('sbde::app.Previous').'</button>
-                <button class="owl-arrow MyNextButton">'.trans('sbde::app.Next').'</button>
+                <button class="owl-arrow MyPrevButton">'.trans('theme::app.Previous').'</button>
+                <button class="owl-arrow MyNextButton">'.trans('theme::app.Next').'</button>
             </div>';
         }
         return $html;

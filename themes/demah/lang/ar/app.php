@@ -78,6 +78,23 @@ return [
     'Available_Sessions'=>'You Can Find Available Sessions At These Days.',
     'Fully_Booked'=>'Fully Booked',
     'Vacation'=>'Vacation.',
-    'Holiday_Or_Weekends'=>'Holiday Or Weekends.'
+    'Holiday_Or_Weekends'=>'Holiday Or Weekends.',
+    'is_theme_category' => 'theme category page enable',
+    'is_pieces_enable' => 'Pieces field enable ',
+    'rate_per_pieces' => 'Rate per pieces',
+    'theme_category' => 'Select theme categories',
+    'Number_of_Pieces' => 'Number of Pieces ',
+    'Pictures_type' => 'Pictures type',
+    'Electonic' => 'Electonic',
+    'Printed_Electonic' => 'Printed + Electonic',
+    'BookNow' => 'Book Now',
+    'Previous'=>'Previous',
+    'Next'=>'Next',
+    'Preffered_Time'=>'Preffered Time',
+    'Select_Time'=>'Select Time',
+    'Package_Choosen'=>'Package Choosen',
+    'Date'=>'Date',
+    'Available_Time_Slots'=>'Available Time Slots'
+
    
 ];
