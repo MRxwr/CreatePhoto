@@ -94,7 +94,18 @@ return [
     'Select_Time'=>'Select Time',
     'Package_Choosen'=>'Package Choosen',
     'Date'=>'Date',
-    'Available_Time_Slots'=>'Available Time Slots'
+    'Available_Time_Slots'=>'Available Time Slots',
+    'bookingid'=>'Booking Id',
+    'customer_name'=>' Customer name',
+    'mobile_number'=>'Mobile number',
+    'booking_date'=>'Booking date',
+    'booking_time'=>'Booking time',
+    'booking_price'=>'Booking price',
+    'status'=>'Status',
+    'invoiceId'=>' Invoice Id',
+    'baby_name'=>'baby name',
+    'baby_age'=>'baby age',
+    'instructions'=>'Instructions',
 
    
 ];

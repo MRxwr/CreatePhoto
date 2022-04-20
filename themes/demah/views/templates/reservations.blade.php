@@ -61,32 +61,32 @@
                                     <div class="personal-form row">
                                         <div class="col-xxl-10 pb-3">
                                             <label>
-                                               @lang('sbph::app.customer_name'): 
+                                               @lang('theme::app.customer_name'): 
                                             </label>
                                             <input type="text" class="border" id="customer_name" name="customer_name" required >
                                         </div>
                                         <input type="hidden" class="form-control form-control-lg" id="customer_email" name="customer_email" value="hello@myshootskw.com" required>
                                         <div class="col-xxl-10 pb-3" style="display:none">
                                             <label>
-                                            @lang('sbph::app.baby_name'):
+                                            @lang('theme::app.baby_name'):
                                             </label>
                                             <input type="text" class="border" id="baby_name" name="baby_name">
                                         </div>
                                         <div class="col-xxl-10 pb-3">
                                             <label>
-                                              @lang('sbph::app.mobile_number'):
+                                              @lang('theme::app.mobile_number'):
                                             </label>
                                             <input type="text" class="border" id="mobile_number" name="mobile_number" required>
                                         </div>
                                         <div class="col-xxl-10 pb-3">
-                                            <label>@lang('sbph::app.baby_age'):</label>
+                                            <label>@lang('theme::app.baby_age'):</label>
                                             <input type="text" class="border"  id="baby_age" name="baby_age">
                                         </div>
                                         <div class="col-xxl-10 py-3">
                                             <label class=".opacity0">
-                                                @lang('sbph::app.instructions'):
+                                                @lang('theme::app.instructions'):
                                             </label>
-                                            <textarea class="border" rows="6" placeholder="@lang('sbph::app.instructions')" name="instructions" id="instructions"></textarea>
+                                            <textarea class="border" rows="6" placeholder="@lang('theme::app.instructions')" name="instructions" id="instructions"></textarea>
                                         </div>
                                         @apply_filters('theme.reservation.fields')
                                         @do_action('theme.coupon.fields') 
