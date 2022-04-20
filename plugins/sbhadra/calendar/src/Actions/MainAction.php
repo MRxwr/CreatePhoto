@@ -54,6 +54,7 @@ class MainAction extends Action
         add_filters('theme.calendar.hooks', function($post){
             $package_id = $post->id; 
             $slots = count($post->slots);
+            //dd($slots);
             $bookings = DB::table('bookings')
                  ->select('booking_date', DB::raw('count(*) as total'))
                  ->where('status','Yes')
@@ -62,7 +63,7 @@ class MainAction extends Action
                  ->get();  
                  $datesDisabled_array =array('13-01-2022');
                  foreach($bookings as $booking){
-                    if($booking->total ==$slots ){
+                    if($booking->total == $slots ){
                         array_push($datesDisabled_array,$booking->booking_date);
                     }
                  }

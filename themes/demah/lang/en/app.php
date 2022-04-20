@@ -18,7 +18,7 @@ return [
     'reservations' => 'Reservations',
     'reservations-check' => 'Reservations Check',
     'reservations-confirm' => 'Reservations Confirm',
-    'gallery' => 'Gallery',
+    'Gallery' => 'Gallery',
     'arabic' => 'Arabic',
     'english' => 'English',
     'our_packages' => 'Our Packages',

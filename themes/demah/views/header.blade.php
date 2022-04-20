@@ -11,21 +11,21 @@
                         <nav id="nav-menu" class="site-nav">
                             <ul id="phn-menu">
                                 <li class="active">
-                                   <a class="nav-link" href="{{url('/')}}">@lang('theme::app.home')</a>
+                                   <a class="nav-link SegoeUIL" href="{{url('/')}}">@lang('theme::app.home')</a>
                                 </li>
                                 <li>
-                                  <a class="nav-link" href="{{url('/galleries')}}">@lang('theme::app.gallery')</a>
+                                  <a class="nav-link SegoeUIL" href="{{url('/galleries')}}">@lang('theme::app.gallery')</a>
                                 </li>
                                 <li>
-                                  <a class="nav-link" href="{{url('/reservations-check')}}">@lang('theme::app.reservations')</a>
+                                  <a class="nav-link SegoeUIL" href="{{url('/reservations-check')}}">@lang('theme::app.reservations')</a>
                                 </li>
                                 <li>
-                                  <a class="nav-link" href="{{url('/contact-us')}}">@lang('theme::app.contact-us')</a>
+                                  <a class="nav-link SegoeUIL" href="{{url('/contact-us')}}">@lang('theme::app.contact-us')</a>
                                 </li>
                                 <li><a href="#"> @apply_filters('theme.language.hooks')</a>
                                    <ul>
-                                    <li> <a class="dropdown-item ar" id="lang_ar" href="{{URL::current()}}?lang=ar">@lang('theme::app.arabic')</a></li>
-                                    <li><a class="dropdown-item en" id="lang_en" href="{{URL::current()}}?lang=en">@lang('theme::app.english')</a></li> 
+                                    <li> <a class="dropdown-item ar SegoeUIL" id="lang_ar" href="{{URL::current()}}?lang=ar">@lang('theme::app.arabic')</a></li>
+                                    <li><a class="dropdown-item en SegoeUIL" id="lang_en" href="{{URL::current()}}?lang=en">@lang('theme::app.english')</a></li> 
                                   </ul>
                                 </li>
                             </ul>

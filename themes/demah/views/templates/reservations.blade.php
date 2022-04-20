@@ -52,7 +52,7 @@
                             @apply_filters('cstudio.reservation.services')
                                 <div class="col-sm-12 pe-xl-5 pt-4">
                                     <div class="package-head bg-light radius15 mh53 py-1 px-3 mb-4 d-inline-flex align-items-center">
-                                        <h4 class="fs23">
+                                        <h4 class="fs23 SegoeUIL">
                                           @lang('theme::app.informations'):
                                         </h4>
                                     </div>

@@ -13,10 +13,18 @@ class CalendarController extends BackendController
     public function index()
     {
         $packages = Package::get();
-        $dates = Calendar::get();
+        $model= '';
+        $dates=array();
+        if(isset($_REQUEST['package'])){
+            $model = Package::where('id',$_REQUEST['package'])->first();
+            //dd($slots);
+            $dates = Calendar::get();
+        }
+        
         return view('sbca::backend.calendar.index', [
             'title' => 'Booking Calendar',
             'packages'=>$packages,
+            'model'=>$model,
             'dates'=>$dates,
         ]);
     }
@@ -34,6 +42,8 @@ class CalendarController extends BackendController
         $date = new Calendar;
         $date ->from_date = $request->start_date;
         $date ->to_date = $request->end_date;
+        $date ->package_id = $request->package_id;
+        $date ->slots = json_encode($request->slots);
         $date->status ='Yes';
         $date ->save();
         return $this->success([
@@ -53,5 +63,14 @@ class CalendarController extends BackendController
             'message' => trans('sbca::app.saved_successfully'),
             'redirect' => route('admin.calendar-setting'),
         ]);
+    }
+    public function delete($id){
+        $date=Calendar::find($id);
+        $date->delete();
+        return $this->success([
+            'message' => 'Date successfully deleted',
+            'redirect' => route('admin.booking-calendar'),
+        ]);
+
     }
 }

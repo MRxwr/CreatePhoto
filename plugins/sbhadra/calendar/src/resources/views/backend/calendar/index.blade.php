@@ -11,15 +11,36 @@
         {!! csrf_field() !!}
         <div class="row">
             <div class="form-group">  
+                <h4>Add disable date</h4>
             </div>
                 <div class="col-md-12 form-group bootstrap-timepicker timepicker">
                             <label class="col-form-label" for="release">@lang('sbph::app.starttime')</label>
-                            <select name="package_id" class="form-control input-small select2" id="package_id">
+                            <select name="package_id" class="form-control input-small select2" id="package_id" onchange="gotopage(this)">
+                                <option>Select Package</option>
                                 @foreach($packages as $key=>$package)
-                                <option value="{{$package->id}}">{{$package->title}}</option>
+                                   @if(isset($_REQUEST['package']) && $_REQUEST['package']==$package->id)
+                                         <option value="{{$package->id}}" selected="selected">{{$package->title}}</option>
+                                   @else
+                                         <option value="{{$package->id}}">{{$package->title}}</option>
+                                   @endif
                                 @endforeach
-                        </select>
+                             </select>
                         <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                </div>
+                <div class="col-md-12 form-group bootstrap-timepicker timepicker">
+                   <div class="row">
+                        @if($model)
+                        <label class="col-form-label" for="release">Slots</label>
+                
+                        @foreach($model->slots as $slot)    
+                        <div class="col-md-4">
+                                <label class="col-form-label" for="release">
+                                        <input type="checkbox" name="slots[]" value="{{$slot->id}}">{{$slot->starttime}} - {{$slot->endtime}}
+                                </label>
+                        </div>
+                        @endforeach 
+                        @endif
+                  </div>
                 </div>
                 <div class="col-md-6 form-group bootstrap-timepicker timepicker">
                         <label class="col-form-label" for="release">@lang('sbca::app.start_date')</label>
@@ -34,12 +55,41 @@
                 <div class="col-md-12"><div class="btn-group float-right"><button type="submit" class="btn btn-success px-5"><i class="fa fa-save"></i> Save</button> <button type="button" class="btn btn-warning cancel-button px-3"><i class="fa fa-refresh"></i> Reset</button></div></div> 
              
         </div> 
-        </form>  
-         
+        </form>
+        <div class="row">
+        <div class="col-md-12 mt-5">
+                <div class="table-responsive">
+                        @if(!empty($dates))
+                                <table class="table jw-table table-bordered table-hover" id="calendar_table">
+                                <thead>
+                                        <tr>
+                                                <th>Date range</th>
+                                                <th>Timeslot</th>
+                                                <th>Action</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                        @foreach($dates as $date)
+                                        <tr>
+                                                <td>{{$date->from_date}} to {{$date->to_date}}</td>
+                                                <td>{{$date->status}}</td>
+                                                <td><a href="{{route('admin.calendar.delete',['id'=>$date->id])}}" class="btn btn-danger"> <i class=" fa fa-trash"></i></a></td>
+                                        </tr>
+                                        @endforeach
+                                </tbody>               
+                                <table>  
+                        @endif
+                </div>
+        </div>
+        </div>  
+     </div>
      </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js" integrity="sha512-o0rWIsZigOfRAgBxl4puyd0t6YKzeAw9em/29Ag7lhCQfaaua/mDwnpE2PVzwqJ08N7/wqrgdjc2E0mwdSY2Tg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/3.2.2/js/dataTables.fixedColumns.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-2.2.4/dt-1.10.13/fc-3.2.2/fh-3.1.2/r-2.1.0/sc-1.4.2/datatables.min.css" />
     <script>
    
    $(document).ready(function() {
@@ -132,7 +182,23 @@
      },
  
     });
+
+
+
    });
     
+function gotopage(selval){
+        var value = selval.options[selval.selectedIndex].value;
+        var route = '{{route('admin.booking-calendar')}}';
+        if(value){
+            route = route +'?package='+value;    
+        }
+          window.location.href=route;
+       }
+ $(document).ready(function() {
+    var table = $('#calendar_table').DataTable( {
+
+    } );
+});
    </script>
 @endsection

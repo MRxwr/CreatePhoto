@@ -15,8 +15,10 @@ class CreateCalendarsTable extends Migration
     {
         Schema::create('calendars', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('package_id');
             $table->date('from_date')->nullable();
             $table->date('to_date')->nullable();
+            $table->longText('slots', 500)->nullable();
             $table->string('status', 50)->default('no');
             $table->timestamps();
         });
