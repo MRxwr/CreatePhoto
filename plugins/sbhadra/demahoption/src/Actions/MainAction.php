@@ -214,7 +214,7 @@ public function addFrontCategories()
                                         '.str_replace('<ul>',' <ul class="package-list ps-4">',$taxonomies->content).' 
                                         </p>
                                         <a href="'.$slug .'" class="btn btn-xl btn-primary mt-3 fs24">
-                                            Book Now
+                                        '.trans('theme::app.BookNow').'
                                         </a>
                                     </div>
                                 </div>
