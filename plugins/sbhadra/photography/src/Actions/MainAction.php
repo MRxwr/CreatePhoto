@@ -273,7 +273,7 @@ static function getPackageCstudioTimeslots($package){
         if($package->services){                     
             $html .='<div class="col-sm-12 pe-xl-5 pt-4">';
             $html .='<div class="package-head bg-light radius15 mh53 py-1 px-3 mb-4 d-inline-flex align-items-center">';
-            //$html .='<h4 class="fs23">Extras:</h4>';
+            $html .='<h4 class="fs23">'.  trans('theme::app.extra_charges').':</h4>';
             $html .='</div></div>';
             $html .='<div class="col-xxl-9">';
             $html .='<div class="row px-xl-2">';
