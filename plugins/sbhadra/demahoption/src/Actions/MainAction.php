@@ -267,8 +267,8 @@ public function addThemeExtraFields(){
         <div class="personal-form row">
             <div class="col-xxl-10 pb-3 fs23">
             <label>'.trans('theme::app.Pictures_type').': </label> 
-               <input type="radio" class="" style="margin: 15px; width: 30px; min-height: 25px;" name="pictures_type" id="pictures_type1" value="Electonic">'.trans('theme::app.Electonic').'
-               <input type="radio" class="" style="margin: 15px; width: 30px; min-height: 25px;"  name="pictures_type" id="pictures_type2" value="Printed + Electonic">'.trans('theme::app.Printed_Electonic').'
+               <input type="radio" class="" style="margin: 5px; width: 25px; min-height: 25px;" name="pictures_type" id="pictures_type1" value="Electonic">'.trans('theme::app.Electonic').'
+               <input type="radio" class="" style="margin: 5px; width: 25px; min-height: 25px;"  name="pictures_type" id="pictures_type2" value="Printed + Electonic">'.trans('theme::app.Printed_Electonic').'
             </div>
             </div>
          </div>';
