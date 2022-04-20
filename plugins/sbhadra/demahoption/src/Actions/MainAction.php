@@ -137,7 +137,7 @@ public function addBodyClass()
                                         <p class="fs24 pb-5 mb-4">
                                         '.str_replace('<ul>',' <ul class="package-list ps-4">',$package->content).' 
                                         </p>
-                                        <a href="'.$slug .'" class="btn btn-xl btn-primary mt-3 fs24">'.trans('sbde::app.BookNow').'</a>
+                                        <a href="'.$slug .'" class="btn btn-xl btn-primary mt-3 fs24">'.trans('theme::app.book_now').'</a>
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +168,7 @@ public function addBodyClass()
                                     <p class="fs24 pb-5 mb-4">
                                     '.str_replace('<ul>',' <ul class="package-list ps-4">',$package->content).' 
                                     </p>
-                                    <a href="'.$slug .'" class="btn btn-xl btn-primary mt-3 fs24">'.trans('sbde::app.BookNow').'</a>
+                                    <a href="'.$slug .'" class="btn btn-xl btn-primary mt-3 fs24">'.trans('theme::app.book_now').'</a>
                                 </div>
                             </div>
                         </div>
