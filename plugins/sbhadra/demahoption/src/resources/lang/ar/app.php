@@ -18,5 +18,4 @@ return [
     'Package_Choosen'=>'Package Choosen',
     'Date'=>'Date',
     'Available_Time_Slots'=>'Available Time Slots'
-
 ];
