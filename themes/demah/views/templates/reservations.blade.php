@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- breadcrumbs -->
-@do_action('theme.breadcrumbs') 
+<!-- @do_action('theme.breadcrumbs')  -->
   <style>
       .owl-carousel .owl-stage-outer {
         overflow: hidden!important;

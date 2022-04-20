@@ -41,11 +41,11 @@ class MainAction extends Action
 
         add_action('theme.coupon.fields', function() {
             $html = '<div class="col-xxl-8 pb-3">
-            <label>'.trans('sbco::app.coupon').'</label>
+            <label>'.trans('theme::app.coupon').'</label>
                 <input type="hidden"  id="discount_value" name="discount_value">
                 <input type="text" class="border"  id="coupon_code" name="coupon_code">
             </div><div class="col-xxl-4 pb-3">
-              <a class="btn btn-sm btn-light fs18 radius30" id="apply_code">'.trans('sbco::app.apply').'</a>
+              <a class="btn btn-sm btn-light fs18 radius30" id="apply_code">'.trans('theme::app.apply').'</a>
             </div>';
            echo  $html;
         }, 10, 1);
