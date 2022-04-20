@@ -11,5 +11,12 @@ return [
     'Electonic' => 'Electonic',
     'Printed_Electonic' => 'Printed + Electonic',
     'BookNow' => 'Book Now',
+    'Previous'=>'Previous',
+    'Next'=>'Next',
+    'Preffered_Time'=>'Preffered Time',
+    'Select_Time'=>'Select Time',
+    'Package_Choosen'=>'Package Choosen',
+    'Date'=>'Date',
+    'Available_Time_Slots'=>'Available Time Slots'
 
 ];

@@ -99,13 +99,13 @@ class MainAction extends Action
                                 <input type="hidden" id="booking_price" name="package_price" value="'. $package->price.'" />
                             <div class="col-sm-12 pe-xl-5">
                                 <div class="package-head bg-light radius15 mh53 py-1 px-3 mb-3 d-inline-flex align-items-center">
-                                    <h4 class="fs23"> Package Chosen: '. $package->title.'</h4>
+                                    <h4 class="fs23"> '.trans('sbde::app.Package_Choosen').': '. $package->title.'</h4>
                                     <input type="hidden" readonly class="form-control-plaintext" id="" value="'. $package->title.'">
                                 </div>
                             </div>
                             <div class="col-sm-12 pe-xl-5">
                                 <div class="package-head bg-light radius15 mh53 py-1 px-3 mb-3 d-inline-flex align-items-center">
-                                    <h4 class="fs23"> Date: '.$_REQUEST['date'].'</h4>
+                                    <h4 class="fs23"> '.trans('sbde::app.Date').': '.$_REQUEST['date'].'</h4>
                                     <input type="hidden" readonly class="form-control-plaintext" name="booking_date" id="booking_date" value="'.$_REQUEST['date'].'">
                                 </div>
                             </div>';
@@ -145,13 +145,13 @@ class MainAction extends Action
                 echo '<input type="hidden" id="package_id" name="package_id" value="'. $package->id.'" />
                         <input type="hidden" id="package_price" name="package_price" value="'. $package->price.'" />
                         <div class="form-group row">
-                            <label for="" class="col-sm-5 col-md-4 col-form-label">Package Choosen:</label>
+                            <label for="" class="col-sm-5 col-md-4 col-form-label">'.trans('sbde::app.Package_Choosen').':</label>
                             <div class="col-sm-7 col-md-8">
                                 <input type="text" readonly class="form-control-plaintext" id="" value="'. $package->title.'">
                             </div>
                         </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-5 col-md-4 col-form-label">Date:</label>
+                        <label for="" class="col-sm-5 col-md-4 col-form-label">'.trans('sbde::app.Date').':</label>
                         <div class="col-sm-7 col-md-8">
                         <input type="text" readonly class="form-control-plaintext" name="booking_date" id="booking_date" value="'.$_REQUEST['date'].'">
                     </div>
@@ -200,10 +200,10 @@ class MainAction extends Action
         //dd($booked_slot);
         if($package->slots){
             $html .='<div class="col-xxl-8 pe-xl-5 pt-4"><div class="personal-form row">';
-            $html .=' <div class="col-xxl-10 pb-3"><label for="" >Preffered Time:</label>';
+            $html .=' <div class="col-xxl-10 pb-3"><label for="" >'.trans('sbde::app.Preffered_Time').':</label>';
             //$html .='<div class="col-sm-7 col-md-8">';
             $html .='<select class="form-control border" id="booking_time" name="booking_time"  required>';
-            $html .='<option value="">Select Time</option>';
+            $html .='<option value="">'.trans('sbde::app.Select_Time').'</option>';
              foreach($package->slots as $slot){
                 if(!in_array($slot->id,$booked_slot)){
                     $html .='<option value="'.$slot->id.'">'.$slot->starttime.' - '.$slot->endtime.'</option>';
@@ -225,7 +225,7 @@ static function getPackageCstudioTimeslots($package){
            
             $html .='<div class="col-sm-12 pe-xl-5">';
             $html .='<div class="package-head bg-light radius15 mh53 py-1 px-3 mb-3 d-inline-flex align-items-center">';
-            $html .='<h4 class="fs23">Available Time Slots:</h4><input type="hidden" id="booking_time" name="booking_time">';
+            $html .='<h4 class="fs23">'.trans('sbde::app.Available_Time_Slots').':</h4><input type="hidden" id="booking_time" name="booking_time">';
             $html .='</div></div>';
             $html .='<div class="col-sm-12 pe-xl-5 timeSelect">';
              foreach($package->slots as $slot){

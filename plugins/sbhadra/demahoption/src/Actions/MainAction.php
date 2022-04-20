@@ -318,8 +318,8 @@ public function addThemeExtraFields(){
                  }
                 $html .='</div> </div>';
                 $html .='<div class="col-xl-12  d-flex align-items-center justify-content-center">
-                <button class="owl-arrow MyPrevButton">Previous</button>
-                <button class="owl-arrow MyNextButton">Next</button>
+                <button class="owl-arrow MyPrevButton">'.trans('sbde::app.Previous').'</button>
+                <button class="owl-arrow MyNextButton">'.trans('sbde::app.Next').'</button>
             </div>';
         }
         return $html;
