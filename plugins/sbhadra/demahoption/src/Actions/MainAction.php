@@ -184,9 +184,9 @@ public function addBodyClass()
                                         <h4 class="fs107 CarrinadyB text-primary text-uppercase mb-xl-5 pb-5 SegoeUIL">
                                         '.$package->title.'
                                         </h4>
-                                        <p class="fs24 pb-5 mb-4">
+                                       
                                         '.str_replace('<ul>',' <ul class="package-list ps-4">',$package->short_description).' 
-                                        </p>
+                                        
                                         <a href="'.$slug .'" class="btn btn-xl btn-primary mt-3 fs24">'.trans('theme::app.book_now').'</a>
                                     </div>
                                 </div>
@@ -215,9 +215,9 @@ public function addBodyClass()
                                     <h4 class="fs107 CarrinadyB text-primary text-uppercase mb-xl-5 pb-5 SegoeUIL">
                                     '.$package->title.'
                                     </h4>
-                                    <p class="fs24 pb-5 mb-4">
-                                    '.str_replace('<ul>',' <ul class="package-list ps-4">',$package->content).' 
-                                    </p>
+                                   
+                                    '.str_replace('<ul>',' <ul class="package-list ps-4">',$package->short_description).' 
+                                   
                                     <a href="'.$slug .'" class="btn btn-xl btn-primary mt-3 fs24">'.trans('theme::app.book_now').'</a>
                                 </div>
                             </div>
