@@ -31,16 +31,16 @@
                                 </h4>
                                 <div class="form-group row fs20">
                                     <div class="col-sm-6 pb-4">
-                                        <input type="text" class="form-control mh63" placeholder="@lang('theme::app.name')" name="name" id="name">
+                                        <input type="text" class="form-control mh63" placeholder="@lang('theme::app.name')" name="name" id="name" require>
                                     </div>
                                     <div class="col-sm-6 pb-4">
-                                        <input type="text" class="form-control mh63" placeholder="@lang('theme::app.email')" name="email" id="email">
+                                        <input type="text" class="form-control mh63" placeholder="@lang('theme::app.email')" name="email" id="email" require>
                                     </div>
                                     <div class="col-sm-6 pb-4">
-                                        <input type="text" class="form-control mh63" placeholder="@lang('theme::app.phone')" name="phone" id="phone">
+                                        <input type="text" class="form-control mh63" placeholder="@lang('theme::app.phone')" name="phone" id="phone" require>
                                     </div>
                                     <div class="col-sm-6 pb-4">
-                                        <input type="text" class="form-control mh63" placeholder="@lang('theme::app.subject')" name="subject" id="subject">
+                                        <input type="text" class="form-control mh63" placeholder="@lang('theme::app.subject')" name="subject" id="subject" require>
                                     </div>
                                     <div class="col-sm-12 pb-4">
                                         <textarea rows="2" class="form-control mh63" placeholder="@lang('theme::app.Your_message_here')" id="message" name="message"></textarea>
