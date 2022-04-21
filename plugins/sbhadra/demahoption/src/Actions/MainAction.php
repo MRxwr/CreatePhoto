@@ -360,8 +360,10 @@ public function addThemeExtraFields(){
         } else{
             if(isset($_REQUEST['id'])){
                 $pack=Package::find($_REQUEST['id']);
-                $slugs=json_decode($pack->theme_category_ids);
+                
                 if($pack->theme_category_ids!=''){
+                    $slugs=json_decode($pack->theme_category_ids);
+                    dd($slugs)
                     $themes =  Theme::whereIn('slug', $slugs )->get();
                 }else{
                     $themes =Theme::all();
