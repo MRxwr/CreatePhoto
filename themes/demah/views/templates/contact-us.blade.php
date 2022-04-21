@@ -30,7 +30,7 @@
                                     @lang('theme::app.Any_Questions'):
                                 </h4>
                                 <form method="post" action="">
-                                { csrf_field() }}
+                                {{csrf_field() }}
                                 <div class="form-group row fs20">
                                     <div class="col-sm-6 pb-4">
                                         <input type="text" class="form-control mh63" placeholder="@lang('theme::app.name')" name="name" id="name" required >
