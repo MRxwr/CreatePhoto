@@ -5,34 +5,43 @@
                 <div class="row py-5">
                     <div class="col-lg-9 Montserrat fs23">
                         <ul class="social_list mb-4 d-flex align-items-center">
+                            
+                        @php
+                            $facebook  = get_theme_config('facebook');
+                            $instagram = get_theme_config('instagram');
+                            $twitter   = get_theme_config('twitter');
+                            $snapchat  = get_theme_config('snapchat');
+                            $whatsapp  = get_theme_config('whatsapp');
+                            $email  = get_theme_config('email');
+                        @endphp
                             <li class="ms-4">
-                                <a href="#">
+                                <a href="{{$instagram}}">
                                     <img src="{{asset('/')}}jw-styles/themes/demah/assets/img/in.svg" alt="img">
                                 </a>
                             </li>
                             <li class="ms-4">
-                                <a href="#">
+                                <a href="{{$twitter}}">
                                     <img src="{{asset('/')}}jw-styles/themes/demah/assets/img/tw.svg" alt="img">
                                 </a>
                             </li>
                             <li class="ms-4">
-                                <a href="#">
+                                <a href="{{$facebook}}">
                                     <img src="{{asset('/')}}jw-styles/themes/demah/assets/img/fb.svg" alt="img">
                                 </a>
                             </li>
                             <li class="ms-4">
-                                <a href="#">
+                                <a href="{{$snapchat}}">
                                     <img src="{{asset('/')}}jw-styles/themes/demah/assets/img/sn.svg" alt="img">
                                 </a>
                             </li>
                             <li class="ms-4">
-                                <a href="#">
+                                <a href="{{$whatsapp}}">
                                     <img src="{{asset('/')}}jw-styles/themes/demah/assets/img/wh.svg" alt="img">
                                 </a>
                             </li>
                         </ul>
-                        <a href="mailto:Hello@demahstudio.com" class="text-muted mb-4">
-                            Hello@demahstudio.com
+                        <a href="mailto:{{$email}}" class="text-muted mb-4">
+                        {{$email}}
                         </a>
                         <p class="mb-4">
                             Copyright 2022 - <a href="#" class="text-dark">DEMAH studio</a> - Kuwait

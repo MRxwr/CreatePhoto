@@ -358,7 +358,17 @@ public function addThemeExtraFields(){
                 ->get();
                 //dd($themes);
         } else{
-            $themes = Theme::get();
+            if(isset($_REQUEST['id'])){
+                $pack=Package::find($_REQUEST['id']);
+                if($pack->theme_category_ids!=''){
+                    $themes =  Theme::whereIn('id', $pack->theme_category_ids)->get();
+                }else{
+                    $themes =Theme::all();
+                }
+                
+            }else{
+                $themes =Theme::all();
+            }
         }    
         $html ='';
         if(!empty($themes)){
