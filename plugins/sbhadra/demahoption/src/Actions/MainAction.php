@@ -67,18 +67,21 @@ public function packageThemeField(){
             $rate_per_pieces=$model->rate_per_pieces;
           }
          $html .='<div class="form-group">
+                 <input type="hidden" name="is_pieces" id="is_pieces" value="0">
+                 <input type="hidden" name="is_theme_category"  id="is_theme_category" value="0" >
                 <label class="col-form-label" for="is_theme_category">'.trans('sbde::app.is_theme_category').'
                     <input type="checkbox" name="is_theme_category"  id="is_theme_category" value="1" '.$catischecked.' >
                 </label>
              </div>';
           $html .='<div class="form-group">
                 <label class="col-form-label" for="is_pieces">'.trans('sbde::app.is_pieces_enable').'
+                    
                     <input type="checkbox" name="is_pieces" id="is_pieces" value="1" '.$pieischecked.' >
                 </label>
             </div>';
           $html .='<div class="form-group">
                 <label class="col-form-label" for="is_pieces">'.trans('sbde::app.rate_per_pieces').'</label>
-                    <input type="text" class="form-control" name="rate_per_pieces" id="rate_per_pieces" value="'.$rate_per_pieces.'"  >
+                <input type="text" class="form-control" name="rate_per_pieces" id="rate_per_pieces" value="'.$rate_per_pieces.'"  >
                 
             </div>';
           $html .='<div class="form-group">
