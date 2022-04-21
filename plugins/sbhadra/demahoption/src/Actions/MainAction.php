@@ -100,7 +100,7 @@ public function packageThemeField(){
          }
          if(isset($model->number_of_pieces)){
             $html .='<div class="row">
-            <div class="col-md-3">'.trans('sbde::app.number_of_pieces').'</div>
+            <div class="col-md-3">Number of pieces</div>
             <div class="col-md-9">'.$model->number_of_pieces.'</div>
            </div>';
          }
