@@ -8,7 +8,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h4 class="fs107 CarrinadyB text-primary">
+                        <h4 class="fs107 CarrinadyB text-primary SegoeUIL">
                             <!-- choose a package -->
                             @lang('theme::app.our_packages')
                         </h4>
