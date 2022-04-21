@@ -55,10 +55,10 @@ use Juzaweb\Traits\PostTypeModel;
 class Page extends Model
 {
     use PostTypeModel;
-
+    use HasTranslations;
     protected $table = 'pages';
     protected $postType = 'pages';
-
+    public $translatable = ['title','content'];
     protected $fillable = [
         'title',
         'content',
