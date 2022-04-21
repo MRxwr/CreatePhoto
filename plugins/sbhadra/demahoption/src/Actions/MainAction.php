@@ -94,7 +94,7 @@ public function packageThemeField(){
         $html='';
         if(isset($model->pictures_type)){
             $html .='<div class="row">
-            <div class="col-md-3">'.trans('sbde::app.pictures_type').'</div>
+            <div class="col-md-3">Pictures Type</div>
             <div class="col-md-9">'.$model->pictures_type.'KD</div>
            </div>';
          }
