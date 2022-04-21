@@ -368,7 +368,7 @@ public function addThemeExtraFields(){
                     ->whereIn('taxonomies.slug', $slugs)
                     ->select('package_themes.*')
                     ->get();
-dd($themes);
+
                 }else{
                     $themes =Theme::all();
                 }
