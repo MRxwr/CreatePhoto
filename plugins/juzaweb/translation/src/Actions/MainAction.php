@@ -36,6 +36,7 @@ class MainAction extends Action
             $lang = 'en';
             if(isset($_REQUEST['lang'])){
                 $lang = $_REQUEST['lang'];
+                Session::put('locale', $lang);
             }else{
                 $lang = 'ar';
             }
