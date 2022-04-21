@@ -49,25 +49,31 @@ class MainAction extends Action
             ]
         );
     }
-    static function getCalenderHooks($post){
+    public function getCalenderHooks($post){
         
         add_filters('theme.calendar.hooks', function($post){
+            $datesDisabled_array =array();
             $package_id = $post->id; 
             $slots = count($post->slots);
-            //dd($slots);
+            //var_dump($slots);
+            $calendar_dates = Calendar::where('package_id',$package_id)->where('slots','all')->get();
+            foreach($calendar_dates as $cdate){
+                $dates = $this->getDatesFromRange($cdate->from_date, $cdate->to_date);
+                $datesDisabled_array = array_merge($datesDisabled_array,$dates);
+            }
+            //dd($calendar_dates);
             $bookings = DB::table('bookings')
                  ->select('booking_date', DB::raw('count(*) as total'))
                  ->where('status','Yes')
                  ->where('package_id',$package_id)
                  ->groupBy('booking_date')
                  ->get();  
-                 $datesDisabled_array =array('13-01-2022');
                  foreach($bookings as $booking){
                     if($booking->total == $slots ){
                         array_push($datesDisabled_array,$booking->booking_date);
                     }
                  }
-               $datesDisabled = json_encode($datesDisabled_array);
+            $datesDisabled = json_encode($datesDisabled_array);
             $setting = CalendarSetting::find(1);   
             return '<script>
             var startDate="'.$setting->start_date.'";
@@ -110,5 +116,27 @@ class MainAction extends Action
        }, 20, 1);
         
     }
+    static function getDatesFromRange($start, $end, $format = 'd-m-Y') { 
+          
+      // Declare an empty array 
+      $array = array(); 
+        
+      // Variable that store the date interval 
+      // of period 1 day 
+      $interval = new \DateInterval('P1D'); 
+    
+      $realEnd = new \DateTime($end); 
+      $realEnd->add($interval); 
+    
+      $period = new \DatePeriod(new \DateTime($start), $interval, $realEnd); 
+    
+      // Use loop to store date into array 
+      foreach($period as $date) {                  
+          $array[] = $date->format($format);  
+      } 
+    
+      // Return the array elements 
+      return $array; 
+    } 
 
 }
