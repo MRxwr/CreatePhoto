@@ -360,12 +360,14 @@ public function addThemeExtraFields(){
         } else{
             if(isset($_REQUEST['id'])){
                 $pack=Package::find($_REQUEST['id']);
-                
                 if($pack->theme_category_ids!=''){
                     $slugs=json_decode($pack->theme_category_ids);
-                    foreach($slugs as $slug){
-                        $themes =  Theme::where('slug',$slug)->get();
-                    }
+                    $themes = DB::table('package_themes')
+                    ->join('term_taxonomies', 'term_taxonomies.term_id', '=', 'package_themes.id')
+                    ->join('taxonomies', 'taxonomies.id', '=', 'term_taxonomies.taxonomy_id')
+                    ->whereIn('taxonomies.slug', $slugs)
+                    ->select('package_themes.*')
+                    ->get();
 dd($themes);
                 }else{
                     $themes =Theme::all();
