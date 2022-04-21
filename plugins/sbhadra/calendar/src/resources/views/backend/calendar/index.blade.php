@@ -74,7 +74,24 @@
                                                         @foreach($dates as $date)
                                                         <tr>
                                                                 <td>{{$date->from_date}} to {{$date->to_date}}</td>
-                                                                <td>{{$date->status}}</td>
+                                                                <td>
+                                                                 @php
+                                                                   $dslot = '';
+                                                                   if($date->slots=='all') {
+                                                                        $dslot = 'All';   
+                                                                   }else{
+                                                                           $st=array();
+                                                                           $jsd=json_decode($date->slots);
+                                                                           foreach($model->slots as $slot) {
+                                                                                   if(in_array($slot->id,$jsd)){
+                                                                                        $st[]=$slot->starttime .'-'.$slot->endtime;
+                                                                                   }
+                                                                           }
+                                                                           $dslot = json_encode($st);   
+                                                                   }
+                                                                 @endphp 
+                                                                 {{$dslot}}      
+                                                                </td>
                                                                 <td><a href="{{route('admin.calendar.delete',['id'=>$date->id])}}" class="btn btn-danger"> <i class=" fa fa-trash"></i></a></td>
                                                         </tr>
                                                         @endforeach

@@ -43,7 +43,12 @@ class CalendarController extends BackendController
         $date ->from_date = $request->start_date;
         $date ->to_date = $request->end_date;
         $date ->package_id = $request->package_id;
-        $date ->slots = json_encode($request->slots);
+        if(!empty($request->slots)){
+            $date ->slots = json_encode($request->slots);
+        }else{
+            $date ->slots ='all'; 
+        }
+        
         $date->status ='Yes';
         $date ->save();
         return $this->success([
