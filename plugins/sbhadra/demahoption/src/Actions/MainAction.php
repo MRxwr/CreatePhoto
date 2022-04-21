@@ -89,6 +89,55 @@ public function packageThemeField(){
 
           echo  $html;
       }, 10, 1);
+      add_action('admin.booking.after', function($model){
+        $html='';
+        if(isset($model->pictures_type)){
+            $html .='<div class="row">
+            <div class="col-md-3">'.lang('sbph::app.pictures_type').'</div>
+            <div class="col-md-9">'.$model->pictures_type.'KD</div>
+           </div>';
+         }
+         if(isset($model->number_of_pieces)){
+            $html .='<div class="row">
+            <div class="col-md-3">'.lang('sbph::app.number_of_pieces').'</div>
+            <div class="col-md-9">'.$model->number_of_pieces.'</div>
+           </div>';
+         }
+         if(isset($model->rate_per_pieces)){
+            $html .='<div class="row">
+            <div class="col-md-3">'.lang('sbph::app.rate_per_pieces').'</div>
+            <div class="col-md-9">'.$model->rate_per_pieces.'KD</div>
+           </div>';
+         }
+
+         echo  $html;
+     }, 10, 1);
+
+     add_action('admin.booking.total', function($model){
+        $html='';
+        $total =0.00;
+        if(isset($model->booking_price)){
+            $total = $model->booking_price;
+        }
+        if($model->services){
+            $service_price = 0.00;
+          foreach($model->services as $service){
+                 $service_price= $service_price+$service->price;
+                }
+            $total =  $total+$service_price;
+         }
+        if(isset($model->number_of_pieces)){
+            $total =  $total+($model->number_of_pieces*$model->rate_per_pieces);
+         }
+        
+         $html .='<div class="row">
+         <div class="col-md-6 ">Total</div>
+         <div class="col-md-6 text-right"><strong>'.number_format((float)$total, 2, '.', '').' KD</strong></div>
+        </div>';
+
+         echo  $html;
+     }, 10, 1);
+
   }
 public function updatepackagefield(){
      add_action('plugin.package.update', function($model){ 

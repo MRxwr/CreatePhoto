@@ -109,6 +109,13 @@ return [
     'coupons' =>'Coupons',
     'coupon' =>'Coupon',
     'apply' =>'Apply',
+    'email' =>'Email',
+    'phone' =>'Phone',
+    'subject' =>'Subject',
+    'submit' =>'Submit',
+    'Any_Questions'=>'Any Questions you can reach us from here!',
+    'Your_message_here'=>'Your message here.....',
+    'To_serve_you_better'=>''
 
 
 ];
