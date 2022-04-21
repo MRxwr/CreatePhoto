@@ -363,7 +363,7 @@ public function addThemeExtraFields(){
                 
                 if($pack->theme_category_ids!=''){
                     $slugs=json_decode($pack->theme_category_ids);
-                    dd($slugs)
+                    dd($slugs);
                     $themes =  Theme::whereIn('slug', $slugs )->get();
                 }else{
                     $themes =Theme::all();
