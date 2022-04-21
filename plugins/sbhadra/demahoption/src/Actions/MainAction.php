@@ -95,7 +95,7 @@ public function packageThemeField(){
         if(isset($model->pictures_type)){
             $html .='<div class="row">
             <div class="col-md-3">Pictures Type</div>
-            <div class="col-md-9">'.$model->pictures_type.'KD</div>
+            <div class="col-md-9">'.$model->pictures_type.'</div>
            </div>';
          }
          if(isset($model->number_of_pieces)){
