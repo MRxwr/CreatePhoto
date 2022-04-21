@@ -16,13 +16,23 @@ class AjaxController extends BackendController
         $calendar_dates = Calendar::all();
         $data = array();
         if($bookings){
+
             foreach($bookings as $key=>$booking){
-                //dd($booking->timeslot);
+                $time_from = '';
+                $time_to = '';
+                if(isset($booking->timeslot['starttime'])){
+                    $time_from = $booking->timeslot['starttime'];
+                }
+                if(isset($booking->timeslot['endtime'])){
+                    $time_to = $booking->timeslot['endtime'];
+                }
+                
+               
                 $data[] = array(
                     'id'   => $booking->id,
-                    'title'   =>$booking->title.'-'.$booking->customer_name.'['.@$booking->timeslot['starttime'].'-'.@$booking->timeslot['endtime'].']',
+                    'title'   =>$booking->title.'-'.$booking->customer_name.'['.$time_from.'-'.$time_to.']',
                     'start'   =>date('Y-m-d', strtotime($booking->booking_date)) ,
-                    'description'   =>$booking->title.'-'.$booking->customer_name.'['.@$booking->timeslot['starttime'].'-'.@$booking->timeslot['endtime'].']',
+                    'description'   =>'',
                     //'end'   => $booking->booking_date,
                     //'allDay'=> true,
                     //'rendering'=> 'background',
