@@ -32,19 +32,19 @@
                                 <form method="post" action="">
                                 <div class="form-group row fs20">
                                     <div class="col-sm-6 pb-4">
-                                        <input type="text" class="form-control mh63" placeholder="@lang('theme::app.name')" name="name" id="name" require>
+                                        <input type="text" class="form-control mh63" placeholder="@lang('theme::app.name')" name="name" id="name" required >
                                     </div>
                                     <div class="col-sm-6 pb-4">
-                                        <input type="text" class="form-control mh63" placeholder="@lang('theme::app.email')" name="email" id="email" require>
+                                        <input type="text" class="form-control mh63" placeholder="@lang('theme::app.email')" name="email" id="email" required >
                                     </div>
                                     <div class="col-sm-6 pb-4">
-                                        <input type="text" class="form-control mh63" placeholder="@lang('theme::app.phone')" name="phone" id="phone" require>
+                                        <input type="text" class="form-control mh63" placeholder="@lang('theme::app.phone')" name="phone" id="phone" required >
                                     </div>
                                     <div class="col-sm-6 pb-4">
-                                        <input type="text" class="form-control mh63" placeholder="@lang('theme::app.subject')" name="subject" id="subject" require>
+                                        <input type="text" class="form-control mh63" placeholder="@lang('theme::app.subject')" name="subject" id="subject" required >
                                     </div>
                                     <div class="col-sm-12 pb-4">
-                                        <textarea rows="2" class="form-control mh63" placeholder="@lang('theme::app.Your_message_here')" id="message" name="message"></textarea>
+                                        <textarea rows="2" class="form-control mh63" placeholder="@lang('theme::app.Your_message_here')" id="message" name="message" required ></textarea>
                                     </div>
                                     <div class="col-sm-12 pb-4">
                                         <button class="btn btn-sm btn-light mh63 fs25 radius15 w-100" id="msgSubmit" type="submit">
