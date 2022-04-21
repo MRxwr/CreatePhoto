@@ -69,7 +69,7 @@ class MainAction extends Action
 
         
        
-        add_filters('theme.cstudio.themes', function(){
+        add_filters('theme.cstudio.themes4sd', function(){
             $themes = Theme::get();
             $html ='';
             if(!empty($themes)){
