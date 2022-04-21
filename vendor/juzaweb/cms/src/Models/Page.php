@@ -1,6 +1,7 @@
 <?php
 
 namespace Juzaweb\Models;
+use Spatie\Translatable\HasTranslations;
 
 use Juzaweb\Traits\PostTypeModel;
 
