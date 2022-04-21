@@ -347,11 +347,11 @@ public function addThemeExtraFields(){
                 // $taxonomy = Taxonomy::where('slug', $_REQUEST['category'])->firstOrFail();
                 // $postType = $taxonomy->getPostType('model');
                 // $themes = $postType::paginate();
-                $themes = DB::table('cp_package_themes')
-                ->join('cp_term_taxonomies', 'cp_term_taxonomies.term_id', '=', 'cp_package_themes.id')
-                ->join('cp_taxonomies', 'cp_taxonomies.id', '=', 'cp_term_taxonomies.taxonomy_id')
-                ->where('cp_taxonomies.slug', $_REQUEST['category'])
-                ->select('cp_package_themes.*')
+                $themes = DB::table('package_themes')
+                ->join('term_taxonomies', 'term_taxonomies.term_id', '=', 'package_themes.id')
+                ->join('taxonomies', 'taxonomies.id', '=', 'term_taxonomies.taxonomy_id')
+                ->where('taxonomies.slug', $_REQUEST['category'])
+                ->select('package_themes.*')
                 ->get();
                 //dd($themes);
         } else{
