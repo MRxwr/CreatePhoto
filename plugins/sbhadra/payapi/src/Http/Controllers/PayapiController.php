@@ -14,7 +14,7 @@ class PayapiController extends FrontendController
      
     public function doPayment($payment_data)
     {
-        $api_key=Setting::where('filed_key','api_key')->first()->field_value;
+        $api_key=Setting::where('field_key','api_key')->first()->field_value;
         $bsid=base64_encode($payment_data['booking_id']);
         
         // $params = [
@@ -122,7 +122,7 @@ class PayapiController extends FrontendController
        
     }
     public function paymentSuccess(){
-        $api_key=Setting::where('filed_key','api_key')->first()->field_value;
+        $api_key=Setting::where('field_key','api_key')->first()->field_value;
         if(isset($_REQUEST['paymentId'])){
             $bsid = base64_decode($_REQUEST['bsid']);
             $paymentId = $_REQUEST['paymentId'];
@@ -215,7 +215,7 @@ class PayapiController extends FrontendController
     public function paymentRefunded(){
        
         if(isset($_REQUEST['paymentId'])){
-            $api_key=Setting::where('filed_key','api_key')->first()->field_value;
+            $api_key=Setting::where('field_key','api_key')->first()->field_value;
             $bsid = base64_decode($_REQUEST['bsid']);
             $paymentId = $_REQUEST['paymentId'];
             $params = [

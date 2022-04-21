@@ -31,7 +31,7 @@ class MainAction extends Action
     }
 
     static function sendkwtsms($mobile,$message,$code){
-        $setting=Setting::where('filed_key','api_key')->first();
+        $setting=Setting::where('field_key','api_key')->first();
         $username = $setting->sms_username;
         $passwaord = $setting->sms_password;
         $senderid = $setting->sms_sender;
