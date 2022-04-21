@@ -29,6 +29,7 @@
                                     
                                     @lang('theme::app.Any_Questions'):
                                 </h4>
+                                <form method="post" action="">
                                 <div class="form-group row fs20">
                                     <div class="col-sm-6 pb-4">
                                         <input type="text" class="form-control mh63" placeholder="@lang('theme::app.name')" name="name" id="name" require>
@@ -46,15 +47,15 @@
                                         <textarea rows="2" class="form-control mh63" placeholder="@lang('theme::app.Your_message_here')" id="message" name="message"></textarea>
                                     </div>
                                     <div class="col-sm-12 pb-4">
-                                        <button class="btn btn-sm btn-light mh63 fs25 radius15 w-100" id="msgSubmit">
+                                        <button class="btn btn-sm btn-light mh63 fs25 radius15 w-100" id="msgSubmit" type="submit">
                                            @lang('theme::app.submit')
                                         </button>
                                     </div>
+                                </form>
                                     <div class="col-sm-12 pt-3">
                                         <div class="bg-info radius15 mh53 py-2 px-3 d-inline-flex align-items-center">
                                             <h4 class="fs19 text-info">
                                                 @lang('theme::app.To_serve_you_better')
-                                                
                                             </h4>
                                         </div>
                                     </div>
