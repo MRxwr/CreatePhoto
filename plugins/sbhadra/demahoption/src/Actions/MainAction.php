@@ -361,7 +361,7 @@ public function addThemeExtraFields(){
             if(isset($_REQUEST['id'])){
                 $pack=Package::find($_REQUEST['id']);
                 if($pack->theme_category_ids!=''){
-                    $themes =  Theme::whereIn('id', $pack->theme_category_ids)->get();
+                    $themes =  Theme::whereIn('id', json_decode($pack->theme_category_ids))->get();
                 }else{
                     $themes =Theme::all();
                 }
