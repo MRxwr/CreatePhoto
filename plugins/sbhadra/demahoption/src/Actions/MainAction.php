@@ -33,6 +33,7 @@ class MainAction extends Action
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addThemeExtraFields']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'doProcessPackageThemes']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'getHomeAboutContent']);
+        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'getTermsAndConditionContent']);
        
     }
 public function packageThemeField(){
@@ -412,6 +413,15 @@ public function addThemeExtraFields(){
                     </div>
                 </div>
             </section>';
+             }
+        });
+    }
+
+    public function getTermsAndConditionContent(){
+        $this->addAction('theme.terms.content', function() {
+            $page = Page::where('slug','terms-and-conditions')->first();
+            if($page){
+               echo $page->content;
              }
         });
     }

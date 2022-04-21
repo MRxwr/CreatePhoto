@@ -140,33 +140,7 @@
                                                       </button>
                                                   </div>
                                                   <div class="modal-body px-sm-5">
-                                                      <ul class="terms-list fs24">
-                                                          <li>
-                                                              - Filming dates are confirmed by paying a 30-dinar deposit, and the deposit is not refunded if the appointment is canceled.
-                                                          </li>
-                                                          <li>
-                                                              - When booking make sure you choose the theme that you want as to arrange for you session.
-                                                              The duration of the photo session is 30 minutes and 15 minutes. Choose photos.
-                                                          </li>
-                                                          <li>
-                                                              - In the event that we want to postpone the appointment, we are notified two days in advance, and another appointment will be determined according to the available dates.
-                                                          </li>
-                                                          <li>
-                                                              - The appointment is only postponed once.
-                                                          </li>
-                                                          <li>
-                                                              - Payment is made immediately after the filming session, and there is a Knet service.
-                                                          </li>
-                                                          <li>
-                                                              - Studio in Khalidiya area.
-                                                          </li>
-                                                          <li>
-                                                              - In the event that a quarter of an hour is late for the appointment, the appointment will be canceled and the deposit will not be returned.
-                                                          </li>
-                                                          <li>
-                                                              - The maximum number we receive is 2 to 3 people.
-                                                          </li>
-                                                      </ul>
+                                                     @do_action('theme.terms.content')  
                                                   </div>
                                                   <div class="modal-footer d-flex align-items-center justify-content-center mb-3">
                                                     <button type="submit"  name="submit"  class="btn btn-md btn-light fs25 radius30">  @lang('theme::app.Procced_to_payment')</button>
