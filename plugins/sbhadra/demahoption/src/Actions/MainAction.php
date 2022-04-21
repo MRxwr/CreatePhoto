@@ -368,8 +368,8 @@ public function addThemeExtraFields(){
                         <label for="slect'.$theme->id.'" class="d-inline-block">'.$theme->title.'</label>
                         <input type="radio" id="slect'.$theme->id.'" value="'.$theme->id.'" name="theme_id">
                         <span class="checkmark"></span>
-                        <a href="'.$theme->getThumbnail().'" class="themeCheck_img image-link border">
-                            <img src="'.$theme->getThumbnail().'" alt="img" class="w-100">
+                        <a href="'.upload_url($theme->thumbnail).'" class="themeCheck_img image-link border">
+                            <img src="'.upload_url($themes->thumbnail).'" alt="img" class="w-100">
                         </a>
                     </label>
                 </div>';
