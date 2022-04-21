@@ -366,7 +366,7 @@ public function addThemeExtraFields(){
                     foreach($slugs as $slug){
                         $themes =  Theme::where('slug',$slug)->get();
                     }
-                    
+dd($themes);
                 }else{
                     $themes =Theme::all();
                 }
