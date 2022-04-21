@@ -42,7 +42,7 @@
        
         @if(app()->getLocale()=='ar')
           <!-- rtl stylesheet -->
-          <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/css/rtl.css">
+          <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/demah/assets/css/rtl.css?v=11">
         @endif
 
 		<!-- responsive stylesheet -->
