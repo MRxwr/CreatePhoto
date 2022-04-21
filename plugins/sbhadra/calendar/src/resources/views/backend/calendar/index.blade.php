@@ -79,7 +79,7 @@
                                                                    $dslot = '';
                                                                    if($date->slots=='all') {
                                                                         $dslot = 'All';   
-                                                                   }else{
+                                                                   }else if($date->slots!=''){
                                                                            $st=array();
                                                                            $jsd=json_decode($date->slots);
                                                                            foreach($model->slots as $slot) {
