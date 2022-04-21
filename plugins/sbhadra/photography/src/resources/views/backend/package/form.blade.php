@@ -28,7 +28,7 @@
                 ]) }}
                 {{ Field::slug($model, 'slug') }}
                 {{ Field::editor($model, 'content') }}
-
+                {{ Field::editor($model, 'short_description') }}
                 @do_action('post_type.'. $postType .'.form.left')
 
             </div>
