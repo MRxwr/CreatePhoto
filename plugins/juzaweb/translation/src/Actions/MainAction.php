@@ -39,7 +39,7 @@ class MainAction extends Action
                 Session::put('locale', $lang);
             }
             if($lang=='' && Session::get('locale')==''){
-                $lang = 'en';
+                $lang = 'ar';
             }else if($lang=='' && Session::get('locale')!=''){
                 $lang = Session::get('locale'); 
             }
