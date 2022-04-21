@@ -363,13 +363,14 @@ public function addThemeExtraFields(){
                 <div class="col-xl-12 pe-xxl-0">
                 <div class="theme_select_slider owl-carousel owl-theme">';
                 foreach($themes as $theme){
+                    $theme = Theme::find($theme->id);
                     $html .='<div class="theme-select">
                     <label class="container_radio themeCheck">
                         <label for="slect'.$theme->id.'" class="d-inline-block">'.$theme->title.'</label>
                         <input type="radio" id="slect'.$theme->id.'" value="'.$theme->id.'" name="theme_id">
                         <span class="checkmark"></span>
-                        <a href="'.upload_url($theme->thumbnail).'" class="themeCheck_img image-link border">
-                            <img src="'.upload_url($theme->thumbnail).'" alt="img" class="w-100">
+                        <a href="'.$theme->getThumbnail().'" class="themeCheck_img image-link border">
+                            <img src="'.$theme->getThumbnail().'" alt="img" class="w-100">
                         </a>
                     </label>
                 </div>';
