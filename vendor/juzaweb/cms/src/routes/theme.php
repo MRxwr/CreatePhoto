@@ -71,4 +71,5 @@ Route::post('{base}/{slug}', 'Frontend\PostController@comment')->name('comment')
 
   
 Route::get('{slug?}', 'Frontend\RouteController@index')->where('slug', '.*');
+Route::post('{slug?}', 'Frontend\RouteController@index')->where('slug', '.*');
 //Route::get('{slug?}', 'Frontend\RouteController@index')->where('slug', '.*');
