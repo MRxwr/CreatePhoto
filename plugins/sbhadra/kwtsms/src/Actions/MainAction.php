@@ -4,6 +4,7 @@ namespace Sbhadra\kwtsms\Actions;
 use Illuminate\Support\Arr;
 use Juzaweb\Abstracts\Action;
 use Juzaweb\Facades\HookAction;
+use Sbhadra\Photography\Models\Setting;
 
 use Illuminate\Support\Facades\DB;
 class MainAction extends Action
@@ -30,8 +31,12 @@ class MainAction extends Action
     }
 
     static function sendkwtsms($mobile,$message,$code){
+        $setting=Setting::where('filed_key','api_key')->first();
+        $username = $setting->sms_username;
+        $passwaord = $setting->sms_password;
+        $senderid = $setting->sms_sender;
 		$message = str_replace(' ','+',$message);
-		    $url = 'http://www.kwtsms.com/API/send/?username=badertov&password=471990Bader&sender=HBQ+Studio&mobile='.$code.$mobile.'&lang=1&message='.$message;
+		    $url = 'http://www.kwtsms.com/API/send/?username='.$username.'&password='.$passwaord.'&sender='.$senderid.'&mobile='.$code.$mobile.'&lang=1&message='.$message;
 		       $curl = curl_init();
                 curl_setopt_array($curl, array(
                   CURLOPT_URL => $url,

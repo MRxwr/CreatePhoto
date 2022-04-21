@@ -6,12 +6,15 @@ use Sbhadra\Photography\Models\Booking;
 use Illuminate\Http\Request;
 use Juzaweb\Abstracts\Action;
 use Juzaweb\Facades\HookAction;
+use Sbhadra\Photography\Models\Setting;
 use Session;
 
 class PayapiController extends FrontendController
 {
+     
     public function doPayment($payment_data)
     {
+        $api_key=Setting::where('filed_key','api_key')->first()->field_value;
         $bsid=base64_encode($payment_data['booking_id']);
         
         // $params = [
@@ -45,7 +48,7 @@ class PayapiController extends FrontendController
         //     'Suppliers[0][InvoiceShare]' => '0.00'
         // ];
         //$PaymentAPIKey = 'CKW-1640114323-2537';
-        $PaymentAPIKey = 'CKW-1647563770-7774';
+        $PaymentAPIKey = $api_key;
         $paymentMethod=1;
         $name = $payment_data['customer_name'];
         $phone1 = $payment_data['mobile_number'];
@@ -119,13 +122,13 @@ class PayapiController extends FrontendController
        
     }
     public function paymentSuccess(){
-       
+        $api_key=Setting::where('filed_key','api_key')->first()->field_value;
         if(isset($_REQUEST['paymentId'])){
             $bsid = base64_decode($_REQUEST['bsid']);
             $paymentId = $_REQUEST['paymentId'];
             $params = [
                 'endpoint' => 'PaymentStatusCheck',
-                'apikey' => 'CKW-1640114323-2537',
+                'apikey' => $api_key,
                 'Key' => $paymentId,
                 'KeyType' => 'paymentId'
             ];
@@ -212,11 +215,12 @@ class PayapiController extends FrontendController
     public function paymentRefunded(){
        
         if(isset($_REQUEST['paymentId'])){
+            $api_key=Setting::where('filed_key','api_key')->first()->field_value;
             $bsid = base64_decode($_REQUEST['bsid']);
             $paymentId = $_REQUEST['paymentId'];
             $params = [
                 'endpoint' => 'PaymentStatusCheck',
-                'apikey' => 'CKW-1640114323-2537',
+                'apikey' => $api_key,
                 'Key' => $paymentId,
                 'KeyType' => 'paymentId'
             ];

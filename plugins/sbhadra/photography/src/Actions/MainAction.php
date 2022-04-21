@@ -52,6 +52,15 @@ class MainAction extends Action
             'menu_position' => 34,
             'menu_icon' => 'fa fa-list',
         ]);
+        HookAction::addAdminMenu(
+            trans('sbph::app.setting'),
+            'setting/booking',
+            [
+                'icon' => 'fa fa-book',
+                'position' => 30,
+                'parent' => 'setting',
+            ]
+        );
     }
     public function addPackagesInHomepage()
     {
