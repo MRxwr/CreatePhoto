@@ -12,7 +12,7 @@ class AjaxController extends BackendController
     public function getBookingJson(Request $request){
         $start = $_REQUEST['start'];
         $end = $_REQUEST['end'];
-        $bookings = Booking::all();
+        $bookings = Booking::where('status','Yes')->get();
         $calendar_dates = Calendar::all();
         $data = array();
         if($bookings){
