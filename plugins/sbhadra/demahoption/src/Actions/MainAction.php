@@ -94,20 +94,20 @@ public function packageThemeField(){
         $html='';
         if(isset($model->pictures_type)){
             $html .='<div class="row">
-            <div class="col-md-3">Pictures Type</div>
-            <div class="col-md-9">'.$model->pictures_type.'</div>
+            <div class="col-md-4">Pictures Type</div>
+            <div class="col-md-8">'.$model->pictures_type.'</div>
            </div>';
          }
          if(isset($model->number_of_pieces)){
             $html .='<div class="row">
-            <div class="col-md-3">Number of pieces</div>
-            <div class="col-md-9">'.$model->number_of_pieces.'</div>
+            <div class="col-md-4">Number of pieces</div>
+            <div class="col-md-8">'.$model->number_of_pieces.'</div>
            </div>';
          }
          if(isset($model->rate_per_pieces)){
             $html .='<div class="row">
-            <div class="col-md-3">'.trans('sbde::app.rate_per_pieces').'</div>
-            <div class="col-md-9">'.$model->rate_per_pieces.'KD</div>
+            <div class="col-md-4">'.trans('sbde::app.rate_per_pieces').'</div>
+            <div class="col-md-8">'.$model->rate_per_pieces.'KD</div>
            </div>';
          }
 
