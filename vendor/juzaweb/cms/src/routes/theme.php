@@ -10,7 +10,7 @@
 Route::get('/clear-cache', function() {
     $exitCode = Artisan::call('cache:clear');
     $exitCode = Artisan::call('config:cache');
-    Artisan::call('storage:link');
+       Artisan::call('storage:link');
     //echo public_path();
     return 'DONE'; //Return anything
 });
