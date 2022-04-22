@@ -145,8 +145,8 @@ class MainAction extends Action
             Mail::send('juzaweb::backend.email.layouts.default', [
                 'body' => $mailbody,
             ], function ($message) {
-                $message->to([$tomail])
-                    ->subject($mailSubject);
+                $message->to(['demahstudio@gmail.com'])
+                    ->subject('New Demah Studio contact mail');
             });
         }
     }
