@@ -385,4 +385,5 @@ return [
     'your_paymentpage'=>'Set your Payment page',
     'your_successpage'=>'Set your Success page',
     'your_failedpage'=>'Set your Failed page',
+    'customize' =>'Customize',
 ];

@@ -18,6 +18,7 @@ use Juzaweb\Http\Controllers\Frontend\TaxonomyController;
 use Juzaweb\Models\Taxonomy;
 use Juzaweb\Support\Theme\PostTypeMenuBox;
 use Juzaweb\Support\Theme\TaxonomyMenuBox;
+use Illuminate\Support\Facades\Auth;
 
 class HookAction
 {
@@ -125,8 +126,8 @@ class HookAction
                 if (Arr::has($adminMenu[$item['key']], 'children')) {
                     $item['children'] = $adminMenu[$item['key']]['children'];
                 }
-
-                $adminMenu[$item['key']] = $item;
+              
+               $adminMenu[$item['key']] = $item;
             } else {
                 $adminMenu[$item['key']] = $item;
             }

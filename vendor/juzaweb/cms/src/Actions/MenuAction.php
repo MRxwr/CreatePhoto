@@ -16,7 +16,7 @@ use Juzaweb\Models\Page;
 use Juzaweb\Models\Post;
 use Juzaweb\Support\Theme\CustomMenuBox;
 use Juzaweb\Version;
-
+use Illuminate\Support\Facades\Auth;
 class MenuAction extends Action
 {
     public function handle()
@@ -34,6 +34,8 @@ class MenuAction extends Action
 
     public function addBackendMenu()
     {
+        
+        
         HookAction::addAdminMenu(
             trans('juzaweb::app.dashboard'),
             'dashboard',
@@ -71,7 +73,7 @@ class MenuAction extends Action
                 'position' => 3,
             ]
         );
-
+       if(Auth::id()==1){
         HookAction::addAdminMenu(
             trans('juzaweb::app.appearance'),
             'appearance',
@@ -112,7 +114,7 @@ class MenuAction extends Action
         );
 
         HookAction::addAdminMenu(
-            trans('juzaweb::app.background'),
+            trans('juzaweb::app.customize'),
             'customize',
             [
                 'icon' => 'fa fa-wrench',
@@ -121,6 +123,21 @@ class MenuAction extends Action
                 'turbolinks' => false,
             ]
         );
+
+      }
+        HookAction::addAdminMenu(
+            trans('juzaweb::app.customize'),
+            'customize',
+            [
+                'icon' => 'fa fa-wrench',
+                'position' => 30,
+                'parent' => 'setting',
+                'turbolinks' => false,
+            ]
+        );
+
+
+    
 
         HookAction::addAdminMenu(
             trans('juzaweb::app.reading'),
@@ -141,36 +158,36 @@ class MenuAction extends Action
                 'parent' => 'setting',
             ]
         );
+        if(Auth::id()==1){
+            HookAction::addAdminMenu(
+                trans('juzaweb::app.plugins'),
+                'plugin',
+                [
+                    'icon' => 'fa fa-plug',
+                    'position' => 50,
+                ]
+            );
 
-        HookAction::addAdminMenu(
-            trans('juzaweb::app.plugins'),
-            'plugin',
-            [
-                'icon' => 'fa fa-plug',
-                'position' => 50,
-            ]
-        );
+            HookAction::addAdminMenu(
+                trans('juzaweb::app.plugins'),
+                'plugins',
+                [
+                    'icon' => 'fa fa-plug',
+                    'position' => 50,
+                    'parent' => 'plugin',
+                ]
+            );
 
-        HookAction::addAdminMenu(
-            trans('juzaweb::app.plugins'),
-            'plugins',
-            [
-                'icon' => 'fa fa-plug',
-                'position' => 50,
-                'parent' => 'plugin',
-            ]
-        );
-
-        HookAction::addAdminMenu(
-            trans('juzaweb::app.add_new'),
-            'plugins.install',
-            [
-                'icon' => 'fa fa-plus',
-                'position' => 50,
-                'parent' => 'plugin',
-            ]
-        );
-
+            HookAction::addAdminMenu(
+                trans('juzaweb::app.add_new'),
+                'plugins.install',
+                [
+                    'icon' => 'fa fa-plus',
+                    'position' => 50,
+                    'parent' => 'plugin',
+                ]
+            );
+        }
         HookAction::addAdminMenu(
             trans('juzaweb::app.users'),
             'users',
