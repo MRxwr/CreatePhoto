@@ -225,7 +225,7 @@ class MenuAction extends Action
         //         'parent' => 'setting',
         //     ]
         // );
-
+        if(Auth::id()==1){
         HookAction::addAdminMenu(
             trans('juzaweb::app.logs'),
             'logs',
@@ -244,8 +244,8 @@ class MenuAction extends Action
                 'parent' => 'logs',
             ]
         );
-
-        if (config('juzaweb.logs_viewer')) {
+        
+         if (config('juzaweb.logs_viewer')) {
             HookAction::addAdminMenu(
                 trans('juzaweb::app.error_logs'),
                 'logs.error',
@@ -256,6 +256,7 @@ class MenuAction extends Action
                 ]
             );
         }
+      }
     }
 
     public function addSettingPage()

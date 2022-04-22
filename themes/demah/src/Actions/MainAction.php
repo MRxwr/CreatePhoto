@@ -111,6 +111,10 @@ class MainAction extends Action
             'name' => trans('theme::app.themecategory'),
             'view' => 'templates.themecategory',
         ]);
+        HookAction::registerThemeTemplate('location', [
+            'name' => 'Location',
+            'view' => 'templates.location',
+        ]);
     }
 
     public function registerSidebars()

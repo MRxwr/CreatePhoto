@@ -27,7 +27,7 @@ class PaymentController extends FrontendController
             $booking_price =$booking_price+$service->price;
         }
         $payment_data['booking_price'] =$booking_price;
-        $payment_data['pay_amount'] =35.000;
+        $payment_data['pay_amount'] =35.500;
         $booking = new Booking;
         $booking->package_id = $package->id;
         $booking->slug = 'CPBK'.time();
