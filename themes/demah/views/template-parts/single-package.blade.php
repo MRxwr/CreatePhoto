@@ -31,7 +31,7 @@
                                 <div class="col-sm-6 pe-xl-5">
                                     <div class="package-head bg-light radius15 mh53 py-1 px-3 mb-3 d-inline-flex align-items-center">
                                         <h4 class="fs23">
-                                            Included In This Package:
+                                            @lang('theme::app.Included_In_This_Package'):
                                         </h4>
                                     </div>
                                     <div class="package-body text-muted mb-5 pb-4 pt-3">
