@@ -19,6 +19,8 @@ use Sbhadra\Photography\Models\Timeslot;
 use Juzaweb\Models\Taxonomy;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Juzaweb\Models\EmailList;
 class MainAction extends Action
 {
     public function handle()
@@ -26,7 +28,7 @@ class MainAction extends Action
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'cStudioThemePackages']);
         $this->addAction(Action::JUZAWEB_INIT_ACTION, [$this, 'registerTemplates']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addBreadcrumbs']);
-        
+        $this->addAction(Action::JUZAWEB_INIT_ACTION, [$this, 'sendContactMail']);
        
         // $this->addAction(Action::WIDGETS_INIT, [$this, 'registerSidebars']);
         // $this->addAction(Action::WIDGETS_INIT, [$this, 'registerWidgets']);
@@ -122,6 +124,31 @@ class MainAction extends Action
             'label' => trans('theme::app.sidebar'),
             'description' => trans('theme::app.sidebar_page'),
         ]);
+    }
+
+    public function sendContactMail(){
+        if(isset($_POST['msgSubmit'])){
+            //dd($_POST['contact']);
+            $name = $_POST['contact']['name'];
+            $email = $_POST['contact']['email'];
+            $phone = $_POST['contact']['phone'];
+            $subject = $_POST['contact']['subject'];
+            $message = $_POST['contact']['message'];
+            $mailbody = '<p>Name</p>';
+            $mailbody = '<p> Name : '.$name .'</p>';
+            $mailbody = '<p> Email : '.$email .'</p>';
+            $mailbody = '<p> Pnone : '.$phone .'</p>';
+            $mailbody = '<p> Subject : '.$subject .'</p>';
+            $mailbody = '<p>'.$message .'</p>';
+            $mailSubject = 'Demah Studio contact mail';
+            $tomail =get_theme_config('email'); //'demahstudio@gmail.com';
+            Mail::send('juzaweb::backend.email.layouts.default', [
+                'body' => $mailbody,
+            ], function ($message) {
+                $message->to([$tomail])
+                    ->subject($mailSubject);
+            });
+        }
     }
 
     public function registerWidgets()

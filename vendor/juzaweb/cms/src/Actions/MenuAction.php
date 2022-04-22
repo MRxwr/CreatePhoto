@@ -199,15 +199,15 @@ class MenuAction extends Action
             ]
         );
 
-        HookAction::addAdminMenu(
-            trans('juzaweb::app.email_templates'),
-            'email-template',
-            [
-                'icon' => 'fa fa-envelope',
-                'position' => 50,
-                'parent' => 'setting',
-            ]
-        );
+        // HookAction::addAdminMenu(
+        //     trans('juzaweb::app.email_templates'),
+        //     'email-template',
+        //     [
+        //         'icon' => 'fa fa-envelope',
+        //         'position' => 50,
+        //         'parent' => 'setting',
+        //     ]
+        // );
 
         HookAction::addAdminMenu(
             trans('juzaweb::app.logs'),
