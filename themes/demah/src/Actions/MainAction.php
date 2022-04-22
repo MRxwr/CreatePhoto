@@ -150,7 +150,6 @@ class MainAction extends Action
             });
         }
     }
-
     public function registerWidgets()
     {
         // HookAction::registerWidget('slider_movie', [

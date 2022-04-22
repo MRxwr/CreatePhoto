@@ -6,7 +6,6 @@ use Illuminate\Support\Arr;
 use Juzaweb\Abstracts\Action;
 use Juzaweb\Facades\HookAction;
 use Sbhadra\Payapi\Http\Controllers\PayapiController;
-// use Sbhadra\Payapi\Models\Movie\Movie;
 
 class MainAction extends Action
 {
