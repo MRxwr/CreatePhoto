@@ -188,12 +188,12 @@ class PayapiController extends FrontendController
             //$booking_data = Session::get("booking_data");
             //dd($booking_data);
             }
-        }if(isset($_REQUEST['OrderId'])){
+        }if(isset($_REQUEST['OrderID'])){
             $bsid = base64_decode($_REQUEST['bsid']);
-            $paymentId = $_REQUEST['OrderId'];
-            $orderid = $_REQUEST['OrderId'];
+            $paymentId = $_REQUEST['OrderID'];
+            $orderid = $_REQUEST['OrderID'];
             $booking = Booking::find($bsid);
-            $booking->transaction_id =  $_REQUEST['OrderId'];
+            $booking->transaction_id =  $_REQUEST['OrderID'];
             $booking->status =  'Yes';
             if($booking->save()){
                 $slot = $booking->timeslot->starttime .'To'. $booking->timeslot->endtime;

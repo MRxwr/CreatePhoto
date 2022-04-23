@@ -131,29 +131,47 @@ public function packageThemeField(){
            </div>';
          }
 
+         
+
          echo  $html;
      }, 10, 1);
+     //@do_action('admin.booking.prices',$model)
+     add_action('admin.booking.prices', function($model){
+        $html='';
+        $pieces_price =0.00;
+        if(isset($model->number_of_pieces)){
+            $pieces_price =$model->rate_per_pieces *$model->number_of_pieces;
+         }
+         $html .='<div class="row">
+            <div class="col-md-6 ">Price for pieces</div>
+            <div class="col-md-6 text-right"><strong>'.number_format((float)$pieces_price, 2, '.', '').' KD</strong></div>
+        </div>';
+
+         echo  $html;
+     }, 10, 1);
+     add_action('admin.booking.prices', function($model){
+        $html='';
+        $pictures_type_price =0.00;
+        if(isset($model->pictures_type_price)){
+            $pictures_type_price =$model->pictures_type_price;
+         }
+         $html .='<div class="row">
+            <div class="col-md-6 ">Pictures Type Price</div>
+            <div class="col-md-6 text-right"><strong>'.number_format((float)$pictures_type_price, 2, '.', '').' KD</strong></div>
+        </div>';
+
+         echo  $html;
+     }, 15, 1);
 
      add_action('admin.booking.total', function($model){
         $html='';
         $total =0.00;
-        if(isset($model->booking_price)){
-            $total = $model->booking_price;
-        }
-        if($model->services){
-            $service_price = 0.00;
-          foreach($model->services as $service){
-                 $service_price= $service_price+$service->price;
-                }
-            $total =  $total+$service_price;
+        if(isset($model->total_price)){
+            $total =$model->total_price;
          }
-        if(isset($model->number_of_pieces)){
-            $total =  $total+($model->number_of_pieces*$model->rate_per_pieces);
-         }
-        
          $html .='<div class="row">
-         <div class="col-md-6 ">Total</div>
-         <div class="col-md-6 text-right"><strong>'.number_format((float)$total, 2, '.', '').' KD</strong></div>
+            <div class="col-md-6 ">Total</div>
+            <div class="col-md-6 text-right"><strong>'.number_format((float)$total, 2, '.', '').' KD</strong></div>
         </div>';
 
          echo  $html;
