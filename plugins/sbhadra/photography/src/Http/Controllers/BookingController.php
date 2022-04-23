@@ -78,9 +78,10 @@ class BookingController extends BackendController
     protected function afterSave(Request $request, $model){
         $services = Service::whereIn('id', $request['service_item'])->get();
         $booking_price =$request['package_price'];
-        foreach($services as $service){
-            $booking_price =$booking_price+$service->price;
-        }
+        // foreach($services as $service){
+        //     $booking_price =$booking_price+$service->price;
+        // }
+        $total_price =$request['total_price'];
         $model->booking_price = $booking_price;
         $model->timeslot_id = $request['booking_time'];
         $model->save();

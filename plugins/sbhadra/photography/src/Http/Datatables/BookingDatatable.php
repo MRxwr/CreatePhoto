@@ -29,7 +29,7 @@ class BookingDatatable extends PostTypeDataTable
                 'width' => '5%',
                 'formatter' => function ($value, $row, $index) {
                     if($row->theme_id>0){
-                        return '<img src="'. $row->theme->getThumbnail() .'" class="w-100" style="width:100px" />';
+                        return '<img src="'.upload_url($row->theme->thumbnail ).'" class="w-100" style="width:100px" />';
                     }
                     
                 }
