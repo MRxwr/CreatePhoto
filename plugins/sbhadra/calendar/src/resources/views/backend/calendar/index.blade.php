@@ -159,7 +159,7 @@
        data:{title:title, start:start, end:end, id:id},
        success:function(){
         calendar.fullCalendar('refetchEvents');
-        alert('Event Update');
+        //alert('Event Update');
        }
       })
      },
@@ -177,27 +177,27 @@
        success:function()
        {
         calendar.fullCalendar('refetchEvents');
-        alert("Event Updated");
+        //alert("Event Updated");
        }
       });
      },
  
      eventClick:function(event)
      {
-      if(confirm("Are you sure you want to remove it?"))
-      {
-       var id = event.id;
-       $.ajax({
-        url:"delete.php",
-        type:"POST",
-        data:{id:id},
-        success:function()
-        {
-         calendar.fullCalendar('refetchEvents');
-         alert("Event Removed");
-        }
-       })
-      }
+//       if(confirm("Are you sure you want to remove it?"))
+//       {
+//        var id = event.id;
+//        $.ajax({
+//         url:"delete.php",
+//         type:"POST",
+//         data:{id:id},
+//         success:function()
+//         {
+//          calendar.fullCalendar('refetchEvents');
+//          //alert("Event Removed");
+//         }
+//        })
+//       }
      },
  
     });

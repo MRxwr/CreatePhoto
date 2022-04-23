@@ -82,7 +82,7 @@ class BookingController extends BackendController
         //     $booking_price =$booking_price+$service->price;
         // }
         $total_price =$request['total_price'];
-        $model->booking_price = $booking_price;
+        $model->booking_price = $request['package_price'];
         $model->timeslot_id = $request['booking_time'];
         $model->save();
         $model->services()->sync($request['service_item']);
