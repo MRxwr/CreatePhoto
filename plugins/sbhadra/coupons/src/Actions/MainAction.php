@@ -85,7 +85,7 @@ class MainAction extends Action
                });
                </script>';
            echo  $html;
-        }, 20, 1);
+        }, 35, 1);
     }
 
     public function checkCouponCode(){

@@ -84,8 +84,8 @@
                         <div class="col-xl-4">
                             <input type="hidden" name="package_id" id="package_id" value="{{ $post->id }}">
                             <input type="hidden" name="theme_category" id="theme_category" value="@if($_REQUEST['cat']){{$_REQUEST['cat']}} @endif">
-                            
                             <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="hidden"  />
+                            <input class="form-control" id="booking_total_price" name="total_price" value="" type="hidden"  />
                             <div id="bookingdate"></div>
                         </div>
                         <div class="col-xl-4 pt-5 mt-xl-4">

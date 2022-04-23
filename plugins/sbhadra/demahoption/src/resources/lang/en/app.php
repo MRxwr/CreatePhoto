@@ -17,7 +17,10 @@ return [
     'Select_Time'=>'Select Time',
     'Package_Choosen'=>'Package Choosen',
     'Date'=>'Date',
-    'Available_Time_Slots'=>'Available Time Slots'
+    'Available_Time_Slots'=>'Available Time Slots',
+    'Price_for_Electonic'=>'Price for Electonic',
+    'Price_for_Printed_Electonic'=>'Price for Printed Electonic',
+
 
 
 ];

@@ -201,7 +201,8 @@
   
 <script>
 $(document).ready(function(){
-  calculate_price();
+  set_package_price();
+  //calculate_price();
 	$('#book-btn').click(function(){
 		var searchquery = $("input#bookingid").val();
     var dataString = 'searchquery='+searchquery;
@@ -294,23 +295,35 @@ function formSuccess(){
     calculate_price();
   });
 
-  $("body").on("click", "#number_of_pieces", function(e) {
-    //alert('okey')
 
-    calculate_price();
-  });
+  var set_package_price = function(){
+   var package_price = $("#booking_price").val();
+    localStorage.setItem("total_price",package_price);
+    localStorage.setItem("package_price",package_price);
+    localStorage.setItem("exprice",0.00);
+    localStorage.setItem("noofpieces_price",0.00);
+    localStorage.setItem("picture_type_price",0.00);
+    //alert(package_price);
+    $("#booking_total_price").val(package_price);
+    $('#totalprice').text(package_price+'KD');
+  }
 
   var calculate_price = function(){
-    var exprice = 0;
-    var package_price = $('#booking_price').val()
+    var exprice = 0.00;
+    //var package_price = $('#booking_price').val()
+    var package_price = localStorage.getItem("package_price");
+    var noofpieces_price = localStorage.getItem("noofpieces_price");
+    var picture_type_price = localStorage.getItem("picture_type_price");
     setTimeout( function() 
       {
           $("input:checkbox[name='service_item[]']:checked").each(function(){
             exprice = parseFloat(exprice) + parseFloat($(this).attr('data-exprice'));
           });
-          var itemval=30.500;
-          var total_price =  (parseFloat(package_price) + parseFloat(exprice)); 
+          localStorage.setItem("exprice",exprice);
+          var itemval=35.500;
+          var total_price =  (parseFloat(package_price) + parseFloat(exprice) + parseFloat(noofpieces_price) + parseFloat(picture_type_price)); 
           localStorage.setItem("total_price",total_price);
+          $("#booking_total_price").val(total_price);
           $('#totalprice').text(total_price+'KD');
       }, 2000);
       
@@ -320,3 +333,4 @@ function formSuccess(){
       @do_action('theme.footer')
     </body>
 </html>
+

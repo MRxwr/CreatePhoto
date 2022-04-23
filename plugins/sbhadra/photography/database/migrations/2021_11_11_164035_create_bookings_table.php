@@ -29,6 +29,7 @@ class CreateBookingsTable extends Migration
             $table->string('baby_name', 100)->nullable();
             $table->string('baby_age', 100)->nullable();
             $table->string('instructions')->nullable();
+            $table->decimal('total_price',10,2)->default(0.00);
             $table->tinyInteger('sms')->default(0);
             $table->tinyInteger('refunded')->default(0);
             $table->string('status', 50)->default('yes');

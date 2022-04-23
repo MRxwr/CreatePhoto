@@ -25,8 +25,8 @@ class MainAction extends Action
 	        $mobile = $phone;
             $message=$data['message'];
             $code=$data['code'];
-           $rsp = $this->sendkwtsms($mobile,$message,$code); 
-            //dd($rsp);
+           $this->sendkwtsms($mobile,$message,$code); 
+            
         });  
     }
 

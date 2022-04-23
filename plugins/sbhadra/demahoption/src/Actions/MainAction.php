@@ -66,6 +66,23 @@ public function packageThemeField(){
           if(isset($model->rate_per_pieces)){
             $rate_per_pieces=$model->rate_per_pieces;
           }
+
+          $price_electonic = 10.00;
+          if(isset($model->price_electonic)){
+            $price_electonic=$model->price_electonic;
+          }
+          $price_printed_electonic = 20.00;
+          if(isset($model->price_printed_electonic)){
+            $price_printed_electonic=$model->price_printed_electonic;
+          }
+          $html .='<div class="form-group">
+                <label class="col-form-label" for="is_pieces">'.trans('sbde::app.Price_for_Electonic').'</label>
+                <input type="text" class="form-control" name="price_electonic" id="price_electonic" value="'.$price_electonic.'"  >  
+            </div>';
+            $html .='<div class="form-group">
+                <label class="col-form-label" for="is_pieces">'.trans('sbde::app.Price_for_Printed_Electonic').'</label>
+                <input type="text" class="form-control" name="price_printed_electonic" id="price_printed_electonic" value="'.$price_printed_electonic.'"  >  
+            </div>';
          $html .='<div class="form-group">
                  <input type="hidden" name="is_pieces" id="is_pieces" value="0">
                  <input type="hidden" name="is_theme_category"  id="is_theme_category" value="0" >
@@ -153,9 +170,19 @@ public function updatepackagefield(){
             if(isset($request['is_pieces'])){
                 $model->is_pieces = $request['is_pieces'];
             }
+            if(isset($request['rate_per_pieces'])){
+                $model->rate_per_pieces = $request['rate_per_pieces'];
+            }
+            if(isset($request['price_electonic'])){
+                $model->price_electonic = $request['price_electonic'];
+            }
+            if(isset($request['price_printed_electonic'])){
+                $model->price_printed_electonic = $request['price_printed_electonic'];
+            }
             if(!empty($request['theme_category_ids'])){
                 $model->theme_category_ids = json_encode($request['theme_category_ids']);
             }
+            
             $model->save();
          }
         
@@ -320,9 +347,10 @@ public function addThemeExtraFields(){
         <div class="personal-form row">
             <div class="col-xxl-10 pb-3 fs23">
             <label>'.trans('theme::app.Pictures_type').': </label> 
-               <input type="radio" class="" style="margin: 5px; width: 25px; min-height: 25px;" name="pictures_type" id="pictures_type1" value="Electonic">'.trans('theme::app.Electonic').'
-               <input type="radio" class="" style="margin: 5px; width: 25px; min-height: 25px;"  name="pictures_type" id="pictures_type2" value="Printed + Electonic">'.trans('theme::app.Printed_Electonic').'
-            </div>
+               <input type="radio" data-price="'.$package->price_electonic.'" class="pictype" style="margin: 5px; width: 25px; min-height: 25px;" name="pictures_type" id="pictures_type1" value="Electonic">'.trans('theme::app.Electonic').'@'.$package->price_electonic.'KD
+               <input type="radio" data-price="'.$package->price_printed_electonic.'" class="pictype" style="margin: 5px; width: 25px; min-height: 25px;"  name="pictures_type" id="pictures_type2" value="Printed + Electonic">'.trans('theme::app.Printed_Electonic').'@'.$package->price_printed_electonic.'KD
+               <input type="hidden"  name="pictures_type_price" id="pictures_type_price" value="0.00">
+               </div>
             </div>
          </div>';
         if( $package->is_pieces==1){
@@ -343,6 +371,47 @@ public function addThemeExtraFields(){
                 </div>';
           }
        }, 15, 1);
+       add_action('theme.footer', function() {
+        $html = '<script>
+            $(document).ready(function(){
+                $("#number_of_pieces").keyup(function(){
+                    if(this.value>0){
+                        var package_price = localStorage.getItem("package_price");
+                        // var noofpieces_price = localStorage.getItem("noofpieces_price");
+                        var picture_type_price = localStorage.getItem("picture_type_price");
+                        var exprice = localStorage.getItem("exprice");
+                        var rate_per_pieces =   $("#rate_per_pieces").val();
+                        var  noofpieces_price = this.value*rate_per_pieces;
+                        localStorage.setItem("noofpieces_price",noofpieces_price);
+                        var total_price =  (parseFloat(package_price) + parseFloat(exprice) + parseFloat(noofpieces_price) + parseFloat(picture_type_price)); 
+                        localStorage.setItem("total_price",total_price);
+                        $("#booking_total_price").val(total_price);
+                        $("#totalprice").text(total_price+"KD");
+                       //alert(total_price);
+                    }
+                });
+                $("body").on("change", ".pictype", function(e) {
+                   
+                    var exprice = localStorage.getItem("exprice");
+                    var package_price = localStorage.getItem("package_price");
+                    var noofpieces_price = localStorage.getItem("noofpieces_price");
+                    var picture_type_price = 0.00;
+                        
+                    picture_type_price = $("input[name=pictures_type]:checked").attr("data-price");
+                    $("#pictures_type_price").val(picture_type_price);
+                    
+                    localStorage.setItem("picture_type_price",picture_type_price);
+                    var total_price =  (parseFloat(package_price) + parseFloat(exprice) + parseFloat(noofpieces_price) + parseFloat(picture_type_price)); 
+                    
+                    localStorage.setItem("total_price",total_price); 
+                    $("#booking_total_price").val(total_price);
+                    $("#totalprice").text(total_price+"KD");
+                      
+                  });
+            });
+        </script>';
+       echo  $html;
+    }, 25, 1);
        add_filters('theme.cstudio.themes', function(){
         
         //dd($themes);
@@ -416,6 +485,12 @@ public function addThemeExtraFields(){
             }
             if(isset($payment_data['rate_per_pieces'])){
                 $booking->rate_per_pieces =  $payment_data['rate_per_pieces'] ;
+            }
+            if(isset($payment_data['pictures_type_price'])){
+                $booking->pictures_type_price =  $payment_data['pictures_type_price'] ;
+            }
+            if(isset($payment_data['total_price'])){
+                $booking->total_price =  $payment_data['total_price'] ;
             }
             $booking->save();
         }, 25, 1);
