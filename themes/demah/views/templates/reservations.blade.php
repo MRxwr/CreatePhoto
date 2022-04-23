@@ -41,6 +41,7 @@
                 <form class="personal-information" method="post" action="{{url('payment')}}">
                 {!! csrf_field() !!}
                 <input type="hidden" id="theme_id" name="theme_id" value="" />
+                <input class="form-control" id="booking_total_price" name="total_price" value="" type="hidden"  />
                 <div class="row justify-content-center">
                     <div class="col-xxl-12">
                         <!-- package-item -->
