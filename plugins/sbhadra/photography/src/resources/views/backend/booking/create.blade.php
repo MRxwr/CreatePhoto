@@ -1,5 +1,19 @@
 @extends('juzaweb::layouts.backend')
 @section('content')
+<style>
+    .col-sm-6.col-md-2.theme-select {
+          overflow: hidden;
+          text-align: center;
+          border: 1px solid #63636357;
+          margin: 5px;
+      }
+     #totalprice {
+         color: #fff;
+     }
+     .package-head.bg-success.radius15.mh67.py-1.px-3.mb-4 {
+        float: right;
+    }
+</style>
 <script>
       var startDate='2022-01-01';
       var endDate='2046-12-31';
@@ -19,7 +33,7 @@
               <div class="form-group row">
                     <label for="" class="col-sm-5 col-md-4 col-form-label">Select Package:</label>
                             <div class="col-sm-7 col-md-8">
-                                <select class="form-control form-control-lg" name="id" onchange="packageRedirect(this.value);">
+                                <select class="form-control form-control-lg" name="id" onchange="packageRedirect(this.value);" required>
                                     @foreach($packages as $package)
                                     <option value="{{$package->id}}" @if($id==$package->id) selected="selected" @endif> {{$package->title}}</option>
                                     @endforeach
@@ -30,7 +44,7 @@
             <div class="col-md-7">
             <div class="form-group"> <!-- Date input -->
                 <input type="hidden" name="package_id" id="package_id" value="{{ $post->id }}">
-                <input class="form-control" id="date" name="date" value="@if(isset($_REQUEST['date'])) {{$_REQUEST['date']}} @endif " placeholder="MM/DD/YYY" type="text"/>
+                <input class="form-control" id="date" name="date" value="@if(isset($_REQUEST['date'])) {{$_REQUEST['date']}} @endif" placeholder="MM/DD/YYY" type="text" required/>
                 <div id="bookingdate"></div>
               </div>
               <div class="btn-group float-right"><button type="submit" class="btn btn-success px-5"><i class="fa fa-save"></i> Next</button> </div>
@@ -42,25 +56,27 @@
    
 
     <div @if(isset($_REQUEST['date']) && ($_REQUEST['date']!='') ) style="display:block" @else style="display:none" @endif>
-
     @component('juzaweb::components.form_resource', [
         'model' => $model,
     ])
     <div class="row">
             <div class="col-md-8">
+            @do_action('admin.cstudio.themes')
+           
                 <div class="row">
                 <input type="hidden" name="title" id="title" value="CPBK{{time()}}">
                 <input type="hidden" name="slug" id="slug" value="CPBK{{time()}}">
+                <input type="hidden" name="total_price" id="booking_total_price" value="">
                     <div class="col-12">
                     <h2 class="shoots-Head2">Personal Information</h2>
                     </div>
                     <div class="col-md-8 col-sm-10">
-                    
+                    @if(isset($_REQUEST['date']) && ($_REQUEST['date']!='') )
                         @do_action('admin.reservation.data')
-                        
                         @do_action('admin.reservation.time')
-                    
+                        @do_action('admin.reservation.exfields')
                         @do_action('admin.reservation.services')
+                    @endif
 
                         <div class="form-group row">
                         <label for="" class="col-sm-5 col-md-4 col-form-label">Customer Name:</label>
@@ -82,7 +98,7 @@
                             <input type="text" class="form-control form-control-lg" id="mobile_number" name="mobile_number" required>
                         </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row" style="display:none">
                         <label for="" class="col-sm-5 col-md-4 col-form-label">Baby Name:</label>
                         <div class="col-sm-7 col-md-8">
                             <input type="text" class="form-control form-control-lg" id="baby_name" name="baby_name">
@@ -110,8 +126,25 @@
 
             </div>
 
-            <div class="col-md-4">
-            
+            <div class="col-md-4 text-right">
+                <div class="col-sm-12 pe-xl-5 pt-4 text-right">
+
+                    <div style="width:220px;"  class="package-head bg-success radius15 mh67 py-1 px-3 mb-4 "> 
+                        <h4 id="totalprice" class="fs23" style="padding: 20px;"></h4>
+                    </div>
+
+                    <div class="package-head  radius15 mh67 py-1 px-3 mb-4 d-inline-flex">
+                        <h4 class="fs23 text-danger">
+                            @lang('sbph::app.Deposit') <span class="text-600">35.500 KD</span> @lang('sbph::app.deposit_note')  
+                        </h4>
+                    </div>
+
+                    <div class="package-head  radius15 mh67 py-1 px-3 mb-4 d-inline-flex">
+                        <h4 class="fs23 text-danger">
+                                @lang('sbph::app.transaction_fees')  
+                        </h4>
+                    </div>
+            </div>
                
             </div>
             </div>
@@ -134,7 +167,7 @@
  
         <script>
         var packageRedirect = function(id){
-            var durl = "{{url()->current()}}?id="+id+"&date=''";
+            var durl = "{{url()->current()}}?id="+id;
             window.location = durl;
         }
         $(document).ready(function(){
@@ -182,6 +215,47 @@
             });
             })
         </script>
-    
+        <script>
+         $(document).ready(function(){
+            set_package_price();
+          });
+$("body").on("click", ".xprice", function(e) {
+    //alert('okey')
+    calculate_price();
+  });
+ var set_package_price = function(){
+   var package_price = $("#package_price").val();
+    localStorage.setItem("total_price",package_price);
+    localStorage.setItem("package_price",package_price);
+    localStorage.setItem("exprice",0.00);
+    localStorage.setItem("noofpieces_price",0.00);
+    localStorage.setItem("picture_type_price",0.00);
+    //alert(package_price);
+    $("#booking_total_price").val(package_price);
+    $('#totalprice').text(package_price+'KD');
+  }
+
+  var calculate_price = function(){
+    var exprice = 0.00;
+    //var package_price = $('#booking_price').val()
+    var package_price = localStorage.getItem("package_price");
+    var noofpieces_price = localStorage.getItem("noofpieces_price");
+    var picture_type_price = localStorage.getItem("picture_type_price");
+    setTimeout( function() 
+      {
+          $("input:checkbox[name='service_item[]']:checked").each(function(){
+            exprice = parseFloat(exprice) + parseFloat($(this).attr('data-exprice'));
+          });
+          localStorage.setItem("exprice",exprice);
+          var itemval=35.500;
+          var total_price =  (parseFloat(package_price) + parseFloat(exprice) + parseFloat(noofpieces_price) + parseFloat(picture_type_price)); 
+          localStorage.setItem("total_price",total_price);
+          $("#booking_total_price").val(total_price);
+          $('#totalprice').text(total_price+'KD');
+      }, 2000);
+      
+  }
+        </script>
+     @do_action('admin.booking.script')
 
 @endsection

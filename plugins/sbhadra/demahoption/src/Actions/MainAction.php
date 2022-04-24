@@ -177,6 +177,135 @@ public function packageThemeField(){
          echo  $html;
      }, 10, 1);
 
+     $this->addAction('admin.reservation.exfields', function() {
+        $package = Package::find($_REQUEST['id']);
+        //dd($package);
+        echo '<div class="form-group row">
+            <label class="col-sm-5 col-md-4">'.trans('sbph::app.Pictures_type').': </label> 
+            <div class="col-sm-7 col-md-8"> 
+               <input type="radio" data-price="'.$package->price_electonic.'" class="pictype" style="margin: 5px; width: 25px; min-height: 25px;" name="pictures_type" id="pictures_type1" value="Electonic">'.trans('sbph::app.Electonic').'@'.$package->price_electonic.'KD
+               <input type="radio" data-price="'.$package->price_printed_electonic.'" class="pictype" style="margin: 5px; width: 25px; min-height: 25px;"  name="pictures_type" id="pictures_type2" value="Printed + Electonic">'.trans('sbph::app.Printed_Electonic').'@'.$package->price_printed_electonic.'KD
+               <input type="hidden"  name="pictures_type_price" id="pictures_type_price" value="0.00">
+               </div>
+            </div>
+         ';
+        if( $package->is_pieces==1){
+           echo '<div class="form-group row">
+                    <label class="col-sm-5 col-md-4">'.trans('sbph::app.Number_of_Pieces').':</label> 
+                        <div class="col-sm-7 col-md-8"> 
+                           <input type="number" class="form-control" name="number_of_pieces" id="number_of_pieces" value="">
+                           <input type="hidden"  name="rate_per_pieces" id="rate_per_pieces" value="'.$package->rate_per_pieces.'">
+                        </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-5 col-md-4"> </label> 
+                    <div class="col-sm-7 col-md-8"> 
+                        <div class="package-head  radius15 mh67 py-1 px-3 mb-4 d-inline-flex align-items-center">
+                            <h4 class="fs23 text-danger">Each piece will cost  <span class="text-600">'.$package->rate_per_pieces.' KD</span></h4>
+                        </div>
+                    </div>
+                </div>';
+          }
+       }, 15, 1);
+       add_action('admin.booking.script', function() {
+        $html = '<script>
+            $(document).ready(function(){
+                $("#number_of_pieces").keyup(function(){
+                    if(this.value>0){
+                        var package_price = localStorage.getItem("package_price");
+                        // var noofpieces_price = localStorage.getItem("noofpieces_price");
+                        var picture_type_price = localStorage.getItem("picture_type_price");
+                        var exprice = localStorage.getItem("exprice");
+                        var rate_per_pieces =   $("#rate_per_pieces").val();
+                        var  noofpieces_price = this.value*rate_per_pieces;
+                        localStorage.setItem("noofpieces_price",noofpieces_price);
+                        var total_price =  (parseFloat(package_price) + parseFloat(exprice) + parseFloat(noofpieces_price) + parseFloat(picture_type_price)); 
+                        localStorage.setItem("total_price",total_price);
+                        $("#booking_total_price").val(total_price);
+                        $("#totalprice").text(total_price+"KD");
+                       //alert(total_price);
+                    }
+                });
+                $("body").on("change", ".pictype", function(e) {
+                   
+                    var exprice = localStorage.getItem("exprice");
+                    var package_price = localStorage.getItem("package_price");
+                    var noofpieces_price = localStorage.getItem("noofpieces_price");
+                    var picture_type_price = 0.00;
+                        
+                    picture_type_price = $("input[name=pictures_type]:checked").attr("data-price");
+                    $("#pictures_type_price").val(picture_type_price);
+                    
+                    localStorage.setItem("picture_type_price",picture_type_price);
+                    var total_price =  (parseFloat(package_price) + parseFloat(exprice) + parseFloat(noofpieces_price) + parseFloat(picture_type_price)); 
+                    
+                    localStorage.setItem("total_price",total_price); 
+                    $("#booking_total_price").val(total_price);
+                    $("#totalprice").text(total_price+"KD");
+                      
+                  });
+            });
+        </script>';
+       echo  $html;
+    }, 25, 1);
+
+    add_action('admin.cstudio.themes', function(){
+        
+        //dd($themes);
+        if(isset($_REQUEST['category']) && $_REQUEST['category']!='all'){
+                // $taxonomy = Taxonomy::where('slug', $_REQUEST['category'])->firstOrFail();
+                // $postType = $taxonomy->getPostType('model');
+                // $themes = $postType::paginate();
+                $themes = DB::table('package_themes')
+                ->join('term_taxonomies', 'term_taxonomies.term_id', '=', 'package_themes.id')
+                ->join('taxonomies', 'taxonomies.id', '=', 'term_taxonomies.taxonomy_id')
+                ->where('taxonomies.slug', $_REQUEST['category'])
+                ->select('package_themes.*')
+                ->get();
+                //dd($themes);
+        } else{
+            if(isset($_REQUEST['id'])){
+                $pack=Package::find($_REQUEST['id']);
+                if($pack->theme_category_ids!=''){
+                    $slugs=json_decode($pack->theme_category_ids);
+                    $themes = DB::table('package_themes')
+                    ->join('term_taxonomies', 'term_taxonomies.term_id', '=', 'package_themes.id')
+                    ->join('taxonomies', 'taxonomies.id', '=', 'term_taxonomies.taxonomy_id')
+                    ->whereIn('taxonomies.slug', $slugs)
+                    ->select('package_themes.*')
+                    ->get();
+
+                }else{
+                    $themes =Theme::all();
+                }
+                
+            }else{
+                $themes =Theme::all();
+            }
+        }    
+        $html ='';
+        if(!empty($themes)){
+                $html .='
+                <div class="theme_select_slider row">';
+                    foreach($themes as $theme){
+                        $theme = Theme::find($theme->id);
+                        $html .='<div class="col-sm-6 col-md-2 theme-select" >
+                            <label class="container_radio themeCheck">
+                                <label for="slect'.$theme->id.'" class="d-inline-block">'.$theme->title.'</label>
+                                <input type="radio" id="slect'.$theme->id.'" value="'.$theme->id.'" name="theme_id">
+                                <span class="checkmark"></span>
+                                <a href="'.$theme->getThumbnail().'" class="themeCheck_img image-link border">
+                                    <img src="'.$theme->getThumbnail().'" alt="img" class="" style="height:100px">
+                                </a>
+                            </label>
+                        </div>';
+                 }
+                $html .='</div>';
+                
+        }
+        echo  $html;
+     });
+
   }
 public function updatepackagefield(){
      add_action('plugin.package.update', function($model){ 
@@ -430,6 +559,7 @@ public function addThemeExtraFields(){
         </script>';
        echo  $html;
     }, 25, 1);
+
        add_filters('theme.cstudio.themes', function(){
         
         //dd($themes);
@@ -494,6 +624,7 @@ public function addThemeExtraFields(){
 
     public function doProcessPackageThemes(){
         add_action('theme.booking.extra', function($payment_data) {
+           // dd($payment_data);
             $booking = Booking::find($payment_data['booking_id']);
             if(isset($payment_data['pictures_type'])){
                 $booking->pictures_type =  $payment_data['pictures_type'] ;

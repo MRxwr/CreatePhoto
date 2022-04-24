@@ -10,6 +10,7 @@ use Sbhadra\Photography\Models\Service;
 use Sbhadra\Photography\Models\Booking;
 use Sbhadra\Photography\Models\Timeslot;
 use Sbhadra\Photography\Http\Controllers\PaymentController;
+use Sbhadra\Calendar\Models\Calendar;
 use Illuminate\Support\Facades\DB;
 class MainAction extends Action
 {
@@ -146,7 +147,6 @@ class MainAction extends Action
         }
     }
     public function addReservationHooksAdmin(){
-
             if(isset($_REQUEST['id'])){
               $package = Package::find($_REQUEST['id']);
                $this->addAction('admin.reservation.data', function() {
@@ -154,13 +154,13 @@ class MainAction extends Action
                 echo '<input type="hidden" id="package_id" name="package_id" value="'. $package->id.'" />
                         <input type="hidden" id="package_price" name="package_price" value="'. $package->price.'" />
                         <div class="form-group row">
-                            <label for="" class="col-sm-5 col-md-4 col-form-label">'.trans('theme::app.Package_Choosen').':</label>
+                            <label for="" class="col-sm-5 col-md-4 col-form-label">Package Choosen:</label>
                             <div class="col-sm-7 col-md-8">
                                 <input type="text" readonly class="form-control-plaintext" id="" value="'. $package->title.'">
                             </div>
                         </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-5 col-md-4 col-form-label">'.trans('theme::app.Date').':</label>
+                        <label for="" class="col-sm-5 col-md-4 col-form-label">Date:</label>
                         <div class="col-sm-7 col-md-8">
                         <input type="text" readonly class="form-control-plaintext" name="booking_date" id="booking_date" value="'.$_REQUEST['date'].'">
                     </div>
@@ -169,7 +169,7 @@ class MainAction extends Action
 
            $this->addAction('admin.reservation.time', function() {
             $package = Package::find($_REQUEST['id']);
-               echo $this->getPackageTimeslots($package);
+               echo $this->getAdminPackageTimeslots($package);
            }, 10, 1);
 
            $this->addAction('admin.reservation.services', function() {
@@ -200,7 +200,50 @@ class MainAction extends Action
 
     static function getPackageTimeslots($package){
         $html ='';
+        $disable_slots=array();
         if(isset($_REQUEST['date'])){
+            $date = new \DateTime($_REQUEST['date']);
+            $bdate = $date->format('Y-m-d');
+            $calendar = Calendar::where('package_id',$package->id)->whereDate('from_date', '<=', $date)->whereDate('to_date', '>=', $date)->first();
+            if($calendar){
+                $disable_slots = json_decode($calendar->slots);
+            }
+            $booked_slot =Booking::where('package_id',$package->id)->where('booking_date',$_REQUEST['date'])->where('status','yes')->pluck('timeslot_id')->toArray();
+        }else{
+            $booked_slot =Booking::where('package_id',$package->id)->where('status','yes')->pluck('timeslot_id')->toArray();
+        }
+        //dd($disable_slots);
+        if($package->slots){
+            $html .='<div class="col-xxl-8 pe-xl-5 pt-4"><div class="personal-form row">';
+            $html .=' <div class="col-xxl-10 pb-3"><label for="" >'.trans('theme::app.Preffered_Time').':</label>';
+            //$html .='<div class="col-sm-7 col-md-8">';
+            $html .='<select class="form-control border" id="booking_time" name="booking_time"  required>';
+             foreach($package->slots as $slot){
+                if(!in_array($slot->id,$disable_slots)){
+                    if(!in_array($slot->id,$booked_slot)){
+                        $html .='<option value="'.$slot->id.'">'.$slot->starttime.' - '.$slot->endtime.'</option>';
+                    }
+                 }
+               }
+            $html .='</select>';
+            $html .='</div>';
+            $html .='</div>';
+            $html .='</div>';
+        }
+        return $html;
+    }
+
+
+    static function getAdminPackageTimeslots($package){
+        $html ='';
+        $disable_slots=array();
+        if(isset($_REQUEST['date'])){
+            $date = new \DateTime($_REQUEST['date']);
+            $bdate = $date->format('Y-m-d');
+            $calendar = Calendar::where('package_id',$package->id)->whereDate('from_date', '<=', $date)->whereDate('to_date', '>=', $date)->first();
+            if($calendar){
+                $disable_slots = json_decode($calendar->slots);
+            }
             $booked_slot =Booking::where('package_id',$package->id)->where('booking_date',$_REQUEST['date'])->where('status','yes')->pluck('timeslot_id')->toArray();
         }else{
             $booked_slot =Booking::where('package_id',$package->id)->where('status','yes')->pluck('timeslot_id')->toArray();
@@ -208,20 +251,21 @@ class MainAction extends Action
         
         //dd($booked_slot);
         if($package->slots){
-            $html .='<div class="col-xxl-8 pe-xl-5 pt-4"><div class="personal-form row">';
-            $html .=' <div class="col-xxl-10 pb-3"><label for="" >'.trans('theme::app.Preffered_Time').':</label>';
-            //$html .='<div class="col-sm-7 col-md-8">';
+            $html .='<div class="form-group row">';
+            $html .='<label class="col-sm-5 col-md-4" for="" >'.trans('sbph::app.Preffered_Time').':</label>';
+            $html .='<div class="col-sm-7 col-md-8">';
             $html .='<select class="form-control border" id="booking_time" name="booking_time"  required>';
-            $html .='<option value="">'.trans('theme::app.Select_Time').'</option>';
              foreach($package->slots as $slot){
-                if(!in_array($slot->id,$booked_slot)){
-                    $html .='<option value="'.$slot->id.'">'.$slot->starttime.' - '.$slot->endtime.'</option>';
-                }
+                if(!in_array($slot->id,$disable_slots)){
+                    if(!in_array($slot->id,$booked_slot)){
+                        $html .='<option value="'.$slot->id.'">'.$slot->starttime.' - '.$slot->endtime.'</option>';
+                    }
+                 }
                }
             $html .='</select>';
             $html .='</div>';
             $html .='</div>';
-            $html .='</div>';
+            
         }
         return $html;
     }
@@ -261,11 +305,11 @@ static function getPackageCstudioTimeslots($package){
         $html ='';
         if($package->services){
             $html .='<div class="form-group row">';
-            $html .='<label for="" class="col-sm-5 col-md-4 col-form-label">Preffered Time:</label>';
+            $html .='<label for="" class="col-sm-5 col-md-4 col-form-label">Extra Service</label>';
             $html .='<div class="col-sm-7 col-md-8">';
              foreach($package->services as $service){
                $html .='<div class="form-check">
-               <input class="form-check-input" type="checkbox" value="'.$service->id.'" name="service_item[]">
+               <input class="form-check-input xprice" type="checkbox" data-exprice="'.$service->price.'" value="'.$service->id.'" name="service_item[]">
                <label class="form-check-label" for="defaultCheck1">
                  <span class="form-control-plaintext">'.$service->title.' - '.$service->price.' KD.</span>
                </label>

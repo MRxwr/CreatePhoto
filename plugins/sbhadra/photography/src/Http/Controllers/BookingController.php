@@ -81,11 +81,30 @@ class BookingController extends BackendController
         // foreach($services as $service){
         //     $booking_price =$booking_price+$service->price;
         // }
-        $total_price =$request['total_price'];
+        $model->total_price =$request['total_price'];
         $model->booking_price = $request['package_price'];
         $model->timeslot_id = $request['booking_time'];
+        if(isset($request['theme_id'])){
+            $model->theme_id =  $request['theme_id'] ;
+        }
+        if(isset($request['pictures_type'])){
+            $model->pictures_type =  $request['pictures_type'] ;
+        }
+        if(isset($request['number_of_pieces'])){
+            $model->number_of_pieces =  $request['number_of_pieces'] ;
+        }
+        if(isset($request['rate_per_pieces'])){
+            $model->rate_per_pieces =  $request['rate_per_pieces'] ;
+        }
+        if(isset($request['pictures_type_price'])){
+            $model->pictures_type_price =  $request['pictures_type_price'] ;
+        }
+       
         $model->save();
-        $model->services()->sync($request['service_item']);
+        if(!empty($request['service_item'])){
+          $model->services()->sync($request['service_item']);
+        }
+        
        }
     
     public function getBookingCancel(Request $request,$id){
@@ -105,11 +124,12 @@ class BookingController extends BackendController
            do_action('booking.sms.index',$data);
         } 
         //dd($model);
-        //return redirect()->back()->with('success', 'This booking successfully cancled');  
-        return $this->success([
-            'message' => 'This booking successfully cancled',
-            'redirect' => route('bookings.index'),
-        ]); 
+        return redirect()->back()->with('success', 'This booking successfully cancled');  
+        // return $this->success([
+        //     'message' => 'This booking successfully cancled',
+        //     'redirect' => route('bookings.index'),
+        // ]); 
+        exit;
     }
    public function getBookingComplete(Request $request,$id){
         $model = Booking::firstOrNew(['id' => $id]);
@@ -118,11 +138,8 @@ class BookingController extends BackendController
             do_action('booking.complete.index',$model);
         }
         //dd($model);
-       // return redirect()->back()->with('success', 'This booking successfully completed');  
-        return $this->success([
-            'message' => 'This booking successfully completed',
-            'redirect' => route('bookings.index'),
-        ]); 
+        return redirect()->back()->with('success', 'This booking successfully completed');  
+        
     }
     
     public function getBookingCompleted(Request $request,$id){
@@ -131,11 +148,11 @@ class BookingController extends BackendController
         if($model->save()){
             do_action('booking.complete.index',$model);
         }        
-        //return redirect()->back()->with('success', 'This booking successfully completed');  
-        return $this->success([
-            'message' => 'This booking successfully completed',
-            'redirect' => route('bookings.index'),
-        ]); 
+        return redirect()->back()->with('success', 'This booking successfully completed');  
+        // return $this->success([
+        //     'message' => 'This booking successfully completed',
+        //     'redirect' => route('bookings.index'),
+        // ]); 
 
     }
 
@@ -145,11 +162,11 @@ class BookingController extends BackendController
         if($model->save()){
             do_action('booking.refund.index',$model);
         }       
-        //return redirect()->back()->with('success', 'This booking successfully refunded');
-        return $this->success([
-            'message' => 'This booking successfully refunded',
-            'redirect' => route('bookings.index'),
-        ]); 
+        return redirect()->back()->with('success', 'This booking successfully refunded');
+        // return $this->success([
+        //     'message' => 'This booking successfully refunded',
+        //     'redirect' => route('bookings.index'),
+        // ]); 
 
     }
     public function getBookingSendSMS(Request $request,$id){
@@ -168,11 +185,11 @@ class BookingController extends BackendController
             );
            do_action('booking.sms.index',$data);
         }           
-        //return redirect()->back()->with('success', 'This booking successfully Sended'); 
-        return $this->success([
-            'message' => 'This booking successfully Sended',
-            'redirect' => route('bookings.index'),
-        ]);
+        return redirect()->back()->with('success', 'This booking successfully Sended'); 
+        // return $this->success([
+        //     'message' => 'This booking successfully Sended',
+        //     'redirect' => route('bookings.index'),
+        // ]);
     }
 }
 

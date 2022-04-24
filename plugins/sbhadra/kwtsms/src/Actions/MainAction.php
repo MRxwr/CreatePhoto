@@ -25,18 +25,19 @@ class MainAction extends Action
 	        $mobile = $phone;
             $message=$data['message'];
             $code=$data['code'];
-           $this->sendkwtsms($mobile,$message,$code); 
-            
+            $rsp = $this->sendkwtsms($mobile,$message,$code,0); 
+            //dd($rsp);
         });  
     }
 
-    static function sendkwtsms($mobile,$message,$code){
-        $setting=Setting::where('field_key','api_key')->first();
-        $username = $setting->sms_username;
-        $passwaord = $setting->sms_password;
-        $senderid = $setting->sms_sender;
+    static function sendkwtsms($mobile,$message,$code,$flag=0){
+        $sms_username = Setting::where('field_key','sms_username')->first()->field_value;
+        $sms_password = Setting::where('field_key','sms_password')->first()->field_value;
+        $sms_sender = Setting::where('field_key','sms_sender')->first()->field_value;
 		$message = str_replace(' ','+',$message);
-		    $url = 'http://www.kwtsms.com/API/send/?username='.$username.'&password='.$passwaord.'&sender='.$senderid.'&mobile='.$code.$mobile.'&lang=1&message='.$message;
+		
+		if($flag==0){
+		    $url = 'http://www.kwtsms.com/API/send/?username='.$sms_username.'&password='.$sms_password.'&sender='.$sms_sender.'&mobile='.$code.$mobile.'&lang=1&message='.$message;
 		       $curl = curl_init();
                 curl_setopt_array($curl, array(
                   CURLOPT_URL => $url,
@@ -52,6 +53,8 @@ class MainAction extends Action
 				}else{
 					return $response;	
 				}
+		    $flag=1;
+		}	
 	}
 
 }

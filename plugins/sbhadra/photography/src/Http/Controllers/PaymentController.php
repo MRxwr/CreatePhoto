@@ -21,11 +21,13 @@ class PaymentController extends FrontendController
         $payment_data['package_name'] = $package->title;
         $package_price=$package->price;
         $time = Timeslot::find($request['booking_time']);
-        $services = Service::whereIn('id', $request['service_item'])->get();
-        $booking_price =$package_price;
-        foreach($services as $service){
-            $booking_price =$booking_price+$service->price;
+        if(!empty($request['service_item'])){
+            $services = Service::whereIn('id', $request['service_item'])->get();
         }
+        $booking_price =$package_price;
+        // foreach($services as $service){
+        //     $booking_price =$booking_price+$service->price;
+        // }
         $payment_data['booking_price'] =$booking_price;
         $payment_data['pay_amount'] =35.500;
         $booking = new Booking;
@@ -42,7 +44,9 @@ class PaymentController extends FrontendController
         $booking->instructions = $request['instructions'];
         $booking->status = 'No';
         if($booking->save()){
-            $booking->services()->sync($request['service_item']);
+            if(!empty($request['service_item'])){
+             $booking->services()->sync($request['service_item']);
+            }
             $payment_data['booking_id'] = $booking->id;
               Session::put('booking_data', $booking);
               session(['booking_data' => $booking]);

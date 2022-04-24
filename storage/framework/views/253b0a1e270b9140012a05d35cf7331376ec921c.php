@@ -2,7 +2,7 @@
                                                                    $dslot = '';
                                                                    if($date->slots=='all') {
                                                                         $dslot = 'All';   
-                                                                   }else{
+                                                                   }elseif($date->slots!=''){
                                                                            $st=array();
                                                                            $jsd=json_decode($date->slots);
                                                                            foreach($model->slots as $slot) {
@@ -15,11 +15,9 @@
                                                                  ?> <?php echo e($dslot); ?></td><td><a href="<?php echo e(route('admin.calendar.delete',['id'=>$date->id])); ?>" class="btn btn-danger"><i class=" fa fa-trash"></i></a></td></tr> <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></tbody><table> <?php endif; ?></div></div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js" integrity="sha512-o0rWIsZigOfRAgBxl4puyd0t6YKzeAw9em/29Ag7lhCQfaaua/mDwnpE2PVzwqJ08N7/wqrgdjc2E0mwdSY2Tg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script><script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/3.2.2/js/dataTables.fixedColumns.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-2.2.4/dt-1.10.13/fc-3.2.2/fh-3.1.2/r-2.1.0/sc-1.4.2/datatables.min.css" /><script>$(document).ready(function(){var calendar=$('#calendar').fullCalendar({editable:true,header:{left:'prev,next today',center:'title',right:'month,agendaWeek,agendaDay'},events:'<?php echo e(route("admin.booking-json")); ?>',selectable:true,selectHelper:true,select:function(start,end,allDay)
 {var start=$.fullCalendar.formatDate(start,"Y-MM-DD");$('#start_date').val(start)
 var end=$.fullCalendar.formatDate(end,"Y-MM-DD");$('#end_date').val(end)},editable:true,eventResize:function(event)
-{var start=$.fullCalendar.formatDate(event.start,"Y-MM-DD HH:mm:ss");var end=$.fullCalendar.formatDate(event.end,"Y-MM-DD HH:mm:ss");var title=event.title;var id=event.id;$.ajax({url:"update.php",type:"POST",data:{title:title,start:start,end:end,id:id},success:function(){calendar.fullCalendar('refetchEvents');alert('Event Update');}})},eventDrop:function(event)
+{var start=$.fullCalendar.formatDate(event.start,"Y-MM-DD HH:mm:ss");var end=$.fullCalendar.formatDate(event.end,"Y-MM-DD HH:mm:ss");var title=event.title;var id=event.id;$.ajax({url:"update.php",type:"POST",data:{title:title,start:start,end:end,id:id},success:function(){calendar.fullCalendar('refetchEvents');}})},eventDrop:function(event)
 {var start=$.fullCalendar.formatDate(event.start,"Y-MM-DD HH:mm:ss");var end=$.fullCalendar.formatDate(event.end,"Y-MM-DD HH:mm:ss");var title=event.title;var id=event.id;$.ajax({url:"update.php",type:"POST",data:{title:title,start:start,end:end,id:id},success:function()
-{calendar.fullCalendar('refetchEvents');alert("Event Updated");}});},eventClick:function(event)
-{if(confirm("Are you sure you want to remove it?"))
-{var id=event.id;$.ajax({url:"delete.php",type:"POST",data:{id:id},success:function()
-{calendar.fullCalendar('refetchEvents');alert("Event Removed");}})}},});});function gotopage(selval){var value=selval.options[selval.selectedIndex].value;var route='<?php echo e(route('admin.booking-calendar')); ?>';if(value){route=route+'?package='+value;}
+{calendar.fullCalendar('refetchEvents');}});},eventClick:function(event)
+{},});});function gotopage(selval){var value=selval.options[selval.selectedIndex].value;var route='<?php echo e(route('admin.booking-calendar')); ?>';if(value){route=route+'?package='+value;}
 window.location.href=route;}
 $(document).ready(function(){var table=$('#calendar_table').DataTable({});});</script><?php $__env->stopSection(); ?> <?php echo $__env->make('juzaweb::layouts.backend', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\github\CreatePhoto\plugins/sbhadra/calendar/src/resources/views/backend/calendar/index.blade.php ENDPATH**/ ?>
