@@ -85,11 +85,42 @@ class BookingDatatable extends PostTypeDataTable
                 'sortable' => false,
                 'formatter' => function ($value, $row, $index) {
                     $view_details = route('admin.bookings.view', [$row->id]);
-                    $booking_cancel = route('admin.bookings.cancel', [$row->id]);
-                    $booking_refund = route('admin.bookings.refund', [$row->id]);
-                    $booking_sendsms = route('admin.bookings.sendsms', [$row->id]);
-                    $booking_complete = route('admin.bookings.complete', [$row->id]);
-                    
+                    if($row->status=='Yes' ||$row->status=='yes' ){
+                    $booking_cancel = '<form action="'.route('admin.bookings.cancel').'" method="post" class="form-ajax" novalidate="novalidate">
+                    <input type="hidden" name="id" value="'.$row->id.'">
+                    '.csrf_field().'
+                    <button type="submit" class="dropdown-item"> <i class=" fa fa-times"></i> Cancel</button>
+                    </form>';
+                    }else{
+                        $booking_cancel = '';
+                    }
+                    if($row->status=='cancel' && $row->transaction_id!=''){
+                      $booking_refund = '<form action="'.route('admin.bookings.refund').'" method="post" class="form-ajax" novalidate="novalidate">
+                        <input type="hidden" name="id" value="'.$row->id.'">
+                        '.csrf_field().'
+                        <button type="submit" class="dropdown-item"> <i class=" fa fa-undo"></i> Refund</button>
+                        </form>';
+                     }else{
+                        $booking_refund = '';
+                     }
+                     if($row->status=='Yes' ||$row->status=='yes' ){
+                        $booking_sendsms = '<form action="'.route('admin.bookings.sendsms').'" method="post" class="form-ajax" novalidate="novalidate">
+                        <input type="hidden" name="id" value="'.$row->id.'">
+                        '.csrf_field().'
+                        <button type="submit" class="dropdown-item"> <i class=" fa fa-mobile"></i> Send Sms</button>
+                        </form>';
+                     }else{
+                        $booking_sendsms = '';
+                     }
+                     if($row->status=='Yes' ||$row->status=='yes' ){
+                    $booking_complete = '<form action="'.route('admin.bookings.complete').'" method="post" class="form-ajax" novalidate="novalidate">
+                        <input type="hidden" name="id" value="'.$row->id.'">
+                        '.csrf_field().'
+                        <button type="submit" class="dropdown-item"> <i class=" fa fa-mobile"></i> Completed</button>
+                        </form>';
+                    }else{
+                        $booking_complete = '';
+                     }
                     return '<div class="dropdown d-inline-block mb-2 mr-2">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         Options
@@ -97,10 +128,10 @@ class BookingDatatable extends PostTypeDataTable
                             <div class="dropdown-menu" role="menu" style="">
                             <a href="'.$view_details.'" class="dropdown-item"> <i class=" fa fa-eye"></i> View</a>
                             <a href="'.$view_details.'" class="dropdown-item"> <i class=" fa fa-edit"></i> Edit</a>
-                            <a href="'.$booking_cancel.'" class="dropdown-item"> <i class=" fa fa-times"></i> Cancel</a>
-                            <a href="'.$booking_refund.'" class="dropdown-item"> <i class=" fa fa-undo"></i> Refund</a>
-                            <a href="'.$booking_sendsms.'" class="dropdown-item"> <i class=" fa fa-mobile"></i> Send Sms</a>
-                            <a href="'.$booking_complete.'" class="dropdown-item"> <i class=" fa fa-mobile"></i> Completed</a>
+                            '.$booking_cancel.'
+                            '.$booking_sendsms.'
+                            '.$booking_refund.'
+                            '.$booking_complete.'
                             </div>
                         </div>
                     </div>';

@@ -16,11 +16,11 @@ Route::Resource('services', 'ServiceController');
 Route::Resource('timeslots', 'TimeslotController');
 Route::get('/setting/booking', 'SettingsController@index')->name('admin.setting.get');
 Route::post('/setting/booking', 'SettingsController@save')->name('admin.setting.post');
-Route::get('/booking/details/{id}', 'BookingController@getBookingDetails')->name('admin.bookings.view');
-Route::get('/booking/add-new/{id}', 'BookingController@addNewBooking')->name('admin.bookings.addnew');
-Route::get('/booking/cancel/{id}', 'BookingController@getBookingCancel')->name('admin.bookings.cancel');
-Route::get('/booking/refund/{id}', 'BookingController@getBookingRefund')->name('admin.bookings.refund');
-Route::get('/booking/complete/{id}', 'BookingController@getBookingComplete')->name('admin.bookings.complete');
-Route::get('/booking/send-sms/{id}', 'BookingController@getBookingSendSMS')->name('admin.bookings.sendsms');
+Route::get('/bookings/details/{id}', 'BookingController@getBookingDetails')->name('admin.bookings.view');
+Route::get('/bookings/add-new/{id}', 'BookingController@addNewBooking')->name('admin.bookings.addnew');
+Route::post('/bookings/cancel', 'BookingController@getBookingCancel')->name('admin.bookings.cancel');
+Route::post('/bookings/refund', 'BookingController@getBookingRefund')->name('admin.bookings.refund');
+Route::post('/bookings/complete', 'BookingController@getBookingComplete')->name('admin.bookings.complete');
+Route::post('/bookings/send-sms', 'BookingController@getBookingSendSMS')->name('admin.bookings.sendsms');
 
 Route::Resource('bookings', 'BookingController');

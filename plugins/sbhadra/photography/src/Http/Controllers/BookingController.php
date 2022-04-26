@@ -76,7 +76,9 @@ class BookingController extends BackendController
     //     return $request->all;
     // }
     protected function afterSave(Request $request, $model){
-        $services = Service::whereIn('id', $request['service_item'])->get();
+         if(!empty($request['service_item'])){
+             $services = Service::whereIn('id', $request['service_item'])->get();
+         }
         $booking_price =$request['package_price'];
         // foreach($services as $service){
         //     $booking_price =$booking_price+$service->price;
@@ -102,13 +104,13 @@ class BookingController extends BackendController
        
         $model->save();
         if(!empty($request['service_item'])){
-          $model->services()->sync($request['service_item']);
-        }
+           $model->services()->sync($request['service_item']);
+         }
         
        }
     
-    public function getBookingCancel(Request $request,$id){
-        $model = Booking::firstOrNew(['id' => $id]);
+    public function getBookingCancel(Request $request){
+        $model = Booking::find($request->id);
         $model->status ='cancel';
         if($model->save()){
             $slot = $model->timeslot->starttime .'To'. $model->timeslot->endtime;
@@ -121,56 +123,74 @@ class BookingController extends BackendController
             'mobile'=>$model->mobile_number,
             'code'=>'+965',
             );
-           do_action('booking.sms.index',$data);
+             do_action('booking.sms.index',$data);
+            $res['status']=true;
+            $res['data'] = array(
+                'message'=>'This booking successfully canceled',
+                'redirect'=>route('bookings.index'),
+            );
+            echo json_encode($res);
+            die();
+   
         } 
-        //dd($model);
-        return redirect()->back()->with('success', 'This booking successfully cancled');  
-        // return $this->success([
-        //     'message' => 'This booking successfully cancled',
-        //     'redirect' => route('bookings.index'),
-        // ]); 
-        exit;
+       
+        
     }
-   public function getBookingComplete(Request $request,$id){
-        $model = Booking::firstOrNew(['id' => $id]);
+   public function getBookingComplete(Request $request){
+        $model = Booking::find($request->id);
         $model->status ='completed';
         if($model->save()){
             do_action('booking.complete.index',$model);
+           $res['status']=true;
+           $res['data'] = array(
+               'message'=>'This booking successfully completed',
+               'redirect'=>route('bookings.index'),
+           );
+           echo json_encode($res);
+           die(); 
         }
-        //dd($model);
-        return redirect()->back()->with('success', 'This booking successfully completed');  
+        
         
     }
     
-    public function getBookingCompleted(Request $request,$id){
-        $model = Booking::firstOrNew(['id' => $id]);
+    public function getBookingCompleted(Request $request){
+        $model = Booking::find($request->id);
         $model->status ='completed';
         if($model->save()){
             do_action('booking.complete.index',$model);
+            
+           $res['status']=true;
+           $res['data'] = array(
+               'message'=>'This booking successfully completed',
+               'redirect'=>route('bookings.index'),
+           );
+           echo json_encode($res);
+           die();
+           
         }        
-        return redirect()->back()->with('success', 'This booking successfully completed');  
-        // return $this->success([
-        //     'message' => 'This booking successfully completed',
-        //     'redirect' => route('bookings.index'),
-        // ]); 
 
     }
 
-    public function getBookingRefund(Request $request,$id){
-        $model = Booking::firstOrNew(['id' => $id]);
+    public function getBookingRefund(Request $request){
+        $model = Booking::find($request->id);
         $model->refunded =1;
         if($model->save()){
             do_action('booking.refund.index',$model);
+            
+          $res['status']=true;
+          $res['data'] = array(
+               'message'=>'This booking successfully refunded',
+               'redirect'=>route('bookings.index'),
+           );
+           echo json_encode($res);
+           die();
         }       
-        return redirect()->back()->with('success', 'This booking successfully refunded');
-        // return $this->success([
-        //     'message' => 'This booking successfully refunded',
-        //     'redirect' => route('bookings.index'),
-        // ]); 
+        
+        
 
     }
-    public function getBookingSendSMS(Request $request,$id){
-        $model = Booking::firstOrNew(['id' => $id]);
+    public function getBookingSendSMS(Request $request){
+        $model = Booking::find($request->id);
         $model->sms =1;
         if($model->save()){
             $slot = $model->timeslot->starttime .'To'. $model->timeslot->endtime;
@@ -183,13 +203,17 @@ class BookingController extends BackendController
             'mobile'=>$model->mobile_number,
             'code'=>'+965',
             );
-           do_action('booking.sms.index',$data);
+            do_action('booking.sms.index',$data);
+           $res['status']=true;
+           $res['data'] = array(
+               'message'=>'This Sms successfully Sended',
+               'redirect'=>route('bookings.index'),
+           );
+           echo json_encode($res);
+           die();
         }           
-        return redirect()->back()->with('success', 'This booking successfully Sended'); 
-        // return $this->success([
-        //     'message' => 'This booking successfully Sended',
-        //     'redirect' => route('bookings.index'),
-        // ]);
+         
+      
     }
 }
 
