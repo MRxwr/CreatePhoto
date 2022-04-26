@@ -53,7 +53,7 @@ class PayapiController extends FrontendController
         $name = $payment_data['customer_name'];
         $phone1 = $payment_data['mobile_number'];
         $settingsEmail = 'contact@create-kw.com';
-        $totalPrice = ($payment_data['pay_amount']?$payment_data['pay_amount']:$payment_data['booking_price']);
+        $totalPrice = $payment_data['pay_amount'];
 
         $params = array(
             "endpoint"                 => "PaymentRequestExicuteForStore",
