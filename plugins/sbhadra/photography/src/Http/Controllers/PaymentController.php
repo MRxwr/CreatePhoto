@@ -29,8 +29,10 @@ class PaymentController extends FrontendController
         // foreach($services as $service){
         //     $booking_price =$booking_price+$service->price;
         // }
-        sleep(5);
-        $book = Booking::where('package_id',$package->id)->where('booking_date',$request['booking_date'])->where('timeslot_id',$request['booking_time'])->where('status','Yes')->orWhere('status','yes')->count();
+        sleep(10);
+
+        $book = Booking::where('package_id',$package->id)->whereDate('booking_date',$request['booking_date'])->where('timeslot_id',$request['booking_time'])->where('status','Yes')->orWhere('status','yes')->count();
+        dd($book);
         if($book>0){
             header("Location: ".url('payment/failed').'/?bsid='.$bsid);
             exit();
