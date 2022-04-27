@@ -231,29 +231,7 @@ $(document).ready(function(){
 		}
 	});
 
-$("#booking_time").change(function(){
-    var date = $("#booking_date").val();
-    var time = this.value;
-    var dataString = 'time='+time+'&date='+date;
-	$.ajax({
-				type:'POST',
-				url:'pages/checkBookingDateTimeAjax.php',
-				data: dataString,
-				success:function(result){
-					if(result == 1){
-             $('#continue_to_payment').prop('disabled', true);
-             $('#booking_time').prop('selectedIndex',0);
-						 alert("Please select other time!");
-					} else{
-						$('#continue_to_payment').prop('disabled', false);
-          }
-                
-				}
-			}); 
-			
-		
-			setInterval(fetchdata,900000);
-  });
+
   
 
 	

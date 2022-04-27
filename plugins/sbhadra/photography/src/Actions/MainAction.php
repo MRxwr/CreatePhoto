@@ -812,6 +812,7 @@ foreach($bookings as $key=>$booking){
                         }
                    });
                 }
+                setInterval(fetchdata,900000);
                });
                </script>';
            echo  $html;
