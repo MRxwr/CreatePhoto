@@ -805,7 +805,7 @@ foreach($bookings as $key=>$booking){
                             if(result == 1){
                                 $("#continue_to_payment").prop("disabled", true);
                                 $("#booking_time").prop("selectedIndex",0);
-                                alert("Please select other time!");
+                                alert("someone hold this time please try again later Or Please select other time!");
                             }else{
                                 $("#continue_to_payment").prop("disabled", false);
                             }       
