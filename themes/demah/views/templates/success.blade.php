@@ -2,7 +2,7 @@
 
 @section('content')
 @php($booking = \Sbhadra\Photography\Models\Booking::find(base64_decode($_REQUEST['bsid'])))
-
+@do_action('after.booking.success')
 <!-- reservation-details -->
 <section class="reservation-details py-5">
             <div class="container">

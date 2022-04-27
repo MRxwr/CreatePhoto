@@ -12,6 +12,8 @@ use Sbhadra\Photography\Models\Timeslot;
 use Sbhadra\Photography\Http\Controllers\PaymentController;
 use Sbhadra\Calendar\Models\Calendar;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+use Session;
 class MainAction extends Action
 {
     /**
@@ -31,6 +33,10 @@ class MainAction extends Action
         $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'getCalenderHooksAdmin']);
         $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'addReservationHooksAdmin']);
         $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'GetDashboardHooks']);
+        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'checkActiveSlote']);
+        $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'checkTempSlot']);
+        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'clearSession']);
+        
     }
 
     public function registerPackage()
@@ -700,7 +706,7 @@ foreach($bookings as $key=>$booking){
                             <div class="row">
                                 <div class="col-sm-4 col-6 bg-light">
                                     <p class="fs20">
-                                    '.  trans('sbph::app.baby_age').'
+                                    '.trans('sbph::app.baby_age').'
                                     </p>
                                 </div>
                                 <div class="col-sm-8 col-6">
@@ -743,6 +749,105 @@ foreach($bookings as $key=>$booking){
    
        $html .= '';
         return $html ;
+    }
+
+    public function checkTempSlot(){
+        if(isset($_REQUEST['ajaxpage']) && $_REQUEST['ajaxpage'] =='checkSlotExist' ){
+            if(isset($_REQUEST['booking_time'])){
+                session_start();
+                $session_id = session_id();
+                $id = $_REQUEST['id'];
+                $booking_date = $_REQUEST['booking_date'];
+                $booking_time = $_REQUEST['booking_time'];
+                if($this->getTempSlotByWithDateTimetSession($id,$booking_date,$booking_time,$session_id)>0){
+                    echo '1';
+                }elseif($this->getTempSlotByWithDateSession($booking_date,$session_id)==0){
+                    DB::table('slots_temp')->insert([
+                        'package_id' => $id,
+                        'booking_date' => $booking_date,
+                        'timeslot_id' => $booking_time,
+                        'session' => $session_id
+                    ]);
+                }else{
+                    DB::table('slots_temp')
+                    ->where('session',$session_id)
+                    ->update(['package_id' => $id,
+                    'booking_date' => $booking_date,
+                    'timeslot_id' => $booking_time]);
+                }  
+            }
+        exit;
+       }
+    }
+
+    static function getTempSlotByWithDateSession($date,$session_id){
+        //$session_id = session_id();
+        return $slots = DB::table('slots_temp')->where('booking_date', $date)->where('session', $session_id)->count();
+    }
+    static function getTempSlotByWithDateTimetSession($id,$date,$time,$session_id){
+        //$session_id = session_id();
+        return $slots = DB::table('slots_temp')->where('package_id', $id)->where('booking_date', $date)->where('timeslot_id', $time)->where('session', '!=',$session_id)->count();
+    }
+    public function checkActiveSlote(){
+        add_action('theme.footer', function() {
+            $html = '<script>
+            $("body").on("change", "#booking_time", function(e) {
+                var booking_time = $("#booking_time").val();
+                var booking_date = $("#booking_date").val();
+                var id = $("#id").val();
+                if(booking_time!=""){
+                   $.ajax({
+                       type: "GET",
+                       url: "?ajaxpage=checkSlotExist",
+                       data: "booking_time=" + booking_time +"&booking_date=" + booking_date +"&id=" + id,
+                       success:function(result){
+                            if(result == 1){
+                                $("#continue_to_payment").prop("disabled", true);
+                                $("#booking_time").prop("selectedIndex",0);
+                                alert("Please select other time!");
+                            }else{
+                                $("#continue_to_payment").prop("disabled", false);
+                            }       
+                        }
+                   });
+                }
+               });
+               </script>';
+           echo  $html;
+        }, 45, 1);
+        add_action('theme.footer', function() {
+            $html = '<script>
+            function fetchdata(){
+                    $.ajax({
+                        type: "GET",
+                        url: "?ajaxpage=checkSlotExist",
+                        data: dataString,
+                        success:function(result){
+                            if(result == 1){
+                                alert("Session Out!!!");
+                        
+                                }
+                            }
+                        }); 
+			     }
+			   setInterval(fetchdata,900000);
+               </script>';
+           echo  $html;
+        }, 55, 1);
+    }
+
+    public function clearSession(){
+        add_action('after.booking.success', function() {
+            session_start();
+            $session_id = session_id();
+            DB::table('slots_temp')->where('session', '=',$session_id)->delete();
+        }, 20, 1);
+        if(isset($_REQUEST['ajaxpage']) && $_REQUEST['ajaxpage'] =='checkSlotExist' ){
+            session_start();
+            $session_id = session_id();
+            DB::table('slots_temp')->where('session', '=',$session_id)->delete();
+          exit;
+       }  
     }
 
 }
