@@ -12,9 +12,9 @@ class question extends Model
     use PostTypeModel;
     use HasTranslations;
     protected $table = 'questions';
-    public $translatable = ['title','description'];
-    protected $postType = 'survey';
-    protected $options =[];
+    public $translatable = ['title'];
+    protected $postType = 'question';
+    protected $options =array();
     protected $fillable = [
         'title',
         'options',

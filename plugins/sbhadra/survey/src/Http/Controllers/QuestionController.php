@@ -24,6 +24,7 @@ class QuestionController extends BackendController
 
         return $validator;
     }
+   
 
     // Make data json for index datatable
     protected function getDataTable()

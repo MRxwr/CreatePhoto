@@ -35,10 +35,19 @@ class QuestionDatatable extends PostTypeDataTable
                 'label' => trans('sbph::app.name'),
                 'formatter' => [$this, 'rowActionsFormatter']
             ],
-            'price' => [
-                'label' => trans('sbph::app.price'),
+            'type' => [
+                'label' => 'Question type',
                 'formatter' => function ($value, $row, $index) {
-                    return $row->price;
+                    if( $row->question_type=='1'){
+                        return 'Multiple choice(Single)';
+                    }elseif( $row->question_type=='2'){
+                        return 'Multiple choice(Multiple)';
+                    }elseif( $row->question_type=='3'){
+                        return 'True/False';
+                    }elseif( $row->question_type=='4'){
+                        return 'Text field';
+                    }
+                   
                 }
             ],
             'created_at' => [
@@ -48,12 +57,8 @@ class QuestionDatatable extends PostTypeDataTable
                 'formatter' => function ($value, $row, $index) {
                     return jw_date_format($row->created_at);
                 }
-            ],
-            'actions' => [
-                'label' => trans('sbph::app.actions'),
-                'width' => '15%',
-                'sortable' => false
             ]
+            
         ];
     }
 

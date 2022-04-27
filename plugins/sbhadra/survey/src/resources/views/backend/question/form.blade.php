@@ -12,14 +12,17 @@
                     'required' => true,
                     'class' => empty($model->slug) ? 'generate-slug' : '',
                 ]) }}
-                
-                 <div class="options multi" id="dynamic_field">
+            
+                   <div class="options multi" id="dynamic_field"  @if( $model->question_type=='3' || $model->question_type=='4' ) style="display: none;" @endif >
+                  
+
                      @if($model->options)
                       @php
                          $options = json_decode($model->options);
                          $options = (array) $options;
                          $total_opt=count($options);
                       @endphp
+                      
                       @foreach($options as $k=> $option)
                        <div id="row{{$k}}" class="row">
                             <div class="form-group col-sm-10 ">
@@ -37,7 +40,6 @@
                                 <div class="form-group col-sm-2 ">
                                     <button type="button" name="remove" id="{{$k}}" class="btn btn-danger btn_remove" style="margin-top:30px;">Remove</button>
                                 </div>
-                               
                                @endif   
                         </div>
                         @endforeach
@@ -45,7 +47,7 @@
                         <div class="row">
                             <div class="form-group col-sm-10 ">
                                 <label class="control-label mb-10 text-left">Option 1</label>
-                                <input type="text" id="input-file-max-fs" name="options[]" class="form-control">
+                                <input type="text" id="input-file-max-fs" name="options[]" value="option1" class="form-control">
                             </div>
                             <div class="form-group col-sm-2 ">
                                 <!-- <button type="button" name="fixed" id="fixed" class="btn btn-success">Fixed</button> -->
@@ -55,7 +57,7 @@
                         <div class="row">
                             <div class="form-group col-sm-10 ">
                                 <label class="control-label mb-10 text-left">Option 2</label>
-                                <input type="text" id="input-file-max-fs" name="options[]" class="form-control">
+                                <input type="text" id="input-file-max-fs" name="options[]" value="option1"  class="form-control">
                             </div>
 
                             <div class="form-group col-sm-2 ">
@@ -63,7 +65,7 @@
                             </div>
                         </div>
                         @endif
-                </div>
+                    </div>
                 @do_action('post_type.'. $postType .'.form.left')
 
             </div>

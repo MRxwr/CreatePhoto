@@ -17,7 +17,6 @@ class survey extends Model
         'title',
         'thumbnail',
         'description',
-        // 'price',
         'status',
     ];
    

@@ -17,7 +17,11 @@
     @do_action('juzaweb_header')
 
     @yield('header')
-
+    <style>
+        #form-search {
+             float: right;
+        }
+    </style>
 </head>
 
 <body class="juzaweb__menuLeft--dark juzaweb__topbar--fixed juzaweb__menuLeft--unfixed">

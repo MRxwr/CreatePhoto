@@ -21,6 +21,7 @@ class PaymentController extends FrontendController
         $payment_data['package_name'] = $package->title;
         $package_price=$package->price;
         $time = Timeslot::find($request['booking_time']);
+        $bsid=base64_encode($package->id);
         if(!empty($request['service_item'])){
             $services = Service::whereIn('id', $request['service_item'])->get();
         }
@@ -28,6 +29,12 @@ class PaymentController extends FrontendController
         // foreach($services as $service){
         //     $booking_price =$booking_price+$service->price;
         // }
+        sleep(5);
+        $book = Booking::where('package_id',$package->id)->where('booking_date',$request['booking_date'])->where('timeslot_id',$request['booking_time'])->where('status','Yes')->orWhere('status','yes')->count();
+        if($book>0){
+            header("Location: ".url('payment/failed').'/?bsid='.$bsid);
+            exit();
+        }
         $payment_data['booking_price'] =$booking_price;
         $total = 0.00;
         if(isset($payment_data['total_price'])){
@@ -59,6 +66,11 @@ class PaymentController extends FrontendController
             $payment_data['booking_id'] = $booking->id;
               Session::put('booking_data', $booking);
               session(['booking_data' => $booking]);
+              $book = Booking::where('package_id',$package->id)->where('booking_date',$request['booking_date'])->where('timeslot_id',$request['booking_time'])->where('status','Yes')->orWhere('status','yes')->count();
+                if($book>0){
+                    header("Location: ".url('payment/failed').'/?bsid='.$bsid);
+                    exit();
+                }
               $status = do_action('theme.booking.extra',$payment_data);
               $status = do_action('theme.payment.method',$payment_data);
          }

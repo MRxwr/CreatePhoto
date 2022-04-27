@@ -152,7 +152,8 @@ class BookingDatatable extends PostTypeDataTable
         if ($keyword = Arr::get($data, 'keyword')) {
             $query->where(function (Builder $q) use ($keyword) {
                 $q->where('title', 'like', '%'. $keyword .'%');
-                $q->orWhere('description', 'like', '%'. $keyword .'%');
+                $q->orWhere('booking_date', 'like', '%'. $keyword .'%');
+                $q->orWhere('mobile_number', 'like', '%'. $keyword .'%');
             });
         }
 

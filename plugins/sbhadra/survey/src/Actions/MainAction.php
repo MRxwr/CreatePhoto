@@ -55,14 +55,14 @@ class MainAction extends Action
                'mobile'=>$model->mobile_number,
                'code'=>'+91',
             );
-            
             do_action('booking.sms.index',$data);
         }, 10, 1);
     }
     public function randerSurveyViews(){
-        // $this->addAction('booking.complete.index', function($model) {
-            
-        // }, 10, 1);
+        $this->addAction('theme.survey.page', function($model) {
+           $question = Question :: all();
+
+        }, 10, 1);
     }
    
 
