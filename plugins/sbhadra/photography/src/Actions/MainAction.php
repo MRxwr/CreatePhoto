@@ -821,7 +821,7 @@ foreach($bookings as $key=>$booking){
             function fetchdata(){
                     $.ajax({
                         type: "GET",
-                        url: "?ajaxpage=checkSlotExist",
+                        url: "?ajaxpage=sessionOutExist",
                         data: dataString,
                         success:function(result){
                             if(result == 1){
@@ -850,7 +850,7 @@ foreach($bookings as $key=>$booking){
         //     DB::table('slots_temp')->where('session', '=',$session_id)->delete();
         // }, 20, 1);
 
-        if(isset($_REQUEST['ajaxpage']) && $_REQUEST['ajaxpage'] =='checkSlotExist' ){
+        if(isset($_REQUEST['ajaxpage']) && $_REQUEST['ajaxpage'] =='sessionOutExist' ){
             session_start();
             $session_id = session_id();
             DB::table('slots_temp')->where('session', '=',$session_id)->delete();
