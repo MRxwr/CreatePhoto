@@ -144,7 +144,7 @@
                                                      @do_action('theme.terms.content')  
                                                   </div>
                                                   <div class="modal-footer d-flex align-items-center justify-content-center mb-3">
-                                                    <button data-spinning-button  type="submit"  name="submit"  class="btn bbtn btn-md btn-light fs25 radius30" id="load2">  @lang('theme::app.Procced_to_payment')</button>
+                                                    <button data-spinning-button  type="submit"  name="submit"  class="btn bbtn btn-md btn-light fs25 radius30" id="load2" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Booking"> <i class='fa fa-spinner fa-spin '></i> Processing Booking  @lang('theme::app.Procced_to_payment')</button>
                                                   </div>
                                                   
                                               </div>
@@ -182,34 +182,12 @@
         });
        
     });
-    var zyllemMain = (function() {
-  function processSubmitLoader() {
-    $("button[data-spinning-button]").click(function(e) {
-      var $this = $(this);
-      let formId = $this.data("spinning-button");
-      let $form = formId ? $("#" + formId) : $this.parents("form");
-      if ($form.length) {
-        //form.valid() will be applicable If you are using jQuery validate https://jqueryvalidation.org/
-        //asp.net mvc used it by default with jQuery Unobtrusive Validation
-        //you need to check the form before it goes into the if statement
-        //if ($form.valid()) {
-        $this
-          .append("<i class='fa fa-spinner fa-spin'></i>")
-          .attr("disabled", "");
-        setTimeout(() => {
-          $form.submit();
-        }, 2000);
-        //}
-      }
-      });
-    }
-    return {
-        initSpinnerButton: processSubmitLoader
-    };
-    })();
+   
 
     $(document).ready(function() {
-    zyllemMain.initSpinnerButton();
+        $("#load2").click(function(){
+            alert('okkkkk');
+        });
     });
 
 </script>
