@@ -9,6 +9,7 @@ use Sbhadra\Photography\Models\Service;
 use Sbhadra\Photography\Models\Booking;
 use Sbhadra\Photography\Models\Timeslot;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Session;
 
 class PaymentController extends FrontendController
@@ -30,9 +31,7 @@ class PaymentController extends FrontendController
         //     $booking_price =$booking_price+$service->price;
         // }
         sleep(10);
-
-        $book = Booking::where('package_id',$package->id)->whereDate('booking_date',$request['booking_date'])->where('timeslot_id',$request['booking_time'])->where('status','Yes')->orWhere('status','yes')->count();
-        dd($book);
+         $book = DB::table('bookings')->where('package_id',$package->id)->where('booking_date','=',$request['booking_date'])->where('timeslot_id',$request['booking_time'])->whereIn('status',['Yes','yes'])->count();
         if($book>0){
             header("Location: ".url('payment/failed').'/?bsid='.$bsid);
             exit();
@@ -68,11 +67,11 @@ class PaymentController extends FrontendController
             $payment_data['booking_id'] = $booking->id;
               Session::put('booking_data', $booking);
               session(['booking_data' => $booking]);
-              $book = Booking::where('package_id',$package->id)->where('booking_date',$request['booking_date'])->where('timeslot_id',$request['booking_time'])->where('status','Yes')->orWhere('status','yes')->count();
-                if($book>0){
-                    header("Location: ".url('payment/failed').'/?bsid='.$bsid);
-                    exit();
-                }
+              $book = DB::table('bookings')->where('package_id',$package->id)->where('booking_date','=',$request['booking_date'])->where('timeslot_id',$request['booking_time'])->whereIn('status',['Yes','yes'])->count();
+              if($book>0){
+                  header("Location: ".url('payment/failed').'/?bsid='.$bsid);
+                  exit();
+              }
               $status = do_action('theme.booking.extra',$payment_data);
               $status = do_action('theme.payment.method',$payment_data);
          }
