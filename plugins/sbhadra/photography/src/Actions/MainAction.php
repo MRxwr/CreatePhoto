@@ -842,6 +842,13 @@ foreach($bookings as $key=>$booking){
             $session_id = session_id();
             DB::table('slots_temp')->where('session', '=',$session_id)->delete();
         }, 20, 1);
+
+        add_action('theme.booking.extra', function() {
+            session_start();
+            $session_id = session_id();
+            DB::table('slots_temp')->where('session', '=',$session_id)->delete();
+        }, 20, 1);
+
         if(isset($_REQUEST['ajaxpage']) && $_REQUEST['ajaxpage'] =='checkSlotExist' ){
             session_start();
             $session_id = session_id();
