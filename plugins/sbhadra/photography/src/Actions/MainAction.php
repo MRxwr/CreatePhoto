@@ -796,7 +796,7 @@ foreach($bookings as $key=>$booking){
                 var booking_time = $("#booking_time").val();
                 var booking_date = $("#booking_date").val();
                 var id = $("#id").val();
-                if(booking_time!=""){
+                if(booking_time>0){
                    $.ajax({
                        type: "GET",
                        url: "?ajaxpage=checkSlotExist",
