@@ -224,6 +224,7 @@ class MainAction extends Action
             $html .=' <div class="col-xxl-10 pb-3"><label for="" >'.trans('theme::app.Preffered_Time').':</label>';
             //$html .='<div class="col-sm-7 col-md-8">';
             $html .='<select class="form-control border" id="booking_time" name="booking_time"  required>';
+            $html .='<option>'.trans('theme::app.Select_Time').'</option>';
              foreach($package->slots as $slot){
                 if(!in_array($slot->id,$disable_slots)){
                     if(!in_array($slot->id,$booked_slot)){
