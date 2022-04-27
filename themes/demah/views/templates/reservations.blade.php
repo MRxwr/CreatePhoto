@@ -191,35 +191,7 @@
         // });
     });
 
-    var zyllemMain = (function() {
-        function processSubmitLoader() {
-            $("#loader").click(function(e) {
-            var $this = $(this);
-            let formId = $this.data("spinning-button");
-            let $form = formId ? $("#" + formId) : $this.parents("form");
-            if ($form.length) {
-                //form.valid() will be applicable If you are using jQuery validate https://jqueryvalidation.org/
-                //asp.net mvc used it by default with jQuery Unobtrusive Validation
-                //you need to check the form before it goes into the if statement
-                //if ($form.valid()) {
-                $this
-                .append("<i class='fa fa-spinner fa-spin'></i> ")
-                .attr("disabled", "");
-                setTimeout(() => {
-                $form.submit();
-                }, 2000);
-                //}
-            }
-            });
-        }
-        return {
-            initSpinnerButton: processSubmitLoader
-        };
-        })();
-
-        $(document).ready(function() {
-        zyllemMain.initSpinnerButton();
-        });
+   
 
 
 </script>
