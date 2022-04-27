@@ -859,8 +859,13 @@ foreach($bookings as $key=>$booking){
        }  
 
        if(isset($_REQUEST['ajaxpage']) && $_REQUEST['ajaxpage'] =='checkSlotAndDelete' ){
-             DB::table('slots_temp')->delete();
+        $date = new \DateTime;
+        $date->modify('-15 minutes');
+        $formatted_date = $date->format('Y-m-d H:i:s');
+        $result = DB::table('slots_temp')->where('created_at','>=',$formatted_date)->delete();
+            // DB::table('slots_temp')->delete();
              exit;
+
        }  
     }
 
