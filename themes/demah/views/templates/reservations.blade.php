@@ -144,8 +144,9 @@
                                                      @do_action('theme.terms.content')  
                                                   </div>
                                                   <div class="modal-footer d-flex align-items-center justify-content-center mb-3">
-                                                    <button type="submit"  name="submit"  class="btn btn-md btn-light fs25 radius30">  @lang('theme::app.Procced_to_payment')</button>
+                                                    <button type="submit"  name="submit"  class="btn bbtn btn-md btn-light fs25 radius30" id="load2" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Order">  @lang('theme::app.Procced_to_payment')</button>
                                                   </div>
+                                                  
                                               </div>
                                           </div>
                                       </div>
@@ -179,6 +180,14 @@
                 $('#theme_id').val(radioValue);
             }
         });
+        $('.bbtn').on('click', function() {
+                var $this = $(this);
+            $this.button('loading');
+                setTimeout(function() {
+                $this.button('reset');
+            }, 8000);
+            });
     });
+
 </script>
 @endsection
