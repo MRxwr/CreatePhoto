@@ -154,9 +154,9 @@ class SuccessBookingDatatable extends PostTypeDataTable
                 $q->where('title', 'like', '%'. $keyword .'%');
                 $q->orWhere('booking_date', 'like', '%'. $keyword .'%');
                 $q->orWhere('mobile_number', 'like', '%'. $keyword .'%');
+                $q->orWhere('customer_name', 'like', '%'. $keyword .'%');
             });
         }
-
         return $query;
     }
 

@@ -803,16 +803,20 @@ foreach($bookings as $key=>$booking){
                        data: "booking_time=" + booking_time +"&booking_date=" + booking_date +"&id=" + id,
                        success:function(result){
                             if(result == 1){
-                                $("#continue_to_payment").prop("disabled", true);
+                                //$("#continue_to_payment").prop("disabled", true);
                                 $("#booking_time").prop("selectedIndex",0);
-                                alert("someone hold this time please try again later Or Please select other time!");
+                                alert("Someone hold this time please try again later Or Please select other time!");
                             }else{
-                                $("#continue_to_payment").prop("disabled", false);
+                                //$("#continue_to_payment").prop("disabled", false);
+                               
+                                setTimeout( function(){
+                                    fetchdata()  
+                                }, 600000);
                             }       
                         }
                    });
                 }
-                setInterval(fetchdata,900000);
+                
                });
                </script>';
            echo  $html;
@@ -823,16 +827,17 @@ foreach($bookings as $key=>$booking){
                     $.ajax({
                         type: "GET",
                         url: "?ajaxpage=sessionOutExist",
-                        data: dataString,
+                        data: "",
                         success:function(result){
                             if(result == 1){
-                                alert("Session Out!!!");
-                        
+                                alert("Your max session time out!!!");
+                                $("#booking_time").prop("selectedIndex",0);
+                                 location.reload();
                                 }
-                            }
-                        }); 
+                        }
+                    }); 
 			     }
-			   setInterval(fetchdata,900000);
+			   setInterval(fetchdata,600000);
                </script>';
            echo  $html;
         }, 55, 1);
@@ -855,6 +860,7 @@ foreach($bookings as $key=>$booking){
             session_start();
             $session_id = session_id();
             DB::table('slots_temp')->where('session', '=',$session_id)->delete();
+            echo '1';
           exit;
        }  
 
