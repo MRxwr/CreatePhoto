@@ -808,7 +808,6 @@ foreach($bookings as $key=>$booking){
                                 alert("Someone hold this time please try again later Or Please select other time!");
                             }else{
                                 //$("#continue_to_payment").prop("disabled", false);
-                               
                                 setTimeout( function(){
                                     fetchdata()  
                                 }, 600000);
