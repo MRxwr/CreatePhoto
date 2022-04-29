@@ -149,7 +149,9 @@ class SuccessBookingDatatable extends PostTypeDataTable
     public function query($data)
     {
         $query = Booking::query();
+        $query ->whereIn('status',['Yes','yes']);
         if ($keyword = Arr::get($data, 'keyword')) {
+            
             $query->where(function (Builder $q) use ($keyword) {
                 $q->where('title', 'like', '%'. $keyword .'%');
                 $q->orWhere('booking_date', 'like', '%'. $keyword .'%');
@@ -167,5 +169,15 @@ class SuccessBookingDatatable extends PostTypeDataTable
                 Booking::destroy($ids);
                 break;
         }
+    }
+    public function searchFields()
+    {
+        return [
+            'keyword' => [
+                'type' => 'text',
+                'label' => trans('juzaweb::app.keyword'),
+                'placeholder' => trans('juzaweb::app.keyword'),
+            ]
+        ];
     }
 }

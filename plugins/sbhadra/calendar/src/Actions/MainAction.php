@@ -56,20 +56,33 @@ class MainAction extends Action
             $package_id = $post->id; 
             $slots = count($post->slots);
             //var_dump($slots);
-            $calendar_dates = Calendar::where('package_id',$package_id)->where('slots','all')->get();
-            foreach($calendar_dates as $cdate){
-                $dates = $this->getDatesFromRange($cdate->from_date, $cdate->to_date);
-                $datesDisabled_array = array_merge($datesDisabled_array,$dates);
+            
+            //$calendar_dates = Calendar::where('package_id',$package_id)->where('slots','all')->get();
+            $calendar_dates = Calendar::where('package_id',$package_id)->get();
+            if(!empty( $calendar_dates)){
+                foreach($calendar_dates as $cdate){
+                    if($cdate->slots=='all'){
+                        $dates = $this->getDatesFromRange($cdate->from_date, $cdate->to_date);
+                        $datesDisabled_array = array_merge($datesDisabled_array,$dates);
+                    }else{
+                        $cslot = count(json_decode($cdate->slots));
+                        if($slots==$cslot){
+                            $dates = $this->getDatesFromRange($cdate->from_date, $cdate->to_date);
+                            $datesDisabled_array = array_merge($datesDisabled_array,$dates);
+                        }
+                    }
+                    
+                }
             }
             //dd($calendar_dates);
             $bookings = DB::table('bookings')
                  ->select('booking_date', DB::raw('count(*) as total'))
-                 ->where('status','Yes')
+                 ->whereIn('status',['Yes','yes'])
                  ->where('package_id',$package_id)
                  ->groupBy('booking_date')
                  ->get();  
                  foreach($bookings as $booking){
-                    if($booking->total == $slots ){
+                    if($booking->total >= $slots ){
                         array_push($datesDisabled_array,$booking->booking_date);
                     }
                  }
@@ -92,15 +105,31 @@ class MainAction extends Action
                 $post = Package::find($_REQUEST['id']);
             $package_id = $_REQUEST['id']; 
             $slots = count($post->slots);
+            $calendar_dates = Calendar::where('package_id',$package_id)->get();
+            if(!empty( $calendar_dates)){
+                foreach($calendar_dates as $cdate){
+                    if($cdate->slots=='all'){
+                        $dates = $this->getDatesFromRange($cdate->from_date, $cdate->to_date);
+                        $datesDisabled_array = array_merge($datesDisabled_array,$dates);
+                    }else{
+                        $cslot = count(json_decode($cdate->slots));
+                        if($slots==$cslot){
+                            $dates = $this->getDatesFromRange($cdate->from_date, $cdate->to_date);
+                            $datesDisabled_array = array_merge($datesDisabled_array,$dates);
+                        }
+                    }
+                    
+                }
+            }
             $bookings = DB::table('bookings')
                  ->select('booking_date', DB::raw('count(*) as total'))
-                 ->where('status','Yes')
+                 ->whereIn('status',['Yes','yes'])
                  ->where('package_id',$package_id)
                  ->groupBy('booking_date')
                  ->get();  
                  $datesDisabled_array =array('13-01-2022');
                  foreach($bookings as $booking){
-                    if($booking->total ==$slots ){
+                    if($booking->total >=$slots ){
                         array_push($datesDisabled_array,$booking->booking_date);
                     }
                  }

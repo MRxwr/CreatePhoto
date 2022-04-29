@@ -23,4 +23,7 @@ Route::post('/bookings/refund', 'BookingController@getBookingRefund')->name('adm
 Route::post('/bookings/complete', 'BookingController@getBookingComplete')->name('admin.bookings.complete');
 Route::post('/bookings/send-sms', 'BookingController@getBookingSendSMS')->name('admin.bookings.sendsms');
 
+Route::get('/success-bookings', 'SuccessBookingController@index')->name('admin.success.booking');
+Route::get('/cancel-bookings', 'CancelBookingController@index')->name('admin.cancel.booking');
+Route::get('/complete-bookings', 'CompletedBookingController@index')->name('admin.complete.booking');
 Route::Resource('bookings', 'BookingController');

@@ -59,6 +59,7 @@ class MainAction extends Action
             'menu_position' => 34,
             'menu_icon' => 'fa fa-list',
         ]);
+        
         HookAction::addAdminMenu(
             trans('sbph::app.setting'),
             'setting/booking',
@@ -195,6 +196,33 @@ class MainAction extends Action
             'menu_position' => 36,
             'menu_icon' => 'fa fa-list',
         ]);
+        HookAction::addAdminMenu(
+            'Success bookings',
+            'success-bookings',
+            [
+                'icon' => 'fa fa-book',
+                'position' => 2.1,
+                'parent' => 'bookings',
+            ]
+        );
+        HookAction::addAdminMenu(
+            'Cancel bookings',
+            'cancel-bookings',
+            [
+                'icon' => 'fa fa-book',
+                'position' => 2.2,
+                'parent' => 'bookings',
+            ]
+        );
+        HookAction::addAdminMenu(
+            'Completed bookings',
+            'complete-bookings',
+            [
+                'icon' => 'fa fa-book',
+                'position' =>2.4,
+                'parent' => 'bookings',
+            ]
+        );
     }
     public function registerTaxonomies()
     {
@@ -806,6 +834,9 @@ foreach($bookings as $key=>$booking){
                                 //$("#continue_to_payment").prop("disabled", true);
                                 $("#booking_time").prop("selectedIndex",0);
                                 alert("Someone hold this time please try again later Or Please select other time!");
+                                setTimeout( function(){
+                                    fetchdata()  
+                                }, 600000);
                             }else{
                                 //$("#continue_to_payment").prop("disabled", false);
                                 setTimeout( function(){
@@ -836,7 +867,7 @@ foreach($bookings as $key=>$booking){
                         }
                     }); 
 			     }
-			   setInterval(fetchdata,600000);
+			   //setInterval(fetchdata,600000);
                </script>';
            echo  $html;
         }, 55, 1);

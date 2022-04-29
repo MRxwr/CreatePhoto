@@ -5,7 +5,7 @@ namespace Sbhadra\Photography\Http\Controllers;
 use Juzaweb\Traits\PostTypeController;
 use Illuminate\Support\Facades\Validator;
 use Juzaweb\Http\Controllers\BackendController;
-use Sbhadra\Photography\Http\Datatables\SuccessBookingDatatable;
+use Sbhadra\Photography\Http\Datatables\CancelBookingDatatable;
 use Sbhadra\Photography\Models\Package;
 use Sbhadra\Photography\Models\Service;
 use Sbhadra\Photography\Models\Booking;
@@ -14,7 +14,7 @@ use Juzaweb\Abstracts\Action;
 use Juzaweb\Facades\HookAction;
 use Illuminate\Http\Request;
 
-class SuccessBookingController extends BackendController
+class CancelBookingController extends BackendController
 {
    
     use PostTypeController;
@@ -36,7 +36,7 @@ class SuccessBookingController extends BackendController
     // Make data json for index datatable
     protected function getDataTable()
     {
-        $dataTable = new SuccessBookingDatatable();
+        $dataTable = new CancelBookingDatatable();
         $dataTable->mountData('bookings', 0);
         return $dataTable;
     }

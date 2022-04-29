@@ -169,4 +169,14 @@ class BookingDatatable extends PostTypeDataTable
                 break;
         }
     }
+    public function searchFields()
+    {
+        return [
+            'keyword' => [
+                'type' => 'text',
+                'label' => trans('juzaweb::app.keyword'),
+                'placeholder' => trans('juzaweb::app.keyword'),
+            ]
+        ];
+    }
 }

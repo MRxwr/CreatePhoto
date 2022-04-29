@@ -149,6 +149,7 @@ class CompletedBookingDatatable extends PostTypeDataTable
     public function query($data)
     {
         $query = Booking::query();
+        $query ->where('status','completed');
         if ($keyword = Arr::get($data, 'keyword')) {
             $query->where(function (Builder $q) use ($keyword) {
                 $q->where('title', 'like', '%'. $keyword .'%');
@@ -168,5 +169,15 @@ class CompletedBookingDatatable extends PostTypeDataTable
                 Booking::destroy($ids);
                 break;
         }
+    }
+    public function searchFields()
+    {
+        return [
+            'keyword' => [
+                'type' => 'text',
+                'label' => trans('juzaweb::app.keyword'),
+                'placeholder' => trans('juzaweb::app.keyword'),
+            ]
+        ];
     }
 }

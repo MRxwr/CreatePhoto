@@ -183,16 +183,5 @@
         });
        
     });
-   
-
-    $(document).ready(function() {
-        // $("#load2").click(function(){
-        //     alert('okkkkk');
-        // });
-    });
-
-   
-
-
 </script>
 @endsection
