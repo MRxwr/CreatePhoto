@@ -30,6 +30,8 @@ class SuccessBookingDatatable extends PostTypeDataTable
                 'formatter' => function ($value, $row, $index) {
                     if($row->theme_id>0){
                         return '<img src="'. $row->theme->getThumbnail() .'" class="w-100" style="width:100px" />';
+                    }else{
+                        return '<button type="button" id="'.$row->id.'" class="btn btn-info change_theme" data-toggle="modal" data-target="#change_theme_modal">Add Theme</button>';
                     }
                     
                 }

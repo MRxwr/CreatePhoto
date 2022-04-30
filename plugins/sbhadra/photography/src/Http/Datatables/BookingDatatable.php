@@ -65,6 +65,7 @@ class BookingDatatable extends PostTypeDataTable
                     return $row->booking_date;
                 }
             ],
+
             'status' => [
                 'label' => trans('sbph::app.status'),
                 'formatter' => function ($value, $row, $index) {

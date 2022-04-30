@@ -102,6 +102,7 @@ class MainAction extends Action
         
         $this->addAction('admin.calendar.hooks', function(){
             if(isset($_REQUEST['id'])){
+                $datesDisabled_array =array();
                 $post = Package::find($_REQUEST['id']);
             $package_id = $_REQUEST['id']; 
             $slots = count($post->slots);

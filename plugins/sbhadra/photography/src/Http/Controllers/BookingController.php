@@ -149,8 +149,9 @@ class BookingController extends BackendController
            echo json_encode($res);
            die(); 
         }
-        
-        
+
+
+  
     }
     
     public function getBookingCompleted(Request $request){
@@ -214,6 +215,22 @@ class BookingController extends BackendController
         }           
          
       
+    }
+
+    public function changeBookingTheme(Request $request){
+        $model = Booking::find($request->id);
+        $model->theme_id =$request->theme_id;
+        if($model->save()){
+           $res['status']=true;
+           $res['data'] = array(
+               'message'=>'This booking  Theme successfully added',
+               'redirect'=>route('admin.success.booking'),
+           );
+           echo json_encode($res);
+           die();
+           
+        }        
+
     }
 }
 

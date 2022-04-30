@@ -7,7 +7,7 @@
         <div class="col-md-8">
         <form action="{{route('admin.setting.post')}}" method="post" class="form-ajax" id="Be4MBcHP47k9METK" novalidate="novalidate">
         {!! csrf_field() !!}
-            <div class="form-group row">
+               <div class="form-group row">
                     <label class="col-form-label" for="release">Pay Api Key</label>
                     <input id="timepicker1" name="api_key" type="text" class="form-control input-small" value="{{$settings[0]['field_value']}}">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>

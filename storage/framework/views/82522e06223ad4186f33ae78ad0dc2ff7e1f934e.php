@@ -1,4 +1,15 @@
-<?php $__env->startSection('content'); ?><script>var startDate='2022-01-01';var endDate='2046-12-31';var datesDisabled=["13-01-2022"];var daysOfWeekDisabled=[5,6]</script><?php 
+<?php $__env->startSection('content'); ?><style>.col-sm-6.col-md-2.theme-select {
+          overflow: hidden;
+          text-align: center;
+          border: 1px solid #63636357;
+          margin: 5px;
+      }
+     #totalprice {
+         color: #fff;
+     }
+     .package-head.bg-success.radius15.mh67.py-1.px-3.mb-4 {
+        float: right;
+    }</style><script>var startDate='2022-01-01';var endDate='2046-12-31';var datesDisabled=["13-01-2022"];var daysOfWeekDisabled=[5,6]</script><?php 
         $id =0;
        if(isset($_REQUEST['id'])){
          $id = @(isset($_REQUEST['id'])?$_REQUEST['id']:0 );
