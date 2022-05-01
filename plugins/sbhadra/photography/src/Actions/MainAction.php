@@ -811,7 +811,8 @@ foreach($bookings as $key=>$booking){
 
     static function getTempSlotByWithDateSession($date,$session_id){
         //$session_id = session_id();
-        return $slots = DB::table('slots_temp')->where('booking_date', $date)->where('session', $session_id)->count();
+       // return $slots = DB::table('slots_temp')->where('booking_date', $date)->where('session', $session_id)->count();
+       return $slots = DB::table('slots_temp')->where('session', $session_id)->count();
     }
     static function getTempSlotByWithDateTimetSession($id,$date,$time,$session_id){
         //$session_id = session_id();
@@ -867,7 +868,19 @@ foreach($bookings as $key=>$booking){
                         }
                     }); 
 			     }
-			   //setInterval(fetchdata,600000);
+                 function cleanSlotdata(){
+                    $.ajax({
+                        type: "GET",
+                        url: "?ajaxpage=sessionOutExist",
+                        data: "",
+                        success:function(result){
+                            if(result == 1){
+                                
+                                }
+                        }
+                    }); 
+			     } 
+			    setInterval(cleanSlotdata,5000);
                </script>';
            echo  $html;
         }, 55, 1);
@@ -898,11 +911,11 @@ foreach($bookings as $key=>$booking){
         $date = new \DateTime;
         $date->modify('-10 minutes');
         $formatted_date = $date->format('Y-m-d H:i:s');
-        $result = DB::table('slots_temp')->where('created_at','>=',$formatted_date)->delete();
+        $result = DB::table('slots_temp')->where('created_at','=<',$formatted_date)->delete();
             // DB::table('slots_temp')->delete();
              exit;
 
-       }  
+       } 
     }
 
 }

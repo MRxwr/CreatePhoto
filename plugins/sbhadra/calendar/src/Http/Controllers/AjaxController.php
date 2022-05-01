@@ -30,7 +30,7 @@ class AjaxController extends BackendController
                
                 $data[] = array(
                     'id'   => $booking->id,
-                    'title'   =>$booking->title.'-'.$booking->customer_name.'['.$time_from.'-'.$time_to.']',
+                    'title'   =>$booking->title.'<br>'.$booking->customer_name.'['.$time_from.'-'.$time_to.']-'.$booking->mobile_number,
                     'start'   =>date('Y-m-d', strtotime($booking->booking_date)) ,
                     'description'   =>'',
                     //'end'   => $booking->booking_date,

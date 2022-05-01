@@ -306,6 +306,63 @@ public function packageThemeField(){
         echo  $html;
      });
 
+     add_action('admin.success.themes', function(){
+        
+        //dd($themes);
+        if(isset($_REQUEST['category']) && $_REQUEST['category']!='all'){
+                // $taxonomy = Taxonomy::where('slug', $_REQUEST['category'])->firstOrFail();
+                // $postType = $taxonomy->getPostType('model');
+                // $themes = $postType::paginate();
+                $themes = DB::table('package_themes')
+                ->join('term_taxonomies', 'term_taxonomies.term_id', '=', 'package_themes.id')
+                ->join('taxonomies', 'taxonomies.id', '=', 'term_taxonomies.taxonomy_id')
+                ->where('taxonomies.slug', $_REQUEST['category'])
+                ->select('package_themes.*')
+                ->get();
+                //dd($themes);
+        } else{
+            if(isset($_REQUEST['id'])){
+                $pack=Package::find($_REQUEST['id']);
+                if($pack->theme_category_ids!=''){
+                    $slugs=json_decode($pack->theme_category_ids);
+                    $themes = DB::table('package_themes')
+                    ->join('term_taxonomies', 'term_taxonomies.term_id', '=', 'package_themes.id')
+                    ->join('taxonomies', 'taxonomies.id', '=', 'term_taxonomies.taxonomy_id')
+                    ->whereIn('taxonomies.slug', $slugs)
+                    ->select('package_themes.*')
+                    ->get();
+
+                }else{
+                    $themes =Theme::all();
+                }
+                
+            }else{
+                $themes =Theme::all();
+            }
+        }    
+        $html ='';
+        if(!empty($themes)){
+                $html .='
+                <div class="theme_select_slider" style="height:250px;overflow-y: scroll;overflow-x: hidden;">
+                <div class=" row">';
+                    foreach($themes as $theme){
+                        $theme = Theme::find($theme->id);
+                        $html .='
+                        <div class="col-sm-12 col-md-12 theme-select" >
+                                <label class="container_radio themeCheck">
+                                <input type="radio" id="slect'.$theme->id.'" value="'.$theme->id.'" name="theme_id">
+                                <span class="checkmark"></span>
+                                <img src="'.$theme->getThumbnail().'" alt="img" class="" style="height:48px;width:48px" >
+                                    <label for="slect'.$theme->id.'" class="d-inline-block">'.$theme->title.'</label>
+                                </label>
+                            </div>';
+                       }
+                $html .='</div> </div>';
+                
+        }
+        echo  $html;
+     });
+
   }
 public function updatepackagefield(){
      add_action('plugin.package.update', function($model){ 

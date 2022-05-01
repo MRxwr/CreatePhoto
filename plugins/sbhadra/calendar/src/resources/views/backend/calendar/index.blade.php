@@ -113,12 +113,31 @@
    
    $(document).ready(function() {
     var calendar = $('#calendar').fullCalendar({
-     editable:true,
+        editable: true,
+        droppable: true, // this allows things to be dropped onto the calendar
+        eventLimit: true, // allow "more" link when too many events
+        timeFormat: 'H:mm',
      header:{
       left:'prev,next today',
       center:'title',
       right:'month,agendaWeek,agendaDay'
      },
+     eventMouseover: function (data, event, view) {
+		var tooltip = '<div class="tooltiptopicevent tooltip tooltip-inner" style="width:auto;height:auto;position:absolute;z-index:10001;">' + data.title + '</div>';
+		$("body").append(tooltip);
+                $(this).mouseover(function (e) {
+                        $(this).css('z-index', 10000);
+                        $('.tooltiptopicevent').fadeIn('500');
+                        $('.tooltiptopicevent').fadeTo('10', 1.9);
+                }).mousemove(function (e) {
+                        $('.tooltiptopicevent').css('top', e.pageY + 10);
+                        $('.tooltiptopicevent').css('left', e.pageX + 20);
+                });
+        },
+     eventRender: function( event, element, view ) {
+        var title = element.find('.fc-title, .fc-list-item-title');          
+        title.html(title.text());
+        },
      events: '{{route("admin.booking-json")}}',
      selectable:true,
      selectHelper:true,
