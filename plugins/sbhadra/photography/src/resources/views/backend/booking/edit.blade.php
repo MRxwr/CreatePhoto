@@ -65,7 +65,7 @@
                 <div class="row">
                 <input type="hidden" name="title" id="title" value="{{$model->title}}">
                 <input type="hidden" name="slug" id="slug" value="CPBK{{time()}}">
-                 <input type="hidden" name="total_price" id="booking_total_price" value="{{$model->total_price}}">
+                 <input type="hidden" name="total_price" id="" value="{{$model->total_price}}">
                     <div class="col-12">
                     <h2 class="shoots-Head2">Booking Information</h2>
                     </div>
