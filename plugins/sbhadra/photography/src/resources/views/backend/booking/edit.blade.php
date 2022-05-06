@@ -63,9 +63,6 @@
     <div class="row">
             <div class="col-md-8">
                 <div class="row">
-                <input type="hidden" name="title" id="title" value="CPBK{{time()}}">
-                <input type="hidden" name="slug" id="slug" value="CPBK{{time()}}">
-                <input type="hidden" name="total_price" id="booking_total_price" value="">
                     <div class="col-12">
                     <h2 class="shoots-Head2">Booking Information</h2>
                     </div>
@@ -74,7 +71,6 @@
                         @do_action('admin.reservation.data')
                         @do_action('admin.reservation.time')
                     @endif
-                        @do_action('admin.reservation.fields')
                     </div>
                 </div>
                 
