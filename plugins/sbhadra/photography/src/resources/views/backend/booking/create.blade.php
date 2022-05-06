@@ -47,7 +47,7 @@
                 <input class="form-control" id="date" name="date" value="@if(isset($_REQUEST['date'])) {{$_REQUEST['date']}} @endif" placeholder="MM/DD/YYY" type="text" required/>
                 <div id="bookingdate"></div>
               </div>
-              <div class="btn-group float-right"><button type="submit" class="btn btn-success px-5"><i class="fa fa-save"></i> Next</button> </div>
+              <div class="btn-group float-right" style="display:none;"><button type="submit" id="date_change" class="btn btn-success px-5"><i class="fa fa-save"></i> Next</button> </div>
             </div>
             </div>
         </form>
@@ -196,6 +196,7 @@
             function showTestDate(){
             var value = $('#bookingdate').datepicker('getFormattedDate');
                 $("#date").val(value);
+                $("#date_change").click();
                 
             }
             })
