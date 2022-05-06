@@ -162,7 +162,7 @@
         </script>
         <script>
          $(document).ready(function(){
-            set_package_price();
+            //set_package_price();
           });
 $("body").on("click", ".xprice", function(e) {
     //alert('okey')
