@@ -71,6 +71,13 @@
                     </div>
                     <div class="col-md-8 col-sm-10">
                     @if(isset($_REQUEST['date']) && ($_REQUEST['date']!='') )
+                    <div class="form-group row">
+                            <label for="" class="col-sm-5 col-md-4 col-form-label">Old Date/Time:</label>
+                            <div class="col-sm-7 col-md-8">
+                            {{$model->booking_date}} : {{$model->timeslot->starttime}} - {{$model->timeslot->endtime}}
+                            </div>
+                        </div>
+                    
                         @do_action('admin.reservation.data')
                         @do_action('admin.reservation.time')
                     @endif

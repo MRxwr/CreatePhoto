@@ -72,6 +72,14 @@
             <div class="col-md-8">@if($model->refunded==0) No @else Yes @endif </div>
         </div>
          @do_action('admin.booking.after',$model)
+         @php
+            $view_edit = URL('admin/bookings/'.$model->id.'/edit').'?id='.$model->package_id.'&package_id='.$model->package_id.'&date='.$model->booking_date;
+         @endphp
+         
+         <div class="row">
+            <div class="col-md-4"><a href="{{$view_edit}}" class="btn  btn-primary btn-sm"> <i class=" fa fa-edit"></i> Reschedule</a></div>
+            
+        </div>
         </div>
         <div class="col-md-4">
             <div class="row">
