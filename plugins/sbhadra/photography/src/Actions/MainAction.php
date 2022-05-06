@@ -624,7 +624,7 @@ foreach($bookings as $key=>$booking){
                             <div class="row">
                                 <div class="col-sm-4 col-6 bg-light">
                                     <p class="fs20">
-                                    '.  trans('theme::app.bookingid').'
+                                    '.  trans('sbph::app.bookingid').'
                                     </p>
                                 </div>
                                 <div class="col-sm-8 col-6">
@@ -638,7 +638,7 @@ foreach($bookings as $key=>$booking){
                             <div class="row">
                                 <div class="col-sm-4 col-6 bg-light">
                                     <p class="fs20">
-                                    '.  trans('theme::app.invoiceId').'
+                                    '.  trans('sbph::app.invoiceId').'
                                         
                                     </p>
                                 </div>
@@ -653,7 +653,7 @@ foreach($bookings as $key=>$booking){
                             <div class="row">
                                 <div class="col-sm-4 col-6 bg-light">
                                     <p class="fs20">
-                                    '.  trans('theme::app.customer_name').'
+                                    '.  trans('sbph::app.customer_name').'
                                     </p>
                                 </div>
                                 <div class="col-sm-8 col-6">
@@ -666,7 +666,7 @@ foreach($bookings as $key=>$booking){
                         <div class="col-xl-6">
                             <div class="row">
                                 <div class="col-sm-4 col-6 bg-light">
-                                    <p class="fs20">'. trans('theme::app.package').'</p>
+                                    <p class="fs20">'. trans('sbph::app.package').'</p>
                                 </div>
                                 <div class="col-sm-8 col-6">
                                     <p class="fs20">
@@ -679,7 +679,7 @@ foreach($bookings as $key=>$booking){
                             <div class="row">
                                 <div class="col-sm-4 col-6 bg-light">
                                     <p class="fs20">
-                                    '.  trans('theme::app.mobile_number').'
+                                    '.  trans('sbph::app.mobile_number').'
                                     </p>
                                 </div>
                                 <div class="col-sm-8 col-6">
@@ -693,7 +693,7 @@ foreach($bookings as $key=>$booking){
                             <div class="row">
                                 <div class="col-sm-4 col-6 bg-light">
                                     <p class="fs20">
-                                    '.  trans('theme::app.booking_date').'
+                                    '.  trans('sbph::app.booking_date').'
                                     </p>
                                 </div>
                                 <div class="col-sm-8 col-6">
@@ -707,7 +707,7 @@ foreach($bookings as $key=>$booking){
                             <div class="row">
                                 <div class="col-sm-4 col-6 bg-light">
                                     <p class="fs20">
-                                    '.  trans('theme::app.baby_name').'
+                                    '.  trans('sbph::app.baby_name').'
                                     </p>
                                 </div>
                                 <div class="col-sm-8 col-6">
@@ -721,7 +721,7 @@ foreach($bookings as $key=>$booking){
                             <div class="row">
                                 <div class="col-sm-4 col-6 bg-light">
                                     <p class="fs20">
-                                    '.  trans('theme::app.booking_time').'
+                                    '.  trans('sbph::app.booking_time').'
                                     </p>
                                 </div>
                                 <div class="col-sm-8 col-6">
@@ -749,7 +749,7 @@ foreach($bookings as $key=>$booking){
                             <div class="row">
                                 <div class="col-sm-4 col-6 bg-light">
                                     <p class="fs20">
-                                    '.  trans('theme::app.status').'
+                                    '.  trans('sbph::app.status').'
                                         
                                     </p>
                                 </div>
@@ -766,7 +766,7 @@ foreach($bookings as $key=>$booking){
             <div class="col-sm-12 pb-5">
                 <div class="package-head bg-light radius15 mh53 py-1 px-3 mb-2 d-inline-flex align-items-center">
                     <h4 class="fs23">
-                    '.  trans('theme::app.instructions').'
+                    '.  trans('sbph::app.instructions').'
                     </h4>
                 </div>
                 <p class="fs20">

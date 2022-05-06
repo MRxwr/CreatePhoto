@@ -97,6 +97,7 @@
     </div>
 
     {{ $dataTable->render() }}
+    
     <!-- Modal -->
     <div id="change_theme_modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -126,6 +127,5 @@
          var booking_id = this.id;
          $('#booking_id').val(booking_id)
       });
-
     </script>
 @endsection

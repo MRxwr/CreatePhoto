@@ -52,6 +52,21 @@ class BookingController extends BackendController
         return trans('sbph::app.bookings');
     }
 
+    public function edit(Request $request, $id){
+        $pid=($request->id?$request->id:null);
+        $model = Booking::firstOrNew(['id' => $id]);
+        $id=($request->id?$request->id:null);
+        $post = Package::firstOrNew(['id' =>$pid]);
+        $packages= Package::all(); 
+        return view('sbph::backend.booking.edit', [
+            'model' => $model,
+            'post' => $post,
+            'packages' => $packages,
+            'postType'=>'booking',
+            'title' => $model->name ?: trans('sbph::app.booking')
+        ]);;
+    }
+
     public function getBookingDetails($id){
         $model = Booking::firstOrNew(['id' => $id]);
         return view('sbph::backend.booking.show', [
@@ -60,6 +75,7 @@ class BookingController extends BackendController
             'title' => $model->name ?: trans('sbph::app.booking')
         ]);;
     }
+
     public function create(Request $request) {
         $id=($request->id?$request->id:null);
         $model = Package::firstOrNew(['id' => 0]);

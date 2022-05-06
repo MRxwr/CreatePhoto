@@ -56,7 +56,7 @@ class CompletedBookingDatatable extends PostTypeDataTable
             'mobile_number' => [
                 'label' => trans('sbph::app.mobile_number'),
                 'formatter' => function ($value, $row, $index) {
-                    return $row->mobile_number;
+                    return '<a href="https://wa.me/+965'. $row->mobile_number.'" >'.$row->mobile_number.'</a>';
                 }
             ],
             'booking_date' => [

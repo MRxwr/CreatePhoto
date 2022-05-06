@@ -33,7 +33,7 @@
               <div class="form-group row">
                     <label for="" class="col-sm-5 col-md-4 col-form-label">Select Package:</label>
                             <div class="col-sm-7 col-md-8">
-                                <select class="form-control form-control-lg" name="id" onchange="packageRedirect(this.value);" required>
+                                <select class="form-control form-control-lg" name="id" onchange="packageRedirect(this.value);" required disabled>
                                     @foreach($packages as $package)
                                     <option value="{{$package->id}}" @if($id==$package->id) selected="selected" @endif> {{$package->title}}</option>
                                     @endforeach
@@ -44,10 +44,11 @@
             <div class="col-md-7">
             <div class="form-group"> <!-- Date input -->
                 <input type="hidden" name="package_id" id="package_id" value="{{ $post->id }}">
+                <input type="hidden" name="id" id="id" value="{{ $post->id }}">
                 <input class="form-control" id="date" name="date" value="@if(isset($_REQUEST['date'])) {{$_REQUEST['date']}} @endif" placeholder="MM/DD/YYY" type="text" required/>
                 <div id="bookingdate"></div>
               </div>
-              <div class="btn-group float-right"><button type="submit" class="btn btn-success px-5"><i class="fa fa-save"></i> Next</button> </div>
+              <div class="btn-group float-right" style="display:none;"><button type="submit" id="date_change" class="btn btn-success px-5"><i class="fa fa-save"></i> Next</button> </div>
             </div>
             </div>
         </form>
@@ -61,63 +62,19 @@
     ])
     <div class="row">
             <div class="col-md-8">
-            @do_action('admin.cstudio.themes')
-           
                 <div class="row">
                 <input type="hidden" name="title" id="title" value="CPBK{{time()}}">
                 <input type="hidden" name="slug" id="slug" value="CPBK{{time()}}">
                 <input type="hidden" name="total_price" id="booking_total_price" value="">
                     <div class="col-12">
-                    <h2 class="shoots-Head2">Personal Information</h2>
+                    <h2 class="shoots-Head2">Booking Information</h2>
                     </div>
                     <div class="col-md-8 col-sm-10">
                     @if(isset($_REQUEST['date']) && ($_REQUEST['date']!='') )
                         @do_action('admin.reservation.data')
                         @do_action('admin.reservation.time')
-                        @do_action('admin.reservation.exfields')
-                        @do_action('admin.reservation.services')
                     @endif
-
-                        <div class="form-group row">
-                        <label for="" class="col-sm-5 col-md-4 col-form-label">Customer Name:</label>
-                        <div class="col-sm-7 col-md-8">
-                            <input type="text" class="form-control form-control-lg" id="customer_name" name="customer_name" required >
-                        </div>
-                        </div>
-
-                        <div class="form-group row" style="display:none">
-                        <label for="" class="col-sm-5 col-md-4 col-form-label">Customer Email:</label>
-                        <div class="col-sm-7 col-md-8">
-                            <input type="email" class="form-control form-control-lg" id="customer_email" name="customer_email" value="Hello@myshootskw.com" required>
-                        </div>
-                        </div>
-
-                        <div class="form-group row">
-                        <label for="" class="col-sm-5 col-md-4 col-form-label">Mobile Number:</label>
-                        <div class="col-sm-7 col-md-8">
-                            <input type="text" class="form-control form-control-lg" id="mobile_number" name="mobile_number" required>
-                        </div>
-                        </div>
-                        <div class="form-group row" style="display:none">
-                        <label for="" class="col-sm-5 col-md-4 col-form-label">Baby Name:</label>
-                        <div class="col-sm-7 col-md-8">
-                            <input type="text" class="form-control form-control-lg" id="baby_name" name="baby_name">
-                        </div>
-                        </div>
-                        <div class="form-group row">
-                        <label for="" class="col-sm-5 col-md-4 col-form-label">Baby Age:</label>
-                        <div class="col-sm-7 col-md-8">
-                            <input type="text" class="form-control form-control-lg" id="baby_age" name="baby_age">
-                        </div>
-                        </div>
-
-                        <div class="form-group row">
-                        <label for="" class="col-sm-5 col-md-4 col-form-label">Instructions:</label>
-                        <div class="col-sm-7 col-md-8">
-                            <textarea name="instructions" id="instructions" class="form-control form-control-lg"  rows="4" placeholder=""></textarea>
-                        </div>
-                        </div>
-                        @do_action('admin.reservation.fields');
+                        @do_action('admin.reservation.fields')
                     </div>
                 </div>
                 
@@ -128,21 +85,8 @@
 
             <div class="col-md-4 text-right">
                 <div class="col-sm-12 pe-xl-5 pt-4 text-right">
-
                     <div style="width:225px;margin-right: -10px;"  class="package-head bg-success radius15 mh67 py-1 px-3 mb-4 "> 
-                        <h4 id="totalprice" class="fs23" style="padding: 20px;"></h4>
-                    </div>
-
-                    <div class="package-head  radius15 mh67 py-1 px-3 mb-4 d-inline-flex">
-                        <h4 class="fs23 text-danger">
-                            @lang('sbph::app.Deposit') <span class="text-600">35.500 KD</span> @lang('sbph::app.deposit_note')  
-                        </h4>
-                    </div>
-
-                    <div class="package-head  radius15 mh67 py-1 px-3 mb-4 d-inline-flex">
-                        <h4 class="fs23 text-danger">
-                                @lang('sbph::app.transaction_fees')  
-                        </h4>
+                        <h4 id="booking_total" class="fs23" style="padding: 20px;">{{$model->total_price}}KD</h4>
                     </div>
             </div>
                
@@ -196,6 +140,7 @@
             function showTestDate(){
             var value = $('#bookingdate').datepicker('getFormattedDate');
                 $("#date").val(value);
+                $("#date_change").click();
                 
             }
             })

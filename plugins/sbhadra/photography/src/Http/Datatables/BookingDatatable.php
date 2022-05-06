@@ -56,7 +56,7 @@ class BookingDatatable extends PostTypeDataTable
             'mobile_number' => [
                 'label' => trans('sbph::app.mobile_number'),
                 'formatter' => function ($value, $row, $index) {
-                    return $row->mobile_number;
+                    return '<a href="https://wa.me/+965'. $row->mobile_number.'" >'.$row->mobile_number.'</a>';
                 }
             ],
             'booking_date' => [
@@ -86,6 +86,8 @@ class BookingDatatable extends PostTypeDataTable
                 'sortable' => false,
                 'formatter' => function ($value, $row, $index) {
                     $view_details = route('admin.bookings.view', [$row->id]);
+                    $view_edit = URL('admin/bookings/'.$row->id.'/edit').'?id='.$row->package_id.'&package_id='.$row->package_id.'&date='.$row->booking_date;
+
                     if($row->status=='Yes' ||$row->status=='yes' ){
                     $booking_cancel = '<form action="'.route('admin.bookings.cancel').'" method="post" class="form-ajax" novalidate="novalidate">
                     <input type="hidden" name="id" value="'.$row->id.'">
@@ -128,7 +130,7 @@ class BookingDatatable extends PostTypeDataTable
                         </button>
                             <div class="dropdown-menu" role="menu" style="">
                             <a href="'.$view_details.'" class="dropdown-item"> <i class=" fa fa-eye"></i> View</a>
-                            <a href="'.$view_details.'" class="dropdown-item"> <i class=" fa fa-edit"></i> Edit</a>
+                            <a href="'.$view_edit.'" class="dropdown-item"> <i class=" fa fa-edit"></i> Reschedule</a>
                             '.$booking_cancel.'
                             '.$booking_sendsms.'
                             '.$booking_refund.'
