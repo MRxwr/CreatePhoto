@@ -182,8 +182,8 @@
                 daysOfWeekDisabled: daysOfWeekDisabled,
                 datesDisabled:datesDisabled,
                 autoclose: true,
-                //startDate: truncateDate(new Date()),
-                startDate: new Date(startDate),
+                startDate: truncateDate(),
+                //startDate: new Date(startDate),
                 endDate: new Date(endDate),
                 icons: {
                             time: "fa fa-clock-o",
@@ -200,9 +200,16 @@
                 
             }
             })
-        function truncateDate(date) {
-        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-        }
+            function truncateDate(date) {
+                //alert(startDate);
+                var date = new Date();
+                var st = new Date(startDate);
+                if(st.getTime()>date.getTime()){
+                return new Date(startDate);
+                }else{
+                return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+             }
+            }
             $(document).ready(function(){
                 $('#booknow').click(function(){
                 var date = $("#date").val();
