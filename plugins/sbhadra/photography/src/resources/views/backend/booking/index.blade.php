@@ -122,10 +122,40 @@
 
     </div>
     </div>
+
+    <div id="add_notes_modal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+      <form action="{{route('admin.add.notes')}}" method="post" class="form-ajax" novalidate="novalidate">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <input id="nbooking_id" type="hidden" name="id" value="">
+          <div class="modal-header">
+           
+            <h4 class="modal-title">Update Booking Notes</h4>
+            <button type="button" class="close" data-dismiss="modal">×</button>
+          </div>
+          <div class="modal-body">
+              <div class="form-group">
+                <label for="pwd">Notes:</label>
+                <textarea class="form-control" name="booking_notes"></textarea>
+              </div>
+            
+          </div>
+          <div class="modal-footer">
+              <input type="submit" class="btn btn-primary" name="submit" value="submit">
+          </div>
+        </div>
+        </form>
+      </div>
+      </div>
     <script>
       $("body").on("click", ".change_theme", function(e) {
          var booking_id = this.id;
          $('#booking_id').val(booking_id)
+      });
+      $("body").on("click", ".add_note", function(e) {
+         var booking_id = this.id;
+         $('#nbooking_id').val(booking_id)
       });
     </script>
 @endsection

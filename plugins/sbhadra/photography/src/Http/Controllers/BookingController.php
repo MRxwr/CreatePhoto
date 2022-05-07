@@ -246,7 +246,21 @@ class BookingController extends BackendController
            die();
            
         }        
+    }
 
+    public function AddBookingNote(Request $request){
+        $model = Booking::find($request->id);
+        $model->booking_notes = $request->booking_notes;
+        if($model->save()){
+           $res['status']=true;
+           $res['data'] = array(
+               'message'=>'This booking  Notes successfully added',
+               'redirect'=>route('admin.success.booking'),
+           );
+           echo json_encode($res);
+           die();
+           
+        }        
     }
 }
 

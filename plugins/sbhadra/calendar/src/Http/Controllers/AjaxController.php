@@ -33,13 +33,10 @@ class AjaxController extends BackendController
                     'title'   =>$booking->title.'<br>'.$booking->customer_name.'['.$time_from.'-'.$time_to.']-'.$booking->mobile_number,
                     'start'   =>date('Y-m-d', strtotime($booking->booking_date)) ,
                     'description'   =>'',
-                    //'end'   => $booking->booking_date,
-                    //'allDay'=> true,
-                    //'rendering'=> 'background',
-                    //'backgroundColor'=> '#F00',
                     'textColor'=> '#FFF',
                     'color'=> '#00BFFF',
-                    'className'=> 'event-full'
+                    'className'=> 'event-full',
+                    'url'=> route('admin.bookings.view', [$booking->id])
                    );
             }
         }

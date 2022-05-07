@@ -67,6 +67,12 @@ class SuccessBookingDatatable extends PostTypeDataTable
                     return $row->booking_date;
                 }
             ],
+            'booking_notes' => [
+                'label' => 'Notes',
+                'formatter' => function ($value, $row, $index) {
+                    return $row->booking_notes;
+                }
+            ],
             'status' => [
                 'label' => trans('sbph::app.status'),
                 'formatter' => function ($value, $row, $index) {
@@ -88,6 +94,7 @@ class SuccessBookingDatatable extends PostTypeDataTable
                 'formatter' => function ($value, $row, $index) {
                     $view_details = route('admin.bookings.view', [$row->id]);
                     $view_edit = URL('admin/bookings/'.$row->id.'/edit').'?id='.$row->package_id.'&package_id='.$row->package_id.'&date='.$row->booking_date;
+                    $add_notes = '<a  id="'.$row->id.'" class="dropdown-item add_note" data-toggle="modal" data-target="#add_notes_modal"> <i class=" fa fa-file-text-o"></i> Note</a>';
                     if($row->status=='Yes' ||$row->status=='yes' ){
                     $booking_cancel = '<form action="'.route('admin.bookings.cancel').'" method="post" class="form-ajax" novalidate="novalidate">
                     <input type="hidden" name="id" value="'.$row->id.'">
@@ -135,6 +142,7 @@ class SuccessBookingDatatable extends PostTypeDataTable
                             '.$booking_sendsms.'
                             '.$booking_refund.'
                             '.$booking_complete.'
+                            '.$add_notes.'
                             </div>
                         </div>
                     </div>';

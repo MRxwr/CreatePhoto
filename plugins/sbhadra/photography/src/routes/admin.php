@@ -24,6 +24,7 @@ Route::post('/bookings/complete', 'BookingController@getBookingComplete')->name(
 Route::post('/bookings/send-sms', 'BookingController@getBookingSendSMS')->name('admin.bookings.sendsms');
 
 Route::post('/bookings/change-theme', 'BookingController@changeBookingTheme')->name('admin.change.theme');
+Route::post('/bookings/add-notes', 'BookingController@AddBookingNote')->name('admin.add.notes');
 Route::get('/success-bookings', 'SuccessBookingController@index')->name('admin.success.booking');
 Route::get('/cancel-bookings', 'CancelBookingController@index')->name('admin.cancel.booking');
 Route::get('/complete-bookings', 'CompletedBookingController@index')->name('admin.complete.booking');
