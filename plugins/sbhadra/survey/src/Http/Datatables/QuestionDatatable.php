@@ -24,13 +24,7 @@ class QuestionDatatable extends PostTypeDataTable
     public function columns()
     {
         return [
-            'thumbnail' => [
-                'label' => trans('sbph::app.thumbnail'),
-                'width' => '7%',
-                'formatter' => function ($value, $row, $index) {
-                    return '<img src="'. $row->getThumbnail() .'" class="w-100" />';
-                }
-            ],
+            
             'title' => [
                 'label' => trans('sbph::app.name'),
                 'formatter' => [$this, 'rowActionsFormatter']

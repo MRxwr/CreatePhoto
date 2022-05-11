@@ -24,18 +24,29 @@ class SurveyDatatable extends PostTypeDataTable
     public function columns()
     {
         return [
-            'thumbnail' => [
-                'label' => trans('sbph::app.thumbnail'),
-                'width' => '7%',
-                'formatter' => function ($value, $row, $index) {
-                    return '<img src="'. $row->getThumbnail() .'" class="w-100" />';
-                }
-            ],
+            
             'title' => [
                 'label' => trans('sbph::app.name'),
                 'formatter' => [$this, 'rowActionsFormatter']
             ],
-            
+            'customer_name' => [
+                'label' => trans('sbph::app.customer_name'),
+                'formatter' => function ($value, $row, $index) {
+                    return $row->customer_name;
+                }
+            ],
+            'customer_mobile' => [
+                'label' => trans('sbph::app.mobile_number'),
+                'formatter' => function ($value, $row, $index) {
+                    return '<a href="https://wa.me/+965'. $row->customer_mobile.'" >'.$row->customer_mobile.'</a>';
+                }
+            ],
+            'survey_coupon' => [
+                'label' => 'Coupon',
+                'formatter' => function ($value, $row, $index) {
+                    return $row->survey_coupon;
+                }
+            ],
             'created_at' => [
                 'label' => trans('sbph::app.created_at'),
                 'width' => '15%',
