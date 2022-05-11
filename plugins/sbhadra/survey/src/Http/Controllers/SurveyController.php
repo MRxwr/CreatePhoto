@@ -42,4 +42,11 @@ class SurveyController extends BackendController
     {
         return trans('sbsu::app.survey');
     }
+    public function getDetails($id){
+        $model = Survey::firstOrNew(['id' => $id]);
+        return view('sbsu::backend.survey.show', [
+            'model' => $model,
+            'title' => trans('sbsu::app.survey')
+        ]);;
+    }
 }

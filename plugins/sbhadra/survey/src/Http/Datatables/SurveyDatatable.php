@@ -25,10 +25,10 @@ class SurveyDatatable extends PostTypeDataTable
     {
         return [
             
-            'title' => [
-                'label' => trans('sbph::app.name'),
-                'formatter' => [$this, 'rowActionsFormatter']
-            ],
+            // 'title' => [
+            //     'label' => trans('sbph::app.name'),
+            //     'formatter' => [$this, 'rowActionsFormatter']
+            // ],
             'customer_name' => [
                 'label' => trans('sbph::app.customer_name'),
                 'formatter' => function ($value, $row, $index) {
@@ -58,12 +58,16 @@ class SurveyDatatable extends PostTypeDataTable
             'actions' => [
                 'label' => trans('sbph::app.actions'),
                 'width' => '15%',
-                'sortable' => false
+                'align' => 'center',
+                'formatter' => function ($value, $row, $index) {
+                    $view_details = route('admin.survey.view', [$row->id]);
+                    return '<a href="'.$view_details.'" class="btn btn-sm btn-primary"> <i class=" fa fa-eye"></i> View</a>';
+                }
             ]
         ];
     }
 
-    /**
+    /** 
      * Query data datatable
      *
      * @param array $data

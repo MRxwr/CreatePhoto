@@ -10,6 +10,6 @@
 | contains the "admin" middleware group. Now create something great!
 |
 */
-
+Route::get('/survey/details/{id}', 'SurveyController@getDetails')->name('admin.survey.view');
 Route::Resource('survey', 'SurveyController');
 Route::Resource('question', 'QuestionController');

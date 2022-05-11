@@ -57,7 +57,7 @@ class MainAction extends Action
             $rptest=["[link]"];
             $nptext = [$link];
             $data= array(
-               'message'=>str_replace($rptest,$nptext,trans('sbkw::app.survey_message')),
+               'message'=>str_replace($rptest,$nptext,trans('sbkw::app.survey_success_message')),
                'mobile'=>$model->mobile_number,
                'code'=>'+965',
             );
@@ -100,7 +100,7 @@ class MainAction extends Action
                                                                 <input type="hidden" name="survey['.$question->id.'][option]['.$keys.']" value="'.$option.'">
                                                                     <label class="container_radio bg-light">
                                                                     <span>'.$option.'</span>
-                                                                        <input type="radio" name="survey['.$question->id.'][answer]" value="'.$option.'  oninput="this.className ="" ">
+                                                                        <input type="radio" name="survey['.$question->id.'][answer]" value="'.$option.'"  oninput="this.className ="" ">
                                                                         <span class="checkmark"></span>
                                                                     </label>
                                                                 </li>';
@@ -116,7 +116,7 @@ class MainAction extends Action
                                                                 <input type="hidden" name="survey['.$question->id.'][option]['.$keys.']" value="'.$option.'">
                                                                     <label class="container_radio bg-light">
                                                                     <span> '.$option.'</span>
-                                                                        <input type="checkbox" name="survey['.$question->id.'][answer]" value="'.$option.'  oninput="this.className ="" ">
+                                                                        <input type="checkbox" name="survey['.$question->id.'][answer]" value="'.$option.'"  oninput="this.className ="" ">
                                                                         <span class="checkmark"></span>
                                                                     </label>
                                                                 </li>';
@@ -305,7 +305,7 @@ class MainAction extends Action
                   $booking_id = $_POST['booking_id'];
                   $customer_name = $_POST['customer_name'];
                   $customer_mobile = $_POST['customer_mobile'];
-                  $survey_coupon = 'HBQ'.$this->random_coupon(5);
+                  $survey_coupon = 'DMS'.$this->random_coupon(5);
                   $survey = New Survey;
                   $survey ->title = time();
                   $survey ->slug = time();
