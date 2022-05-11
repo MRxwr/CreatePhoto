@@ -330,9 +330,9 @@ class MainAction extends Action
                         $data= array(
                             'message'=> $message,
                             'mobile'=>$customer_mobile,
-                            'code'=>'+91',
+                            'code'=>'+965',
                          );
-                        // do_action('booking.sms.index',$data);
+                         do_action('booking.sms.index',$data);
                          
                             $html = '';
                             $html .='<div class="col-xxl-7 px-xxl-4">
