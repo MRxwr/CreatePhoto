@@ -47,7 +47,7 @@
                         <div class="row">
                             <div class="form-group col-sm-10 ">
                                 <label class="control-label mb-10 text-left">Option 1</label>
-                                <input type="text" id="input-file-max-fs" name="options[]" value="option1" class="form-control">
+                                <input type="text" id="input-file-max-fs" name="options[]" value="" class="form-control">
                             </div>
                             <div class="form-group col-sm-2 ">
                                 <!-- <button type="button" name="fixed" id="fixed" class="btn btn-success">Fixed</button> -->
@@ -57,7 +57,7 @@
                         <div class="row">
                             <div class="form-group col-sm-10 ">
                                 <label class="control-label mb-10 text-left">Option 2</label>
-                                <input type="text" id="input-file-max-fs" name="options[]" value="option1"  class="form-control">
+                                <input type="text" id="input-file-max-fs" name="options[]" value=""  class="form-control">
                             </div>
 
                             <div class="form-group col-sm-2 ">

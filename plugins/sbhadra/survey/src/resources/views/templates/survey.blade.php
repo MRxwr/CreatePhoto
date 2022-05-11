@@ -3,7 +3,7 @@
 
 @endsection
 @section('content')
-
+safasfsafsfsfsfsdfdsf
   <!-- survey-section -->
   <section class="survey-section py-5 my-sm-5">
             <div class="container py-4">
@@ -74,7 +74,6 @@
             </div>
         </section>
         <!-- survey-section -->
-
         <!-- @lang('theme::app.our_packages') -->
   
 @endsection

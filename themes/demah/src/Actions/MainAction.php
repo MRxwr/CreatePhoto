@@ -115,6 +115,7 @@ class MainAction extends Action
             'name' => 'Location',
             'view' => 'templates.location',
         ]);
+        
     }
 
     public function registerSidebars()
