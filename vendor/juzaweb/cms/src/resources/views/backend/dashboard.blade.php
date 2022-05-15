@@ -1,7 +1,7 @@
 @extends('juzaweb::layouts.backend')
 
 @section('content')
-
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css">
     <div class="row">
         <div class="col-md-3">
             <div class="card border-0 bg-warning text-white">
@@ -66,7 +66,7 @@
         </div>
     </div> -->
 
-    <div class="row mt-3">
+    <!-- <div class="row mt-3">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
@@ -107,7 +107,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     
 
@@ -146,6 +146,12 @@
             chart.draw(data, options);
         }
     </script>
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+    <script>
+    $(function() {
+      $("#booking-table").dataTable();
+    });
+</script>
 
     
 

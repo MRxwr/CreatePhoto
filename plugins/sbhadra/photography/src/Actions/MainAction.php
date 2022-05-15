@@ -468,7 +468,7 @@ static function getPackageCstudioTimeslots($package){
                         </div>
                     </div>
                 </div>';
-            $success_booking =Booking::where('status','Yes')->count();
+            $success_booking =Booking::whereIn('status',['Yes','yes'])->count();
             
             $html .='<div class="col-md-3">
                         <div class="card  border-0 bg-primary text-white">
@@ -514,7 +514,60 @@ static function getPackageCstudioTimeslots($package){
                 </div>';
             
             $html .='</div>';
+            $today = date('d-m-Y');
+            $todays_booking =Booking::whereIn('status',['Yes','yes'])->where("booking_date", "=", $today)->orderBy('timeslot_id', 'asc')->get();
+            //->where("booking_date", ">=",)
+            //dd($todays_booking);
+            if(!empty($todays_booking)){
+                    $html .='<div class="row mt-3">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Taday\'s Booking</h5>
+                            </div>
+            
+                            <div class="card-body">
+                                <table class="table" id="booking-table">
+                                    <thead>
+                                        <tr>
+                                            <th data-formatter="index_formatter" data-width="2%">#</th>
+                                            <th data-field="name" data-width="10%">Package Theme</th>
+                                            <th data-field="name" data-width="10%">BookingId</th>
+                                            <th data-field="name" data-width="10%">Package</th>
+                                            <th data-field="name" data-width="10%">Customer name</th>
+                                            <th data-field="name" data-width="10%">Mobile number</th>
+                                            <th data-field="name" data-width="10%">Booking date</th>
+                                            <th data-field="name" data-width="10%">Booking Time</th>
+                                            <th data-field="name" data-width="10%">Status</th>
+                                            <th data-field="created" data-width="10%" data-align="center">Action</th>
+                                        </tr>
+                                    </thead>';
+                                    foreach($todays_booking as $booking){
+                                        $view_details = route('admin.bookings.view', [$booking->id]);
+                                        $theme = '';
+                                        if($booking->theme_id>0){
+                                            $theme =  '<img src="'. $booking->theme->getThumbnail() .'"  style="width:100px" />';
+                                        }
+                                        $html .=' <tr> 
+                                                    <td data-formatter="index_formatter" data-width="2%">#</td>
+                                                    <td data-field="name" data-width="10%">'.$theme.'</td>
+                                                    <td data-field="name" data-width="10%">'.$booking->title.'</td>
+                                                    <td data-field="name" data-width="10%">'.$booking->package->title.'</td>
+                                                    <td data-field="name" data-width="10%">'.$booking->customer_name.'</td>
+                                                    <td data-field="name" data-width="10%">'.$booking->mobile_number.'</td>
+                                                    <td data-field="name" data-width="10%">'.$booking->booking_date.'</td>
+                                                    <td data-field="name" data-width="10%">'.$booking->timeslot->starttime.' '.$booking->timeslot->endtime.'</td>
+                                                    <td data-field="name" data-width="10%">'.$booking->status.'</td>
+                                                    <td data-field="created" data-align="center"><a href="'.$view_details.'" class="dropdown-item"> <i class=" fa fa-eye"></i> View</a>56</td>
+                                                </tr>';
+                                    }
 
+                                $html .='</table>
+                            </div>
+                        </div>
+                    </div>
+                </div>';
+            }
             echo $html;
        });
        
