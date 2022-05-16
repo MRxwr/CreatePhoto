@@ -59,7 +59,6 @@ class MainAction extends Action
             'menu_position' => 34,
             'menu_icon' => 'fa fa-list',
         ]);
-        
         HookAction::addAdminMenu(
             trans('sbph::app.setting'),
             'setting/booking',
@@ -196,7 +195,14 @@ class MainAction extends Action
             'menu_position' => 36,
             'menu_icon' => 'fa fa-list',
         ]);
-        HookAction::addAdminMenu(
+    }
+    public function registerTaxonomies()
+    {
+        HookAction::registerTaxonomy('types', 'packages', [
+            'label' => trans('sbph::app.types'),
+            'menu_position' => 6, 
+        ]); 
+       HookAction::addAdminMenu(
             'Success bookings',
             'success-bookings',
             [
@@ -223,13 +229,6 @@ class MainAction extends Action
                 'parent' => 'bookings',
             ]
         );
-    }
-    public function registerTaxonomies()
-    {
-        HookAction::registerTaxonomy('types', 'packages', [
-            'label' => trans('sbph::app.types'),
-            'menu_position' => 6, 
-        ]); 
     }
 
     static function getPackageTimeslots($package){
@@ -279,9 +278,11 @@ class MainAction extends Action
             if($calendar){
                 $disable_slots = json_decode($calendar->slots);
             }
-            $booked_slot =Booking::where('package_id',$package->id)->where('booking_date',$_REQUEST['date'])->where('status','yes')->pluck('timeslot_id')->toArray();
+            //$booked_slot =Booking::where('package_id',$package->id)->where('booking_date',$_REQUEST['date'])->where('status','yes')->pluck('timeslot_id')->toArray();
+            $booked_slot =Booking::where('booking_date',$_REQUEST['date'])->where('status','yes')->pluck('timeslot_id')->toArray();
         }else{
-            $booked_slot =Booking::where('package_id',$package->id)->where('status','yes')->pluck('timeslot_id')->toArray();
+            //$booked_slot =Booking::where('package_id',$package->id)->where('status','yes')->pluck('timeslot_id')->toArray();
+            $booked_slot =Booking::where('status','yes')->pluck('timeslot_id')->toArray();
         }
         
         //dd($booked_slot);
@@ -468,7 +469,7 @@ static function getPackageCstudioTimeslots($package){
                         </div>
                     </div>
                 </div>';
-            $success_booking =Booking::whereIn('status',['Yes','yes'])->count();
+            $success_booking =Booking::where('status','Yes')->count();
             
             $html .='<div class="col-md-3">
                         <div class="card  border-0 bg-primary text-white">
@@ -514,7 +515,8 @@ static function getPackageCstudioTimeslots($package){
                 </div>';
             
             $html .='</div>';
-            $today = date('d-m-Y');
+            
+             $today = date('d-m-Y');
             $todays_booking =Booking::whereIn('status',['Yes','yes'])->where("booking_date", "=", $today)->orderBy('timeslot_id', 'asc')->get();
             //->where("booking_date", ">=",)
             //dd($todays_booking);
@@ -558,7 +560,7 @@ static function getPackageCstudioTimeslots($package){
                                                     <td data-field="name" data-width="10%">'.$booking->booking_date.'</td>
                                                     <td data-field="name" data-width="10%">'.$booking->timeslot->starttime.' '.$booking->timeslot->endtime.'</td>
                                                     <td data-field="name" data-width="10%">'.$booking->status.'</td>
-                                                    <td data-field="created" data-align="center"><a href="'.$view_details.'" class="dropdown-item"> <i class=" fa fa-eye"></i> View</a>56</td>
+                                                    <td data-field="created" data-align="center"><a href="'.$view_details.'" class="dropdown-item"> <i class=" fa fa-eye"></i> View</a></td>
                                                 </tr>';
                                     }
 
@@ -568,6 +570,7 @@ static function getPackageCstudioTimeslots($package){
                     </div>
                 </div>';
             }
+
             echo $html;
        });
        
@@ -924,7 +927,7 @@ foreach($bookings as $key=>$booking){
                  function cleanSlotdata(){
                     $.ajax({
                         type: "GET",
-                        url: "?ajaxpage=sessionOutExist",
+                        url: "?ajaxpage=checkSlotAndDelete",
                         data: "",
                         success:function(result){
                             if(result == 1){
@@ -933,7 +936,7 @@ foreach($bookings as $key=>$booking){
                         }
                     }); 
 			     } 
-			    setInterval(cleanSlotdata,5000);
+			     setInterval(cleanSlotdata,10000);
                </script>';
            echo  $html;
         }, 55, 1);
@@ -963,12 +966,13 @@ foreach($bookings as $key=>$booking){
        if(isset($_REQUEST['ajaxpage']) && $_REQUEST['ajaxpage'] =='checkSlotAndDelete' ){
         $date = new \DateTime;
         $date->modify('-10 minutes');
-        $formatted_date = $date->format('Y-m-d H:i:s');
-        $result = DB::table('slots_temp')->where('created_at','=<',$formatted_date)->delete();
+      
+            echo $formatted_date = $date->format('Y-m-d H:i:s');
+            $result = DB::table('slots_temp')->where('created_at','<',$formatted_date)->delete();
             // DB::table('slots_temp')->delete();
              exit;
 
-       } 
+       }  
     }
 
 }
