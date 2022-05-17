@@ -241,9 +241,12 @@ class MainAction extends Action
             if($calendar){
                 $disable_slots = json_decode($calendar->slots);
             }
-            $booked_slot =Booking::where('package_id',$package->id)->where('booking_date',$_REQUEST['date'])->where('status','yes')->pluck('timeslot_id')->toArray();
+           // $booked_slot =Booking::where('package_id',$package->id)->where('booking_date',$_REQUEST['date'])->where('status','yes')->pluck('timeslot_id')->toArray();
+            $booked_slot =Booking::where('booking_date',$_REQUEST['date'])->where('status','yes')->pluck('timeslot_id')->toArray();
         }else{
-            $booked_slot =Booking::where('package_id',$package->id)->where('status','yes')->pluck('timeslot_id')->toArray();
+            //$booked_slot =Booking::where('package_id',$package->id)->where('status','yes')->pluck('timeslot_id')->toArray();
+            $booked_slot =Booking::where('status','yes')->pluck('timeslot_id')->toArray();
+            
         }
         //dd($disable_slots);
         if($package->slots){

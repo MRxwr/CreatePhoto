@@ -75,10 +75,16 @@ class MainAction extends Action
                 }
             }
             //dd($calendar_dates);
+            // $bookings = DB::table('bookings')
+            //      ->select('booking_date', DB::raw('count(*) as total'))
+            //      ->whereIn('status',['Yes','yes'])
+            //      ->where('package_id',$package_id)
+            //      ->groupBy('booking_date')
+            //      ->get(); 
+
             $bookings = DB::table('bookings')
                  ->select('booking_date', DB::raw('count(*) as total'))
                  ->whereIn('status',['Yes','yes'])
-                 ->where('package_id',$package_id)
                  ->groupBy('booking_date')
                  ->get();  
                  foreach($bookings as $booking){
@@ -122,10 +128,15 @@ class MainAction extends Action
                     
                 }
             }
+            // $bookings = DB::table('bookings')
+            //      ->select('booking_date', DB::raw('count(*) as total'))
+            //      ->whereIn('status',['Yes','yes'])
+            //      ->where('package_id',$package_id)
+            //      ->groupBy('booking_date')
+            //      ->get(); 
             $bookings = DB::table('bookings')
                  ->select('booking_date', DB::raw('count(*) as total'))
                  ->whereIn('status',['Yes','yes'])
-                 ->where('package_id',$package_id)
                  ->groupBy('booking_date')
                  ->get();  
                  $datesDisabled_array =array('13-01-2022');
