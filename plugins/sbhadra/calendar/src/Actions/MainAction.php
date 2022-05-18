@@ -65,11 +65,13 @@ class MainAction extends Action
                         $dates = $this->getDatesFromRange($cdate->from_date, $cdate->to_date);
                         $datesDisabled_array = array_merge($datesDisabled_array,$dates);
                     }else{
-                        $cslot = count(json_decode($cdate->slots));
-                        if($slots==$cslot){
-                            $dates = $this->getDatesFromRange($cdate->from_date, $cdate->to_date);
-                            $datesDisabled_array = array_merge($datesDisabled_array,$dates);
-                        }
+                        $dates =  $this->getBookedDateWithdisableSlots( $format = 'd-m-Y',$cdate,$post);
+                        $datesDisabled_array = array_merge($datesDisabled_array,$dates);
+                        // $cslot = count(json_decode($cdate->slots));
+                        // if($slots==$cslot){
+                        //     $dates = $this->getDatesFromRange($cdate->from_date, $cdate->to_date);
+                        //     $datesDisabled_array = array_merge($datesDisabled_array,$dates);
+                        // }
                     }
                     
                 }
@@ -119,11 +121,13 @@ class MainAction extends Action
                         $dates = $this->getDatesFromRange($cdate->from_date, $cdate->to_date);
                         $datesDisabled_array = array_merge($datesDisabled_array,$dates);
                     }else{
-                        $cslot = count(json_decode($cdate->slots));
-                        if($slots==$cslot){
-                            $dates = $this->getDatesFromRange($cdate->from_date, $cdate->to_date);
-                            $datesDisabled_array = array_merge($datesDisabled_array,$dates);
-                        }
+                        $dates =  $this->getBookedDateWithdisableSlots( $format = 'd-m-Y',$cdate,$post);
+                        $datesDisabled_array = array_merge($datesDisabled_array,$dates);
+                        // $cslot = count(json_decode($cdate->slots));
+                        // if($slots==$cslot){
+                        //     $dates = $this->getDatesFromRange($cdate->from_date, $cdate->to_date);
+                        //     $datesDisabled_array = array_merge($datesDisabled_array,$dates);
+                        // }
                     }
                     
                 }
@@ -156,6 +160,44 @@ class MainAction extends Action
                 }
        }, 20, 1);
         
+    }
+
+    static function getBookedDateWithdisableSlots($format = 'd-m-Y',$cdate,$post){
+
+        $package_id = $post->id; 
+        $slots = count($post->slots); 
+       // Declare an empty array 
+        $cslot = count(json_decode($cdate->slots));
+                       
+       $array = array(); 
+       $start= $cdate->from_date;
+       $end= $cdate->to_date;
+      // Variable that store the date interval 
+      // of period 1 day 
+      $interval = new \DateInterval('P1D'); 
+    
+      $realEnd = new \DateTime($end); 
+      $realEnd->add($interval); 
+    
+      $period = new \DatePeriod(new \DateTime($start), $interval, $realEnd); 
+    
+      // Use loop to store date into array 
+      foreach($period as $date) {   
+         $booked_date = $date->format($format);  
+         $bookings = DB::table('bookings')->where('package_id',$package_id)->whereIn('status',['Yes','yes'])->whereDate('booking_date','=',$booked_date)->count();  
+        if($bookings>0){
+           
+            if($cslot==$slots || (($cslot + $bookings) >=$cslot) ){              
+                $array[] = $date->format($format);
+            }     
+        }else if($cslot==$slots){              
+            $array[] = $date->format($format);
+        }     
+      } 
+    
+      // Return the array elements 
+      return $array; 
+
     }
     static function getDatesFromRange($start, $end, $format = 'd-m-Y') { 
           
