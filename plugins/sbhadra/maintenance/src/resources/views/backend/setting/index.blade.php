@@ -30,6 +30,22 @@
                     <label class="col-form-label" for="release">Footer Text</label>
                     <textarea name="footer_text" type="text" class="form-control input-small">{{@$settings['footer_text']}}</textarea>
                 </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label" for="release">Facebook Url</label>
+                    <input id="timepicker2" name="mt_facebook_url" type="text" class="form-control input-small" value="{{@$settings['mt_facebook_url']}}">
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label" for="release">Twitter Url</label>
+                    <input id="timepicker2" name="mt_twitter_url" type="text" class="form-control input-small" value="{{@$settings['mt_twitter_url']}}">
+                    
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label" for="release">Instagram Url</label>
+                    <input id="timepicker2" name="mt_instagram_url" type="text" class="form-control input-small" value="{{@$settings['mt_instagram_url']}}">
+                   
+                </div>
+
                 <div class="mt-3"><button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save </button></div>
                 </form>
             </div>
