@@ -10,7 +10,7 @@
                <div class="form-group row">
                     <label class="col-form-label" for="release">Maintenance</label>
                     <input  name="is_maintenance" type="hidden"  value="0">
-                    <input  name="is_maintenance" type="checkbox"  value="1" @if($settings['is_maintenance']==1) checked @endif>
+                    <input  name="is_maintenance" type="checkbox"  value="1" @if(@$settings['is_maintenance']==1) checked @endif>
                     <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                 </div>
                 <div class="form-group row">
