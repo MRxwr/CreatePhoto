@@ -214,8 +214,9 @@
 			@php echo $config['footer_text'] ; @endphp
 			<br>
 			<div>
-				<a href="https://twitter.com">Twitter</a> | 
-				<a href="https://www.facebook.com">Facebook</a>
+				<a href="{{@$settings['mt_twitter_url']}}">Twitter</a> | 
+				<a href="{{@$settings['mt_facebook_url']}}">Facebook</a>| 
+				<a href="{{@$settings['mt_instagram_url']}}">Instagram</a>
 			</div>
 		</section>
 
