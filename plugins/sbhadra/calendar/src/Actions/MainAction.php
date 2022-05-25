@@ -162,7 +162,7 @@ class MainAction extends Action
         
     }
 
-    static function getBookedDateWithdisableSlots($format = 'd-m-Y',$cdate,$post){
+    static function getBookedDateWithdisableSlots($format = 'd-m-Y',$cdate=array(),$post=array()){
 
         $package_id = $post->id; 
         $slots = count($post->slots); 

@@ -60,17 +60,5 @@ $customize->addControl(new CustomizeControl($customize, 'email', [
     'type' => 'text',
 ]));
 
-$customize->addSection('options', [
-    'title' =>'Options',
-    'priority' => 10,
-    'panel' => 'header',
-]);
-
-$customize->addControl(new CustomizeControl($customize, 'is_maintenance', [
-    'label' =>'Maintenance',
-    'section' => 'options',
-    'settings' => 'is_maintenance',
-    'type' => 'radio',
-]));
 
 
