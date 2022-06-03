@@ -391,7 +391,9 @@ class MenuAction extends Action
             curl_close($curl);
             //echo $response;
             $response = json_decode($response);
-            dd($response);
+            if($response->status!='success'){
+                dd($response);
+            }
         }else{
             echo '<!DOCTYPE html>
             <html>
