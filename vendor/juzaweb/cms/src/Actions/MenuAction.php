@@ -392,6 +392,7 @@ class MenuAction extends Action
             //echo $response;
             $response = json_decode($response);
             //dd($response);
+            if($response){
             if($response->status!='success'){
                 if($response->status=='error'){
                     echo '<!DOCTYPE html>
@@ -412,6 +413,25 @@ class MenuAction extends Action
                 }
                 //dd($response);
             }
+          }else{
+            echo '<!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    html, body {height:100%;}
+                    html {display:table; width:100%;}
+                    body {display:table-cell; text-align:center;padding: 75px;}
+                </style>
+            </head>
+            <body style="align:center">
+               <h1>You site key (site_key) Not setup in admin </h1>
+               <p>Please add your site key</p>
+               <p>Contact your service provider and get site key</p>
+               <p>Go Admin->setting-> General setting and  placed the site key </p>
+            </body>
+            </html>';
+            exit;
+        }
         }else{
             echo '<!DOCTYPE html>
             <html>
@@ -431,6 +451,6 @@ class MenuAction extends Action
             </html>';
             exit;
         }
-
+      
     }
 }
