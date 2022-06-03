@@ -371,11 +371,11 @@ class MenuAction extends Action
     }
     public function checkSiteValidity(){
            $site_key='';
-           $site_key= DB::table('configs')->where('code','site_key')->first();
-           if(isset($site_key->value)){
+           $site_key= get_config('site_key');
+           if(isset($site_key)){
               $curl = curl_init();
                 curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://admin.createkwservers.com/api/v2/verify?site_key='.$site_key->value,
+                CURLOPT_URL => 'https://admin.createkwservers.com/api/v2/verify?site_key='.$site_key,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
