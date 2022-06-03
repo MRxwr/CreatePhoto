@@ -370,23 +370,22 @@ class MenuAction extends Action
         ]);
     }
     public function checkSiteValidity(){
-        $site_key='';
-        $site_key= DB::table('configs')->where('code','site_key')->first();
+           $site_key='';
+           $site_key= DB::table('configs')->where('code','site_key')->first();
            if(isset($site_key->value)){
-
-            $curl = curl_init();
-            curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://admin.createkwservers.com/api/v2/verify?site_key='.$site_key->value,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_HTTPHEADER => array(
-                'Cookie: XSRF-TOKEN=eyJpdiI6IitEbXA4RlNBb1RxTDE2ak1wdWlxdGc9PSIsInZhbHVlIjoiR25OYm41c0kyOUJGZ2V6K2hQbXlkalRvUG4vM0Q2d0hNM3Q1cElhRFlucGk3NHJJUlEwM0FzQS9HM1NKdjQrOHRFK29aelhVYjBiR2gvcWZDbEdpVngyMTFmQm9RSk8zYmZHU0dGRkRvZHBQbnNIR0FKQ09QWVFnTDhrYndGaC8iLCJtYWMiOiI4NDgyYzhhMzAwNzYyNWQwNTYxN2Y4YTM0Y2IxMWViNTZlZGE2YWI4YzdmMWQ2YTVhZGIwODk0ZTM0YWZkMGQ5In0%3D; laravel_session=eyJpdiI6IjZFNmxZbitNK3JjSDVIVlZTaEdjemc9PSIsInZhbHVlIjoidTc0MmlYR0lZT2txRlBrR1NBOTVaRHdLOFdSWUcranZ6Q2VnVHFsLzdiYS94amNhbEZiaWNCMWcydDRhaTF5UERqcHNUZWsxRkswTDdmNTViWnl2WTB1SDRmL1Rqc0dOR1lwUDdqNktCQ1puektNSVp1VE8rSE9sb055L3Y5eEgiLCJtYWMiOiIyMDE3MjdjYTlmYTA3NmI2MWJmYTA0YWQ3Y2RlM2MxZmIwZjY5Yzk0NTJjNDQ5MGRlMTAxN2Y5YzE4MWVlNmZmIn0%3D'
-            ),
+              $curl = curl_init();
+                curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://admin.createkwservers.com/api/v2/verify?site_key='.$site_key->value,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_HTTPHEADER => array(
+                    'Cookie: XSRF-TOKEN=eyJpdiI6IitEbXA4RlNBb1RxTDE2ak1wdWlxdGc9PSIsInZhbHVlIjoiR25OYm41c0kyOUJGZ2V6K2hQbXlkalRvUG4vM0Q2d0hNM3Q1cElhRFlucGk3NHJJUlEwM0FzQS9HM1NKdjQrOHRFK29aelhVYjBiR2gvcWZDbEdpVngyMTFmQm9RSk8zYmZHU0dGRkRvZHBQbnNIR0FKQ09QWVFnTDhrYndGaC8iLCJtYWMiOiI4NDgyYzhhMzAwNzYyNWQwNTYxN2Y4YTM0Y2IxMWViNTZlZGE2YWI4YzdmMWQ2YTVhZGIwODk0ZTM0YWZkMGQ5In0%3D; laravel_session=eyJpdiI6IjZFNmxZbitNK3JjSDVIVlZTaEdjemc9PSIsInZhbHVlIjoidTc0MmlYR0lZT2txRlBrR1NBOTVaRHdLOFdSWUcranZ6Q2VnVHFsLzdiYS94amNhbEZiaWNCMWcydDRhaTF5UERqcHNUZWsxRkswTDdmNTViWnl2WTB1SDRmL1Rqc0dOR1lwUDdqNktCQ1puektNSVp1VE8rSE9sb055L3Y5eEgiLCJtYWMiOiIyMDE3MjdjYTlmYTA3NmI2MWJmYTA0YWQ3Y2RlM2MxZmIwZjY5Yzk0NTJjNDQ5MGRlMTAxN2Y5YzE4MWVlNmZmIn0%3D'
+                ),
             ));
             $response = curl_exec($curl);
             curl_close($curl);

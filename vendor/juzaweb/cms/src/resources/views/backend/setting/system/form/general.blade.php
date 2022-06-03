@@ -121,7 +121,10 @@
 
         <div class="col-md-4">
             <h5>{{ trans('juzaweb::app.analytics') }}</h5>
-
+            <div class="form-group">
+                <label class="col-form-label" for="site_key">@lang('juzaweb::app.site_key')</label>
+                <input type="text" name="site_key" class="form-control" id="site_key" value="{{ get_config('site_key') }}" autocomplete="off">
+            </div>
             <div class="form-group">
                 <label class="col-form-label" for="fb_app_id">@lang('juzaweb::app.fb_app_id')</label>
                 <input type="text" name="fb_app_id" class="form-control" id="fb_app_id" value="{{ get_config('fb_app_id') }}" autocomplete="off">
