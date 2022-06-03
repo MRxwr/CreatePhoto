@@ -17,6 +17,7 @@ use Juzaweb\Models\Post;
 use Juzaweb\Support\Theme\CustomMenuBox;
 use Juzaweb\Version;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 class MenuAction extends Action
 {
     public function handle()
@@ -30,6 +31,7 @@ class MenuAction extends Action
         $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'addMenuBoxs'], 50);
         $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'addTaxonomiesForm']);
         $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerEmailHooks']);
+        $this->addAction(self::FRONTEND_CALL_ACTION, [$this, 'checkSiteValidity'], 10);
     }
 
     public function addBackendMenu()
@@ -366,5 +368,47 @@ class MenuAction extends Action
                 'verifyToken' => trans('juzaweb::app.verify_token'),
             ],
         ]);
+    }
+    public function checkSiteValidity(){
+        
+        $site_key= DB::table('configs')->where('code','site_key')->first()->value;
+           if(isset($site_key)){
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://admin.createkwservers.com/api/v2/verify?site_key='.$site_key,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_HTTPHEADER => array(
+                'Cookie: XSRF-TOKEN=eyJpdiI6IitEbXA4RlNBb1RxTDE2ak1wdWlxdGc9PSIsInZhbHVlIjoiR25OYm41c0kyOUJGZ2V6K2hQbXlkalRvUG4vM0Q2d0hNM3Q1cElhRFlucGk3NHJJUlEwM0FzQS9HM1NKdjQrOHRFK29aelhVYjBiR2gvcWZDbEdpVngyMTFmQm9RSk8zYmZHU0dGRkRvZHBQbnNIR0FKQ09QWVFnTDhrYndGaC8iLCJtYWMiOiI4NDgyYzhhMzAwNzYyNWQwNTYxN2Y4YTM0Y2IxMWViNTZlZGE2YWI4YzdmMWQ2YTVhZGIwODk0ZTM0YWZkMGQ5In0%3D; laravel_session=eyJpdiI6IjZFNmxZbitNK3JjSDVIVlZTaEdjemc9PSIsInZhbHVlIjoidTc0MmlYR0lZT2txRlBrR1NBOTVaRHdLOFdSWUcranZ6Q2VnVHFsLzdiYS94amNhbEZiaWNCMWcydDRhaTF5UERqcHNUZWsxRkswTDdmNTViWnl2WTB1SDRmL1Rqc0dOR1lwUDdqNktCQ1puektNSVp1VE8rSE9sb055L3Y5eEgiLCJtYWMiOiIyMDE3MjdjYTlmYTA3NmI2MWJmYTA0YWQ3Y2RlM2MxZmIwZjY5Yzk0NTJjNDQ5MGRlMTAxN2Y5YzE4MWVlNmZmIn0%3D'
+            ),
+            ));
+            $response = curl_exec($curl);
+            curl_close($curl);
+            //echo $response;
+            dd($response);
+        }else{
+            echo '<!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    html, body {height:100%;}
+                    html {display:table; width:100%;}
+                    body {display:table-cell; text-align:center;padding: 75px;}
+                </style>
+            </head>
+            <body style="align:center">
+               <h1>You site_key Not setup</h1>
+               <p>Please add your site key</p>
+            
+            </body>
+            </html>';
+            exit;
+        }
+
     }
 }
