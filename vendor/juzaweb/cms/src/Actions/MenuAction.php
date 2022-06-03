@@ -391,7 +391,7 @@ class MenuAction extends Action
             curl_close($curl);
             //echo $response;
             $response = json_decode($response);
-            dd($response);
+            //dd($response);
             if($response->status!='success'){
                 if($response->status=='error'){
                     echo '<!DOCTYPE html>
@@ -408,6 +408,7 @@ class MenuAction extends Action
                        <p>Please contact with your provide regarding this issue</p>
                     </body>
                     </html>';
+                    exit;
                 }
                 //dd($response);
             }
