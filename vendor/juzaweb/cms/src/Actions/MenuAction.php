@@ -392,7 +392,7 @@ class MenuAction extends Action
             //echo $response;
             $response = json_decode($response);
             if($response->status!='success'){
-                if($response->status!='error'){
+                if($response->status=='error'){
                     echo '<!DOCTYPE html>
                     <html>
                     <head>
