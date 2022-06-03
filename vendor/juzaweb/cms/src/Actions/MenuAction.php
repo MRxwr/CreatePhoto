@@ -390,6 +390,7 @@ class MenuAction extends Action
             $response = curl_exec($curl);
             curl_close($curl);
             //echo $response;
+            $response = json_decode($response);
             dd($response);
         }else{
             echo '<!DOCTYPE html>
