@@ -386,4 +386,5 @@ return [
     'your_successpage'=>'Set your Success page',
     'your_failedpage'=>'Set your Failed page',
     'customize' =>'Customize',
+    'site_key'=>'Site Key',
 ];
