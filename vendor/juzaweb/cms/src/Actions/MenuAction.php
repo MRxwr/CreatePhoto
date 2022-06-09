@@ -437,7 +437,10 @@ class MenuAction extends Action
                         <body style="align:center">
                         <h1>Your site expire</h1>
                         <p>Your site is expire ! please contact with vendor Or Please renew the site</p>
-                        <a class="btn btn-renew" href="https://admin.createkwservers.com/api/v1/renew">Renew Now</a>
+                        <form action="https://admin.createkwservers.com/api/v2/renew" method="post">
+                            <input type="hidden" name="site_key" value="'.$response->site_key.'">
+                             <button class="btn btn-renew" href="https://admin.createkwservers.com/api/v1/renew"> Renew Now</button>
+                        </form>
                         </body>
                         </html>';
                         exit;
