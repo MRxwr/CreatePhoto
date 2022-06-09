@@ -418,14 +418,19 @@ class MenuAction extends Action
                                 html, body {height:100%;}
                                 html {display:table; width:100%;}
                                 body {display:table-cell; text-align:center;padding: 75px;}
-                                .btn {
+                                a.btn.btn-renew {
+                                    text-decoration: none;
                                     background-color: #04AA6D;
                                     color: #ffffff;
                                     border-color: #04AA6D;
-                                    font-size: 18px;
+                                  }
+                                .btn {
+                                   
+                                    font-size: 16px;
                                     font-family: "Source Sans Pro", sans-serif;
-                                    padding: 19px;
+                                    padding: 20px 15px;
                                     border-radius: 5px;
+                                    margin-top:15px;
                                 }
                             </style>
                         </head>
