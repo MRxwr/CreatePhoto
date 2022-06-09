@@ -424,8 +424,7 @@ class MenuAction extends Action
                                     border-color: #04AA6D;
                                     font-size: 18px;
                                     font-family: "Source Sans Pro", sans-serif;
-                                    padding-left: 19px;
-                                    padding-right: 19px;
+                                    padding: 19px;
                                     border-radius: 5px;
                                 }
                             </style>
