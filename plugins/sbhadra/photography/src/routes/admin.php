@@ -22,7 +22,7 @@ Route::post('/bookings/cancel', 'BookingController@getBookingCancel')->name('adm
 Route::post('/bookings/refund', 'BookingController@getBookingRefund')->name('admin.bookings.refund');
 Route::post('/bookings/complete', 'BookingController@getBookingComplete')->name('admin.bookings.complete');
 Route::post('/bookings/send-sms', 'BookingController@getBookingSendSMS')->name('admin.bookings.sendsms');
-
+Route::post('/bookings/send-survey-sms', 'BookingController@getBookingSurveySendSMS')->name('admin.bookings.surveysms');
 Route::post('/bookings/change-theme', 'BookingController@changeBookingTheme')->name('admin.change.theme');
 Route::post('/bookings/add-notes', 'BookingController@AddBookingNote')->name('admin.add.notes');
 Route::get('/success-bookings', 'SuccessBookingController@index')->name('admin.success.booking');

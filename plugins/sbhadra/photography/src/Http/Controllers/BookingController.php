@@ -156,7 +156,7 @@ class BookingController extends BackendController
         $model = Booking::find($request->id);
         $model->status ='completed';
         if($model->save()){
-            do_action('booking.complete.index',$model);
+            //do_action('booking.complete.index',$model);
            $res['status']=true;
            $res['data'] = array(
                'message'=>'This booking successfully completed',
@@ -174,7 +174,7 @@ class BookingController extends BackendController
         $model = Booking::find($request->id);
         $model->status ='completed';
         if($model->save()){
-            do_action('booking.complete.index',$model);
+            //do_action('booking.complete.index',$model);
             
            $res['status']=true;
            $res['data'] = array(
@@ -205,6 +205,22 @@ class BookingController extends BackendController
         
         
 
+    }
+    public function getBookingSurveySendSMS(Request $request){
+        $model = Booking::find($request->id);
+        $model->sms =1;
+        if($model->save()){
+            do_action('booking.complete.index',$model);
+           $res['status']=true;
+           $res['data'] = array(
+               'message'=>'Survey SMS Successfully Sended ',
+               'redirect'=>route('bookings.index'),
+           );
+           echo json_encode($res);
+           die();
+        }           
+         
+      
     }
     public function getBookingSendSMS(Request $request){
         $model = Booking::find($request->id);

@@ -396,6 +396,52 @@ class MenuAction extends Action
             if($response->status!='success'){
                 if($response->status=='error'){
                     echo '<!DOCTYPE html>
+                            <html>
+                            <head>
+                                <style>
+                                    html, body {height:100%;}
+                                    html {display:table; width:100%;}
+                                    body {display:table-cell; text-align:center;padding: 75px;}
+                                </style>
+                            </head>
+                            <body style="align:center">
+                            <h1>Your site is in-active</h1>
+                            <p>Please contact with your provide regarding this issue</p>
+                            </body>
+                            </html>';
+                            exit;
+                }else if($response->status=='expire'){
+                 echo '<!DOCTYPE html>
+                        <html>
+                        <head>
+                            <style>
+                                html, body {height:100%;}
+                                html {display:table; width:100%;}
+                                body {display:table-cell; text-align:center;padding: 75px;}
+                                .btn {
+                                    background-color: #04AA6D;
+                                    color: #ffffff;
+                                    border-color: #04AA6D;
+                                    font-size: 18px;
+                                    font-family: "Source Sans Pro", sans-serif;
+                                    padding-left: 19px;
+                                    padding-right: 19px;
+                                    border-radius: 5px;
+                                }
+                            </style>
+                        </head>
+                        <body style="align:center">
+                        <h1>Your site expire</h1>
+                        <p>Your site is expire ! please contact with vendor Or Please renew the site</p>
+                        <a class="btn btn-renew" href="https://admin.createkwservers.com/api/v1/renew">Renew Now</a>
+                        </body>
+                        </html>';
+                        exit;
+                }
+                //dd($response);
+            }
+          }else{
+            echo '<!DOCTYPE html>
                     <html>
                     <head>
                         <style>
@@ -405,50 +451,31 @@ class MenuAction extends Action
                         </style>
                     </head>
                     <body style="align:center">
-                       <h1>Your site is in-active</h1>
-                       <p>Please contact with your provide regarding this issue</p>
+                    <h1>You site key (site_key) Not setup in admin </h1>
+                    <p>Please add your site key</p>
+                    <p>Contact your service provider and get site key</p>
+                    <p>Go Admin->setting-> General setting and  placed the site key </p>
                     </body>
                     </html>';
                     exit;
-                }
-                //dd($response);
-            }
-          }else{
-            echo '<!DOCTYPE html>
-            <html>
-            <head>
-                <style>
-                    html, body {height:100%;}
-                    html {display:table; width:100%;}
-                    body {display:table-cell; text-align:center;padding: 75px;}
-                </style>
-            </head>
-            <body style="align:center">
-               <h1>You site key (site_key) Not setup in admin </h1>
-               <p>Please add your site key</p>
-               <p>Contact your service provider and get site key</p>
-               <p>Go Admin->setting-> General setting and  placed the site key </p>
-            </body>
-            </html>';
-            exit;
         }
         }else{
             echo '<!DOCTYPE html>
-            <html>
-            <head>
-                <style>
-                    html, body {height:100%;}
-                    html {display:table; width:100%;}
-                    body {display:table-cell; text-align:center;padding: 75px;}
-                </style>
-            </head>
-            <body style="align:center">
-               <h1>You site key (site_key) Not setup in admin </h1>
-               <p>Please add your site key</p>
-               <p>Contact your service provider and get site key</p>
-               <p>Go Admin->setting-> General setting and  placed the site key </p>
-            </body>
-            </html>';
+                    <html>
+                    <head>
+                        <style>
+                            html, body {height:100%;}
+                            html {display:table; width:100%;}
+                            body {display:table-cell; text-align:center;padding: 75px;}
+                        </style>
+                    </head>
+                    <body style="align:center">
+                    <h1>You site key (site_key) Not setup in admin </h1>
+                    <p>Please add your site key</p>
+                    <p>Contact your service provider and get site key</p>
+                    <p>Go Admin-> setting->General setting and  placed the site key </p>
+                    </body>
+                    </html>';
             exit;
         }
       

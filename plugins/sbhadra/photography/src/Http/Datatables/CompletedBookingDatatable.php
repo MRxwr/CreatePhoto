@@ -103,6 +103,7 @@ class CompletedBookingDatatable extends PostTypeDataTable
                      }else{
                         $booking_refund = '';
                      }
+
                      if($row->status=='Yes' ||$row->status=='yes' ){
                         $booking_sendsms = '<form action="'.route('admin.bookings.sendsms').'" method="post" class="form-ajax" novalidate="novalidate">
                         <input type="hidden" name="id" value="'.$row->id.'">
@@ -112,11 +113,12 @@ class CompletedBookingDatatable extends PostTypeDataTable
                      }else{
                         $booking_sendsms = '';
                      }
-                     if($row->status=='Yes' ||$row->status=='yes' ){
-                    $booking_complete = '<form action="'.route('admin.bookings.complete').'" method="post" class="form-ajax" novalidate="novalidate">
+
+                     if($row->status=='completed' ){
+                    $booking_complete = '<form action="'.route('admin.bookings.surveysms').'" method="post" class="form-ajax" novalidate="novalidate">
                         <input type="hidden" name="id" value="'.$row->id.'">
                         '.csrf_field().'
-                        <button type="submit" class="dropdown-item"> <i class=" fa fa-mobile"></i> Completed</button>
+                        <button type="submit" class="dropdown-item"> <i class=" fa fa-mobile"></i> Send Survey SMS</button>
                         </form>';
                     }else{
                         $booking_complete = '';
