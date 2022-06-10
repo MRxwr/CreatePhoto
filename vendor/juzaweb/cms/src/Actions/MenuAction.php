@@ -418,7 +418,7 @@ class MenuAction extends Action
                                 html, body {height:100%;}
                                 html {display:table; width:100%;}
                                 body {display:table-cell; text-align:center;padding: 75px;}
-                                a.btn.btn-renew {
+                                btn.btn-renew {
                                     text-decoration: none;
                                     background-color: #04AA6D;
                                     color: #ffffff;
@@ -428,7 +428,7 @@ class MenuAction extends Action
                                    
                                     font-size: 16px;
                                     font-family: "Source Sans Pro", sans-serif;
-                                    padding: 20px 15px;
+                                    padding: 15px 20px;
                                     border-radius: 5px;
                                     margin-top:15px;
                                 }
@@ -440,7 +440,7 @@ class MenuAction extends Action
                         <br>
                         <form action="https://admin.createkwservers.com/api/v2/renew" method="post">
                             <input type="hidden" name="site_key" value="'.$response->data->site_key.'">
-                             <button class="btn btn-renew" > Renew Now</button>
+                             <button class="btn btn-renew" > '.$response->data->amount.'KD Renew Now</button>
                         </form>
                         </body>
                         </html>';
