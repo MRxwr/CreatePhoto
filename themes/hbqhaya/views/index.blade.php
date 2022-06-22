@@ -59,16 +59,24 @@
 
         <!-- instagram-section -->
          <!-- insta_feed -->
-         <section class="insta_feed py-5">
-            <div class="container">
-                <div class="row mb-3 pb-3">
-                    <div class="col-lg-12 pb-5">
-                        <h4 class="fs107 CarrinadyB text-primary SegoeUIL">@lang('theme::app.picked_for_you')</h4>
+         <section class="instagram-section py-sm-5 pt-5 mb-sm-5">
+         <div class="container pb-sm-3">
+                <div class="row justify-content-center">
+                    <div class="col-xl-10 px-xxl-5">
+                        <div class="row">
+                            <div class="col-xl-12 pb-5">
+                                <div class="site-title position-relative d-flex align-items-center justify-content-center">
+                                    <div class="bg-white">
+                                        <h3 class="fs30 text-300 SegoeUIL px-5">
+                                        @lang('theme::app.picked_for_you')
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="container-fluid">
-                @apply_filters('theme.instafeed.home2nd')
+                @apply_filters('theme.instafeed.home1st')
             </div>
         </section>
         <!-- insta_feed -->
