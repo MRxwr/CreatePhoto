@@ -41,9 +41,11 @@ class MainAction extends Action
 
         add_action('theme.coupon.fields', function() {
             $html = '<div class="col-xxl-8 pb-3">
-            <label>'.trans('theme::app.coupon').'</label>
+            <label>'.trans('theme::app.coupon_referral').'</label>
                 <input type="hidden"  id="discount_value" name="discount_value">
-                <input type="text" class="border"  id="coupon_code" name="coupon_code">
+                <input type="hidden" class="border"  id="coupon_code" name="coupon_code">
+                <input type="hidden" class="border"  id="referral_code" name="referral_code">
+                <input type="text" class="border"  id="promo_code" name="promo_code">
             </div><div class="col-xxl-4 pb-3">
               <a class="btn btn-sm btn-light fs18 radius30" id="apply_code">'.trans('theme::app.apply').'</a>
             </div>';
@@ -54,14 +56,13 @@ class MainAction extends Action
             $html = '<script>
             $("body").on("click", "#apply_code", function(e) {
                 var total_price = localStorage.getItem("total_price");
-                var coupon_code = $("#coupon_code").val();
-                //alert(coupon_code);
-                if(coupon_code!=""){
-                 
+                var promo_code = $("#promo_code").val();
+                //alert(promo_code);
+                if(promo_code!=""){
                    $.ajax({
                        type: "GET",
                        url: "?ajaxpage=checkCouponAjax",
-                       data: "coupon_code=" + coupon_code +"&total_price=" + total_price,
+                       data: "promo_code=" + promo_code +"&total_price=" + total_price,
                        success : function(res){
                         var obj = jQuery.parseJSON(res);
                            if (obj.status == "success"){
@@ -72,6 +73,14 @@ class MainAction extends Action
                                 $("#totalprice").html(pt);
                                 //$("#discountprice").text("(Discount : "+ obj.discount + "KD)");
                                 $("#discount_value").val( obj.discount);
+                                if(obj.type=="coupon"){
+                                    $("#referral_code").val("");
+                                    $("#coupon_code").val(obj.code);
+                                }
+                                if(obj.type=="referral"){
+                                    $("#coupon_code").val("");
+                                    $("#referral_code").val(obj.code);
+                                }
                                 
                                }, 1000); 
                            }else{
@@ -90,35 +99,76 @@ class MainAction extends Action
 
     public function checkCouponCode(){
         if(isset($_REQUEST['ajaxpage']) && $_REQUEST['ajaxpage'] =='checkCouponAjax' ){
-            if(isset($_REQUEST['coupon_code'])){
-                $coupon = Coupon::where('coupon_code',$_REQUEST['coupon_code'])->whereDate('validity_from', '<=', date("Y-m-d"))
+            if(isset($_REQUEST['promo_code'])){
+               
+                $coupon = Coupon::where('coupon_code',$_REQUEST['promo_code'])->whereDate('validity_from', '<=', date("Y-m-d"))
                 ->whereDate('validity_to', '>=', date("Y-m-d"))
                 ->first();
+                //dd($coupon);
                 if(!empty($coupon)){
-                $booking =  Booking::where('coupon_code',$_REQUEST['coupon_code'])->where('status','Yes')->count();
-                    //dd($coupon->coupon_discount);
-                    if($booking==0){
-                        $discount=0;
-                        if($coupon->coupon_type==1){
-                            $discount = (intval($coupon->coupon_discount)*$_REQUEST['total_price'])/100;
+                    if($coupon->source=='web' || $coupon->source=='system'){
+                       $booking =  Booking::where('coupon_code',$_REQUEST['promo_code'])->where('status','Yes')->count();
+                       //dd($coupon->coupon_discount);
+                        if($booking==0){
+                            $discount=0;
+                            if($coupon->coupon_type==1){
+                                $discount = (intval($coupon->coupon_discount)*$_REQUEST['total_price'])/100;
+                            }else{
+                                $discount =intval($coupon->coupon_discount);
+                            }
+                            echo json_encode(
+                                    array(
+                                        'status'=>'success',
+                                        'type' =>'coupon',
+                                        'code' =>$_REQUEST['promo_code'],
+                                        'discount'=>$discount,
+                                    )
+                                );
                         }else{
-                            $discount =intval($coupon->coupon_discount);
-                        }
-                        echo json_encode(
+                            echo json_encode(
                                 array(
-                                    'status'=>'success',
-                                    'discount'=>$discount,
+                                    'status'=>'error',
+                                    'discount'=>0,
                                 )
                             );
-                    }else{
-                        echo json_encode(
-                            array(
-                                'status'=>'error',
-                                'discount'=>0,
-                            )
-                        );
-                       
-                    }
+                        
+                        }
+                    }else  if($coupon->source=='survey'){
+                        $booking =  Booking::where('referral_code',$_REQUEST['promo_code'])->where('status','Yes')->count();
+                        //dd($coupon->coupon_discount);
+                         if($booking==0){
+                             $discount=0;
+                             if($coupon->coupon_type==1){
+                                 $discount = (intval($coupon->coupon_discount)*$_REQUEST['total_price'])/100;
+                             }else{
+                                 $discount =intval($coupon->coupon_discount);
+                             }
+                             echo json_encode(
+                                     array(
+                                         'status'=>'success',
+                                         'type' =>'referral',
+                                         'code' =>$_REQUEST['promo_code'],
+                                         'discount'=>$discount,
+                                     )
+                                 );
+                         }else{
+                             echo json_encode(
+                                 array(
+                                     'status'=>'error',
+                                     'discount'=>0,
+                                 )
+                             );
+                         
+                         }
+                     }                        
+                }else{
+                    echo json_encode(
+                        array(
+                            'status'=>'error',
+                            'discount'=>0,
+                        )
+                    );
+                
                 }
             }
         exit;

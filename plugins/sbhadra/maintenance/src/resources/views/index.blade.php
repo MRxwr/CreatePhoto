@@ -1,4 +1,4 @@
-
+<!-- 
 
 <!DOCTYPE html>
 <html>
@@ -264,4 +264,144 @@
 		</section>
 
 	</body>
-</html>		
+</html>		 -->
+
+<html><head></head><body>
+  <title>Hayaphotography site under construction</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css?v=1" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Almarai&amp;display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+       font-family: 'Almarai', sans-serif;
+      overflow:hidden;
+    }
+
+    .bgimg {
+        background: url(../assets/images/color_bar1.png) repeat-x 0 top;
+        padding: 45% 0 40px 0;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+        background-size: contain;
+    }
+
+    .topleft {
+      background: url(../assets/images/about_img_bg.jpg) no-repeat right top !important;
+        width: 100% !important;
+        height: 100vh !important;
+        
+    }
+
+    .above-logo {
+      position: relative;
+      top: 24%;
+      margin: 0 auto;
+      left: 0%;
+    }
+    .above-logo img {
+        width: 60%;
+        margin: 10% auto;
+
+    }
+    .content_left{
+      margin-top: 150px;
+      position: relative;
+      text-align:center;
+    }
+    .content_left h2{
+      text-align:center;
+      font-family: 'Almarai', sans-serif;
+    }
+
+    .middle {
+      font-family: 'Almarai', sans-serif;
+      position: absolute;
+      top: 0;
+      text-align: center;
+    }
+    footer.footer::before {
+    width: 150px;
+    height: 403px;
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    content: "";
+    background: url(../assets/images/footer_bg.png) no-repeat 0 bottom;
+    background-size: auto;
+    background-size: 60%;
+}
+@media only screen and (max-width: 600px) {
+  .logorow, .logocol{
+    margin-left:-30px;
+  }
+  .bgimg {
+    background: url(../assets/images/color_bar1.png) repeat-x 0 top;
+    padding: 240% 0 40px 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+  .topleft {
+    background: url(../assets/images/about_img_bg_widt.jpg) repeat-x 0 top!important;
+    padding: 10% 0 20px 0;
+    width: 100% !important;
+    min-width:320px !important;
+    height: 250px !important;
+    background-size: cover!important; 
+  }
+  .content_left{
+      margin-top: 75px!important;
+      position: relative;
+      text-align:center;
+    }
+    .content_left h2{
+      text-align:center;
+      font-size: 20px!important;
+      font-family: 'Almarai', sans-serif;
+    }
+  .above-logo {
+  top: 1%;
+   }
+}
+</style>
+  <div class="bgimg" style="width:100%;">
+    <div class="container middle" style="width:100%; position:absolute;  margin: 0px -15px;">
+        <div class="row logorow ">
+          <div class="col-sm-4 logocol">
+            <div class="topleft">
+              <div class="above-logo">
+                  <img src="../assets/images/banner-logo.png" alt="Hayaphotography" class="mb-5" title="">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="content_left">
+              <h4 class="">We will be back soon</h4>
+              <h4 class="">نطرونا شوي و راجعين</h4>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+<footer class="footer text-center ">  
+    <!--<div class="container">
+      <div class="row">
+        <div class="col-12 h-100 text-center my-auto">
+          <p class="mb-3 text-center" style="text-align: center !important;"><a href="mailto:info@hbqphoto.com"><i class="far fa-envelope mr-1"></i>info@hbqphoto.com</a></p>
+          <p class="text-muted mb-5 text-uppercase text-center" style="text-align: center !important;">COPYRIGHT 2020 - HAYAPHOTOGRAPHY- KUWAIT</p>
+          <p class="theme-color text-center" style="text-align: center !important;">Powered by <a href="http://www.create-kw.com/" target="_blank" class="text-muted">Create-kw.com</a></p>
+        </div>
+      </div>
+    </div> -->
+  </footer>
+
+
+
+</body></html>

@@ -117,4 +117,5 @@ return [
     'Your_message_here'=>'رسالتك هنا ...',
     'To_serve_you_better'=>'لخدمتك بشكل أفضل ، يرجى ملاحظة أن الرسالة مخصصة للاستفسارات فقط وليس للحجز. شكرًا لك.',
     'Included_In_This_Package'=>'المدرجة في هذه الحزمة',
+    'coupon_referral'=>'Coupon / Referral Code',
 ];

@@ -12,4 +12,5 @@ return [
     'survey_result' => 'Survey Result',
     'surveys' => 'Surveys',
     'Status' => 'Status',
+    'survey_reffarel' => 'Survey Referral ',
 ];

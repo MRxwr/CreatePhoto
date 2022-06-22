@@ -1,0 +1,23 @@
+{
+    "name": "sbhadra/Hayaoption",
+    "description": "",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sbhadra\\Hayaoption\\Providers\\HayaOptionServiceProvider"
+            ],
+            "aliases": {}
+        },
+        "juzaweb": {
+            "name": "sbhadra/hayaoption",
+            "domain": "sbha",
+            "cms_min": "1.0.9",
+            "version": "1.2"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Sbhadra\\Hayaoption\\": "src/"
+        }
+    }
+}

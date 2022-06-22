@@ -31,7 +31,7 @@ class MenuAction extends Action
         $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'addMenuBoxs'], 50);
         $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'addTaxonomiesForm']);
         $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerEmailHooks']);
-        $this->addAction(self::FRONTEND_CALL_ACTION, [$this, 'checkSiteValidity'], 10);
+        //$this->addAction(self::BACKEND_CALL_ACTION, [$this, 'checkSiteValidity'], 10);
     }
 
     public function addBackendMenu()
@@ -388,7 +388,7 @@ class MenuAction extends Action
                 ),
             ));
             $response = curl_exec($curl);
-            curl_close($curl);
+             curl_close($curl);
             //echo $response;
             $response = json_decode($response);
             //dd($response);

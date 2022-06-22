@@ -47,6 +47,15 @@ class MainAction extends Action
             'menu_position' => 39,
             'menu_icon' => 'fa fa-list',
         ]);
+        HookAction::addAdminMenu(
+            trans('sbsu::app.survey_reffarel'),
+            'survey/referral-code',
+            [
+                'icon' => 'fa fa-doller',
+                'position' => 4,
+                'parent' => 'survey',
+            ]
+        );
         
     }
 
@@ -315,17 +324,17 @@ class MainAction extends Action
                   $survey ->result =  $_POST['survey'];
                   $survey ->survey_coupon = $survey_coupon;
                   if($survey ->save()){
-                    $coupon_discount = 10;
-                    $coupon_type = 1;
+                    $coupon_discount = 0.00;
+                    $coupon_type = 2;
                     $source = 'survey';
                     $coupon = New Coupon;
                     $coupon->title =$survey_coupon;
                     $coupon->coupon_code =$survey_coupon;
-                    $coupon->coupon_discount =$coupon_discount;
+                    $coupon->coupon_discount =0.00;
                     $coupon->coupon_type =$coupon_type;
-                    
+                    $coupon->source = $source;
                     if($coupon->save()){
-                        $message='Thank you for participated  to survey , Your coupon code is '.$survey_coupon ;
+                        $message='Thank you for participated  to survey , Your referral  code is '.$survey_coupon ;
                         //str_replace($rptest,$nptext,trans('sbkw::app.survey_message'))
                         $data= array(
                             'message'=> $message,
@@ -340,7 +349,7 @@ class MainAction extends Action
                                         <div class="text-center pb-3">
                                             <img src="'.upload_url(get_config('logo')).'" alt="img" class="mw-100">
                                         </div>';
-                            $html .= '<div class="alert alert-success"><strong> Success! Your Survey is Successfully done ! Your Coupon COde : </strong>  '.$survey_coupon.'</div>';
+                            $html .= '<div class="alert alert-success"><strong> Success! Your Survey is Successfully done ! Your Referral  Code : </strong>  '.$survey_coupon.'</div>';
                             $html .=  '<br>';
                             $html .=  '<p><strong>شكرا لوقتكم ورايكم ..';
                             $html .=  'وتستاهلون كود خصم ١٠% للجلسه القادمه</strong></p>';

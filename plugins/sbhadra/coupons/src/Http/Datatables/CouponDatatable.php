@@ -73,6 +73,7 @@ class CouponDatatable extends PostTypeDataTable
     public function query($data)
     {
         $query = Coupon::query();
+        $query ->whereIn('source',['web','system']);
         if ($keyword = Arr::get($data, 'keyword')) {
             $query->where(function (Builder $q) use ($keyword) {
                 $q->where('title', 'like', '%'. $keyword .'%');

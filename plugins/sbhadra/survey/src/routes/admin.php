@@ -11,5 +11,6 @@
 |
 */
 Route::get('/survey/details/{id}', 'SurveyController@getDetails')->name('admin.survey.view');
+Route::get('/survey/referral-code', 'CouponsController@index');
 Route::Resource('survey', 'SurveyController');
 Route::Resource('question', 'QuestionController');

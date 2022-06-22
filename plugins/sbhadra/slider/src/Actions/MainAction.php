@@ -19,6 +19,7 @@ class MainAction extends Action
         $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerSlider']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addHeaderSlider']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addCstudioHeaderSlider']);
+        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addHayaHeaderSlider']);
         //$this->addAction(self::BACKEND_CALL_ACTION, [$this, 'addAdminMenus']);
     }
 
@@ -84,6 +85,39 @@ class MainAction extends Action
                 $html .=  ' </div></div> </div></div>';
                 $html .=  '</section>';
             }
+            echo $html;
+
+        });
+    }
+
+    public function addHayaHeaderSlider()
+    {
+       
+        $this->addAction('theme.Haya.slider', function () {
+            $sliders = Slider::where('status','publish')->get();
+            //var_dump($sliders);
+            $html='';
+            if($sliders ){
+                $html .='<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">';
+                
+                $html .= '<div class="carousel-inner">';
+                    foreach($sliders as $key=>$slider){
+                        $html .= '<div class="carousel-item '.($key==0?'active':'').' ">';
+                        $html .= '<img src="'. upload_url($slider->thumbnail) .'" class="img-fluid d-block mx-auto" alt="">';
+                        $html .= '</div>';
+    
+                    }
+                    $html .= '</div>';
+                    $html .= '<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                       <span class="visually-hidden">Previous</span>
+                     </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>';
+                    $html .= '</div>';
+              }
             echo $html;
 
         });
