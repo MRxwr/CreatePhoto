@@ -4,7 +4,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Sbhadra\\Packagetypes\\Providers\\PackagetypesServiceProvider"
+                "Sbhadra\\Packagetypes\\Providers\\PackageTypesServiceProvider"
             ],
             "aliases": {}
         },
