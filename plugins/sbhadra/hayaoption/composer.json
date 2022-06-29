@@ -1,5 +1,5 @@
 {
-    "name": "sbhadra/Hayaoption",
+    "name": "sbhadra/hayaoption",
     "description": "",
     "extra": {
         "laravel": {
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Sbhadra\\Hayaoption\\": "src/"
+            "Sbhadra\\hayaoption\\": "src/"
         }
     }
 }
