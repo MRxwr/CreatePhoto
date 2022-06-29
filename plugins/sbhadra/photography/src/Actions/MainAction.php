@@ -198,10 +198,10 @@ class MainAction extends Action
     }
     public function registerTaxonomies()
     {
-        HookAction::registerTaxonomy('types', 'packages', [
-            'label' => trans('sbph::app.types'),
-            'menu_position' => 6, 
-        ]); 
+        // HookAction::registerTaxonomy('types', 'packages', [
+        //     'label' => trans('sbph::app.types'),
+        //     'menu_position' => 6, 
+        // ]); 
        HookAction::addAdminMenu(
             'Success bookings',
             'success-bookings',

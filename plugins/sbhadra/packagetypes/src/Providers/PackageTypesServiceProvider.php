@@ -3,12 +3,16 @@
 namespace Sbhadra\Packagetypes\Providers;
 
 use Juzaweb\Support\ServiceProvider;
+use Sbhadra\Packagetypes\Actions\MainAction;
+use Illuminate\Support\Facades\Schema;
 
 class PackageTypesServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        //
+        $this->registerAction([
+            MainAction::class
+        ]);
     }
 
     /**

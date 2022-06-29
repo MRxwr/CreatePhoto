@@ -89,7 +89,6 @@ class TaxonomyDataTable extends DataTable
             switch ($action) {
                 case 'delete':
                     $this->makeModel()->find($id)->delete($id);
-
                     break;
             }
         }

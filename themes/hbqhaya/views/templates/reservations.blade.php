@@ -100,7 +100,10 @@
                                     </div>
                                     <div class="package-head bg-danger radius15 mh67 py-1 px-3 mb-4 d-inline-flex align-items-center">
                                         <h4 class="fs23 text-danger">
-                                            @lang('theme::app.Deposit') <!--<span class="text-600">35.500 KD</span> --> @lang('theme::app.deposit_note')  
+                                            @lang('theme::app.Deposit')
+                                             <!--<span class="text-600">35.500 KD</span> -->
+                                             @do_action('theme.fixedprice.text') 
+                                            @lang('theme::app.deposit_note')  
                                         </h4>
                                     </div>
                                     <div class="package-head bg-danger radius15 mh67 py-1 px-3 mb-4 d-inline-flex align-items-center">

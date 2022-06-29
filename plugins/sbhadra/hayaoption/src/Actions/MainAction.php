@@ -13,6 +13,7 @@ use Sbhadra\Packagethemes\Models\Theme;
 use Juzaweb\Models\Taxonomy;
 use Juzaweb\Models\Page;
 use Illuminate\Support\Facades\DB;
+use Sbhadra\Photography\Models\Setting;
 use Illuminate\Http\Request;
 
 class MainAction extends Action
@@ -35,6 +36,7 @@ class MainAction extends Action
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'doProcessPackageThemes']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'getHomeAboutContent']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'getTermsAndConditionContent']);
+        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'getThemeFixedPriceText']);
        
     }
     
@@ -722,6 +724,20 @@ public function addThemeExtraFields(){
             if($page){
                echo $page->content;
              }
+        });
+    }
+
+    public function getThemeFixedPriceText(){
+        $this->addAction('theme.fixedprice.text', function() {
+                $settings = Setting::all()->toArray();
+                $config=array();
+                foreach($settings as $setting){
+                    $config[$setting["field_key"]] = $setting["field_value"];
+                }
+            if($config['payment_type']==1){
+                $pay_amount = $config['pay_amount'];
+               echo '<span class="text-600">'.$pay_amount.'KD</span>'; 
+            }      
         });
     }
 
