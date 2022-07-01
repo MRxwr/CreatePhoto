@@ -73,7 +73,7 @@
         <!-- instagram-section -->
 
         <!-- site-footer -->
-            @include('theme::footer')
+         @include('theme::footer')
         <!-- site-footer -->
 
 		<!-- jquery script -->
@@ -130,6 +130,7 @@
       @endif
       <script>
           $(document).ready(function(){
+            $('#booking_price').val(0.00);
               var date_input=$('#bookingdate'); //our date input has the name "date"
               var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
               var options={

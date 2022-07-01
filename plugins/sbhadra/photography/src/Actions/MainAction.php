@@ -36,6 +36,7 @@ class MainAction extends Action
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'checkActiveSlote']);
         $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'checkTempSlot']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'clearSession']);
+        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'CronBookingNotification']);
         
     }
 
@@ -977,5 +978,30 @@ foreach($bookings as $key=>$booking){
 
        }  
     }
+   
+    public function CronBookingNotification(){
+        if(isset($_REQUEST['cronpage']) && $_REQUEST['cronpage'] =='notification' ){
+            $datetime = new \DateTime();
+            $datetime->modify('+3 days');
+            $tody = $datetime->format('d-m-Y');
+            $bookings = Booking::whereIn('status',['yes','Yes'])->where('booking_date',$tody)->get();
+            if(!empty($bookings)){
+                foreach($bookings as $key=>$booking){
+                    $slot = $booking->timeslot->starttime .'To'. $booking->timeslot->endtime;
+                    $booking_date = $booking->booking_date;
+                    $orderid = $booking->title;
+                    $rptest=["[bdate]","[time]","[orderId]"];
+                    $nptext = [$booking_date,$slot,$orderid];
+                    $data= array(
+                    'message'=>str_replace($rptest,$nptext,trans('sbkw::app.sussess_message')),
+                    'mobile'=>$booking->mobile_number,
+                    'code'=>'+965',
+                    );
+                    do_action('booking.sms.index',$data);
+                }
+             }
+             exit;
+           }   
+        }
 
 }

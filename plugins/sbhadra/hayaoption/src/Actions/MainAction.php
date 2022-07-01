@@ -42,6 +42,7 @@ class MainAction extends Action
     
 public function packageThemeField(){
       add_action('post_type.package.form.right', function($model){
+        //dd($model);
          $html='';
           $taxonomies = Taxonomy::where('post_type','package-themes')->where('taxonomy','categories')->get();
           //dd($taxonomies);
@@ -214,6 +215,7 @@ public function packageThemeField(){
        add_action('admin.booking.script', function() {
         $html = '<script>
             $(document).ready(function(){
+                
                 $("#number_of_pieces").keyup(function(){
                     if(this.value>0){
                         var package_price = localStorage.getItem("package_price");
@@ -734,7 +736,7 @@ public function addThemeExtraFields(){
                 foreach($settings as $setting){
                     $config[$setting["field_key"]] = $setting["field_value"];
                 }
-            if($config['payment_type']==1){
+            if(isset($config['payment_type']) AND $config['payment_type']==1){
                 $pay_amount = $config['pay_amount'];
                echo '<span class="text-600">'.$pay_amount.'KD</span>'; 
             }      

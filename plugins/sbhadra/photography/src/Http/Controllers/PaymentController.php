@@ -8,6 +8,7 @@ use Sbhadra\Photography\Models\Package;
 use Sbhadra\Photography\Models\Service;
 use Sbhadra\Photography\Models\Booking;
 use Sbhadra\Photography\Models\Timeslot;
+use Sbhadra\Photography\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Session;
@@ -16,6 +17,12 @@ class PaymentController extends FrontendController
 {
     public function doPayment()
     {
+        $settings = Setting::all()->toArray();
+        $config=array();
+        foreach($settings as $setting){
+            $config[$setting["field_key"]] = $setting["field_value"];
+        }
+
         $payment_data = array();
         $payment_data= $request = \Request::all();
         $package = Package::find($request['id']);
@@ -44,8 +51,17 @@ class PaymentController extends FrontendController
         if(isset($payment_data['discount_value'])){
             $total = $total - $payment_data['discount_value'];
         }
-        $payment_data['pay_amount'] =$total;
+        
+     
+        //$payment_data['pay_amount'] =$total;
        // $payment_data['pay_amount'] =35.500;
+
+       if(isset($config['payment_type']) AND $config['payment_type']==1){
+          $pay_amount = $config['pay_amount'];
+          $payment_data['pay_amount'] =$pay_amount;
+        }else{
+           $payment_data['pay_amount'] =$total;  
+        }
         
         $booking = new Booking;
         $booking->package_id = $package->id;
@@ -64,7 +80,7 @@ class PaymentController extends FrontendController
             if(!empty($request['service_item'])){
              $booking->services()->sync($request['service_item']);
             }
-            $payment_data['booking_id'] = $booking->id;
+              $payment_data['booking_id'] = $booking->id;
               Session::put('booking_data', $booking);
               session(['booking_data' => $booking]);
               $status = do_action('theme.booking.extra',$payment_data);
@@ -77,5 +93,7 @@ class PaymentController extends FrontendController
     public function doFailed(){
         $status = do_action('theme.payment.method_failed');
     }
+
+
 
 }

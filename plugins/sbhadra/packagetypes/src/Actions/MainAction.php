@@ -6,6 +6,7 @@ use Illuminate\Support\Arr;
 use Juzaweb\Abstracts\Action;
 use Juzaweb\Facades\HookAction;
 use Illuminate\Support\Facades\DB;
+use Sbhadra\Photography\Models\Package;
 use Sbhadra\Packagetypes\Models\PackageType;
 use Sbhadra\Packagetypes\Models\PackageTypeAttribute;
 
@@ -21,8 +22,8 @@ class MainAction extends Action
         
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'packageThemeField']);
         $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerPackageType']);
-        $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'packageThemeField']);
-         $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'AdminPackageThemeField']);
+       // $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'packageThemeField']);
+        $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'AdminPackageThemeField']);
        
     }
 
@@ -78,7 +79,7 @@ class MainAction extends Action
             </div>';
             }
           echo  $html;
-      }, 15, 1);
+      }, 17, 1);
       add_action('juzaweb_header', function(){
         echo '<style>
                 .accordion-container{
@@ -193,12 +194,11 @@ class MainAction extends Action
 
 public function packageThemeField(){
   add_action('theme.reservation.exfields', function($model){
+    $model = Package::find($_REQUEST['id']);
     $pAttrs='';
-    If(isset($model->package_type_attributes)){
+    if(isset($model->package_type_attributes)){
       $pAttrs = (array) json_decode($model->package_type_attributes);
     }
-    
-
     //dd($pAttrs);
      $html='';
        $packagetypes= PackageType ::where('status',1)->get();
@@ -216,22 +216,27 @@ public function packageThemeField(){
                 $attrs = $pAttrs[$type->id];
               }
               $packagetypeAttrs= PackageTypeAttribute ::where('package_type_id',$type->id)->where('status',1)->get();
+              if(!empty($attrs)){
                  $html .='<div class="set">
                       <a class="fs23" href="javascript:void(0)"><i class="fa fa-plus"></i><span>'.$type->title.'</span> <span class="fa fa-question" style="float:right"  data-toggle="tooltip" data-placement="right" title="'.$type->note.'"></span></a> 
                       <div class="content">';
                       foreach($packagetypeAttrs as $attr){
                         $checked='';
+                        if($attr->is_theme==1){
+                          $thm='With Theme';
+                          }else{
+                              $thm='Without Theme';
+                          }
+                          $thm='';
                          if(in_array($attr->id,$attrs)){
-                           $checked ='checked';
+                           $checked ='';
+                           $html .='<label class="fs23 d-flex align-items-center" for="ta'.$type->id.'_'.$attr->id.'"><input class="pictype" style="margin: 5px; width: 25px; min-height: 25px;" type="radio" id="ta'.$type->id.'_'.$attr->id.'" name="pictures_type" data-price="'.$attr->price.'" value="'.$attr->id.'" '.$checked.'>'.$attr->title.'('.$attr->price.'KD)</label>';
                          }
-                         if($attr->is_theme==1){
-                             $thm='With Theme';
-                         }else{
-                             $thm='Without Theme';
-                         }
-                        $html .='<label class="fs23 d-flex align-items-center" for="ta'.$type->id.'_'.$attr->id.'"><input class="pictype" style="margin: 5px; width: 25px; min-height: 25px;" type="radio" id="ta'.$type->id.'_'.$attr->id.'" name="pictures_type" data-price="'.$attr->price.'" value="'.$attr->id.'" '.$checked.'>'.$attr->title.'('.$attr->price.'KD) - <strong>'. $thm.'</strong></label>';
+                        
+                        //$html .='<label class="fs23 d-flex align-items-center" for="ta'.$type->id.'_'.$attr->id.'"><input class="pictype" style="margin: 5px; width: 25px; min-height: 25px;" type="radio" id="ta'.$type->id.'_'.$attr->id.'" name="pictures_type" data-price="'.$attr->price.'" value="'.$attr->id.'" '.$checked.'>'.$attr->title.'('.$attr->price.'KD) - <strong>'. $thm.'</strong></label>';
                       }
-                $html .='</div> </div>';
+                   $html .='</div> </div>';
+                }
               }
           $html .='</div>
                 </div>';
@@ -333,6 +338,6 @@ public function packageThemeField(){
             });
         </script>';
     
-  }, 15, 1);
-}
+  }, 17, 1);
+ }
 }

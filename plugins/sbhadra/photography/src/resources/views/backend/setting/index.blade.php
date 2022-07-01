@@ -25,6 +25,12 @@
                 </div>
 
                 <div class="form-group row">
+                    <label class="col-form-label" for="release">Send SMS before days</label>
+                    <input id="number_day" name="number_day" type="text" class="form-control input-small" value="{{$settings['number_day']}}">
+                    <span class="input-group-addon"><i class="fa fa-watch"></i></span>
+                </div>
+
+                <div class="form-group row">
                     <label class="col-form-label" for="release">KWT SMS Username</label>
                     <input id="timepicker2" name="sms_username" type="text" class="form-control input-small" value="{{$settings['sms_username']}}">
                     <span class="input-group-addon"><i class="fa fa-watch"></i></span>
