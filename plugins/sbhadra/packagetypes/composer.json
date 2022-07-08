@@ -10,7 +10,7 @@
         },
         "juzaweb": {
             "name": "sbhadra/packagetypes",
-            "domain": "sbpa",
+            "domain": "sbpt",
             "cms_min": "1.0.9",
             "version": "1.0"
         }

@@ -9,6 +9,7 @@ use Sbhadra\Photography\Models\Package;
 use Sbhadra\Photography\Models\Service;
 use Sbhadra\Photography\Models\Booking;
 use Sbhadra\Photography\Models\Timeslot;
+use Sbhadra\Photography\Models\Setting;
 use Sbhadra\Photography\Http\Controllers\PaymentController;
 use Sbhadra\Calendar\Models\Calendar;
 use Illuminate\Support\Facades\DB;
@@ -981,8 +982,18 @@ foreach($bookings as $key=>$booking){
    
     public function CronBookingNotification(){
         if(isset($_REQUEST['cronpage']) && $_REQUEST['cronpage'] =='notification' ){
+            $settings = Setting::all()->toArray();
+            $config=array();
+            foreach($settings as $setting){
+                $config[$setting["field_key"]] = $setting["field_value"];
+            }
+            $days=1;
+            if(isset($config['number_day'])){
+                $days=$config['number_day'];
+            }
+            //dd($config['number_day']);
             $datetime = new \DateTime();
-            $datetime->modify('+3 days');
+            $datetime->modify('+'.$days.' days');
             $tody = $datetime->format('d-m-Y');
             $bookings = Booking::whereIn('status',['yes','Yes'])->where('booking_date',$tody)->get();
             if(!empty($bookings)){

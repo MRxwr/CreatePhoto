@@ -177,14 +177,16 @@
     </script>
     <script>
     $(document).ready(function(){
-        $("input[name='theme_id']").click(function(){
-            var radioValue = $("input[name='theme_id']:checked").val();
-            if(radioValue){
-                //alert("Your are a - " + radioValue);
-                $('#theme_id').val(radioValue);
-            }
+        var limit = 1;
+        $('input.theme_checkbox').on('change', function(evt) {
+            alert($(this).siblings(':checked').length)
+
+        if($(this).siblings(':checked').length >= limit) {
+             alert('oh')
+            this.checked = false;
+            $(this).next(".checkmark").removeAttr('::after');
+          }
         });
-       
     });
 </script>
 @endsection

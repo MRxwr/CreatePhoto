@@ -298,7 +298,7 @@ public function packageThemeField(){
                         $html .='<div class="col-sm-6 col-md-2 theme-select" >
                             <label class="container_radio themeCheck">
                                 <label for="slect'.$theme->id.'" class="d-inline-block">'.$theme->title.'</label>
-                                <input type="radio" id="slect'.$theme->id.'" value="'.$theme->id.'" name="theme_id">
+                                <input type="checkbox" id="slect'.$theme->id.'" value="'.$theme->id.'" name="theme_id">
                                 <span class="checkmark"></span>
                                 <a href="'.$theme->getThumbnail().'" class="themeCheck_img image-link border">
                                     <img src="'.$theme->getThumbnail().'" alt="img" class="" style="height:100px">
@@ -530,23 +530,23 @@ public function addThemeExtraFields(){
                </div>
             </div>
          </div>';
-        if( $package->is_pieces==1){
-           echo '<div class="col-xxl-10 pe-xl-5">
-                    <div class="personal-form row">
-                        <div class="col-xxl-8 pb-3">
-                         <label>'.trans('theme::app.Number_of_Pieces').':</label> 
-                         <input type="number" class="form-control" name="number_of_pieces" id="number_of_pieces" value="">
-                         <input type="hidden"  name="rate_per_pieces" id="rate_per_pieces" value="'.$package->rate_per_pieces.'">
-                       </div>
-                       <div class="col-xxl-8 pb-3">
-                         <label> </label> 
-                         <div class="package-head bg-danger radius15 mh67 py-1 px-3 mb-4 d-inline-flex align-items-center">
-                            <h4 class="fs23 text-danger">Each piece will cost  <span class="text-600">'.$package->rate_per_pieces.' KD</span></h4>
-                         </div>
-                       </div>
-                    </div>
-                </div>';
-          }
+        // if( $package->is_pieces==1){
+        //    echo '<div class="col-xxl-10 pe-xl-5">
+        //             <div class="personal-form row">
+        //                 <div class="col-xxl-8 pb-3">
+        //                  <label>'.trans('theme::app.Number_of_Pieces').':</label> 
+        //                  <input type="number" class="form-control" name="number_of_pieces" id="number_of_pieces" value="">
+        //                  <input type="hidden"  name="rate_per_pieces" id="rate_per_pieces" value="'.$package->rate_per_pieces.'">
+        //                </div>
+        //                <div class="col-xxl-8 pb-3">
+        //                  <label> </label> 
+        //                  <div class="package-head bg-danger radius15 mh67 py-1 px-3 mb-4 d-inline-flex align-items-center">
+        //                     <h4 class="fs23 text-danger">Each piece will cost  <span class="text-600">'.$package->rate_per_pieces.' KD</span></h4>
+        //                  </div>
+        //                </div>
+        //             </div>
+        //         </div>';
+        //   }
        }, 15, 1);
        add_action('theme.footer', function() {
         $html = '<script>
@@ -634,7 +634,7 @@ public function addThemeExtraFields(){
                     $html .='<div class="theme-select">
                     <label class="container_radio themeCheck">
                         <label for="slect'.$theme->id.'" class="d-inline-block">'.$theme->title.'</label>
-                        <input type="radio" id="slect'.$theme->id.'" value="'.$theme->id.'" name="theme_id">
+                        <input type="checkbox" class="theme_checkbox" id="slect'.$theme->id.'" value="'.$theme->id.'" name="theme_id[]">
                         <span class="checkmark"></span>
                         <a href="'.$theme->getThumbnail().'" class="themeCheck_img image-link border">
                             <img src="'.$theme->getThumbnail().'" alt="img" class="w-100">

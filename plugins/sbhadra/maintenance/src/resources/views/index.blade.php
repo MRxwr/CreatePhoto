@@ -284,7 +284,7 @@
     }
 
     .bgimg {
-        background: url(../assets/images/color_bar1.png) repeat-x 0 top;
+        background: url({{asset('/')}}jw-styles/themes/hbqhaya/assets/images/color_bar1.png) repeat-x 0 top;
         padding: 45% 0 40px 0;
         background-position: center;
         background-repeat: no-repeat;
@@ -293,7 +293,7 @@
     }
 
     .topleft {
-      background: url(../assets/images/about_img_bg.jpg) no-repeat right top !important;
+      background: url({{asset('/')}}jw-styles/themes/hbqhaya/assets/images/about_img_bg.jpg) no-repeat right top !important;
         width: 100% !important;
         height: 100vh !important;
         
@@ -333,7 +333,7 @@
     bottom: 0;
     left: 15px;
     content: "";
-    background: url(../assets/images/footer_bg.png) no-repeat 0 bottom;
+    background: url({{asset('/')}}jw-styles/themes/hbqhaya/assets/images/footer_bg.png) no-repeat 0 bottom;
     background-size: auto;
     background-size: 60%;
 }
@@ -342,14 +342,14 @@
     margin-left:-30px;
   }
   .bgimg {
-    background: url(../assets/images/color_bar1.png) repeat-x 0 top;
+    background: url({{asset('/')}}jw-styles/themes/hbqhaya/assets/images/color_bar1.png) repeat-x 0 top;
     padding: 240% 0 40px 0;
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
 }
   .topleft {
-    background: url(../assets/images/about_img_bg_widt.jpg) repeat-x 0 top!important;
+    background: url({{asset('/')}}jw-styles/themes/hbqhaya/assets/images/about_img_bg_widt.jpg) repeat-x 0 top!important;
     padding: 10% 0 20px 0;
     width: 100% !important;
     min-width:320px !important;
@@ -377,7 +377,7 @@
           <div class="col-sm-4 logocol">
             <div class="topleft">
               <div class="above-logo">
-                  <img src="../assets/images/banner-logo.png" alt="Hayaphotography" class="mb-5" title="">
+                  <img src="{{asset('/')}}jw-styles/themes/hbqhaya/assets/images/banner-logo.png" alt="Hayaphotography" class="mb-5" title="">
               </div>
             </div>
           </div>

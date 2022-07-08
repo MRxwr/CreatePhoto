@@ -22,27 +22,27 @@
                             @endphp
                             <li class="ms-3">
                                     <a href="{{$instagram}}">
-                                        <img src="{{asset('/')}}jw-styles/themes/demah/assets/img/in.svg" alt="img">
+                                        <img src="{{asset('/')}}jw-styles/themes/hbqhaya/assets/img/in.svg" alt="img">
                                     </a>
                                 </li>
                                 <li class="ms-3">
                                     <a href="{{$twitter}}">
-                                        <img src="{{asset('/')}}jw-styles/themes/demah/assets/img/tw.svg" alt="img">
+                                        <img src="{{asset('/')}}jw-styles/themes/hbqhaya/assets/img/tw.svg" alt="img">
                                     </a>
                                 </li>
                                 <li class="ms-3">
                                     <a href="{{$facebook}}">
-                                        <img src="{{asset('/')}}jw-styles/themes/demah/assets/img/fb.svg" alt="img">
+                                        <img src="{{asset('/')}}jw-styles/themes/hbqhaya/assets/img/fb.svg" alt="img">
                                     </a>
                                 </li>
                                 <li class="ms-3">
                                     <a href="{{$snapchat}}">
-                                        <img src="{{asset('/')}}jw-styles/themes/demah/assets/img/sn.svg" alt="img">
+                                        <img src="{{asset('/')}}jw-styles/themes/hbqhaya/assets/img/sn.svg" alt="img">
                                     </a>
                                 </li>
                                 <li class="ms-3">
                                     <a href="{{$whatsapp}}">
-                                        <img src="{{asset('/')}}jw-styles/themes/demah/assets/img/wh.svg" alt="img">
+                                        <img src="{{asset('/')}}jw-styles/themes/hbqhaya/assets/img/wh.svg" alt="img">
                                     </a>
                                 </li>
                             </ul>
