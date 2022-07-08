@@ -128,9 +128,13 @@ class MainAction extends Action
     public function doProcessPackageThemes(){
         add_action('theme.booking.extra', function($payment_data) {
             $booking = Booking::find($payment_data['booking_id']);
-            if(isset($payment_data['theme_id'])){
-                $theme_id =  $payment_data['theme_id'];
+            if(isset($payment_data['theme_id'][0])){
+                $theme_id =  $payment_data['theme_id'][0];
                 $booking->theme_id =  $theme_id ;
+            }
+            if(isset($payment_data['theme_id'][1])){
+                $theme_id =  $payment_data['theme_id'][1];
+                $booking->theme_2id =  $theme_id ;
             }
             $booking->save();
         }, 10, 1);

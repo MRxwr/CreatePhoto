@@ -297,7 +297,6 @@
         height: 100vh !important;
         
     }
-
     .above-logo {
       position: relative;
       top: 24%;

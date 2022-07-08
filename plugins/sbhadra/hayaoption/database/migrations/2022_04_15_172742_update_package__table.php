@@ -20,13 +20,13 @@ class UpdatePackageTable extends Migration
             $table->integer('is_theme_category')->default(0);
             $table->decimal('price_printed_electonic',10,2)->default(0.00);
             $table->decimal('price_electonic',10,2)->default(0.00);
-
         });
         Schema::table('bookings', function (Blueprint $table) {
             $table->integer('number_of_pieces')->default(0);
             $table->integer('rate_per_pieces')->default(0);
             $table->string('pictures_type', 250)->nullable();  
             $table->decimal('pictures_type_price',10,2)->default(0.00);
+            $table->integer('theme_2id')->default(0);  
         });
        
     }

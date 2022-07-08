@@ -102,8 +102,11 @@ class BookingController extends BackendController
         $model->total_price =$request['total_price'];
         $model->booking_price = $request['package_price'];
         $model->timeslot_id = $request['booking_time'];
-        if(isset($request['theme_id'])){
-            $model->theme_id =  $request['theme_id'] ;
+        if(isset($request['theme_id'][0])){
+            $model->theme_id =  $request['theme_id'][0] ;
+        }
+        if(isset($request['theme_id'][1])){
+            $model->theme_2id =  $request['theme_id'][1] ;
         }
         if(isset($request['pictures_type'])){
             $model->pictures_type =  $request['pictures_type'] ;
