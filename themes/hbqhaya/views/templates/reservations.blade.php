@@ -180,10 +180,10 @@
     $(document).ready(function(){
         var limit = 1;
         $('input.theme_checkbox').on('change', function(evt) {
-            alert($(this).siblings(':checked').length)
+            //alert($(this).siblings(':checked').length)
 
         if($(this).siblings(':checked').length >= limit) {
-             alert('oh')
+             //alert('oh')
             this.checked = false;
             $(this).next(".checkmark").removeAttr('::after');
           }
