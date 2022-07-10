@@ -111,7 +111,7 @@
            <form action="{{route('admin.change.theme')}}" method="post" class="form-ajax" novalidate="novalidate">
                     <input id="booking_id" type="hidden" name="id" value="">
                     {{csrf_field()}}
-                    @do_action('admin.success.themes')
+                      @do_action('admin.success.themes')
                     <br>
                     <div class="flot-right"> 
                         <button type="submit" class="btn btn-primary">Save Theme</button>

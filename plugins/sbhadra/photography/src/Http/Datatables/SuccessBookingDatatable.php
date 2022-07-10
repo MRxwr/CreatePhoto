@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Juzaweb\Http\Datatables\PostTypeDataTable;
 use Sbhadra\Photography\Models\Booking;
+use Sbhadra\Packagethemes\Models\Theme;
 
 class SuccessBookingDatatable extends PostTypeDataTable
 {
@@ -28,11 +29,16 @@ class SuccessBookingDatatable extends PostTypeDataTable
                 'label' => trans('sbpa::app.theme'),
                 'width' => '5%',
                 'formatter' => function ($value, $row, $index) {
+                    $html='';
                     if($row->theme_id>0){
-                        return '<img src="'. $row->theme->getThumbnail() .'" class="w-100" style="width:100px" />';
-                    }else{
-                        return '<button type="button" id="'.$row->id.'" class="btn btn-info change_theme" data-toggle="modal" data-target="#change_theme_modal">Add Theme</button>';
+                        $html .= '<img src="'. $row->theme->getThumbnail() .'" class="w-50" style="width:50px" />';
                     }
+                    if($row->theme_2id>0){
+                        $theme = Theme::find($row->theme_2id);
+                        $html .= '<img src="'. $theme->getThumbnail() .'" class="w-50" style="width:50px" />';
+                    }
+                    $html .= '<button type="button" id="'.$row->id.'" class="btn btn-info change_theme" data-toggle="modal" data-target="#change_theme_modal">Add/Change Theme</button>';
+                    return $html;
                     
                 }
             ],

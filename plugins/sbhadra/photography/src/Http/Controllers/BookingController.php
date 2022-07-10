@@ -254,7 +254,13 @@ class BookingController extends BackendController
 
     public function changeBookingTheme(Request $request){
         $model = Booking::find($request->id);
-        $model->theme_id =$request->theme_id;
+        if(isset($request->theme_id[0])){
+            $model->theme_id =$request->theme_id[0];
+        }
+        if(isset($request->theme_id[1])){
+            $model->theme_2id =$request->theme_id[1];
+        }
+        
         if($model->save()){
            $res['status']=true;
            $res['data'] = array(

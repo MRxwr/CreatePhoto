@@ -356,7 +356,7 @@ public function packageThemeField(){
                         $html .='
                         <div class="col-sm-12 col-md-12 theme-select" >
                                 <label class="container_radio themeCheck">
-                                <input type="radio" id="slect'.$theme->id.'" value="'.$theme->id.'" name="theme_id">
+                                <input type="checkbox" id="slect'.$theme->id.'" value="'.$theme->id.'" name="theme_id[]">
                                 <span class="checkmark"></span>
                                 <img src="'.$theme->getThumbnail().'" alt="img" class="" style="height:48px;width:48px" >
                                     <label for="slect'.$theme->id.'" class="d-inline-block">'.$theme->title.'</label>
