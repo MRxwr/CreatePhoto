@@ -124,6 +124,15 @@
             .datepicker table tr td.disabled {
                 color: #FCBACB!important;
             }
+            .themeCheck input {
+              position: absolute;
+              opacity: 1!important;
+              top: 8px;
+              height: 27px;
+              width: 27px;
+              background-color: #fff;
+              border: 1px solid #707070;
+            }
         </style>
       @if(isset($post) &&Request::segment(1)=='package' )
         @apply_filters('theme.calendar.hooks',$post)

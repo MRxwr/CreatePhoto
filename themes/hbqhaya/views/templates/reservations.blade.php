@@ -125,8 +125,8 @@
                                     
                                 </div>
                                 <div class="col-sm-12 pe-xl-5 pt-4">
-                                     
-                                      <a href="#" class="btn btn-lg btn-light fs32 radius30" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <!-- data-bs-toggle="modal" data-bs-target="#exampleModal" -->
+                                      <a href="#" class="btn btn-lg btn-light fs32 radius30" id="booking_modal_now" >
                                          @lang('theme::app.continue_to_payment')
                                       </a>
 
@@ -178,14 +178,16 @@
     </script>
     <script>
     $(document).ready(function(){
-        var limit = 1;
-        $('input.theme_checkbox').on('change', function(evt) {
-            //alert($(this).siblings(':checked').length)
+        $("#booking_modal_now").on('click', function(event){
+            var booking_time = $('#booking_time').val();
+            //$('#exampleModal').modal('show');
+        });
 
-        if($(this).siblings(':checked').length >= limit) {
-             //alert('oh')
+        var limit = 2;
+        $('input.theme_checkbox').on('change', function(evt) {
+            alert($('.theme_checkbox').filter(':checked').length);
+        if($('.theme_checkbox').filter(':checked').length >limit) {
             this.checked = false;
-            $(this).next(".checkmark").removeAttr('::after');
           }
         });
     });
