@@ -230,7 +230,7 @@ public function packageThemeField(){
                           $thm='';
                          if(in_array($attr->id,$attrs)){
                            $checked ='';
-                           $html .='<label class="fs23 d-flex align-items-center" for="ta'.$type->id.'_'.$attr->id.'"><input class="pictype" style="margin: 5px; width: 25px; min-height: 25px;" type="radio" id="ta'.$type->id.'_'.$attr->id.'" name="pictures_type" data-price="'.$attr->price.'" value="'.$attr->id.'" '.$checked.'>'.$attr->title.'('.$attr->price.'KD)</label>';
+                           $html .='<label class="fs23 d-flex align-items-center" for="ta'.$type->id.'_'.$attr->id.'"><input class="pictype" style="margin: 5px; width: 25px; min-height: 25px;" type="radio" id="ta'.$type->id.'_'.$attr->id.'" name="pictures_type" data-price="'.$attr->price.'" value="'.$attr->title.'('.$attr->price.'KD)" '.$checked.'>'.$attr->title.'('.$attr->price.'KD)</label>';
                          }
                         
                         //$html .='<label class="fs23 d-flex align-items-center" for="ta'.$type->id.'_'.$attr->id.'"><input class="pictype" style="margin: 5px; width: 25px; min-height: 25px;" type="radio" id="ta'.$type->id.'_'.$attr->id.'" name="pictures_type" data-price="'.$attr->price.'" value="'.$attr->id.'" '.$checked.'>'.$attr->title.'('.$attr->price.'KD) - <strong>'. $thm.'</strong></label>';
