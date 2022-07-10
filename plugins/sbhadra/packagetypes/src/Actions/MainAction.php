@@ -22,8 +22,8 @@ class MainAction extends Action
         
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'packageThemeField']);
         $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'registerPackageType']);
-       // $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'packageThemeField']);
         $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'AdminPackageThemeField']);
+        $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'updatepackagefield']);
        
     }
 

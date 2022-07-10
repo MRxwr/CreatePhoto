@@ -148,6 +148,7 @@
                                                      @do_action('theme.terms.content')  
                                                   </div>
                                                   <div class="modal-footer d-flex align-items-center justify-content-center mb-3">
+                                                    <p><input type="checkbox" name="agree" value="1" >Agree with   @lang('theme::app.terms_and_condition') </p>
                                                     <button  type="submit"  name="submit"  class="btn bbtn btn-md btn-light fs25 radius30" id="loader" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Booking">@lang('theme::app.Procced_to_payment')</button>
                                                   </div>
                                                   
