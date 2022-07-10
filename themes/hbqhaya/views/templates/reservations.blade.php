@@ -185,8 +185,9 @@
 
         var limit = 2;
         $('input.theme_checkbox').on('change', function(evt) {
-            alert($('.theme_checkbox').filter(':checked').length);
+           
         if($('.theme_checkbox').filter(':checked').length >limit) {
+            alert('You can select max 2 themes');
             this.checked = false;
           }
         });
