@@ -30,7 +30,7 @@ class MainAction extends Action
     public function registerPackageType()
     {
       HookAction::addAdminMenu(
-        'Package Type',
+        trans('sbha::app.Pictures_type'),
         'package-type',
         [
             'icon' => 'fa fa-list',
@@ -50,7 +50,7 @@ class MainAction extends Action
            $packagetypes= PackageType ::where('status',1)->get();
            if(!empty($packagetypes)){
               $html .='<div class="form-group">
-                <label class="col-form-label" for="is_pieces">'.trans('sbha::app.package_type').'</label>
+                <label class="col-form-label" for="is_pieces">'.trans('sbha::app.Pictures_type').'</label>
                 <div class="accordion-container">';
                 foreach($packagetypes as $type){
                   $attrs=array();
