@@ -146,9 +146,9 @@
                                                   </div>
                                                   <div class="modal-body px-sm-5">
                                                      @do_action('theme.terms.content')  
+                                                     <div class="d-flex align-items-center justify-content-center mb-3"> <input type="checkbox" id="agree" name="agree" value="1" required="required" style="margin:5px;"> Agree with   @lang('theme::app.terms_and_condition') </div>
                                                   </div>
                                                   <div class="modal-footer d-flex align-items-center justify-content-center mb-3">
-                                                    <p><input type="checkbox" name="agree" value="1" >Agree with   @lang('theme::app.terms_and_condition') </p>
                                                     <button  type="submit"  name="submit"  class="btn bbtn btn-md btn-light fs25 radius30" id="loader" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Booking">@lang('theme::app.Procced_to_payment')</button>
                                                   </div>
                                                   
@@ -180,6 +180,17 @@
     $(document).ready(function(){
         $("#booking_modal_now").on('click', function(event){
             var booking_time = $('#booking_time').val();
+            var booking_total_price = $('#booking_total_price').val();
+            var stat=0;
+            
+            if(booking_total_price>0 && booking_time!='' ){
+                stat=1;
+            }
+            if(stat==1){
+                $('#exampleModal').modal('show'); 
+            }else{
+                alert('Please select time slot and Package type');
+            }
             //$('#exampleModal').modal('show');
         });
 
