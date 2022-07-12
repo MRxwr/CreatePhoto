@@ -80,14 +80,14 @@ public function packageThemeField(){
           if(isset($model->price_printed_electonic)){
             $price_printed_electonic=$model->price_printed_electonic;
           }
-          $html .='<div class="form-group">
-                <label class="col-form-label" for="is_pieces">'.trans('sbha::app.Price_for_Electonic').'</label>
-                <input type="text" class="form-control" name="price_electonic" id="price_electonic" value="'.$price_electonic.'"  >  
-            </div>';
-            $html .='<div class="form-group">
-                <label class="col-form-label" for="is_pieces">'.trans('sbha::app.Price_for_Printed_Electonic').'</label>
-                <input type="text" class="form-control" name="price_printed_electonic" id="price_printed_electonic" value="'.$price_printed_electonic.'"  >  
-            </div>';
+        //   $html .='<div class="form-group">
+        //         <label class="col-form-label" for="is_pieces">'.trans('sbha::app.Price_for_Electonic').'</label>
+        //         <input type="text" class="form-control" name="price_electonic" id="price_electonic" value="'.$price_electonic.'"  >  
+        //     </div>';
+        //     $html .='<div class="form-group">
+        //         <label class="col-form-label" for="is_pieces">'.trans('sbha::app.Price_for_Printed_Electonic').'</label>
+        //         <input type="text" class="form-control" name="price_printed_electonic" id="price_printed_electonic" value="'.$price_printed_electonic.'"  >  
+        //     </div>';
          $html .='<div class="form-group">
                  <input type="hidden" name="is_pieces" id="is_pieces" value="0">
                  <input type="hidden" name="is_theme_category"  id="is_theme_category" value="0" >
@@ -95,17 +95,17 @@ public function packageThemeField(){
                     <input type="checkbox" name="is_theme_category"  id="is_theme_category" value="1" '.$catischecked.' >
                 </label>
              </div>';
-          $html .='<div class="form-group">
-                <label class="col-form-label" for="is_pieces">'.trans('sbha::app.is_pieces_enable').'
+        //   $html .='<div class="form-group">
+        //         <label class="col-form-label" for="is_pieces">'.trans('sbha::app.is_pieces_enable').'
                     
-                    <input type="checkbox" name="is_pieces" id="is_pieces" value="1" '.$pieischecked.' >
-                </label>
-            </div>';
-          $html .='<div class="form-group">
-                <label class="col-form-label" for="is_pieces">'.trans('sbha::app.rate_per_pieces').'</label>
-                <input type="text" class="form-control" name="rate_per_pieces" id="rate_per_pieces" value="'.$rate_per_pieces.'"  >
+        //             <input type="checkbox" name="is_pieces" id="is_pieces" value="1" '.$pieischecked.' >
+        //         </label>
+        //     </div>';
+        //   $html .='<div class="form-group">
+        //         <label class="col-form-label" for="is_pieces">'.trans('sbha::app.rate_per_pieces').'</label>
+        //         <input type="text" class="form-control" name="rate_per_pieces" id="rate_per_pieces" value="'.$rate_per_pieces.'"  >
                 
-            </div>';
+        //     </div>';
           $html .='<div class="form-group">
           <label class="col-form-label" for="theme_category_ids">'.trans('sbha::app.theme_category').'</label>
             <select class="form-control select2-default" id="theme_category_ids" name="theme_category_ids[]" multiple>
@@ -123,18 +123,18 @@ public function packageThemeField(){
             <div class="col-md-8">'.$model->pictures_type.'</div>
            </div>';
          }
-         if(isset($model->number_of_pieces)){
-            $html .='<div class="row">
-            <div class="col-md-4">Number of pieces</div>
-            <div class="col-md-8">'.$model->number_of_pieces.'</div>
-           </div>';
-         }
-         if(isset($model->rate_per_pieces)){
-            $html .='<div class="row">
-            <div class="col-md-4">'.trans('sbha::app.rate_per_pieces').'</div>
-            <div class="col-md-8">'.$model->rate_per_pieces.'KD</div>
-           </div>';
-         }
+        //  if(isset($model->number_of_pieces)){
+        //     $html .='<div class="row">
+        //     <div class="col-md-4">Number of pieces</div>
+        //     <div class="col-md-8">'.$model->number_of_pieces.'</div>
+        //    </div>';
+        //  }
+        //  if(isset($model->rate_per_pieces)){
+        //     $html .='<div class="row">
+        //     <div class="col-md-4">'.trans('sbha::app.rate_per_pieces').'</div>
+        //     <div class="col-md-8">'.$model->rate_per_pieces.'KD</div>
+        //    </div>';
+        //  }
 
          
 
@@ -185,17 +185,18 @@ public function packageThemeField(){
      $this->addAction('admin.reservation.exfields', function() {
         $package = Package::find($_REQUEST['id']);
         //dd($package);
-        echo '<div class="form-group row">
+        $html ='';
+        $html .= '<div class="form-group row">
             <label class="col-sm-5 col-md-4">'.trans('sbph::app.Pictures_type').': </label> 
-            <div class="col-sm-7 col-md-8"> 
-               <input type="radio" data-price="'.$package->price_electonic.'" class="pictype" style="margin: 5px; width: 25px; min-height: 25px;" name="pictures_type" id="pictures_type1" value="Electonic">'.trans('sbph::app.Electonic').'@'.$package->price_electonic.'KD
-               <input type="radio" data-price="'.$package->price_printed_electonic.'" class="pictype" style="margin: 5px; width: 25px; min-height: 25px;"  name="pictures_type" id="pictures_type2" value="Printed + Electonic">'.trans('sbph::app.Printed_Electonic').'@'.$package->price_printed_electonic.'KD
-               <input type="hidden"  name="pictures_type_price" id="pictures_type_price" value="0.00">
-               </div>
+            <div class="col-sm-7 col-md-8">';
+           // $html .= '<input type="radio" data-price="'.$package->price_electonic.'" class="pictype" style="margin: 5px; width: 25px; min-height: 25px;" name="pictures_type" id="pictures_type1" value="Electonic">'.trans('sbph::app.Electonic').'@'.$package->price_electonic.'KD';
+            //$html .= '<input type="radio" data-price="'.$package->price_printed_electonic.'" class="pictype" style="margin: 5px; width: 25px; min-height: 25px;"  name="pictures_type" id="pictures_type2" value="Printed + Electonic">'.trans('sbph::app.Printed_Electonic').'@'.$package->price_printed_electonic.'KD';
+            $html .= '<input type="hidden"  name="pictures_type_price" id="pictures_type_price" value="0.00">';
+            $html .= '</div>
             </div>
          ';
         if( $package->is_pieces==1){
-           echo '<div class="form-group row">
+            $html .= '<div class="form-group row">
                     <label class="col-sm-5 col-md-4">'.trans('sbph::app.Number_of_Pieces').':</label> 
                         <div class="col-sm-7 col-md-8"> 
                            <input type="number" class="form-control" name="number_of_pieces" id="number_of_pieces" value="">
@@ -377,15 +378,15 @@ public function updatepackagefield(){
             if(isset($request['is_theme_category'])){
                 $model->is_theme_category = $request['is_theme_category'];
             }
-            if(isset($request['is_pieces'])){
-                $model->is_pieces = $request['is_pieces'];
-            }
+            // if(isset($request['is_pieces'])){
+            //     $model->is_pieces = $request['is_pieces'];
+            // }
             if(isset($request['rate_per_pieces'])){
                 $model->rate_per_pieces = $request['rate_per_pieces'];
             }
-            if(isset($request['price_electonic'])){
-                $model->price_electonic = $request['price_electonic'];
-            }
+            // if(isset($request['price_electonic'])){
+            //     $model->price_electonic = $request['price_electonic'];
+            // }
             if(isset($request['price_printed_electonic'])){
                 $model->price_printed_electonic = $request['price_printed_electonic'];
             }
@@ -520,16 +521,18 @@ public function addThemeExtraFields(){
     $this->addAction('theme.reservation.exfields', function() {
         $package = Package::find($_REQUEST['id']);
         //dd($package);
-        echo '<div class="col-xxl-8 pe-xl-5 pt-4">
+        $html = '';
+        $html .= '<div class="col-xxl-8 pe-xl-5 pt-4">
         <div class="personal-form row">
             <div class="col-xxl-10 pb-3 fs23">
-            <label>'.trans('theme::app.Pictures_type').': </label> 
-               <input type="radio" data-price="'.$package->price_electonic.'" class="pictype" style="margin: 5px; width: 25px; min-height: 25px;" name="pictures_type" id="pictures_type1" value="Electonic">'.trans('theme::app.Electonic').'@'.$package->price_electonic.'KD
-               <input type="radio" data-price="'.$package->price_printed_electonic.'" class="pictype" style="margin: 5px; width: 25px; min-height: 25px;"  name="pictures_type" id="pictures_type2" value="Printed + Electonic">'.trans('theme::app.Printed_Electonic').'@'.$package->price_printed_electonic.'KD
-               <input type="hidden"  name="pictures_type_price" id="pictures_type_price" value="0.00">
-               </div>
+            <label>'.trans('theme::app.Pictures_type').': </label>';
+            //$html .= '<input type="radio" data-price="'.$package->price_electonic.'" class="pictype" style="margin: 5px; width: 25px; min-height: 25px;" name="pictures_type" id="pictures_type1" value="Electonic">'.trans('theme::app.Electonic').'@'.$package->price_electonic.'KD';
+            //$html .= '<input type="radio" data-price="'.$package->price_printed_electonic.'" class="pictype" style="margin: 5px; width: 25px; min-height: 25px;"  name="pictures_type" id="pictures_type2" value="Printed + Electonic">'.trans('theme::app.Printed_Electonic').'@'.$package->price_printed_electonic.'KD';
+            $html .= '<input type="hidden"  name="pictures_type_price" id="pictures_type_price" value="0.00">';
+            $html .= '</div>
             </div>
          </div>';
+
         // if( $package->is_pieces==1){
         //    echo '<div class="col-xxl-10 pe-xl-5">
         //             <div class="personal-form row">
