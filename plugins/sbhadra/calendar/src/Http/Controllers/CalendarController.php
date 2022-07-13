@@ -71,6 +71,7 @@ class CalendarController extends BackendController
     }
     public function delete($id){
         $date=Calendar::find($id);
+        dd($date);
         $date->delete();
         return $this->success([
             'message' => 'Date successfully deleted',
