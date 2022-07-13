@@ -18,7 +18,7 @@
                         <div class="col-md-12 form-group bootstrap-timepicker timepicker">
                                 <label class="col-form-label" for="release">@lang('sbph::app.starttime')</label>
                                 <select name="package_id" class="form-control input-small select2" id="package_id" onchange="gotopage(this)">
-                                        <option>Select Package</option>
+                                        <option value="0">Select Package</option>
                                         @foreach($packages as $key=>$package)
                                         @if(isset($_REQUEST['package']) && $_REQUEST['package']==$package->id)
                                                 <option value="{{$package->id}}" selected="selected">{{$package->title}}</option>
@@ -202,15 +202,15 @@
 function gotopage(selval){
         var value = selval.options[selval.selectedIndex].value;
         var route = '{{route('admin.booking-calendar')}}';
-        if(value){
+        if(value !=0){
             route = route +'?package='+value;    
-        }
-          window.location.href=route;
+        } 
+        window.location.href=route;
        }
- $(document).ready(function() {
-    var table = $('#calendar_table').DataTable( {
+        $(document).ready(function() {
+        var table = $('#calendar_table').DataTable( {
 
-    } );
-});
+        } );
+        });
    </script>
 @endsection
