@@ -81,7 +81,7 @@ Author URI  : https://www.tigertemplate.com
 		z-index: 999;
 	}
 	.slicknav_nav .slicknav_row, .slicknav_nav a:hover,.slicknav_nav a.active {
-		background-color: #fff !important;
+		background-color: #5f676e !important;
 	}
 	.slicknav_icon {
 		position: relative;
