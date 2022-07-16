@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-md-4">
-
+          
             <form method="post" action="{{route('admin.package-type-attributes.update', [$model->id])}}" class="form-ajax" data-success="reload_data" id="form-add">
                 {!! csrf_field() !!} 
                 <input type="hidden" name="_method" value="PUT"> 

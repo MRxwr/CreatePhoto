@@ -46,6 +46,7 @@ class PackageTypesAttrController  extends BackendController
             $type->title = $request->name;
             $type->package_type_id = $request->package_type_id;
             $type->price = $request->price;
+            $type->is_theme = $request->is_theme;
             $type->status = $request->status;
             if($type->save()){
                 return $this->success([
