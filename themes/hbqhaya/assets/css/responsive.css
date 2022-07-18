@@ -320,6 +320,9 @@ Author URI  : https://www.tigertemplate.com
 	  .slicknav_nav .slicknav_row, .slicknav_nav a:hover, .slicknav_nav a.active {
 		background-color: #FFF !important;
 	  }
+	  .container_radio > label {
+		font-size: 15px!important;
+	  }
 
 }
 
