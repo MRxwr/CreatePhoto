@@ -140,7 +140,7 @@ Author URI  : https://www.tigertemplate.com
 	.slicknav_nav li {
 		margin: 0 !important;
 		border-radius: 0 !important;
-		background-color: #CEB8A3;
+		background-color: #FFF;
 	}
 	.slicknav_nav a:hover,.slicknav_nav a.active {
 		background-color: transparent;
@@ -149,7 +149,7 @@ Author URI  : https://www.tigertemplate.com
 	}
 	.slicknav_nav li a {
 		padding: 15px;
-		color: #fff;
+		color: #000;
 		text-align: center !important;
 		width: 100%;
 	}
@@ -162,7 +162,7 @@ Author URI  : https://www.tigertemplate.com
 		box-shadow: none;
 	}
 	.slicknav_nav {
-		background-color: #CEB8A3;
+		background-color: #FFF;
 		position: fixed;
 		width: 100%;
 		left: 0;
