@@ -323,6 +323,10 @@ Author URI  : https://www.tigertemplate.com
 	  .container_radio > label {
 		font-size: 15px!important;
 	  }
+	  .themeCheck input {
+		height: 18px;
+		width: 18px;
+	  }
 
 }
 
