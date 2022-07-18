@@ -324,8 +324,8 @@ Author URI  : https://www.tigertemplate.com
 		font-size: 15px!important;
 	  }
 	  .themeCheck input {
-		height: 18px;
-		width: 18px;
+		height: 18px!important;
+		width: 18px!important;
 	  }
 
 }
