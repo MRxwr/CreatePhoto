@@ -22,12 +22,18 @@
                                 <li>
                                   <a class="nav-link SegoeUIL" href="{{url('/contact-us')}}">@lang('theme::app.contact-us')</a>
                                 </li>
-                                <li><a href="#"> @apply_filters('theme.language.hooks')</a>
+                                
+                                  <li><a href="#"> @apply_filters('theme.language.hooks')</a>
+                                  <?php 
+                                  $enable_multilanguage = get_config('enable_multilanguage');
+                                  if($enable_multilanguage==1){ ?>
                                    <ul>
                                     <li> <a class="dropdown-item ar SegoeUIL" id="lang_ar" href="{{URL::current()}}?lang=ar">@lang('theme::app.arabic')</a></li>
                                     <li><a class="dropdown-item en SegoeUIL" id="lang_en" href="{{URL::current()}}?lang=en">@lang('theme::app.english')</a></li> 
                                   </ul>
+                                  <?php } ?>
                                 </li>
+                                
                             </ul>
                         </nav>
                     </div>

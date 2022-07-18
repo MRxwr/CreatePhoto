@@ -19,6 +19,7 @@ return [
     'created_at' => 'Created at',
     'add_new' => 'Add new',
     'add_language' => 'Add language',
+    'enable_multilanguage' =>'Enable multi Language',
     'delete' => 'Delete',
     'save' => 'Save',
     'cancel' => 'Cancel',

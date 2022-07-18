@@ -3,6 +3,8 @@
     @php
         $registration = get_config('user_registration');
         $verification = get_config('user_verification');
+        $enable_multilanguage = get_config('enable_multilanguage');
+        
         $timezones = timezone_identifiers_list();
         $sitetimezone = get_config('timezone', 'UTC');
         $dateFormat = get_config('date_format', 'F j, Y');
@@ -62,6 +64,15 @@
                 </select>
                 <p class="description">{{ trans('juzaweb::app.timezone_description') }}</p>
                 <p class="description">{{ trans('juzaweb::app.current_time') }} {{ now()->format('Y-m-d H:i:s') }}</p>
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for="language">
+                    <input type="hidden" name="enable_multilanguage" value="0">
+                    <input Type="checkbox" name="enable_multilanguage" value="1" @if($enable_multilanguage ==1) checked @endif>
+                     @lang('juzaweb::app.enable_multilanguage')
+                </label>
+                
             </div>
 
             <div class="form-group">
