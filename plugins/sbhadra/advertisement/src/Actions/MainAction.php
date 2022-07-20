@@ -56,7 +56,7 @@ class MainAction extends Action
                          </div>
                         <div class="modal-footer d-flex align-items-center justify-content-center mb-3">
                           
-                           <a href="'.$advertise->url.'" >Go Link</a>
+                           <a class="fs18 mt-4 btn btn-dark radius0 w-100" href="'.$advertise->url.'" > Go Link</a>
                         </div>
                         
                     </div>
