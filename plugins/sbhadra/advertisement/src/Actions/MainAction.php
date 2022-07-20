@@ -36,32 +36,44 @@ class MainAction extends Action
     {
        
         $this->addAction('theme.footer', function () {
-            $sliders = Advertise::where('status','publish')->get();
+            $advertise = Advertise::where('status','publish')->first();
             //var_dump($sliders); 
-           if($sliders ){
-            echo '<div id="demo" class="carousel slide" data-ride="carousel">';
-            echo ' <ul class="carousel-indicators">';
-                foreach($sliders as $key=>$slider){
-                    echo '<li data-target="#demo" data-slide-to="0"  class="'.($key==0?'active':'').'" ></li>';
-                }
-            echo '</ul>';
-            echo '<div class="carousel-inner">';
-                foreach($sliders as $key=>$slider){
-                    echo '<div class="carousel-item '.($key==0?'active':'').' ">';
-                     echo '<img src="'. upload_url($slider->thumbnail) .'" class="img-fluid d-block mx-auto" alt="">';
-                    echo '</div>';
-
-                }
-            echo '</div>';
-            echo '<a class="carousel-control-prev" href="#demo" data-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </a>
-                    <a class="carousel-control-next" href="#demo" data-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                    </a>';
-            echo '</div>';
+           if($advertise ){
+            if (is_home()) {
+            echo '<!-- custom-popup  -->
+               <div class="custom-popup modal fade" id="AdvertiseModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg  modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header" style="height:350px;background-image: url('. upload_url($advertise->thumbnail) .');">
+                            <div class="package-head bg-light radius15 mh53 py-1 px-4 d-inline-flex align-items-center">
+                                <h4 class="fs24">'.$advertise->title.'</h4>
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <img src="'.asset("/").'w-styles/themes/cstudio/assets/img/popup_close.svg" alt="img">
+                            </button>
+                        </div>
+                        <div class="modal-body px-sm-5">
+                         </div>
+                        <div class="modal-footer d-flex align-items-center justify-content-center mb-3">
+                          
+                           <a href="'.$advertise->url.'" >Go Link</a>
+                        </div>
+                        
+                    </div>
+                </div>
+               </div>
+            <!-- custom-popup -->';
+            }
           }
-        });
+        }, 2, 1);
+        add_action('theme.footer', function() {
+            $html = '<script>
+                    $(document).ready(function(){
+                        $("#AdvertiseModal").modal("show"); 
+                    });
+                    </script>';
+           echo  $html;
+        }, 35, 1);
     }
 
 }

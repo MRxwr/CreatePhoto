@@ -15,7 +15,13 @@
 
                 {{ Field::editor($model, 'content') }}
 
+                {{ Field::text($model, 'url', [
+                    'required' => true,
+                ]) }}
+
                 @do_action('post_type.'. $postType .'.form.left')
+
+                
 
             </div>
 

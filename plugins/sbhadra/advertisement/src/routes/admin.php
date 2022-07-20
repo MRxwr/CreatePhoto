@@ -12,3 +12,4 @@
 */
 
 
+Route::Resource('advertise', 'AdvertisementController');

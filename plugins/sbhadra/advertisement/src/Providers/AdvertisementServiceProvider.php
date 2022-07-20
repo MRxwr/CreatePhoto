@@ -3,12 +3,15 @@
 namespace Sbhadra\Advertisement\Providers;
 
 use Juzaweb\Support\ServiceProvider;
+use Sbhadra\Advertisement\Actions\MainAction;
 
 class AdvertisementServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        //
+         $this->registerAction([
+            MainAction::class
+        ]);
     }
 
     /**

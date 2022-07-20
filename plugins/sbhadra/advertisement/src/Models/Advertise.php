@@ -3,9 +3,27 @@
 namespace Sbhadra\Advertisement\Models;
 
 use Juzaweb\Models\Model;
+use Juzaweb\Traits\PostTypeModel;
+use Spatie\Translatable\HasTranslations;
 
-class advertise extends Model
+class Advertise extends Model
 {
-    protected $table = 'sbad_advertises';
-    protected $fillable = [];
+
+    use PostTypeModel;
+    use HasTranslations;
+    protected $table = 'advertises';
+    protected $postType = 'advertise';
+    public $translatable = ['title','content'];
+    protected $fillable = [
+        'title',
+        'content',
+        'status',
+        'url',
+        'thumbnail',
+        'slug',
+    ];
+
+    protected $searchFields = [
+        'title',
+    ];
 }

@@ -5,7 +5,7 @@ namespace Sbhadra\Advertisement\Http\Datatables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Juzaweb\Http\Datatables\PostTypeDataTable;
-use Sbhadra\Advertisement\Models\Advertis;
+use Sbhadra\Advertisement\Models\Advertise;
 
 class AdvertisDatatable extends PostTypeDataTable
 {
@@ -32,8 +32,15 @@ class AdvertisDatatable extends PostTypeDataTable
                 }
             ],
             'title' => [
-                'label' => trans('sbsl::app.name'),
+                'label' => trans('sbad::app.title'),
+                'width' => '30%',
                 'formatter' => [$this, 'rowActionsFormatter']
+            ],
+            'url' => [
+                'label' => trans('sbad::app.url'),
+                'formatter' => function ($value, $row, $index) {
+                    return $row->url;
+                }
             ],
             'created_at' => [
                 'label' => trans('sbsl::app.created_at'),
@@ -42,13 +49,8 @@ class AdvertisDatatable extends PostTypeDataTable
                 'formatter' => function ($value, $row, $index) {
                     return jw_date_format($row->created_at);
                 }
-            ],
-            'actions' => [
-                'label' => trans('sbsl::app.actions'),
-                'width' => '15%',
-                'sortable' => false
-                
             ]
+            
         ];
     }
 
@@ -60,7 +62,7 @@ class AdvertisDatatable extends PostTypeDataTable
      */
     public function query($data)
     {
-        $query = Slider::query();
+        $query = Advertise::query();
         if ($keyword = Arr::get($data, 'keyword')) {
             $query->where(function (Builder $q) use ($keyword) {
                 $q->where('title', 'like', '%'. $keyword .'%');

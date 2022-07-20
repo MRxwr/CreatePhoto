@@ -6,13 +6,13 @@ use Juzaweb\Http\Controllers\BackendController;
 use Juzaweb\Traits\PostTypeController;
 use Illuminate\Support\Facades\Validator;
 use Sbhadra\Advertisement\Http\Datatables\AdvertisDatatable;
-use Sbhadra\Advertisement\Models\Advertis;
+use Sbhadra\Advertisement\Models\Advertise;
 
 class AdvertisementController extends BackendController
 {
     use PostTypeController;
 
-    protected $viewPrefix = 'sbsl::backend'; // View prefix for resource
+    protected $viewPrefix = 'sbad::backend'; // View prefix for resource
 
     // Make validator for store and update
     protected function validator(array $attributes)
@@ -27,18 +27,18 @@ class AdvertisementController extends BackendController
     // Make data json for index datatable
     protected function getDataTable()
     {
-        $dataTable = new SliderDatatable();
-        $dataTable->mountData('sliders', 0);
+        $dataTable = new AdvertisDatatable();
+        $dataTable->mountData('advertise', 0);
         return $dataTable;
     }
 
     protected function getModel()
     {
-        return Slider::class;
+        return Advertise::class;
     }
 
     protected function getTitle()
     {
-        return trans('sbsl::app.sliders');
+        return trans('sbad::app.advertise');
     }
 }
