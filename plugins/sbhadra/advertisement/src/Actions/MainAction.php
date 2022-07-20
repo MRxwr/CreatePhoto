@@ -45,9 +45,6 @@ class MainAction extends Action
                 <div class="modal-dialog modal-lg  modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header" style="height:350px;background-image: url('. upload_url($advertise->thumbnail) .');">
-                            <div class="package-head bg-light radius15 mh53 py-1 px-4 d-inline-flex align-items-center">
-                                <h4 class="fs24">'.$advertise->title.'</h4>
-                            </div>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                 <img src="'.asset("/").'w-styles/themes/cstudio/assets/img/popup_close.svg" alt="img">
                             </button>
@@ -55,8 +52,10 @@ class MainAction extends Action
                         <div class="modal-body px-sm-5">
                          </div>
                         <div class="modal-footer d-flex align-items-center justify-content-center mb-3">
-                          
-                           <a class="fs18 mt-4 btn btn-dark radius0 w-100" href="'.$advertise->url.'" > Go Link</a>
+                        <div class="package-head bg-light radius15 mh53 py-1 px-4 d-inline-flex align-items-center">
+                            <h4 class="fs24">'.$advertise->title.'</h4>
+                        </div>
+                           <a class="fs18 mt-4 btn btn-dark radius0 w-100" href="'.$advertise->url.'" > Book Now</a>
                         </div>
                         
                     </div>
