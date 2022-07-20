@@ -141,7 +141,7 @@
                                                           </h4>
                                                       </div>
                                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                                          <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/popup_close.svg" alt="img">
+                                                          <img src="{{asset('/')}}jw-styles/themes/hbqhaya/assets/img/popup_close.svg" alt="img">
                                                       </button>
                                                   </div>
                                                   <div class="modal-body px-sm-5">
