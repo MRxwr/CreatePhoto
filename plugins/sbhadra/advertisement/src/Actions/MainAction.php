@@ -46,7 +46,7 @@ class MainAction extends Action
                     <div class="modal-content">
                         <div class="modal-header" style="height:350px;background-image: url('. upload_url($advertise->thumbnail) .');">
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                <img src="'.asset("/").'w-styles/themes/hbqhaya/assets/img/popup_close.svg" alt="img">
+                                <img src="'.asset("/").'jw-styles/themes/hbqhaya/assets/img/popup_close.svg" alt="img">
                             </button>
                         </div>
                         <div class="modal-body px-sm-5">

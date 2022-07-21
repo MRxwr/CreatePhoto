@@ -119,7 +119,7 @@ public function packageThemeField(){
         $html='';
         if(isset($model->pictures_type)){
             $html .='<div class="row">
-            <div class="col-md-4">Pictures Type</div>
+            <div class="col-md-4">Package Type Attribute </div>
             <div class="col-md-8">'.$model->pictures_type.'</div>
            </div>';
          }
@@ -141,19 +141,19 @@ public function packageThemeField(){
          echo  $html;
      }, 10, 1);
      //@do_action('admin.booking.prices',$model)
-     add_action('admin.booking.prices', function($model){
-        $html='';
-        $pieces_price =0.00;
-        if(isset($model->number_of_pieces)){
-            $pieces_price =$model->rate_per_pieces *$model->number_of_pieces;
-         }
-         $html .='<div class="row">
-            <div class="col-md-6 ">Price for pieces</div>
-            <div class="col-md-6 text-right"><strong>'.number_format((float)$pieces_price, 2, '.', '').' KD</strong></div>
-        </div>';
+    //  add_action('admin.booking.prices', function($model){
+    //     $html='';
+    //     $pieces_price =0.00;
+    //     if(isset($model->number_of_pieces)){
+    //         $pieces_price =$model->rate_per_pieces *$model->number_of_pieces;
+    //      }
+    //      $html .='<div class="row">
+    //         <div class="col-md-6 ">Price for pieces</div>
+    //         <div class="col-md-6 text-right"><strong>'.number_format((float)$pieces_price, 2, '.', '').' KD</strong></div>
+    //     </div>';
 
-         echo  $html;
-     }, 10, 1);
+    //      echo  $html;
+    //  }, 10, 1);
      add_action('admin.booking.prices', function($model){
         $html='';
         $pictures_type_price =0.00;
@@ -161,7 +161,7 @@ public function packageThemeField(){
             $pictures_type_price =$model->pictures_type_price;
          }
          $html .='<div class="row">
-            <div class="col-md-6 ">Pictures Type Price</div>
+            <div class="col-md-6 ">Package Attribute Price</div>
             <div class="col-md-6 text-right"><strong>'.number_format((float)$pictures_type_price, 2, '.', '').' KD</strong></div>
         </div>';
 
@@ -659,17 +659,19 @@ public function addThemeExtraFields(){
         add_action('theme.booking.extra', function($payment_data) {
            // dd($payment_data);
             $booking = Booking::find($payment_data['booking_id']);
+            $booking->booking_price =  0.00 ;
             if(isset($payment_data['pictures_type'])){
                 $booking->pictures_type =  $payment_data['pictures_type'] ;
             }
-            if(isset($payment_data['number_of_pieces'])){
-                $booking->number_of_pieces =  $payment_data['number_of_pieces'] ;
-            }
-            if(isset($payment_data['rate_per_pieces'])){
-                $booking->rate_per_pieces =  $payment_data['rate_per_pieces'] ;
-            }
+            
+            // if(isset($payment_data['number_of_pieces'])){
+            //     $booking->number_of_pieces =  $payment_data['number_of_pieces'] ;
+            // }
+            // if(isset($payment_data['rate_per_pieces'])){
+            //     $booking->rate_per_pieces =  $payment_data['rate_per_pieces'] ;
+            // }
             if(isset($payment_data['pictures_type_price'])){
-                $booking->pictures_type_price =  $payment_data['pictures_type_price'] ;
+                $booking->package_type_attribute =  $payment_data['pictures_type_price'] ;
             }
             if(isset($payment_data['total_price'])){
                 $booking->total_price =  $payment_data['total_price'] ;
