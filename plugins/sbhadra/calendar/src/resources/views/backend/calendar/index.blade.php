@@ -65,9 +65,9 @@
                                                 <table class="table jw-table table-bordered table-hover" id="calendar_table">
                                                 <thead>
                                                         <tr>
-                                                                <th>Date range</th>
-                                                                <th>Timeslot</th>
-                                                                <th>Action</th>
+                                                         <th>Date range</th>
+                                                         <th>Timeslot</th>
+                                                          <th>Action</th>
                                                         </tr>
                                                 </thead>
                                                 <tbody>

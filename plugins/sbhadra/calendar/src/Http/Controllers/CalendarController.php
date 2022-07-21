@@ -18,7 +18,9 @@ class CalendarController extends BackendController
         if(isset($_REQUEST['package'])){
             $model = Package::where('id',$_REQUEST['package'])->first();
             //dd($slots);
-            $dates = Calendar::get();
+            $dates = Calendar::where('package_id',$_REQUEST['package'])->get();
+        }else{
+            $dates = Calendar::where('package_id',0)->get();
         }
         
         return view('sbca::backend.calendar.index', [

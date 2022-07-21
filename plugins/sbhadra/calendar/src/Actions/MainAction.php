@@ -76,6 +76,20 @@ class MainAction extends Action
                     
                 }
             }
+
+            $calendar_dates_all = Calendar::where('package_id',0)->get();
+            if(!empty( $calendar_dates_all)){
+                foreach($calendar_dates_all as $cdate){
+                    if($cdate->slots=='all'){
+                        $dates = $this->getDatesFromRange($cdate->from_date, $cdate->to_date);
+                        $datesDisabled_array = array_merge($datesDisabled_array,$dates);
+                    }else{
+                        $dates =  $this->getBookedDateWithdisableSlots( $format = 'd-m-Y',$cdate,$post);
+                        $datesDisabled_array = array_merge($datesDisabled_array,$dates);
+                    }
+                    
+                }
+            }
             //dd($calendar_dates);
             // $bookings = DB::table('bookings')
             //      ->select('booking_date', DB::raw('count(*) as total'))

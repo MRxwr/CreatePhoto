@@ -63,23 +63,23 @@ public function packageThemeField(){
           if(isset($model->is_theme_category) && $model->is_theme_category==1){
             $catischecked='checked';
           }
-          $pieischecked='';
-          if(isset($model->is_pieces) && $model->is_pieces==1){
-            $pieischecked='checked';
-          }
-          $rate_per_pieces = 10;
-          if(isset($model->rate_per_pieces)){
-            $rate_per_pieces=$model->rate_per_pieces;
-          }
+        //   $pieischecked='';
+        //   if(isset($model->is_pieces) && $model->is_pieces==1){
+        //     $pieischecked='checked';
+        //   }
+        //   $rate_per_pieces = 10;
+        //   if(isset($model->rate_per_pieces)){
+        //     $rate_per_pieces=$model->rate_per_pieces;
+        //   }
 
-          $price_electonic = 10.00;
-          if(isset($model->price_electonic)){
-            $price_electonic=$model->price_electonic;
-          }
-          $price_printed_electonic = 20.00;
-          if(isset($model->price_printed_electonic)){
-            $price_printed_electonic=$model->price_printed_electonic;
-          }
+        //   $price_electonic = 10.00;
+        //   if(isset($model->price_electonic)){
+        //     $price_electonic=$model->price_electonic;
+        //   }
+        //   $price_printed_electonic = 20.00;
+        //   if(isset($model->price_printed_electonic)){
+        //     $price_printed_electonic=$model->price_printed_electonic;
+        //   }
         //   $html .='<div class="form-group">
         //         <label class="col-form-label" for="is_pieces">'.trans('sbha::app.Price_for_Electonic').'</label>
         //         <input type="text" class="form-control" name="price_electonic" id="price_electonic" value="'.$price_electonic.'"  >  
@@ -117,7 +117,12 @@ public function packageThemeField(){
       }, 10, 1);
       add_action('admin.booking.after', function($model){
         $html='';
-        if(isset($model->pictures_type)){
+        if(isset($model->package_type_attribute)){
+            $html .='<div class="row">
+            <div class="col-md-4">Package Type Attribute </div>
+            <div class="col-md-8">'.$model->package_type_attribute.'</div>
+           </div>';
+         }else if(isset($model->pictures_type)){
             $html .='<div class="row">
             <div class="col-md-4">Package Type Attribute </div>
             <div class="col-md-8">'.$model->pictures_type.'</div>
@@ -135,9 +140,6 @@ public function packageThemeField(){
         //     <div class="col-md-8">'.$model->rate_per_pieces.'KD</div>
         //    </div>';
         //  }
-
-         
-
          echo  $html;
      }, 10, 1);
      //@do_action('admin.booking.prices',$model)
@@ -195,23 +197,23 @@ public function packageThemeField(){
             $html .= '</div>
             </div>
          ';
-        if( $package->is_pieces==1){
-            $html .= '<div class="form-group row">
-                    <label class="col-sm-5 col-md-4">'.trans('sbph::app.Number_of_Pieces').':</label> 
-                        <div class="col-sm-7 col-md-8"> 
-                           <input type="number" class="form-control" name="number_of_pieces" id="number_of_pieces" value="">
-                           <input type="hidden"  name="rate_per_pieces" id="rate_per_pieces" value="'.$package->rate_per_pieces.'">
-                        </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-5 col-md-4"> </label> 
-                    <div class="col-sm-7 col-md-8"> 
-                        <div class="package-head  radius15 mh67 py-1 px-3 mb-4 d-inline-flex align-items-center">
-                            <h4 class="fs23 text-danger">Each piece will cost  <span class="text-600">'.$package->rate_per_pieces.' KD</span></h4>
-                        </div>
-                    </div>
-                </div>';
-          }
+        // if( $package->is_pieces==1){
+        //     $html .= '<div class="form-group row">
+        //             <label class="col-sm-5 col-md-4">'.trans('sbph::app.Number_of_Pieces').':</label> 
+        //                 <div class="col-sm-7 col-md-8"> 
+        //                    <input type="number" class="form-control" name="number_of_pieces" id="number_of_pieces" value="">
+        //                    <input type="hidden"  name="rate_per_pieces" id="rate_per_pieces" value="'.$package->rate_per_pieces.'">
+        //                 </div>
+        //         </div>
+        //         <div class="form-group row">
+        //             <label class="col-sm-5 col-md-4"> </label> 
+        //             <div class="col-sm-7 col-md-8"> 
+        //                 <div class="package-head  radius15 mh67 py-1 px-3 mb-4 d-inline-flex align-items-center">
+        //                     <h4 class="fs23 text-danger">Each piece will cost  <span class="text-600">'.$package->rate_per_pieces.' KD</span></h4>
+        //                 </div>
+        //             </div>
+        //         </div>';
+        //   }
        }, 15, 1);
        add_action('admin.booking.script', function() {
         $html = '<script>
