@@ -83,7 +83,7 @@ class MainAction extends Action
                      <div class="instagram-item position-relative d-flex align-items-center justify-content-center">
                         <img src="'.upload_url($feed->thumbnail).'" alt="img" class="w-100">
                         <a href="'.$feed->url.'"  class="bg-ovarley w-100 h-100 position-absolute d-flex align-items-center justify-content-center">
-                            <img src="'.url('jw-styles/themes/demah/assets/img/in.svg').'" alt="img" class="position-absolute p-3">
+                            <img src="'.url('jw-styles/themes/hbqhaya/assets/img/in.svg').'" alt="img" class="position-absolute p-3">
                         </a>
                         </div>
                      </div>';
