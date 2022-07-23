@@ -77,7 +77,7 @@ class AdvertisDatatable extends PostTypeDataTable
     {
         switch ($action) {
             case 'delete':
-                Slider::destroy($ids);
+                Advertise::destroy($ids);
                 break;
         }
     }
