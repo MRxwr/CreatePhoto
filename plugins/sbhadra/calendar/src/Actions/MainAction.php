@@ -110,8 +110,8 @@ class MainAction extends Action
                  }
             $datesDisabled = json_encode($datesDisabled_array);
             $setting = CalendarSetting::find(1); 
-            $close_days =[]; 
-            if($setting->close_days){
+            $close_days = '[9]';
+            if($setting->close_days!=null){
                 $close_days = $setting->close_days;
             }
             return '<script>
