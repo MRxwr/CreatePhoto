@@ -168,12 +168,16 @@ class MainAction extends Action
                     }
                  }
                $datesDisabled = json_encode($datesDisabled_array);
-            $setting = CalendarSetting::find(1);   
+            $setting = CalendarSetting::find(1);  
+            $close_days = '[9]';
+            if($setting->close_days!=null){
+                $close_days = $setting->close_days;
+            } 
             echo '<script>
             var startDate="'.$setting->start_date.'";
             var endDate="'.$setting->end_date.'";
             var datesDisabled = '.$datesDisabled.';
-            var daysOfWeekDisabled = '.$setting->close_days.'
+            var daysOfWeekDisabled = '.$close_days.'
             </script>';
                 }
        }, 20, 1);
