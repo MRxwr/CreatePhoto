@@ -23,7 +23,11 @@
                         <span class="input-group-addon"><i class="fa fa-watch"></i></span>
                     </div> 
                     @php 
-                     $close_days =json_decode($setting->close_days) 
+                     $close_days =json_decode($setting->close_days);
+                     if(empty($close_days)){
+                        $close_days=array();
+                        //dd($close_days);
+                     }
                     @endphp
                     <div class="col-md-12 form-group bootstrap-timepicker timepicker">
                         <label class="col-form-label" for="release">@lang('sbca::app.close_days')</label>
