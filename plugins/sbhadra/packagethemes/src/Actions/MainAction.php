@@ -119,7 +119,7 @@ class MainAction extends Action
                 $taxonomy = Taxonomy::where('slug', $_REQUEST['categoryid'])->firstOrFail();
                 $postType = $taxonomy->getPostType('model');
                 $posts = $postType::paginate();
-                dd($posts);
+                //dd($posts);
             }
         exit;
        }

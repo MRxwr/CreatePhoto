@@ -649,8 +649,8 @@ public function addThemeExtraFields(){
                  }
                 $html .='</div> </div>';
                 $html .='<div class="col-xl-12  d-flex align-items-center justify-content-center">
-                <button class="owl-arrow MyPrevButton">'.trans('theme::app.Previous').'</button>
-                <button class="owl-arrow MyNextButton">'.trans('theme::app.Next').'</button>
+                <a class="owl-arrow MyPrevButton" style="padding: 15px 34px;">'.trans('theme::app.Previous').'</a>
+                <a class="owl-arrow MyNextButton" style="padding: 15px 34px;">'.trans('theme::app.Next').'</a>
             </div>';
         }
         return $html;
@@ -659,7 +659,7 @@ public function addThemeExtraFields(){
 
     public function doProcessPackageThemes(){
         add_action('theme.booking.extra', function($payment_data) {
-           // dd($payment_data);
+           //dd($payment_data);
             $booking = Booking::find($payment_data['booking_id']);
             $booking->booking_price =  0.00 ;
             if(isset($payment_data['pictures_type'])){
@@ -677,6 +677,14 @@ public function addThemeExtraFields(){
             }
             if(isset($payment_data['total_price'])){
                 $booking->total_price =  $payment_data['total_price'] ;
+            }
+            if(isset($payment_data['theme_id'][0])){
+                $theme_id =  $payment_data['theme_id'][0];
+                $booking->theme_id =  $theme_id ;
+            }
+            if(isset($payment_data['theme_id'][1])){
+                $theme_id =  $payment_data['theme_id'][1];
+                $booking->theme_2id =  $theme_id ;
             }
             $booking->save();
         }, 25, 1);
