@@ -130,6 +130,10 @@
       @endif
       <script>
           $(document).ready(function(){
+              var today = new Date();
+              var tomorrow = new Date();
+              tomorrow.setDate(today.getDate() - 1);
+              alert(tomorrow);
               var date_input=$('#bookingdate'); //our date input has the name "date"
               var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
               var options={
