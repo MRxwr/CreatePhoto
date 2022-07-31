@@ -54,7 +54,7 @@
 }
 </style>
  <!-- contact-details -->
- <section class="contact-details py-5">
+      <section class="contact-details py-5">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-xxl-12">
@@ -85,7 +85,7 @@
                             <div class="col-xl-12 pb-5 text-center SegoeUIL" style="font-size: 18px;"> 
                                 {!! $post->getContent() !!} 
                                  <div  class="w-100 fs25 text-center">
-                                     <a class="btn btn-sm btn-light mh63 fs25 radius15 w-50" href="https://goo.gl/maps/SvNGMQmaquh4Qu79A">{{ $post->getTitle() }} </a>
+                                     <a class="btn btn-sm btn-light mh63 fs25 radius15 w-50" href="https://goo.gl/maps/cVJ2cfA68ftDYKKH7">{{ $post->getTitle() }} </a>
                                 </div>
                             </div>
                             
@@ -100,21 +100,14 @@
           <div class="container-fluid">
             <div class="row">
                 
-
                 <div class="col-xs-12 col-md-6 col-lg-6 text-xs-right SegoeUIL">
-
                     <div class="padding-top-40"></div>
                     <div>
-
                       <h2 class="mbr-section-subtitle category SegoeUIL">العنوان</p>
-
                       <h2 class="mbr-section-title display-6 SegoeUIL">الخالدية - قطعه 3 - شارع بلودان- منزل 14</h2>
-
                     </div>
-                    
                     <div>
                       <p class="mbr-section-subtitle category SegoeUIL">الايميل</p>
-
                       <h1 class="mbr-section-title display-6 SegoeUIL">HBQ.photo@gmail.com</h1>
                     </div>
                 </div>

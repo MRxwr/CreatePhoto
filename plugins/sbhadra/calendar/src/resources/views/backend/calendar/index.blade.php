@@ -9,7 +9,7 @@
         </div>
 
         <div class="col-md-4">
-                <form action="{{route('admin.calendar-date')}}" method="POST">
+                <form action="{{route('admin.calendar-date')}}" method="POST" class="form-ajax">
                 {!! csrf_field() !!}
                 <div class="row">
                 <div class="form-group">  
@@ -92,7 +92,13 @@
                                                                  @endphp 
                                                                  {{$dslot}}      
                                                                 </td>
-                                                                <td><a href="{{route('admin.calendar.delete',['id'=>$date->id])}}" class="btn btn-danger"> <i class=" fa fa-trash"></i></a></td>
+                                                                <td>
+                                                                <form action="{{route('admin.calendar.delete')}}" method="post" class="form-ajax">
+                                                                        <input type="hidden" name="id" value="{{$date->id}}">
+                                                                {!! csrf_field() !!}
+                                                                        <button type="submit"   class="btn btn-danger"> <i class=" fa fa-trash"></i></button>
+                                                                </form>
+                                                                </td>
                                                         </tr>
                                                         @endforeach
                                                 </tbody>               

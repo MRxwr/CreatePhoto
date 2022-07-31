@@ -71,7 +71,8 @@ class CalendarController extends BackendController
             'redirect' => route('admin.calendar-setting'),
         ]);
     }
-    public function delete($id){
+    public function delete(Request $request){
+        $id=$request->id;
         $date=Calendar::find($id);
         $date->delete();
         return $this->success([

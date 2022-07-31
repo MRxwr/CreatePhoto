@@ -83,11 +83,7 @@ class MainAction extends Action
                     if($cdate->slots=='all'){
                         $dates = $this->getDatesFromRange($cdate->from_date, $cdate->to_date);
                         $datesDisabled_array = array_merge($datesDisabled_array,$dates);
-                    }else{
-                        $dates =  $this->getBookedDateWithdisableSlots( $format = 'd-m-Y',$cdate,$post);
-                        $datesDisabled_array = array_merge($datesDisabled_array,$dates);
-                    }
-                    
+                    }  
                 }
             }
             //dd($calendar_dates);
@@ -187,10 +183,10 @@ class MainAction extends Action
     static function getBookedDateWithdisableSlots($format = 'd-m-Y',$cdate=array(),$post=array()){
 
         $package_id = $post->id; 
-        $slots = count($post->slots); 
+         $slots = count($post->slots); 
        // Declare an empty array 
         $cslot = count(json_decode($cdate->slots));
-                       
+          //  dd($cslot);           
        $array = array(); 
        $start= $cdate->from_date;
        $end= $cdate->to_date;
@@ -202,13 +198,15 @@ class MainAction extends Action
       $realEnd->add($interval); 
     
       $period = new \DatePeriod(new \DateTime($start), $interval, $realEnd); 
-    
+      
       // Use loop to store date into array 
       foreach($period as $date) {   
+        
          $booked_date = $date->format($format);  
-         $bookings = DB::table('bookings')->where('package_id',$package_id)->whereIn('status',['Yes','yes'])->whereDate('booking_date','=',$booked_date)->count();  
-        if($bookings>0){
-           
+       
+         $bookings = DB::table('bookings')->where('package_id',$package_id)->whereIn('status',['Yes','yes'])->where('booking_date','=',$booked_date)->count();  
+         //var_dump($bookings);
+         if($bookings>0){
             if($cslot==$slots || (($cslot + $bookings) >=$cslot) ){              
                 $array[] = $date->format($format);
             }     
