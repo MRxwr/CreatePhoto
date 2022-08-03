@@ -332,8 +332,8 @@ class MainAction extends Action
                     $coupon->coupon_code =$survey_coupon;
                     $coupon->coupon_discount =0.00;
                     $coupon->coupon_type =$coupon_type;
-                    $coupon->validity_from =date('Y-m-d');
-                    $coupon->validity_to =date('Y-m-d',strtotime(date("Y-m-d", mktime()) . " + 365 day"));
+                    $coupon->validity_from = date('Y-m-d');
+                    $coupon->validity_to = date('Y-m-d',strtotime(date("Y-m-d", mktime()) . " + 365 day"));
                     $coupon->source = $source;
                     if($coupon->save()){
                         $message='Thank you for participated  to survey , Your referral  code is '.$survey_coupon ;
