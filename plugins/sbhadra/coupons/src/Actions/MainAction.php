@@ -100,7 +100,6 @@ class MainAction extends Action
     public function checkCouponCode(){
         if(isset($_REQUEST['ajaxpage']) && $_REQUEST['ajaxpage'] =='checkCouponAjax' ){
             if(isset($_REQUEST['promo_code'])){
-               
                 $coupon = Coupon::where('coupon_code',$_REQUEST['promo_code'])->whereDate('validity_from', '<=', date("Y-m-d"))
                 ->whereDate('validity_to', '>=', date("Y-m-d"))
                 ->first();
