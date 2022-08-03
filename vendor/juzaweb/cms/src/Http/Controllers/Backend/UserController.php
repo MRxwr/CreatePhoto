@@ -111,6 +111,8 @@ class UserController extends BackendController
         if($request->post('usertype')){
             if($request->post('usertype')=='admin'){
                 $model->setAttribute('is_admin', 1);
+            }else if($request->post('usertype')=='employee'){
+                $model->setAttribute('is_admin', 1);
             }else{
                 $model->setAttribute('is_admin', 0);  
             }
