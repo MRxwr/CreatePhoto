@@ -44,12 +44,13 @@ class MainAction extends Action
                 $hasActive = false;
                 $selected='';
                 $permission = array();
-                if(is_array($permissions[$item->get("slug")])){
+                
+                if(!empty($permissions) && is_array($permissions[$item->get("slug")])){
                     if(isset($permissions[$item->get("slug")][$item->get("slug")]) && $permissions[$item->get("slug")][$item->get("slug")]==1){
                         $selected='checked';
                         $permission=$permissions[$item->get("slug")];
                     }
-                }else if($permissions[$item->get("slug")]==1){
+                }else if(!empty($permissions) &&  $permissions[$item->get("slug")]==1){
                     $selected='checked'; 
                 }else{
                     $selected=''; 
