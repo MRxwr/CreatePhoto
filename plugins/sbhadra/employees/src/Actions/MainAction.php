@@ -23,6 +23,7 @@ class MainAction extends Action
     public function userPermistionlist()
     {
         $this->addAction('post_type.users.form.right', function($model){
+            $userId = \Auth::id();
             $permissions = array();
             if(isset($model->permissions)){
                 $permissions = json_decode($model->permissions,true);
@@ -94,7 +95,10 @@ class MainAction extends Action
                 
                 }
             $html .= '</div>';
-            echo   $html ;
+            if($model->id !=$userId){
+                echo   $html ;
+            }
+           
        }, 20, 1);
     }
  
