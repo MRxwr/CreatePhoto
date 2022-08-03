@@ -22,25 +22,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-form-label" for="is_admin">@lang('juzaweb::app.permission')</label>
-                    <select name="is_admin" id="is_admin" class="form-control" required>
-                        <option value="0" @if($model->is_admin == 0) selected @endif>@lang('juzaweb::app.user')</option>
-                        <option value="1" @if($model->is_admin == 1) selected @endif>@lang('juzaweb::app.admin')</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-form-label" for="status">@lang('juzaweb::app.status')</label>
-                    <select name="status" id="status" class="form-control" required>
-                        @foreach($allStatus as $key => $name)
-                        <option value="{{ $key }}" @if($model->status == $key) selected @endif>{{ $name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <hr>
-
-                <div class="form-group">
                     <label class="col-form-label" for="password">@lang('juzaweb::app.password')</label>
                     <input type="password" name="password" class="form-control" id="password" autocomplete="off" @if(empty($model->id)) required @endif>
                 </div>
@@ -49,6 +30,8 @@
                     <label class="col-form-label" for="password_confirmation">@lang('juzaweb::app.confirm_password')</label>
                     <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" autocomplete="off" @if(empty($model->id)) required @endif>
                 </div>
+                @do_action('post_type.users.form.right', $model)
+             
             </div>
 
             <div class="col-md-4">
@@ -58,6 +41,34 @@
                     'value' => $model->avatar
                 ])
                 @endcomponent
+                <div class="form-group">
+                    <label class="col-form-label" for="status">@lang('juzaweb::app.status')</label>
+                    <select name="status" id="status" class="form-control" required>
+                        @foreach($allStatus as $key => $name)
+                        <option value="{{ $key }}" @if($model->status == $key) selected @endif>{{ $name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                @if(isset($model->usertype))
+                <div class="form-group">
+                    <label class="col-form-label" for="usertype">@lang('juzaweb::app.permission')</label>
+                    <select name="usertype" id="usertype" class="form-control" required>
+                        <option value="user" @if($model->usertype == "user") selected @endif>@lang('juzaweb::app.user')</option>
+                        <option value="employee" @if($model->usertype == "employee") selected @endif>Employee</option>
+                        <option value="admin" @if($model->usertype == "admin") selected @endif>@lang('juzaweb::app.admin')</option>
+                    </select>
+                </div>
+               @else
+                  <div class="form-group">
+                    <label class="col-form-label" for="usertype">@lang('juzaweb::app.permission')</label>
+                    <select name="usertype" id="usertype" class="form-control" required>
+                        <option value="user" @if($model->usertype == "user") selected @endif>@lang('juzaweb::app.user')</option>
+                        <option value="employee" @if($model->usertype == "employee") selected @endif>Employee</option>
+                        <option value="admin" @if($model->usertype == "admin") selected @endif>@lang('juzaweb::app.admin')</option>
+                    </select>
+                </div>
+                @endif
+                @do_action('post_type.users.form.left', $model)
             </div>
         </div>
 

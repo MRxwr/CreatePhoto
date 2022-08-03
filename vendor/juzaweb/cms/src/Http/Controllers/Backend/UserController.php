@@ -103,6 +103,21 @@ class UserController extends BackendController
             $model->setAttribute('password', Hash::make($request->post('password')));
         }
 
+        if(!empty($request->post('permission'))){
+            $permision = json_encode($request->post('permission'));
+            $model->setAttribute('permissions', $permision);
+        }
+
+        if($request->post('usertype')){
+            if($request->post('usertype')=='admin'){
+                $model->setAttribute('is_admin', 1);
+            }else{
+                $model->setAttribute('is_admin', 0);  
+            }
+            $model->setAttribute('usertype', $request->post('usertype'));
+        }
+
+
         $model->save();
     }
 }

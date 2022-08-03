@@ -3,12 +3,15 @@
 namespace Sbhadra\Employees\Providers;
 
 use Juzaweb\Support\ServiceProvider;
+use Sbhadra\Employees\Actions\MainAction;
 
 class EmployeesServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        //
+        $this->registerAction([
+            MainAction::class
+        ]);
     }
 
     /**

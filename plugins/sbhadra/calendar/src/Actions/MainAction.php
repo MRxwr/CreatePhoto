@@ -56,7 +56,8 @@ class MainAction extends Action
             $package_id = $post->id; 
             $slots = count($post->slots);
             //var_dump($slots);
-            
+            $today[]=date('d-m-Y');
+            $datesDisabled_array = array_merge($datesDisabled_array,$today);
             //$calendar_dates = Calendar::where('package_id',$package_id)->where('slots','all')->get();
             $calendar_dates = Calendar::where('package_id',$package_id)->get();
             if(!empty( $calendar_dates)){
