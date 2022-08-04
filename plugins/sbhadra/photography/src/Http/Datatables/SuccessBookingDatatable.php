@@ -87,8 +87,8 @@ class SuccessBookingDatatable extends PostTypeDataTable
                 'align' => 'center',
                 'formatter' => function ($value, $row, $index) {
                     $sht='';
-                    if($model->services){
-                        foreach($model->services as $service){
+                    if($row->services){
+                        foreach($row->services as $service){
                             $sht .='<span  class="btn btn-info btn-sm">'.$service->title.'</span>';
                         }
                    }
