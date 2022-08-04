@@ -73,6 +73,28 @@ class SuccessBookingDatatable extends PostTypeDataTable
                     return $row->booking_date;
                 }
             ],
+            'timeslot' => [
+                'label' => trans('sbph::app.booking_time'),
+                'width' => '14%',
+                'align' => 'center',
+                'formatter' => function ($value, $row, $index) {
+                    return $row->timeslot->starttime .'to'. $row->timeslot->endtime;
+                }
+            ],
+            'services' => [
+                'label' => trans('sbph::app.services'),
+                'width' => '14%',
+                'align' => 'center',
+                'formatter' => function ($value, $row, $index) {
+                    $sht='';
+                    if($model->services){
+                        foreach($model->services as $service){
+                            $sht .='<span  class="btn btn-info btn-sm">'.$service->title.'</span>';
+                        }
+                   }
+                   return $sht;
+                }
+            ],
             'booking_notes' => [
                 'label' => 'Notes',
                 'formatter' => function ($value, $row, $index) {
@@ -85,14 +107,7 @@ class SuccessBookingDatatable extends PostTypeDataTable
                     return $row->status;
                 }
             ],
-            'created_at' => [
-                'label' => trans('sbsl::app.created_at'),
-                'width' => '14%',
-                'align' => 'center',
-                'formatter' => function ($value, $row, $index) {
-                    return jw_date_format($row->created_at);
-                }
-            ],
+          
             'actions' => [
                 'label' => trans('sbph::app.actions'),
                 'width' => '5%',
