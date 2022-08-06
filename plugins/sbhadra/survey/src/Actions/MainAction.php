@@ -77,6 +77,7 @@ class MainAction extends Action
         $this->addAction('theme.page.after.attend-survey', function($model) {
             $html='';
             if(isset($_REQUEST['code'])){
+                //dd($_REQUEST['code']);
                 if($this->checkSurveyCode($_REQUEST['code'])){
                     $questions = Question :: all();
                     $booking = $this->getSurveyBooking($_REQUEST['code']);
@@ -102,7 +103,7 @@ class MainAction extends Action
                                          <input type="hidden" name="survey['.$question->id.'][type]" value="'.$question->question_type.'">
                                             <ul>';
                                             if($question->question_type==1){
-                                                $options = json_decode(stripslashes($question->options));
+                                                $options = json_decode($question->options);
                                                 if(!empty($options)){ 
                                                  foreach($options as $keys=>$option){
                                                       $html .='<li class="mb-3 pb-1">
@@ -118,7 +119,7 @@ class MainAction extends Action
                                                 
                                             }
                                             elseif($question->question_type==2){
-                                                $options = json_decode(stripslashes($question->options));
+                                                $options = json_decode($question->options);
                                                 if(!empty($options)){ 
                                                  foreach($options as $keys=>$option){
                                                       $html .='<li class="mb-3 pb-1">
@@ -160,7 +161,7 @@ class MainAction extends Action
                                }
                                 $html .='<div class="row px-xxl-5 pt-5">
                                     <div class="col-sm-6 d-flex justify-content-sm-end justify-content-center mt-4 mt-sm-0">
-                                        <button class="btn btn-sm btn-info text-600 fs19" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                                        <button class="btn btn-sm btn-info text-600 fs19" type="button" id="prevBtn" onclick="nextPrev(-1)" >Previous</button>
                                     </div>
                                     <div class="col-sm-6 d-flex justify-content-sm-end justify-content-center mt-4 mt-sm-0">
                                         <button class="btn btn-sm btn-info text-600 fs19" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
@@ -238,9 +239,9 @@ class MainAction extends Action
               x[n].style.display = "block";
               // ... and fix the Previous/Next buttons:
               if (n == 0) {
-                document.getElementById("prevBtn").style.display = "none";
+                document.getElementById("prevBtn").style.visibility = "hidden";
               } else {
-                document.getElementById("prevBtn").style.display = "inline";
+                document.getElementById("prevBtn").style.visibility = "visible";
               }
               if (n == (x.length - 1)) {
                 document.getElementById("nextBtn").innerHTML = "Submit";
