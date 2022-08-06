@@ -108,8 +108,8 @@ class MainAction extends Action
                                                  foreach($options as $keys=>$option){
                                                       $html .='<li class="mb-3 pb-1">
                                                                 <input type="hidden" name="survey['.$question->id.'][option]['.$keys.']" value="'.$option.'">
-                                                                    <label class="container_radio bg-light">
-                                                                    <span>'.$option.'</span>
+                                                                    <label class="container_radio bg-light" style="width: 100%;">
+                                                                    <span style="margin: 0px 35px;">'.$option.'</span>
                                                                         <input type="radio" name="survey['.$question->id.'][answer]" value="'.$option.'"  oninput="this.className ="" ">
                                                                         <span class="checkmark"></span>
                                                                     </label>
@@ -124,8 +124,8 @@ class MainAction extends Action
                                                  foreach($options as $keys=>$option){
                                                       $html .='<li class="mb-3 pb-1">
                                                                 <input type="hidden" name="survey['.$question->id.'][option]['.$keys.']" value="'.$option.'">
-                                                                    <label class="container_radio bg-light">
-                                                                    <span> '.$option.'</span>
+                                                                    <label class="container_radio bg-light" style="width: 100%;">
+                                                                    <span style="margin: 0px 35px;"> '.$option.'</span>
                                                                         <input type="checkbox" name="survey['.$question->id.'][answer]" value="'.$option.'"  oninput="this.className ="" ">
                                                                         <span class="checkmark"></span>
                                                                     </label>
@@ -135,15 +135,15 @@ class MainAction extends Action
                                             }
                                             elseif($question->question_type==3){
                                                 $html .='<li class="mb-3 pb-1">
-                                                <label class="container_radio bg-light">
-                                                    <span>True</span>
+                                                <label class="container_radio bg-light" style="width: 100%;">
+                                                    <span style="margin: 0px 35px;">True</span>
                                                     <input type="radio" name="survey['.$question->id.'][answer]" value="true" >
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>
                                             <li class="mb-3 pb-1">
                                                 <label class="container_radio bg-light">
-                                                    <span>False</span>
+                                                    <span style="margin: 0px 35px;">False</span>
                                                     <input type="radio" name="survey['.$question->id.'][answer]" value="false" >
                                                     <span class="checkmark"></span>
                                                 </label>
@@ -151,7 +151,7 @@ class MainAction extends Action
                                             }
                                             elseif($question->question_type==4){
                                                 $html .='<li class="mb-3 pb-1">
-                                                <label class="bg-light col-sm-12">
+                                                <label class="bg-light col-sm-12" style="width: 100%;">
                                                     <input type="text" class="form-control" name="survey['.$question->id.'][answer]">
                                                 </label>
                                             </li>';
@@ -325,6 +325,7 @@ class MainAction extends Action
                   $survey ->result =  $_POST['survey'];
                   $survey ->survey_coupon = $survey_coupon;
                   if($survey ->save()){
+                    $today= date('Y-m-d');
                     $coupon_discount = 0.00;
                     $coupon_type = 2;
                     $source = 'survey';
@@ -333,8 +334,8 @@ class MainAction extends Action
                     $coupon->coupon_code =$survey_coupon;
                     $coupon->coupon_discount =0.00;
                     $coupon->coupon_type =$coupon_type;
-                    $coupon->validity_from = date('Y-m-d');
-                    $coupon->validity_to = date('Y-m-d',strtotime(date("Y-m-d", mktime()) . " + 365 day"));
+                    $coupon->validity_from =  $today;
+                    $coupon->validity_to = date('Y-m-d', strtotime($today . ' +365 day'));
                     $coupon->source = $source;
                     if($coupon->save()){
                         $message='Thank you for participated  to survey , Your referral  code is '.$survey_coupon ;
