@@ -28,7 +28,7 @@ class MainAction extends Action
             if(isset($model->permissions)){
                 $permissions = json_decode($model->permissions,true);
             }
-            //dd($permissions);
+           // var_dump($permissions);
             //$userId = \Auth::id();
             $html = '';
             $html .= '<div class="row">';
@@ -41,21 +41,26 @@ class MainAction extends Action
                $items = \Juzaweb\Support\MenuCollection::make(\Juzaweb\Facades\HookAction::getAdminMenu());
                
                foreach($items as $item){
+                //var_dump($item);
                 $strChild = '';
                 $hasActive = false;
                 $selected='';
+                //var_dump($permissions);
                 $permission = array();
                 
                 if(!empty($permissions) && is_array($permissions[$item->get("slug")])){
+                    $permission=$permissions[$item->get("slug")];
                     if(isset($permissions[$item->get("slug")][$item->get("slug")]) && $permissions[$item->get("slug")][$item->get("slug")]==1){
                         $selected='checked';
-                        $permission=$permissions[$item->get("slug")];
+                        
                     }
                 }else if(!empty($permissions) &&  $permissions[$item->get("slug")]==1){
                     $selected='checked'; 
                 }else{
                     $selected=''; 
                 }
+
+                //var_dump($permission);
 
                 foreach($item->getChildrens() as $child) {
                     $checked =0;
@@ -72,7 +77,7 @@ class MainAction extends Action
                     if ($active) {
                         $hasActive = true;
                     }
-                    
+                    //echo $checked;
                     $strChild .= view('sbem::menu_left_item', [
                         'adminUrl' => $adminUrl,
                         'item' => $child,
