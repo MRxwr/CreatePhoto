@@ -218,7 +218,7 @@ public function packageThemeField(){
               $packagetypeAttrs= PackageTypeAttribute ::where('package_type_id',$type->id)->where('status',1)->get();
               if(!empty($attrs)){
                  $html .='<div class="set">
-                      <a class="fs23" href="javascript:void(0)"><i class="fa fa-plus"></i><span>'.$type->title.'</span> <span class="fa fa-question" style="float:right"  data-toggle="tooltip" data-placement="right" title="'.$type->note.'"></span></a> 
+                      <a class="fs23" href="javascript:void(0)"><!--<i class="fa fa-plus"></i><span> --!>'.$type->title.'</span> <!--<span class="fa fa-question" style="float:right"  data-toggle="tooltip" data-placement="right" title="'.$type->note.'"></span> --!></a> 
                       <div class="content">';
                       foreach($packagetypeAttrs as $attr){
                         $checked='';
@@ -294,7 +294,7 @@ public function packageThemeField(){
             }
             .content{
               background-color: #fff;
-              display:none;
+              /*display:none;*/
             }
             .content label{
               padding: 5px;
@@ -310,7 +310,7 @@ public function packageThemeField(){
   add_action('theme.footer', function(){
     echo '<script>
             $(document).ready(function() {
-              $(".set > a").on("click", function() {
+              $(".set2 > a").on("click", function() {
                 if ($(this).hasClass("active")) {
                   $(this).removeClass("active");
                   $(this)
