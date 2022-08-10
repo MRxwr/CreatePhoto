@@ -177,10 +177,13 @@ class MainAction extends Action
     public function doProcessDiscountCoupon(){
         add_action('theme.booking.extra', function($payment_data) {
             $booking = Booking::find($payment_data['booking_id']);
-            if(isset($payment_data['coupon_code'])){;
+            if(isset($payment_data['coupon_code'])){
                 $booking->coupon_code =  $payment_data['coupon_code'];
             }
-            if(isset($payment_data['discount_value'])){;
+            if(isset($payment_data['referral_code'])){
+                $booking->referral_code =  $payment_data['referral_code'];
+            }
+            if(isset($payment_data['discount_value'])){
                 $booking->discount_value =  $payment_data['discount_value'];
             }
             $booking->save();

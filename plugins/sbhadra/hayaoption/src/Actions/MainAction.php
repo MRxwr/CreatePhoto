@@ -669,12 +669,15 @@ public function addThemeExtraFields(){
             // if(isset($payment_data['number_of_pieces'])){
             //     $booking->number_of_pieces =  $payment_data['number_of_pieces'] ;
             // }
+
             // if(isset($payment_data['rate_per_pieces'])){
             //     $booking->rate_per_pieces =  $payment_data['rate_per_pieces'] ;
             // }
+
             if(isset($payment_data['pictures_type_price'])){
                 $booking->package_type_attribute =  $payment_data['pictures_type_price'] ;
             }
+
             if(isset($payment_data['total_price'])){
                 $booking->total_price =  $payment_data['total_price'] ;
             }

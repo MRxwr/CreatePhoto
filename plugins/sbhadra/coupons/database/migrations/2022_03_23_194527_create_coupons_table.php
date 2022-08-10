@@ -28,6 +28,7 @@ class CreateCouponsTable extends Migration
         });
         Schema::table('bookings', function($table) {
             $table->string('coupon_code')->nullable();
+            $table->string('referral_code')->nullable();
             $table->decimal('discount_value')->nullable();
         });
     }

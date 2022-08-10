@@ -107,6 +107,19 @@ class SuccessBookingDatatable extends PostTypeDataTable
                     return $row->status;
                 }
             ],
+
+            'coupon_code' => [
+                'label' => 'coupon code',
+                'formatter' => function ($value, $row, $index) {
+                    return $row->coupon_code;
+                }
+            ],
+            'referral_code' => [
+                'label' => 'Referral code ',
+                'formatter' => function ($value, $row, $index) {
+                    return $row->referral_code ;
+                }
+            ],
           
             'actions' => [
                 'label' => trans('sbph::app.actions'),
