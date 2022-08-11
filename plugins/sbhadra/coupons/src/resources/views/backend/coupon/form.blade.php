@@ -31,7 +31,16 @@
                 {{ Field::select($model, 'status', [
                     'options' => $model->getStatuses()
                 ]) }}
-                <input type="hidden" name="source" value="web">
+                <!-- <input type="hidden" name="source" value="web"> -->
+
+                <div class="form-group">
+                    <label class="control-label mb-10 text-left">{{trans('sbco::app.coupon_type')}}</label>
+                        <select class="form-control" name="source" id="source">
+                            <option value="web" @if( $model->source=='web') selected="selected" @endif >Coupon</option>
+                            <option value="survey" @if( $model->source=='survey') selected="selected" @endif >Referral</option>
+                        </select>
+                </div>
+                
                 <div class="form-group">
                     <label class="control-label mb-10 text-left">{{trans('sbco::app.validity_from')}}</label>
                     <input type="date" class="form-control" name="validity_from" min=""  id="validity_from" value="{{$model->validity_from}}">  

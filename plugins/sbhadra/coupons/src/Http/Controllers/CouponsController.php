@@ -41,4 +41,19 @@ class CouponsController extends BackendController
     {
         return trans('sbco::app.coupons');
     }
+    protected function afterSave(Request $request, $model){
+        if($request['source']=='survey'){
+            $today= date('Y-m-d');
+            $coupon_discount = 0.00;
+            $coupon_type = 2;
+            $source = 'survey';
+            $model->source =$source;
+            $model->coupon_discount =0.00;
+            $model->coupon_type =$coupon_type;
+            $model->validity_from =  $today;
+            $model->validity_to = date('Y-m-d', strtotime($today . ' +365 day'));
+        }
+
+        $model->save();
+    }
 }
