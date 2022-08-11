@@ -56,6 +56,15 @@ class MainAction extends Action
                 'parent' => 'survey',
             ]
         );
+        // HookAction::addAdminMenu(
+        //     trans('sbsu::app.survey_reffarel'),
+        //     'survey/referral-code',
+        //     [
+        //         'icon' => 'fa fa-doller',
+        //         'position' => 7,
+        //         'parent' => 'coupons',
+        //     ]
+        // );
         
     }
 

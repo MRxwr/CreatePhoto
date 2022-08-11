@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Juzaweb\Http\Controllers\BackendController;
 use Sbhadra\Coupons\Http\Datatables\CouponDatatable;
 use Sbhadra\Coupons\Models\Coupon;
+use Illuminate\Http\Request;
 
 class CouponsController extends BackendController
 {

@@ -17,9 +17,10 @@
          $selected=1; 
       }else{
         if(is_array($permissions[$item->get("slug")])){
+                $permission=$permissions[$item->get("slug")];
                 if(isset($permissions[$item->get("slug")][$item->get("slug")]) && $permissions[$item->get("slug")][$item->get("slug")]==1){
                     $selected=1;
-                    $permission=$permissions[$item->get("slug")];
+                    
                 }
             }else if($permissions[$item->get("slug")]==1){
                     $selected=1; 
