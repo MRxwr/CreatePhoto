@@ -50,7 +50,13 @@ class CouponDatatable extends PostTypeDataTable
                 'label' => trans('sbco::app.source'),
                 'align' => 'center',
                 'formatter' => function ($value, $row, $index) {
-                    return $row->source ;
+                    if($row->source =='survey'){
+                        return ' Refferal';   
+                    }else{
+                        //return $row->source ;
+                        return 'Coupon';
+                    }
+                    
                 }
             ],
             'created_at' => [
@@ -73,7 +79,7 @@ class CouponDatatable extends PostTypeDataTable
     public function query($data)
     {
         $query = Coupon::query();
-        $query ->whereIn('source',['web','system']);
+        //$query ->whereIn('source',['web','system']);
         if ($keyword = Arr::get($data, 'keyword')) {
             $query->where(function (Builder $q) use ($keyword) {
                 $q->where('title', 'like', '%'. $keyword .'%');

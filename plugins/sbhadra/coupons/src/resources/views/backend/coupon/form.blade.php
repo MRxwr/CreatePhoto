@@ -13,7 +13,8 @@
                     'class' => empty($model->slug) ? 'generate-slug' : '',
                 ]) }}
                 {{ Field::text($model, 'coupon_code') }}
-                {{ Field::text($model, 'coupon_discount') }}
+                <!-- {{ Field::text($model, 'coupon_discount') }} -->
+                <input type="text" class="form-control" name="coupon_discount" min=""  id="coupon_discount" value="{{($model->coupon_discount?$model->coupon_discount:'0.00')}}">
                 <div class="form-group">
                     <label class="control-label mb-10 text-left">{{trans('sbco::app.coupon_type')}}</label>
                         <select class="form-control" name="coupon_type" id="coupon_type">
