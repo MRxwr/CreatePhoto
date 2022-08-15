@@ -11,7 +11,6 @@
     </div>
     <form action="{{route('admin.ramadan.setting')}}" method="POST" class="form-ajax">
     {!! csrf_field() !!}
-    @dd($setting)
     <div class="row mb-3">
         <div class="col-md-5">
             <label class="col-form-label" for="release">@lang('sbca::app.start_date')</label>
