@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Juzaweb\Http\Controllers\BackendController;
 use Sbhadra\Photography\Http\Datatables\TimeslotDatatable;
 use Sbhadra\Photography\Models\Timeslot;
+use Illuminate\Http\Request;
 
 class TimeslotController extends BackendController
 { 
@@ -41,5 +42,11 @@ class TimeslotController extends BackendController
     protected function getTitle()
     {
         return trans('sbph::app.Timeslots');
+    }
+    protected function afterSave(Request $request, $model){
+        if(isset($request->slot_type)){
+            $model->slot_type =  $request->slot_type;
+        }
+        $model->save();
     }
 }

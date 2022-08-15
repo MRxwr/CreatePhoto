@@ -1,6 +1,6 @@
 <?php
 
-namespace Sbhadra\Photography\Http\Datatables;
+namespace Sbhadra\Ramadan\Http\Datatables;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
@@ -77,7 +77,7 @@ class TimeslotDatatable extends PostTypeDataTable
     public function query($data)
     {
         $query = Timeslot::query();
-        //$query->where('slot_type','normal');
+        $query->where('slot_type','ramadan');
         if ($keyword = Arr::get($data, 'keyword')) {
             $query->where(function (Builder $q) use ($keyword) {
                 $q->where('title', 'like', '%'. $keyword .'%');

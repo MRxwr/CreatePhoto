@@ -12,3 +12,5 @@
 */
 
 
+Route::post('timeslot/ramadan/setting', 'RamadanController@settingSave')->name('admin.ramadan.setting');
+Route::Resource('timeslot/ramadan', 'RamadanController');

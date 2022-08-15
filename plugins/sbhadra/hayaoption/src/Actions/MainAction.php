@@ -456,7 +456,7 @@ public function addFrontCategories()
                         echo   ' <div class="row py-5 my-5">         
                             <div class="col-xxl-7 offset-xxl-0 col-xl-6 offset-xl-1 d-xl-none d-flex justify-content-end mb-xl-0 mb-5">
                                 <div class="pack_img position-relative">
-                                    <img src="'.url('jw-styles/themes/demah/assets/img/pack_img_dots_right.svg').'" alt="img" class="position-absolute posLB">
+                                    <img src="'.url('jw-styles/themes/hbqhaya/assets/img/pack_img_dots_right.svg').'" alt="img" class="position-absolute posLB">
                                     <img src="'. upload_url($taxonomies->thumbnail) .'" alt="img" class="mw-100">
                                 </div>
                             </div>
@@ -481,7 +481,7 @@ public function addFrontCategories()
                             </div>
                             <div class="col-xxl-7 offset-xxl-0 col-xl-6 offset-xl-1 d-xl-flex d-none justify-content-end">
                                 <div class="pack_img position-relative">
-                                    <img src="'.url('jw-styles/themes/demah/assets/img/pack_img_dots_right.svg').'" alt="img" class="position-absolute posLB">
+                                    <img src="'.url('jw-styles/themes/hbqhaya/assets/img/pack_img_dots_right.svg').'" alt="img" class="position-absolute posLB">
                                     <img src="'. upload_url($taxonomies->thumbnail) .'" alt="img" class="mw-100">
                                 </div>
                             </div>
@@ -491,7 +491,7 @@ public function addFrontCategories()
                         echo '<div class="row py-5 my-5">
                         <div class="col-xxl-7 col-xl-6 mb-xl-0 mb-5">
                             <div class="pack_img position-relative">
-                            <img src="'.url('jw-styles/themes/demah/assets/img/pack_img_dots_right.svg').'" alt="img" class="position-absolute posLB">
+                            <img src="'.url('jw-styles/themes/hbqhaya/assets/img/pack_img_dots_right.svg').'" alt="img" class="position-absolute posLB">
                             <img src="'. upload_url($taxonomies->thumbnail) .'" alt="img" class="mw-100">
                             </div>
                         </div>

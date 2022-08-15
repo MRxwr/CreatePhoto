@@ -3,12 +3,17 @@
 namespace Sbhadra\Ramadan\Providers;
 
 use Juzaweb\Support\ServiceProvider;
+use Sbhadra\Ramadan\Actions\MainAction;
+use Illuminate\Support\Facades\Schema;
 
 class RamadanServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        //
+        Schema::defaultStringLength(191);
+        $this->registerAction([
+            MainAction::class
+        ]);
     }
 
     /**
