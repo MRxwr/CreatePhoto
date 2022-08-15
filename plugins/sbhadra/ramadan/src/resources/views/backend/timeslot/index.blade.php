@@ -15,13 +15,13 @@
     <div class="row mb-3">
         <div class="col-md-5">
             <label class="col-form-label" for="release">@lang('sbca::app.start_date')</label>
-            <input id="timepicker1" name="ramadan_start_date" type="date" class="form-control input-small" value="{{@$setting->ramadan_start_date}}">
+            <input id="timepicker112" name="ramadan_start_date" type="date" class="form-control input-small" value="{{@$setting->ramadan_start_date}}">
             <span class="input-group-addon"><i class="glyphicon glyphicon-date"></i></span>
         </div>
 
         <div class="col-md-5">
             <label class="col-form-label" for="release">@lang('sbca::app.end_date')</label>
-            <input id="timepicker2" name="ramadan_end_date" type="date" class="form-control input-small" value="{{@$setting->ramadan_end_date}}">
+            <input id="timepicker2123" name="ramadan_end_date" type="date" class="form-control input-small" value="{{@$setting->ramadan_end_date}}">
             <span class="input-group-addon"><i class="fa fa-watch"></i></span>
         </div>
 
