@@ -73,7 +73,7 @@ class RamadanController extends BackendController
     }
     public function settingSave(Request $request){
         $datas = $request->except('_token');
-        dd($datas);
+       // dd($datas);
         foreach($datas as $key=>$value){
            if (Setting::where('field_key', '=', $key)->exists()) {
                $model = Setting::firstOrNew(['field_key' => $key]);
