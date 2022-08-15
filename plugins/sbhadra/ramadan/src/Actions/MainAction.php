@@ -174,7 +174,7 @@ class MainAction extends Action
         foreach($settings as $setting){
             $config[$setting["field_key"]] = $setting["field_value"];
         }
-        $setting = (OBJECT)$config;
+        $setting =(object)$config;
        
         $paymentDate=date('Y-m-d', strtotime($bookingDate));
         //echo $paymentDate; // echos today!
