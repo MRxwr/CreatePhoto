@@ -9,6 +9,7 @@
             </div>
         </div>
     </div>
+    
     <form action="{{route('admin.ramadan.setting')}}" method="POST" class="form-ajax">
     {!! csrf_field() !!}
     <div class="row mb-3">
