@@ -39,7 +39,7 @@ class RamadanController extends BackendController
             'title' => $this->getTitle(),
             'postType' => $postType,
             'dataTable' => $dataTable,
-            'settings' => (object)$config,
+            'setting' => (object)$config,
         ]);
     }
 
