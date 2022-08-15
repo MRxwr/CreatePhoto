@@ -90,7 +90,7 @@ class MainAction extends Action
         $disable_slots=array();
         if(isset($_REQUEST['date'])){
             $package = Package::find($_REQUEST['id']);
-                $package->ramadan_slots = Timeslot::where('slot_type','ramadan')->get();
+            $package->ramadan_slots = Timeslot::where('slot_type','ramadan')->get();
             $date = new \DateTime($_REQUEST['date']);
             $bdate = $date->format('Y-m-d');
             $calendar = Calendar::where('package_id',$package->id)->whereDate('from_date', '<=', $date)->whereDate('to_date', '>=', $date)->first();
