@@ -66,9 +66,7 @@ class MainAction extends Action
     public function frontRamadanTimefields(){
         if(isset($_REQUEST['date']) && $this->getRamadanDate($_REQUEST['date'])==1){
            //$times=  Timeslot::where('slot_type','ramadan')->get();
-           
               add_filters('theme.reservation.time', function() {
-                
                 $package = Package::find($_REQUEST['id']);
                 $package->ramadan_slots = Timeslot::where('slot_type','ramadan')->get();
                 //dd($package->slots);

@@ -331,7 +331,7 @@ class MainAction extends Action
                   $survey ->booking_id = $booking_id;
                   $survey ->customer_name = $customer_name;
                   $survey ->customer_mobile = $customer_mobile;
-                  $survey ->result =  $_POST['survey'];
+                  $survey ->survey_result =  $_POST['survey'];
                   $survey ->survey_coupon = $survey_coupon;
                   if($survey ->save()){
                     $today= date('Y-m-d');
