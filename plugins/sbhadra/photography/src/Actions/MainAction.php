@@ -129,16 +129,16 @@ class MainAction extends Action
                             </div>';
                }, 10, 1);
 
-               add_filters('theme.reservation.time', function() {
-                $package = Package::find($_REQUEST['id']);
-                   return $this->getPackageTimeslots($package);
-               }, 10, 1);
+            //    add_filters('theme.reservation.time', function() {
+            //     $package = Package::find($_REQUEST['id']);
+            //        return $this->getPackageTimeslots($package);
+            //    }, 10, 1);
                
-             add_filters('cstudio.reservation.time', function() {
-                $package = Package::find($_REQUEST['id']);
-                return $this->getPackageTimeslots($package);
-                   //return $this->getPackageCstudioTimeslots($package);
-               }, 10, 1);
+            //  add_filters('cstudio.reservation.time', function() {
+            //     $package = Package::find($_REQUEST['id']);
+            //     return $this->getPackageTimeslots($package);
+            //        //return $this->getPackageCstudioTimeslots($package);
+            //    }, 10, 1);
                
                add_filters('theme.reservation.services', function() {
                 $package = Package::find($_REQUEST['id']);
