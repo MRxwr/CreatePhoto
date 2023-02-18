@@ -20,6 +20,7 @@ class Service extends Model
         'description',
         'price',
         'status',
+        'available_date',
     ];
     public function packages()
     {

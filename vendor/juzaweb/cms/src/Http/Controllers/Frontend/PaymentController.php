@@ -11,7 +11,7 @@ class PaymentController extends FrontendController
     public function index()
     {
         do_action('theme.payment.index');
-        if ($pageId = get_payment_page()) {
+        if ($pageId = jw_payment_page()) {
             return App::call('Juzaweb\Http\Controllers\Frontend\PageController@detail', ['id' => $pageId]);
         }
     }

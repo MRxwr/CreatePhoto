@@ -49,7 +49,7 @@ class MainAction extends Action
             'menu_position' => 32,
             'menu_icon' => 'fa fa-list',
         ]);
-        HookAction::registerPostType('services', [
+        HookAction::registerPostType('service', [
             'label' => trans('sbph::app.services'),
             'model' => Service::class,
             'menu_position' => 34,
@@ -373,19 +373,37 @@ static function getPackageCstudioTimeslots($package){
             $html .='<div class="row px-xl-2">';
                                       
              foreach($package->services as $service){
-                $html .='<div class="col-xxl-6 mb-xl-5 mb-3">'; 
-                $html .='<label class="container_radio d-flex align-items-center">
-                   '.$service->title.'
-                    <input type="checkbox" class="xprice" data-exprice="'.$service->price.'" value="'.$service->id.'" name="service_item[]">
-                    <span class="checkmark"></span>
-                        <div class="bg-light text-dark radius15 mh53 py-1 px-3 ms-2 d-inline-flex align-items-center">
-                            <h4 class="fs23">
-                            '.$service->price.' KD
-                            </h4>
-                        </div>
-                  </label>';
-                $html .='</div>';
-
+                if($service->available_date!= NULL ){
+                    $date=date_create($service->available_date);
+                    $service->available_date = date_format($date,"d-m-Y");
+                    if($_REQUEST['date']==$service->available_date){
+                    $html .='<div class="col-xxl-6 mb-xl-5 mb-3">'; 
+                    $html .='<label class="container_radio d-flex align-items-center">
+                    '.$service->title.'
+                        <input type="checkbox" class="xprice" data-exprice="'.$service->price.'" value="'.$service->id.'" name="service_item[]">
+                        <span class="checkmark"></span>
+                            <div class="bg-light text-dark radius15 mh53 py-1 px-3 ms-2 d-inline-flex align-items-center">
+                                <h4 class="fs23">
+                                '.$service->price.' KD
+                                </h4>
+                            </div>
+                    </label>';
+                    $html .='</div>';
+                    }  
+                }else{
+                    $html .='<div class="col-xxl-6 mb-xl-5 mb-3">'; 
+                    $html .='<label class="container_radio d-flex align-items-center">
+                    '.$service->title.'
+                        <input type="checkbox" class="xprice" data-exprice="'.$service->price.'" value="'.$service->id.'" name="service_item[]">
+                        <span class="checkmark"></span>
+                            <div class="bg-light text-dark radius15 mh53 py-1 px-3 ms-2 d-inline-flex align-items-center">
+                                <h4 class="fs23">
+                                '.$service->price.' KD
+                                </h4>
+                            </div>
+                    </label>';
+                    $html .='</div>';
+                }
              }
             $html .='</div>';
             $html .='</div>';

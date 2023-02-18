@@ -607,6 +607,7 @@ public function addThemeExtraFields(){
                 ->join('taxonomies', 'taxonomies.id', '=', 'term_taxonomies.taxonomy_id')
                 ->where('taxonomies.slug', $_REQUEST['category'])
                 ->select('package_themes.*')
+                ->orderBy("package_themes.id", "desc")
                 ->get();
                 //dd($themes);
         } else{
@@ -619,14 +620,17 @@ public function addThemeExtraFields(){
                     ->join('taxonomies', 'taxonomies.id', '=', 'term_taxonomies.taxonomy_id')
                     ->whereIn('taxonomies.slug', $slugs)
                     ->select('package_themes.*')
+                    ->orderBy("package_themes.id", "desc")
                     ->get();
 
                 }else{
-                    $themes =Theme::all();
+                    //$themes =Theme::all();
+                    $themes =Theme::orderBy("package_themes.id", "desc")->get();
                 }
                 
             }else{
-                $themes =Theme::all();
+               // $themes =Theme::all();
+               $themes =Theme::orderBy("package_themes.id", "desc")->get();
             }
         }    
         $html ='';

@@ -20,11 +20,16 @@
             </div>
 
             <div class="col-md-4">
-
                 {{ Field::select($model, 'status', [
                     'options' => $model->getStatuses()
                 ]) }}
+
                 {{ Field::text($model, 'price') }}
+                <div class=" form-group bootstrap-timepicker timepicker">
+                        <label class="col-form-label" for="release">Available date</label>
+                        <input id="timepicker2" name="available_date" type="date" class="form-control input-small" value="{{$model->available_date}}">
+                        <span class="input-group-addon"><i class="fa fa-watch"></i></span>
+                </div> 
                 {{ Field::image($model, 'thumbnail') }}
                 @do_action('post_type.'. $postType .'.form.right', $model)
             </div>
