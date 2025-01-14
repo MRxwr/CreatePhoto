@@ -43,6 +43,7 @@ class TimeslotController extends BackendController
     {
         return trans('sbph::app.Timeslots');
     }
+    
     protected function afterSave(Request $request, $model){
         if(isset($request->slot_type)){
             $model->slot_type =  $request->slot_type;

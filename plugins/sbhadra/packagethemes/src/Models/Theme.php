@@ -25,4 +25,18 @@ class theme extends Model
     // {
     //     return $this->belongsToMany('Sbhadra\Photography\Models\Package');
     // }
+    public function getThumb60pxAttribute()
+    {
+        // Set the path to the timthumb.php script
+        $timthumb_path =asset('storage/timthumb.php');
+        // Set the path to the original image
+        $original_image_path = $this->getThumbnail();
+        // Set the desired thumbnail width and height
+        $thumbnail_width = 60;
+        $thumbnail_height = 60;
+        // Build the URL for the thumbnail
+         return $thumbnail_url = "{$timthumb_path}?src={$original_image_path}&w={$thumbnail_width}&h={$thumbnail_height}";
+        //$them->getThumbnail()
+        //return $this->getThumbnail();  
+    }
 }

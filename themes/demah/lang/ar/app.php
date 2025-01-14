@@ -118,4 +118,9 @@ return [
     'To_serve_you_better'=>'لخدمتك بشكل أفضل ، يرجى ملاحظة أن الرسالة مخصصة للاستفسارات فقط وليس للحجز. شكرًا لك.',
     'Included_In_This_Package'=>'المدرجة في هذه الحزمة',
     'coupon_referral'=>'Coupon / Referral Code',
+    'feedbacks' =>'Feedbacks',
+    'customer_name' =>'Customer Name',
+    'message' =>'Message',
+    'feedback_success_message'=>'Your Feedback Successfully Added',
+    'feedback_faild_message'=>'Error occurs, Feedback Failed to Add',
 ];

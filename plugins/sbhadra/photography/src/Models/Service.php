@@ -21,6 +21,8 @@ class Service extends Model
         'price',
         'status',
         'available_date',
+        'days',
+        'slots',
     ];
     public function packages()
     {

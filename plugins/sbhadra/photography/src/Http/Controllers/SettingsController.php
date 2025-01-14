@@ -16,7 +16,6 @@ class SettingsController extends BackendController
         foreach($settings as $setting){
             $config[$setting["field_key"]] = $setting["field_value"];
         }
-        
         return view('sbph::backend.setting.index', [
             'settings' => $config,
             'title' => 'Booking Settings'

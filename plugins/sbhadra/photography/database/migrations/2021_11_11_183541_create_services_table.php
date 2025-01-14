@@ -21,7 +21,6 @@ class CreateServicesTable extends Migration
             $table->string('thumbnail', 250)->nullable();
             $table->decimal('price', 10,2)->default('0.00');
             $table->string('status', 50)->default('no');
-            $table->string('available_date', 25)->nullable();
             $table->timestamps();
         });
     }

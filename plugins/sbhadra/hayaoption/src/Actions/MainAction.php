@@ -37,6 +37,7 @@ class MainAction extends Action
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'getHomeAboutContent']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'getTermsAndConditionContent']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'getThemeFixedPriceText']);
+        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'themeServiceSloteScript']);
        
     }
     
@@ -95,6 +96,7 @@ public function packageThemeField(){
                     <input type="checkbox" name="is_theme_category"  id="is_theme_category" value="1" '.$catischecked.' >
                 </label>
              </div>';
+
         //   $html .='<div class="form-group">
         //         <label class="col-form-label" for="is_pieces">'.trans('sbha::app.is_pieces_enable').'
                     
@@ -106,6 +108,7 @@ public function packageThemeField(){
         //         <input type="text" class="form-control" name="rate_per_pieces" id="rate_per_pieces" value="'.$rate_per_pieces.'"  >
                 
         //     </div>';
+        
           $html .='<div class="form-group">
           <label class="col-form-label" for="theme_category_ids">'.trans('sbha::app.theme_category').'</label>
             <select class="form-control select2-default" id="theme_category_ids" name="theme_category_ids[]" multiple>
@@ -456,7 +459,7 @@ public function addFrontCategories()
                         echo   ' <div class="row py-5 my-5">         
                             <div class="col-xxl-7 offset-xxl-0 col-xl-6 offset-xl-1 d-xl-none d-flex justify-content-end mb-xl-0 mb-5">
                                 <div class="pack_img position-relative">
-                                    <img src="'.url('jw-styles/themes/hbqhaya/assets/img/pack_img_dots_right.svg').'" alt="img" class="position-absolute posLB">
+                                    <img src="'.url('jw-styles/themes/demah/assets/img/pack_img_dots_right.svg').'" alt="img" class="position-absolute posLB">
                                     <img src="'. upload_url($taxonomies->thumbnail) .'" alt="img" class="mw-100">
                                 </div>
                             </div>
@@ -481,7 +484,7 @@ public function addFrontCategories()
                             </div>
                             <div class="col-xxl-7 offset-xxl-0 col-xl-6 offset-xl-1 d-xl-flex d-none justify-content-end">
                                 <div class="pack_img position-relative">
-                                    <img src="'.url('jw-styles/themes/hbqhaya/assets/img/pack_img_dots_right.svg').'" alt="img" class="position-absolute posLB">
+                                    <img src="'.url('jw-styles/themes/demah/assets/img/pack_img_dots_right.svg').'" alt="img" class="position-absolute posLB">
                                     <img src="'. upload_url($taxonomies->thumbnail) .'" alt="img" class="mw-100">
                                 </div>
                             </div>
@@ -491,7 +494,7 @@ public function addFrontCategories()
                         echo '<div class="row py-5 my-5">
                         <div class="col-xxl-7 col-xl-6 mb-xl-0 mb-5">
                             <div class="pack_img position-relative">
-                            <img src="'.url('jw-styles/themes/hbqhaya/assets/img/pack_img_dots_right.svg').'" alt="img" class="position-absolute posLB">
+                            <img src="'.url('jw-styles/themes/demah/assets/img/pack_img_dots_right.svg').'" alt="img" class="position-absolute posLB">
                             <img src="'. upload_url($taxonomies->thumbnail) .'" alt="img" class="mw-100">
                             </div>
                         </div>
@@ -632,7 +635,7 @@ public function addThemeExtraFields(){
                // $themes =Theme::all();
                $themes =Theme::orderBy("package_themes.id", "desc")->get();
             }
-        }    
+        }   
         $html ='';
         if(!empty($themes)){
                 $html .='
@@ -673,15 +676,12 @@ public function addThemeExtraFields(){
             // if(isset($payment_data['number_of_pieces'])){
             //     $booking->number_of_pieces =  $payment_data['number_of_pieces'] ;
             // }
-
             // if(isset($payment_data['rate_per_pieces'])){
             //     $booking->rate_per_pieces =  $payment_data['rate_per_pieces'] ;
             // }
-
             if(isset($payment_data['pictures_type_price'])){
                 $booking->package_type_attribute =  $payment_data['pictures_type_price'] ;
             }
-
             if(isset($payment_data['total_price'])){
                 $booking->total_price =  $payment_data['total_price'] ;
             }
@@ -764,5 +764,42 @@ public function addThemeExtraFields(){
             }      
         });
     }
+    
+    public function themeServiceSloteScript(){
+    add_action('theme.footer', function() {
+        $html = '<script>
+            $(document).ready(function(){
+                
+                $("body").on("click", ".xprice", function(e) {
+                    var sid = $(this).val();
+                    var id = $("#id").val();
+                    var date = $("#booking_date").val();
+                    var _token = $("input[name=_token]").val();
+                    
+                    if(this.checked){
+                        $.ajax({
+                            type: "POST",
+                            url: "?ajaxpage=getServiceSlot",
+                            data: {_token:_token,id: id,sid:sid,date:date},
+                            success: function(data) {
+                                //alert(data);
+                                $("#booking_time").html(data);
+                            },
+                             error: function() {
+                                alert("it broke");
+                            },
+                           
+                        });
+
+            }
+                   
+                      
+                  });
+                  
+            });
+        </script>';
+       echo  $html;
+    }, 35, 1);
+  }
 
 }

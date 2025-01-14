@@ -30,10 +30,11 @@ class SuccessBookingDatatable extends PostTypeDataTable
                 'width' => '5%',
                 'formatter' => function ($value, $row, $index) {
                     $html='';
-                    if($row->theme_id>0){
-                        $html .= '<img src="'. $row->theme->getThumbnail() .'" class="w-50" style="width:50px" />';
+                    if($row->theme_id>0 && $row->theme_id!=NULL ){
+                        $them = Theme::find($row->theme_id);
+                        $html .= '<img src="'. $them->getThumbnail() .'" class="w-50" style="width:50px" />';
                     }
-                    if($row->theme_2id>0){
+                    if($row->theme_2id>0 && $row->theme_2id!=NULL){
                         $theme = Theme::find($row->theme_2id);
                         $html .= '<img src="'. $theme->getThumbnail() .'" class="w-50" style="width:50px" />';
                     }
@@ -78,7 +79,7 @@ class SuccessBookingDatatable extends PostTypeDataTable
                 'width' => '14%',
                 'align' => 'center',
                 'formatter' => function ($value, $row, $index) {
-                    return $row->timeslot->starttime .'to'. $row->timeslot->endtime;
+                    return ($row->timeslot?$row->timeslot->starttime .'to'. $row->timeslot->endtime:'');
                 }
             ],
             'services' => [
@@ -107,8 +108,7 @@ class SuccessBookingDatatable extends PostTypeDataTable
                     return $row->status;
                 }
             ],
-
-            'coupon_code' => [
+           'coupon_code' => [
                 'label' => 'coupon code',
                 'formatter' => function ($value, $row, $index) {
                     return $row->coupon_code;
@@ -120,7 +120,6 @@ class SuccessBookingDatatable extends PostTypeDataTable
                     return $row->referral_code ;
                 }
             ],
-          
             'actions' => [
                 'label' => trans('sbph::app.actions'),
                 'width' => '5%',

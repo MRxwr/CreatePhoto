@@ -1,1 +1,0 @@
-<?php echo $__env->make('theme::layout.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\github\CreatePhoto\vendor\juzaweb\cms\src\Providers/../resources/views/layouts/frontend.blade.php ENDPATH**/ ?>

@@ -331,7 +331,7 @@ class MainAction extends Action
                   $survey ->booking_id = $booking_id;
                   $survey ->customer_name = $customer_name;
                   $survey ->customer_mobile = $customer_mobile;
-                  $survey ->survey_result =  $_POST['survey'];
+                  $survey ->survey_result =  json_encode($_POST['survey']);
                   $survey ->survey_coupon = $survey_coupon;
                   if($survey ->save()){
                     $today= date('Y-m-d');
@@ -365,7 +365,7 @@ class MainAction extends Action
                             $html .= '<div class="alert alert-success"><strong> Success! Your Survey is Successfully done ! Your Referral  Code : </strong>  '.$survey_coupon.'</div>';
                             $html .=  '<br>';
                             $html .=  '<p><strong>شكرا لوقتكم ورايكم ..';
-                            $html .=  'وتستاهلون كود خصم ١٠% للجلسه القادمه</strong></p>';
+                            $html .=  'وتستاهلون كود خصم ٥% للجلسه القادمه</strong></p>';
                             $html .='</div>
                                 </div>';
                            echo $html;

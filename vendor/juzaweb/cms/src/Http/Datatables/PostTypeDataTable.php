@@ -133,11 +133,11 @@ class PostTypeDataTable extends DataTable
     {
         $data = parent::rowAction($row);
 
-        $data['view'] = [
-            'label' => trans('juzaweb::app.view'),
-            'url' => $row->getLink(),
-            'target' => '_blank',
-        ];
+        // $data['view'] = [
+        //     'label' => trans('juzaweb::app.view'),
+        //     'url' => $row->getLink(),
+        //     'target' => '_blank',
+        // ];
 
         return $data;
     }

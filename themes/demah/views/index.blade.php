@@ -26,7 +26,18 @@
             </div>
         </section>
         <!-- package_section -->
-
+        <section class="insta_feed py-5">
+            <div class="container">
+                <div class="row mb-3 pb-3">
+                    <div class="col-lg-12 pb-5">
+                        <h4 class="fs107 CarrinadyB text-primary SegoeUIL">@lang('theme::app.picked_for_you')</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                @do_action('theme.feedback.view')
+            </div>
+        </section>
         <!-- instagram-section -->
          <!-- insta_feed -->
          <section class="insta_feed py-5">
@@ -37,7 +48,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container-fluid">
+            <div class="container">
                 @apply_filters('theme.instafeed.home2nd')
             </div>
         </section>

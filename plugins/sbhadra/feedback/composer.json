@@ -1,0 +1,23 @@
+{
+    "name": "sbhadra/feedback",
+    "description": "",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sbhadra\\Feedback\\Providers\\FeedbackServiceProvider"
+            ],
+            "aliases": {}
+        },
+        "juzaweb": {
+            "name": "sbhadra/feedback",
+            "domain": "sbfe",
+            "cms_min": "1.0.9",
+            "version": "1.0"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Sbhadra\\Feedback\\": "src/"
+        }
+    }
+}

@@ -49,7 +49,7 @@ class MainAction extends Action
             'menu_position' => 32,
             'menu_icon' => 'fa fa-list',
         ]);
-        HookAction::registerPostType('service', [
+        HookAction::registerPostType('services', [
             'label' => trans('sbph::app.services'),
             'model' => Service::class,
             'menu_position' => 34,
@@ -129,16 +129,16 @@ class MainAction extends Action
                             </div>';
                }, 10, 1);
 
-            //    add_filters('theme.reservation.time', function() {
+            //   add_filters('theme.reservation.time', function() {
             //     $package = Package::find($_REQUEST['id']);
-            //        return $this->getPackageTimeslots($package);
-            //    }, 10, 1);
+            //       return $this->getPackageTimeslots($package);
+            //   }, 10, 1);
                
             //  add_filters('cstudio.reservation.time', function() {
             //     $package = Package::find($_REQUEST['id']);
             //     return $this->getPackageTimeslots($package);
-            //        //return $this->getPackageCstudioTimeslots($package);
-            //    }, 10, 1);
+            //       //return $this->getPackageCstudioTimeslots($package);
+            //   }, 10, 1);
                
                add_filters('theme.reservation.services', function() {
                 $package = Package::find($_REQUEST['id']);
@@ -175,10 +175,10 @@ class MainAction extends Action
                    </div>';
            }, 10, 1);
 
-           $this->addAction('admin.reservation.time', function() {
+          $this->addAction('admin.reservation.time', function() {
             $package = Package::find($_REQUEST['id']);
-               echo $this->getAdminPackageTimeslots($package);
-           }, 10, 1);
+               $this->getAdminPackageTimeslots($package);
+          }, 10, 1);
 
            $this->addAction('admin.reservation.services', function() {
             $package = Package::find($_REQUEST['id']);
@@ -256,7 +256,7 @@ class MainAction extends Action
             $html .=' <div class="col-xxl-10 pb-3"><label for="" >'.trans('theme::app.Preffered_Time').':</label>';
             //$html .='<div class="col-sm-7 col-md-8">';
             $html .='<select class="form-control border" id="booking_time" name="booking_time"  required>';
-            $html .='<option>'.trans('theme::app.Select_Time').'</option>';
+            $html .='<option value="">'.trans('theme::app.Select_Time').'</option>';
              foreach($package->slots as $slot){
                 if(!in_array($slot->id,$disable_slots)){
                     if(!in_array($slot->id,$booked_slot)){
@@ -348,13 +348,68 @@ static function getPackageCstudioTimeslots($package){
             $html .='<div class="form-group row">';
             $html .='<label for="" class="col-sm-5 col-md-4 col-form-label">Extra Service</label>';
             $html .='<div class="col-sm-7 col-md-8">';
-             foreach($package->services as $service){
-               $html .='<div class="form-check">
-               <input class="form-check-input xprice" type="checkbox" data-exprice="'.$service->price.'" value="'.$service->id.'" name="service_item[]">
-               <label class="form-check-label" for="defaultCheck1">
-                 <span class="form-control-plaintext">'.$service->title.' - '.$service->price.' KD.</span>
-               </label>
-             </div>';
+            //  foreach($package->services as $service){
+            //   $html .='<div class="form-check">
+            //   <input class="form-check-input xprice" type="checkbox" data-exprice="'.$service->price.'" value="'.$service->id.'" name="service_item[]">
+            //   <label class="form-check-label" for="defaultCheck1">
+            //      <span class="form-control-plaintext">'.$service->title.' - '.$service->price.' KD.</span>
+            //   </label>
+            //  </div>';
+            //  }
+           foreach($package->services as $service){
+                if($service->days!= NULL){
+                    $days = array(0=>'Sun',1=>'Mon',2=>'Tue',3=>'Wed',4=>'Thu',5=>'Fri',6=>'Sat');
+                    $d = date('D', strtotime($_REQUEST['date']));
+                    $key = array_search ($d, $days);
+                    $sd = json_decode($service->days);
+                    if(in_array($key,$sd)){
+                    $html .='<div class="col-xxl-6 mb-xl-5 mb-3">'; 
+                    $html .='<label class="container_radio d-flex align-items-center">
+                    '.$service->title.'
+                        <input type="checkbox" class="xprice" data-exprice="'.$service->price.'" value="'.$service->id.'" name="service_item[]">
+                        <span class="checkmark"></span>
+                            <div class="bg-light text-dark radius15 mh53 py-1 px-3 ms-2 d-inline-flex align-items-center">
+                                <h4 class="fs23">
+                                '.$service->price.' KD
+                                </h4>
+                            </div>
+                    </label>';
+                    $html .='</div>';
+                    }
+                    
+                }
+                // else if($service->available_date!= NULL ){
+                //     $date=date_create($service->available_date);
+                //     $service->available_date = date_format($date,"d-m-Y");
+                //     if($_REQUEST['date']==$service->available_date){
+                //     $html .='<div class="col-xxl-6 mb-xl-5 mb-3">'; 
+                //     $html .='<label class="container_radio d-flex align-items-center">
+                //     '.$service->title.'
+                //         <input type="checkbox" class="xprice" data-exprice="'.$service->price.'" value="'.$service->id.'" name="service_item[]">
+                //         <span class="checkmark"></span>
+                //             <div class="bg-light text-dark radius15 mh53 py-1 px-3 ms-2 d-inline-flex align-items-center">
+                //                 <h4 class="fs23">
+                //                 '.$service->price.' KD
+                //                 </h4>
+                //             </div>
+                //     </label>';
+                //     $html .='</div>';
+                //     }  
+                // }
+                else{
+                    $html .='<div class="col-xxl-6 mb-xl-5 mb-3">'; 
+                    $html .='<label class="container_radio d-flex align-items-center">
+                    '.$service->title.'
+                        <input type="checkbox" class="xprice" data-exprice="'.$service->price.'" value="'.$service->id.'" name="service_item[]">
+                        <span class="checkmark"></span>
+                            <div class="bg-light text-dark radius15 mh53 py-1 px-3 ms-2 d-inline-flex align-items-center">
+                                <h4 class="fs23">
+                                '.$service->price.' KD
+                                </h4>
+                            </div>
+                    </label>';
+                    $html .='</div>';
+                }
              }
             $html .='</div>';
             $html .='</div>';
@@ -373,10 +428,12 @@ static function getPackageCstudioTimeslots($package){
             $html .='<div class="row px-xl-2">';
                                       
              foreach($package->services as $service){
-                if($service->available_date!= NULL ){
-                    $date=date_create($service->available_date);
-                    $service->available_date = date_format($date,"d-m-Y");
-                    if($_REQUEST['date']==$service->available_date){
+                 if($service->days!= NULL){
+                    $days = array(0=>'Sun',1=>'Mon',2=>'Tue',3=>'Wed',4=>'Thu',5=>'Fri',6=>'Sat');
+                    $d = date('D', strtotime($_REQUEST['date']));
+                    $key = array_search ($d, $days);
+                    $sd = json_decode($service->days);
+                    if(in_array($key,$sd)){
                     $html .='<div class="col-xxl-6 mb-xl-5 mb-3">'; 
                     $html .='<label class="container_radio d-flex align-items-center">
                     '.$service->title.'
@@ -389,7 +446,8 @@ static function getPackageCstudioTimeslots($package){
                             </div>
                     </label>';
                     $html .='</div>';
-                    }  
+                    }
+                    
                 }else{
                     $html .='<div class="col-xxl-6 mb-xl-5 mb-3">'; 
                     $html .='<label class="container_radio d-flex align-items-center">
@@ -479,7 +537,7 @@ static function getPackageCstudioTimeslots($package){
         $this->addAction('backend.dashboard.view', function () {
             $html ='<div class="row">';
              $incomplete_booking =Booking::where('status','No')->count();
-            $html .='<div class="col-md-3">
+                $html .='<div class="col-md-3">
                         <div class="card  border-0 bg-gray-2">
                             <div class="card-body">
                                 <div class="d-flex flex-wrap align-items-center">
@@ -539,7 +597,7 @@ static function getPackageCstudioTimeslots($package){
             
             $html .='</div>';
             
-             $today = date('d-m-Y');
+            $today = date('d-m-Y');
             $todays_booking =Booking::whereIn('status',['Yes','yes'])->where("booking_date", "=", $today)->orderBy('timeslot_id', 'asc')->get();
             //->where("booking_date", ">=",)
             //dd($todays_booking);
@@ -567,12 +625,18 @@ static function getPackageCstudioTimeslots($package){
                                             <th data-field="created" data-width="10%" data-align="center">Action</th>
                                         </tr>
                                     </thead>';
+                                    $dth=array(231);
                                     foreach($todays_booking as $booking){
                                         $view_details = route('admin.bookings.view', [$booking->id]);
                                         $theme = '';
-                                        if($booking->theme_id>0){
+                                         if($booking->theme_id>0 && $booking->theme_id!=NULL && !in_array($booking->theme_id, $dth)){
+                                             //$theme = Theme::find($booking->theme_id);
                                             $theme =  '<img src="'. $booking->theme->getThumbnail() .'"  style="width:100px" />';
-                                        }
+                                         //$theme = $booking->theme_id;
+                                         }else{
+                                           $theme = 'no'  ;
+                                         }
+                                        
                                         $html .=' <tr> 
                                                     <td data-formatter="index_formatter" data-width="2%">#</td>
                                                     <td data-field="name" data-width="10%">'.$theme.'</td>
@@ -581,7 +645,7 @@ static function getPackageCstudioTimeslots($package){
                                                     <td data-field="name" data-width="10%">'.$booking->customer_name.'</td>
                                                     <td data-field="name" data-width="10%">'.$booking->mobile_number.'</td>
                                                     <td data-field="name" data-width="10%">'.$booking->booking_date.'</td>
-                                                    <td data-field="name" data-width="10%">'.$booking->timeslot->starttime.' '.$booking->timeslot->endtime.'</td>
+                                                    <td data-field="name" data-width="10%">'.($booking->timeslot?$booking->timeslot->starttime.' '.$booking->timeslot->endtime:'').'</td>
                                                     <td data-field="name" data-width="10%">'.$booking->status.'</td>
                                                     <td data-field="created" data-align="center"><a href="'.$view_details.'" class="dropdown-item"> <i class=" fa fa-eye"></i> View</a></td>
                                                 </tr>';

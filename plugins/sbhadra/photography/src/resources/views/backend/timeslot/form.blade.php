@@ -62,8 +62,7 @@
                         margin: -27px auto;
                         width: 20px;
                         height: 20px;
-                        background-image: url('{{asset('/')}}jw-styles/plugins/sbhadra/photography/timepicker/clear.png');
-                        background-size: 20px;
+                        background: #000;
                         color: #fff;
                         padding: 7px; 
                 }

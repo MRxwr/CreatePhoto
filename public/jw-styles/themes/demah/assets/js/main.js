@@ -109,7 +109,7 @@ $(document).ready(function(){
 // calendar
 $(function() {
 
-  rome(inline_cal, { time: false });
+  //rome(inline_cal, { time: false });
 
 });
 

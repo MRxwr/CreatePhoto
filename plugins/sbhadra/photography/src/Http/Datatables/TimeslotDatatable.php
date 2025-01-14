@@ -40,18 +40,6 @@ class TimeslotDatatable extends PostTypeDataTable
                     return $row->endtime;
                 }
             ],
-            'slot_type' => [
-                'label' => trans('sbph::app.slot_type'),
-                'formatter' => function ($value, $row, $index) {
-                    return $row->slot_type;
-                }
-            ],
-            'Status' => [
-                'label' => trans('sbph::app.status'),
-                'formatter' => function ($value, $row, $index) {
-                    return $row->status;
-                }
-            ],
             'created_at' => [
                 'label' => trans('sbph::app.created_at'),
                 'width' => '15%',
@@ -77,7 +65,6 @@ class TimeslotDatatable extends PostTypeDataTable
     public function query($data)
     {
         $query = Timeslot::query();
-        //$query->where('slot_type','normal');
         if ($keyword = Arr::get($data, 'keyword')) {
             $query->where(function (Builder $q) use ($keyword) {
                 $q->where('title', 'like', '%'. $keyword .'%');

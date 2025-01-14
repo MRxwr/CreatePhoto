@@ -20,7 +20,7 @@ class CreateSurveyTable extends Migration
             $table->integer('booking_id')->nullable(0);
             $table->string('customer_name', 100)->nullable('no');
             $table->string('customer_mobile', 15)->nullable('no');
-            $table->longText('survey_result')->nullable();
+            $table->longText('result')->nullable();
             $table->string('survey_coupon',25)->default(0);
             $table->string('status', 50)->default('no');
             $table->timestamps();

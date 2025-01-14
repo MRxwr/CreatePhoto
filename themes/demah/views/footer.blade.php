@@ -12,7 +12,7 @@
                             $twitter   = get_theme_config('twitter');
                             $snapchat  = get_theme_config('snapchat');
                             $whatsapp  = get_theme_config('whatsapp');
-                            $email  = get_theme_config('email');
+                            $email     = get_theme_config('email');
                         @endphp
                             <li class="ms-4">
                                 <a href="{{$instagram}}">

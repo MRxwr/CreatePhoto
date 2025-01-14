@@ -115,6 +115,15 @@ class MainAction extends Action
             'name' => 'Location',
             'view' => 'templates.location',
         ]);
+
+        HookAction::registerThemeTemplate('feedback', [
+            'name' => 'Feedback',
+            'view' => 'templates.feedbacks',
+        ]);
+        HookAction::registerThemeTemplate('feedback_form', [
+            'name' => 'Feedback Form',
+            'view' => 'templates.feedback-form',
+        ]);
         
     }
 

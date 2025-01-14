@@ -58,7 +58,6 @@ class MainAction extends Action
                     $attrs = $pAttrs[$type->id];
                   }
                   $packagetypeAttrs= PackageTypeAttribute ::where('package_type_id',$type->id)->where('status',1)->get();
-                  $html .= '<input type="hidden"  name="pictures_type_price" id="pictures_type_price" value="0.00">';
                      $html .='<div class="set">
                           <a href="javascript:void(0)"><i class="fa fa-plus"></i>'.$type->title.' <span class="fa fa-question" style="float:right"  data-toggle="tooltip" data-placement="right" title="'.$type->note.'"></span></a> 
                           <div class="content">';
@@ -211,6 +210,7 @@ public function packageThemeField(){
                        </div>
                   <div class="col-xxl-9">
                     <div class="form-control border accordion-container">';
+                    $html .= '<input type="hidden"  name="pictures_type_price" id="pictures_type_price" value="0.00">';
             foreach($packagetypes as $type){
               $attrs=array();
               if(isset($pAttrs[$type->id])){

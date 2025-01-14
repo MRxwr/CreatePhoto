@@ -11,10 +11,10 @@ class survey extends Model
     use PostTypeModel;
     use HasTranslations;
     protected $table = 'surveys';
-    public $translatable = ['title','result',];
+    public $translatable = ['title','result'];
     protected $postType = 'survey';
     protected $casts = [
-        'result' => 'array'
+        //'result' => 'array'
     ];
     protected $fillable = [
         'title',

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" dir ="{{(app()->getLocale()=='ar'?'rtl':'ltr' )}}"  class="{{(app()->getLocale()=='ar'?'rtl':'ltr' )}}">
+    
 	<head>
 		<!-- site meta -->
 		<meta charset="UTF-8">
@@ -20,7 +21,7 @@
             <link rel="icon" href="{{ $icon }}" />
         @endif
 		   <!-- site title -->
-		   <title>{{ $title }}</title>
+		   <title>{{ $title }} </title>
 		<!-- bootstrap css -->
 		    <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/hbqhaya/assets/css/bootstrap.min.css">
 		<!-- slicknav css -->

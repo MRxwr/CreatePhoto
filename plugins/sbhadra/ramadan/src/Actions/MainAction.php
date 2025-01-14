@@ -25,8 +25,9 @@ class MainAction extends Action
     {
         $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'addConfigRamadanAction']);
         $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'addRamadanTimefields']);
+        $this->addAction(self::BACKEND_CALL_ACTION, [$this, 'adminRamadanTimefields']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'frontRamadanTimefields']);
-        
+        $this->addAction(Action::JUZAWEB_INIT_ACTION, [$this, 'getServiceSlots']);
     }
     public function addConfigRamadanAction(){
         HookAction::addAdminMenu(
@@ -86,6 +87,24 @@ class MainAction extends Action
         }   
 
     }
+    
+     public function adminRamadanTimefields(){
+        if(isset($_REQUEST['date']) && $this->getRamadanDate($_REQUEST['date'])==1){
+           //$times=  Timeslot::where('slot_type','ramadan')->get();
+               $this->addAction('admin.reservation.time', function() {
+                   $package = Package::find($_REQUEST['id']);
+                   echo $this->getAdminRamadanTimeslots($package);
+               }, 10, 1); 
+               
+        }else{
+            $this->addAction('admin.reservation.time', function() {
+                $package = Package::find($_REQUEST['id']);
+                echo $this->getAdminPackageTimeslots($package);
+            }, 10, 1); 
+            
+        }   
+
+    }
 
     static function getRamadanTimeslots($package){
         $html ='';
@@ -113,7 +132,7 @@ class MainAction extends Action
             $html .=' <div class="col-xxl-10 pb-3"><label for="" >'.trans('theme::app.Preffered_Time').':</label>';
             //$html .='<div class="col-sm-7 col-md-8">';
             $html .='<select class="form-control border" id="booking_time" name="booking_time"  required>';
-            $html .='<option>'.trans('theme::app.Select_Time').'</option>';
+            $html .='<option value="">'.trans('theme::app.Select_Time').'</option>';
              foreach($package->ramadan_slots as $slot){
                 if(!in_array($slot->id,$disable_slots)){
                     if(!in_array($slot->id,$booked_slot)){
@@ -152,7 +171,7 @@ class MainAction extends Action
             $html .=' <div class="col-xxl-10 pb-3"><label for="" >'.trans('theme::app.Preffered_Time').':</label>';
             //$html .='<div class="col-sm-7 col-md-8">';
             $html .='<select class="form-control border" id="booking_time" name="booking_time"  required>';
-            $html .='<option>'.trans('theme::app.Select_Time').'</option>';
+            $html .='<option value="">'.trans('theme::app.Select_Time').'</option>';
              foreach($package->slots as $slot){
                 if(!in_array($slot->id,$disable_slots)){
                     if(!in_array($slot->id,$booked_slot)){
@@ -207,6 +226,48 @@ class MainAction extends Action
         }
         return $html;
     }
+    
+    static function getAdminRamadanTimeslots($package){
+        $html ='';
+        $disable_slots=array();
+        if(isset($_REQUEST['date'])){
+            $package = Package::find($_REQUEST['id']);
+            $package->ramadan_slots = Timeslot::where('slot_type','ramadan')->get();
+            $date = new \DateTime($_REQUEST['date']);
+            $bdate = $date->format('Y-m-d');
+            $calendar = Calendar::where('package_id',$package->id)->whereDate('from_date', '<=', $date)->whereDate('to_date', '>=', $date)->first();
+            if($calendar){
+                $disable_slots = json_decode($calendar->slots);
+            }
+           // $booked_slot =Booking::where('package_id',$package->id)->where('booking_date',$_REQUEST['date'])->where('status','yes')->pluck('timeslot_id')->toArray();
+            $booked_slot =Booking::where('booking_date',$_REQUEST['date'])->where('status','yes')->pluck('timeslot_id')->toArray();
+        }else{
+            //$booked_slot =Booking::where('package_id',$package->id)->where('status','yes')->pluck('timeslot_id')->toArray();
+            $booked_slot =Booking::where('status','yes')->pluck('timeslot_id')->toArray();
+            
+        }
+        //dd($disable_slots);
+        
+        if($package->ramadan_slots){
+            $html .='<div class="form-group row">';
+            $html .='<label class="col-sm-5 col-md-4" for="" >'.trans('sbph::app.Preffered_Time').':</label>';
+            $html .='<div class="col-sm-7 col-md-8">';
+            $html .='<select class="form-control border" id="booking_time" name="booking_time"  required>';
+             foreach($package->ramadan_slots as $slot){
+                if(!in_array($slot->id,$disable_slots)){
+                    if(!in_array($slot->id,$booked_slot)){
+                        $html .='<option value="'.$slot->id.'">'.$slot->starttime.' - '.$slot->endtime.'</option>';
+                    }
+                 }
+               }
+            $html .='</select>';
+            $html .='</div>';
+            $html .='</div>';
+            
+            
+        }
+        return $html;
+    }
 
     static function getRamadanDate($bookingDate){
       
@@ -234,5 +295,99 @@ class MainAction extends Action
             //dd('NO GO!');
         }
     }
+    
+    public function getServiceSlots(){
+        
+        if(isset($_REQUEST['ajaxpage']) && $_REQUEST['ajaxpage']=='getServiceSlot'){
+            //$service = $_REQUEST['sid']; 
+            $id = $_REQUEST['id']; 
+            $service = Service::find($_REQUEST['sid']);
+         if(isset($_REQUEST['date']) && $this->getRamadanDate($_REQUEST['date'])==1){
+                $html ='';
+                $disable_slots=array();
+                if(isset($_REQUEST['date'])){
+                    $package = Package::find($_REQUEST['id']);
+                    $package->ramadan_slots = Timeslot::where('slot_type','ramadan')->get();
+                    $date = new \DateTime($_REQUEST['date']);
+                    $bdate = $date->format('Y-m-d');
+                    $calendar = Calendar::where('package_id',$package->id)->whereDate('from_date', '<=', $date)->whereDate('to_date', '>=', $date)->first();
+                    if($calendar){
+                        $disable_slots = json_decode($calendar->slots);
+                    }
+                   // $booked_slot =Booking::where('package_id',$package->id)->where('booking_date',$_REQUEST['date'])->where('status','yes')->pluck('timeslot_id')->toArray();
+                    $booked_slot =Booking::where('booking_date',$_REQUEST['date'])->where('status','yes')->pluck('timeslot_id')->toArray();
+                }else{
+                    //$booked_slot =Booking::where('package_id',$package->id)->where('status','yes')->pluck('timeslot_id')->toArray();
+                    $booked_slot =Booking::where('status','yes')->pluck('timeslot_id')->toArray();
+                    
+                }
+                //dd($disable_slots);
+                
+                if($package->ramadan_slots){
+                    $html .='<option value="">'.trans('theme::app.Select_Time').'</option>';
+                     foreach($package->ramadan_slots as $slot){
+                        if(!in_array($slot->id,$disable_slots)){
+                            if(!in_array($slot->id,$booked_slot)){
+                                if($service->slots){
+                                    if(in_array($slot->id ,json_decode($service->slots))){
+                                        $html .='<option value="'.$slot->id.'">'.$slot->starttime.' - '.$slot->endtime.'</option>';
+                                    }
+                                }else{
+                                    $html .='<option value="'.$slot->id.'">'.$slot->starttime.' - '.$slot->endtime.'</option>';
+                                }
+                                
+                            }
+                         }
+                       }
+                   
+                }
+                echo $html;
+                exit;
+         }else{
+                $package = Package::find($_REQUEST['id']);
+                $html ='';
+                $disable_slots=array();
+                if(isset($_REQUEST['date'])){
+                    $date = new \DateTime($_REQUEST['date']);
+                    $bdate = $date->format('Y-m-d');
+                    $calendar = Calendar::where('package_id',$package->id)->whereDate('from_date', '<=', $date)->whereDate('to_date', '>=', $date)->first();
+                    if($calendar){
+                        $disable_slots = json_decode($calendar->slots);
+                    }
+                   // $booked_slot =Booking::where('package_id',$package->id)->where('booking_date',$_REQUEST['date'])->where('status','yes')->pluck('timeslot_id')->toArray();
+                    $booked_slot =Booking::where('booking_date',$_REQUEST['date'])->where('status','yes')->pluck('timeslot_id')->toArray();
+                }else{
+                    //$booked_slot =Booking::where('package_id',$package->id)->where('status','yes')->pluck('timeslot_id')->toArray();
+                    $booked_slot =Booking::where('status','yes')->pluck('timeslot_id')->toArray();
+                    
+                }
+                //dd($disable_slots);
+                if($package->slots){
+                    
+                    $html .='<option value="">'.trans('theme::app.Select_Time').'</option>';
+                     foreach($package->slots as $slot){
+                        if(!in_array($slot->id,$disable_slots)){
+                            if(!in_array($slot->id,$booked_slot)){
+                                 if($service->slots){
+                                    if(in_array($slot->id ,json_decode($service->slots))){
+                                        $html .='<option value="'.$slot->id.'">'.$slot->starttime.' - '.$slot->endtime.'</option>';
+                                    }
+                                }else{
+                                    $html .='<option value="'.$slot->id.'">'.$slot->starttime.' - '.$slot->endtime.'</option>';
+                                }
+                            }
+                         }
+                       }
+                   
+                }
+                 echo $html;
+                 exit;
+          }
+          
+       }
+       
+    }
 
 }
+
+

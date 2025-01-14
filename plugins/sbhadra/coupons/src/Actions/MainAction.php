@@ -135,7 +135,7 @@ class MainAction extends Action
                     }else  if($coupon->source=='survey'){
                         $booking =  Booking::where('referral_code',$_REQUEST['promo_code'])->where('status','Yes')->count();
                         //dd($coupon->coupon_discount);
-                         if($booking==0){
+                         if($booking<1000){
                              $discount=0;
                              if($coupon->coupon_type==1){
                                  $discount = (intval($coupon->coupon_discount)*$_REQUEST['total_price'])/100;
