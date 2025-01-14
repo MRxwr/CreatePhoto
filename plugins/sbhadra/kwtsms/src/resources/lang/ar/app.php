@@ -8,4 +8,5 @@ return [
     'survey_message'=>"Thank for successfully completed Your booking has been canceled for Haya Studio,survey link:[link] ",
     'survey_success_message'=>"Thank for successfully completed Your survey for ,Coupon [link] ",
     'success_survey_done'=>"Thank for successfully completed Your survey for ,Coupon [link] ",
+    'feedback_message'=>"Thank for successfully completed Your booking Haya Studio,Feedback link:[link] ",
 ];

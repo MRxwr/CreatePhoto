@@ -54,28 +54,51 @@ class PayapiController extends FrontendController
         $phone1 = $payment_data['mobile_number'];
         $settingsEmail = 'contact@create-kw.com';
         $totalPrice = $payment_data['pay_amount'];
+        
+         if($payment_data['payment_method']=='cash' ){
+                 $OrderID=time().rand(1000, 9999);
+                 $booking = Booking::find($payment_data['booking_id']);
+                 $booking->transaction_id =  '';
+                 $booking->payment_type =  'Cash'; 
+                  if($booking->save()){
+                    $PaymentURL =  url('payment/success').'/?bsid='.$bsid.'&OrderID='.$OrderID;
+                    header("Location: ".$PaymentURL);
+                  }
+                exit();
+           }else{
+               if($payment_data['payment_method']=='knet' ){
+                   $paymentMethod=1;
+                   $booking = Booking::find($payment_data['booking_id']);
+                   $booking->payment_type =  'Knet'; 
+                   $booking->save();
+               }else{
+                 $paymentMethod=2;
+                 $booking = Booking::find($payment_data['booking_id']);
+                 $booking->payment_type =  'Card'; 
+                 $booking->save();  
+               }
 
-        $params = array(
-            "endpoint"                 => "PaymentRequestExicuteForStore",
-            "apikey"                 => "$PaymentAPIKey",
-            "PaymentMethodId"         => "$paymentMethod",
-            "CustomerName"            => "$name",
-            "DisplayCurrencyIso"    => "KWD", 
-            "MobileCountryCode"        => "+965", 
-            "CustomerMobile"        => substr($phone1,0,11),
-            "CustomerEmail"            => $settingsEmail,
-            "invoiceValue"            => $totalPrice,
-            "SourceInfo"            => '',
-            "CallBackUrl"            => url('payment/success').'/?bsid='.$bsid,
-            "ErrorUrl"                => url('payment/failed').'/?bsid='.$bsid
-            );
+            $params = array(
+                "endpoint"                 => "PaymentRequestExicuteShipping",
+                "apikey"                 => "$PaymentAPIKey",
+                "PaymentMethodId"         => "$paymentMethod",
+                "CustomerName"            => "$name",
+                "DisplayCurrencyIso"    => "KWD", 
+                "MobileCountryCode"        => "+965", 
+                "CustomerMobile"        => substr($phone1,0,11),
+                "CustomerEmail"            => $settingsEmail,
+                "invoiceValue"            => $totalPrice,
+                "SourceInfo"            => '',
+                "CallBackUrl"            => url('payment/success').'/?bsid='.$bsid,
+                "ErrorUrl"                => url('payment/failed').'/?bsid='.$bsid
+                );
 
         $curl = curl_init();
         // $certificate_location = 'C:\wamp64\bin\php\php7.2.33\extras\ssl\cacert.pem';
         // curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, $certificate_location);
         // curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $certificate_location);
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://createkwservers.com/payapi/api/v2/index.php",
+            CURLOPT_URL => "https://createapi.link/api/v2/index.php",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -94,8 +117,10 @@ class PayapiController extends FrontendController
         $err = curl_error($curl);
             curl_close($curl);
             if ($err) {
-                echo "cURL Error #:" . $err;
-                return redirect()->back()->withErrors(['msg' => 'The Message']);
+                // echo "cURL Error #:" . $err;
+                 $ErrorURL = url('payment/failed').'/?bsid='.$bsid.'&msg='.$err;
+                    ("Location: ".$ErrorURL);
+                    exit();
             } else {
                 $res = json_decode($response);
                 //dd($res);
@@ -104,21 +129,26 @@ class PayapiController extends FrontendController
                     $InvoiceId = $res->data->InvoiceId;
                     $booking = Booking::find($payment_data['booking_id']);
                     $booking->transaction_id =  '';
-                if($booking->save()){
-                    //var_dump($booking);
-                    //return redirect()->away($PaymentURL);
-                    //return \Redirect::intended($PaymentURL);
-                    //echo '<script>window.location.replace("'.'");</script>';
-                    //Session::put('booking_data', $payment_data);
-                    header("Location: ".$PaymentURL);
-                    exit();
-                    
-                }
+                    if($booking->save()){
+                        //var_dump($booking);
+                        //return redirect()->away($PaymentURL);
+                        //return \Redirect::intended($PaymentURL);
+                        //echo '<script>window.location.replace("'.'");</script>';
+                        //Session::put('booking_data', $payment_data);
+                        header("Location: ".$PaymentURL);
+                        exit();
+                        
+                    }
                     
                 }else{
-                    return redirect()->back()->withErrors(['msg' => 'The Message']);
+                     $res = json_decode($response);
+                     $error_msgURL = $res->data->error_msg;
+                     $ErrorURL = url('payment/failed').'/?bsid='.$bsid.'&msg='.$error_msgURL;
+                    header("Location: ".$ErrorURL);
+                    exit();
                 }
             }
+           }
        
     }
     public function paymentSuccess(){
@@ -137,7 +167,7 @@ class PayapiController extends FrontendController
             // curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, $certificate_location);
             // curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $certificate_location);
             curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://createkwservers.com/payapi/api/v2/index.php',
+            CURLOPT_URL => 'https://createapi.link/api/v2/index.php',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -229,7 +259,7 @@ class PayapiController extends FrontendController
             // curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, $certificate_location);
             // curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $certificate_location);
             curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://createkwservers.com/payapi/api/v2/index.php',
+            CURLOPT_URL => 'https://createapi.link/api/v2/index.php',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,

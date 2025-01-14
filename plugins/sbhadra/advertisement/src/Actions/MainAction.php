@@ -41,21 +41,24 @@ class MainAction extends Action
            if($advertise ){
             if (is_home()) {
             echo '<!-- custom-popup  -->
-               <div class="custom-popup modal fade" id="AdvertiseModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+               <div class="custom-popup modal fade" id="AdvertiseModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin: 0;padding: 0;">
                 <div class="modal-dialog modal-lg  modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header" style="height:350px;background-image: url('. upload_url($advertise->thumbnail) .');">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                <img src="'.asset("/").'jw-styles/themes/hbqhaya/assets/img/popup_close.svg" alt="img">
-                            </button>
+                    <div class="modal-content" style="margin: 0;padding: 0;">
+                        <div class="modal-header" style="min-height: 0px;background-image: url();">
+                            
                         </div>
-                        <div class="modal-body px-sm-5">
+                        <div class="modal-body" style="margin: 0;padding: 0;position: relative">
+                            <img src="'.upload_url($advertise->thumbnail).'" alt="img" class="img-fluid" >
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute;right:10px">
+                                <img src="'.asset("/").'jw-styles/themes/hbqhaya/assets/img/popup_close.svg" alt="img" >
+                            </button>
                          </div>
                         <div class="modal-footer d-flex align-items-center justify-content-center mb-3">
                         <div class="package-head bg-light radius15 mh53 py-1 px-4 d-inline-flex align-items-center">
                             <h4 class="fs24">'.$advertise->title.'</h4>
                         </div>
                            <a class="fs18 mt-4 btn btn-dark radius0 w-100" href="'.$advertise->url.'" > Book Now</a>
+                           
                         </div>
                         
                     </div>

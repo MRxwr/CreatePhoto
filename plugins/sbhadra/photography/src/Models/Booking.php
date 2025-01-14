@@ -9,6 +9,7 @@ use Sbhadra\Photography\Models\Package;
 use Sbhadra\Photography\Models\Timeslot;
 use Sbhadra\Packagethemes\Models\Theme;
 use Spatie\Translatable\HasTranslations;
+use Illuminate\Support\Facades\Request;
 
 class Booking extends Model
 {
@@ -47,5 +48,32 @@ class Booking extends Model
     }  
     public function theme(){
         return $this->belongsTo(Theme::class);
+    }
+     public static function getStatuses()
+    {
+        
+        if(Request::segment(2)=='complete-bookings'){
+            return apply_filters(
+            app(static::class)->getPostType('key') . '.statuses',
+            [
+                'Yes' => 'Confirmed',
+                'completed' => 'Completed',
+                'sendsurveysms' => 'Send Survey SMS',
+                'feedbacksms' => 'Send Feedback SMS',
+                'cancel' => 'Cancel',
+                'no' =>'Pending',
+            ]
+        );
+        }else{
+        return apply_filters(
+            app(static::class)->getPostType('key') . '.statuses',
+            [
+                'Yes' => 'Confirmed',
+                'completed' => 'Completed',
+                'cancel' => 'Cancel',
+                'no' =>'Pending',
+            ]
+        );
+        }
     }
 }

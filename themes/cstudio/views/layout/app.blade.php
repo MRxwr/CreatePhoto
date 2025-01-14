@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" dir ="{{(app()->getLocale()=='ar'?'rtl':'ltr' )}}"  class="{{(app()->getLocale()=='ar'?'rtl':'ltr' )}}">
+    @php
+      if(get_theme_config('home')){
+      $ctheme = get_theme_config('home');
+      }else{
+       $ctheme ='default';
+      }
+    @endphp
 	<head>
 		<!-- site meta -->
 		<meta charset="UTF-8">
-		    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="{{ $description ?? '' }}">
         <meta name="turbolinks-cache-control" content="no-cache">
@@ -22,35 +29,38 @@
 		   <!-- site title -->
 		   <title>{{ $title }}</title>
 		<!-- bootstrap css -->
-		<link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/{{$ctheme}}/assets/css/bootstrap.min.css">
 		<!-- slicknav css -->
-        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/assets/css/slicknav.min.css">
+        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/{{$ctheme}}/assets/css/slicknav.min.css">
         <!-- calender css -->
-        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/assets/css/calender.css">
-
+        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/{{$ctheme}}/assets/css/calender.css">
 		<!-- owl carousel css -->
-        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/assets/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/assets/css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/{{$ctheme}}/assets/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/{{$ctheme}}/assets/css/owl.theme.default.min.css">
 		<!-- magnific css -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
 		<!-- slick slider css -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-<!-- main stylesheet -->
-<link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/assets/css/rome.css">
+        <!-- main stylesheet -->
+        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/{{$ctheme}}/assets/css/rome.css">
 		<!-- main stylesheet -->
-        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/assets/style.css">
+		
+        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/{{$ctheme}}/assets/style.css">
+       
 
 		<!-- responsive stylesheet -->
-        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/assets/css/responsive.css">
+        <link rel="stylesheet" href="{{asset('/')}}jw-styles/themes/cstudio/{{$ctheme}}/assets/css/responsive.css">
 
 		<!-- ==== HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries ==== -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+        @include('theme::layout.custom')
         @do_action('theme.header')
 
         @yield('header')
+        
         <script>
           var startDate='2022-01-01';
           var endDate='2046-12-31';
@@ -60,39 +70,45 @@
 	</head>
 	<body class="common-style">
         @do_action('theme.after_body')
+        
+        
         <!-- site-header -->
-         @include('theme::header')
-        <!-- site-header -->
-          @yield('content')
-        <!-- instagram-section -->
-
-        <!-- site-footer -->
-            @include('theme::footer')
-        <!-- site-footer -->
+             @include('theme::header')
+       <!-- site-header -->
+            
+              @yield('content')
+            <!-- instagram-section -->
+            
+         <!-- site-footer -->
+             @include('theme::footer')
+         <!-- site-footer -->
 
 		<!-- jquery script -->
-        <script src="{{asset('/')}}jw-styles/themes/cstudio/assets/js/jquery.min.js"></script>
+        <script src="{{asset('/')}}jw-styles/themes/cstudio/{{$ctheme}}/assets/js/jquery.min.js"></script>
 
         <!-- bootstrap script -->
-		    <script src="{{asset('/')}}jw-styles/themes/cstudio/assets/js/bootstrap.bundle.min.js"></script>
+		    <script src="{{asset('/')}}jw-styles/themes/cstudio/{{$ctheme}}/assets/js/bootstrap.bundle.min.js"></script>
         <!-- calendar script -->
-		    <script src="{{asset('/')}}jw-styles/themes/cstudio/assets/js/calendar.js"></script>
+		    <script src="{{asset('/')}}jw-styles/themes/cstudio/{{$ctheme}}/assets/js/calendar.js"></script>
 
          <!-- magnific Script -->
          <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
         <!-- slicknav Script -->
-        <script src="{{asset('/')}}jw-styles/themes/cstudio/assets/js/jquery.slicknav.min.js"></script>
-        <script src="{{asset('/')}}jw-styles/themes/cstudio/assets/js/owl.carousel.min.js"></script>
+        <script src="{{asset('/')}}jw-styles/themes/cstudio/{{$ctheme}}/assets/js/jquery.slicknav.min.js"></script>
+        <script src="{{asset('/')}}jw-styles/themes/cstudio/{{$ctheme}}/assets/js/owl.carousel.min.js"></script>
 
         <!-- slick slider Script -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
         <!-- main script -->
-        <script src="{{asset('/')}}jw-styles/themes/cstudio/assets/js/rome.js"></script>
+        <script src="{{asset('/')}}jw-styles/themes/cstudio/{{$ctheme}}/assets/js/rome.js"></script>
         <!-- main script -->
-        <script src="{{asset('/')}}jw-styles/themes/cstudio/assets/js/main.js"></script>
+        <script src="{{asset('/')}}jw-styles/themes/cstudio/{{$ctheme}}/assets/js/main.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/> 
-        <style>
+       @php
+         $csting = Sbhadra\Calendar\Models\CalendarSetting::find(1);
+        @endphp
+       <style>
           .datepicker-inline{
             width: 100%;
           }
@@ -108,15 +124,33 @@
                 height: 50px !important;
                 font-size: 18px;
                 font-weight: 700;
-                color: #3D3D3D;
+                color: {{$csting->default_color?$csting->default_color:"#3D3D3D"}};
             }
             .datepicker table tr th.next, .datepicker table tr th.prev, .datepicker table tr th.datepicker-switch{
                 font-size: 24px;
                 font-weight: 700;
-                color: #3D3D3D;
+                color: {{$csting->default_color?$csting->default_color:"#3D3D3D"}};
             }
-            .datepicker table tr td.disabled {
-                color: #FCBACB!important;
+            /*.datepicker table tr td.disabled.day {*/
+            /*   color: #FCBACB!important;*/
+            /*}*/
+
+             .datepicker table tr td.disabled.day.fullbooked {
+               color: {{$csting->fullbook_color?$csting->fullbook_color:"#FCBACB"}}!important;
+            }
+            .datepicker table tr td.disabled.day {
+              color: {{$csting->offday_color?$csting->offday_color:"#0d6efd"}}!important;
+            }
+            .datepicker table tr td.disabled-date.day {
+              color: {{$csting->offday_color?$csting->offday_color:"#0d6efd"}}!important;
+            }
+            .datepicker table tr td.weekend-day.day {
+              color: {{$csting->offday_color?$csting->offday_color:"#0d6efd"}}!important;
+            }
+            .datepicker table tr td.active.day {
+                 background-color:{{$csting->select_color?$csting->select_color:"#428bca"}}!important;
+                 border-color: {{$csting->select_color?$csting->select_color:"#428bca"}}!important;
+                 color: #FFF!important;
             }
         </style>
       @if(isset($post) &&Request::segment(1)=='package' )

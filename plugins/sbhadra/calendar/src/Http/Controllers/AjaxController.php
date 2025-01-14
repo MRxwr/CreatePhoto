@@ -12,12 +12,15 @@ class AjaxController extends BackendController
     public function getBookingJson(Request $request){
         $start = $_REQUEST['start'];
         $end = $_REQUEST['end'];
-        $bookings = Booking::where('status','Yes')->get();
+        //$bookings = Booking::where('status','Yes')->get();
+        $bookings = Booking::whereIn('status',['Yes','yes','completed','cancel'])->get();
         $calendar_dates = Calendar::all();
         $data = array();
         if($bookings){
 
             foreach($bookings as $key=>$booking){
+                $color='#00BFFF';
+                $extext = '';
                 $time_from = '';
                 $time_to = '';
                 if(isset($booking->timeslot['starttime'])){
@@ -26,15 +29,26 @@ class AjaxController extends BackendController
                 if(isset($booking->timeslot['endtime'])){
                     $time_to = $booking->timeslot['endtime'];
                 }
+                if($booking->status=='No'){
+                    $color='#ffa500';
+                }
+                if($booking->status=='cancel'){
+                    $color='#cc0000';
+                }
+                if($booking->status=='completed'){
+                    $color='#008000';
+                }
+                if($booking->status=='Yes' || $booking->status=='yes' ){
+                    $color='#00BFFF';
+                }
                 
-               
                 $data[] = array(
                     'id'   => $booking->id,
                     'title'   =>$booking->title.'<br>'.$booking->customer_name.'['.$time_from.'-'.$time_to.']-'.$booking->mobile_number,
                     'start'   =>date('Y-m-d', strtotime($booking->booking_date)) ,
                     'description'   =>'',
                     'textColor'=> '#FFF',
-                    'color'=> '#00BFFF',
+                    'color'=>  $color,
                     'className'=> 'event-full',
                     'url'=> route('admin.bookings.view', [$booking->id])
                    );

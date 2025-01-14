@@ -16,6 +16,9 @@ return [
     'saturday'=>'Saturday',
     'sunday'=>'Sunday',
     'saved_successfully'=>'Calendar Data save Successfully',
-    'calender_open_date'=>'Booking Calendar open & close date'
+    'calender_open_date'=>'Booking Calendar open & close date',
+    'booking_slots' =>'Booking slots',
+    'package_wise' =>'Package wise',
+    'open_day_wise' =>'Open day wise',
     
 ];

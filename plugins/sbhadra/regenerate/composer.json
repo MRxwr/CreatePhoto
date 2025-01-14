@@ -1,0 +1,23 @@
+{
+    "name": "sbhadra/regenerate",
+    "description": "",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sbhadra\\Regenerate\\Providers\\RegenerateServiceProvider"
+            ],
+            "aliases": {}
+        },
+        "juzaweb": {
+            "name": "sbhadra/regenerate",
+            "domain": "sbre",
+            "cms_min": "1.0.9",
+            "version": "1.0"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Sbhadra\\Regenerate\\": "src/"
+        }
+    }
+}

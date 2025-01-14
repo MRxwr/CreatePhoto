@@ -111,7 +111,8 @@
            <form action="{{route('admin.change.theme')}}" method="post" class="form-ajax" novalidate="novalidate">
                     <input id="booking_id" type="hidden" name="id" value="">
                     {{csrf_field()}}
-                      @do_action('admin.success.themes')
+                    <div id="booking_themes"></div>
+                      <!--@do_action('admin.success.themes')-->
                     <br>
                     <div class="flot-right"> 
                         <button type="submit" class="btn btn-primary">Save Theme</button>
@@ -152,10 +153,47 @@
       $("body").on("click", ".change_theme", function(e) {
          var booking_id = this.id;
          $('#booking_id').val(booking_id)
+         var page = 1;
+          $("#booking_themes").html('');
+            var _token = $("input[name=_token]").val();
+            $.ajax({
+                type: "GET",
+                url: "{{route('admin.booking-themes-change')}}?page=" + page,
+                data: {_token:_token},
+                success: function(data) {
+                    //alert(data);
+                    $("#booking_themes").html(data);
+                },
+                 error: function() {
+                    alert("it broke");
+                },
+              });
       });
+      $(document).on('click', '.pagination a', function (e) {
+          e.preventDefault(); // Prevent the default action (navigation)
+            var page = $(this).attr('href').split('page=')[1];
+             $("#booking_themes").html('');
+            var _token = $("input[name=_token]").val();
+            $.ajax({
+                type: "GET",
+                url: "{{route('admin.booking-themes-change')}}?page=" + page,
+                data: {_token:_token},
+                success: function(data) {
+                    //alert(data);
+                    $("#booking_themes").html(data);
+                },
+                 error: function() {
+                    alert("it broke");
+                },
+              });
+            
+        });
       $("body").on("click", ".add_note", function(e) {
          var booking_id = this.id;
          $('#nbooking_id').val(booking_id)
       });
+      
+      
+      
     </script>
 @endsection

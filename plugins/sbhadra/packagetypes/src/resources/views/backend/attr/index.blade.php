@@ -51,7 +51,8 @@
           <table id="package_type_attr" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
             <thead>
                 <tr>
-                   <th><input name="btSelectAll" type="checkbox"></th>
+                    <th><input name="btSelectAll" type="checkbox"></th>
+                    <th>Order</th>
                     <th>Title</th>
                     <th>Type</th>
                     <th>Price</th>
@@ -68,6 +69,7 @@
                         <input data-index="0" name="btSelectItem" type="checkbox" value="{{$row->id}}"><span></span>
                     </label>
                     </td>
+                    <td><input style="width: 50px;" data-index="{{$row->id}}" type="text" name="odrs" value="{{$row->odrs}}" /></td>
                     <td>{{$row->title}}</td>
                     <td>{{$type_title}}</td>
                     <td>{{$row->price}}KD</td>
@@ -93,6 +95,28 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#package_type_attr').DataTable();
+        });
+    </script>
+     <script>
+        $(document).ready(function(){
+           
+            $('body').on('keyup', 'input[name="odrs"]', function(){
+                var inputValue =  $(this).val();
+                var inputIndex = $(this).attr('data-index');
+               
+                // AJAX request
+                $.ajax({
+                    type: 'GET',
+                    url: '{{route("admin.attr.update")}}', 
+                    data: { Index: inputIndex,value:inputValue },
+                    success: function(response) {
+                        console.log('Server response:', response);
+                    },
+                    error: function(error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
         });
     </script>
 

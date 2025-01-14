@@ -170,6 +170,28 @@ class CompletedBookingDatatable extends PostTypeDataTable
             case 'delete':
                 Booking::destroy($ids);
                 break;
+            case 'sendsurveysms':   
+                 if(!empty($ids)){
+                     foreach( $ids as $id){
+                            $model = Booking::find($id);
+                            $model->surveysms ='yes';
+                            if($model->save()){
+                                do_action('booking.complete.index',$model);
+                            }
+                     }
+                 }
+                break;
+            case 'feedbacksms':   
+                 if(!empty($ids)){
+                     foreach( $ids as $id){
+                            $model = Booking::find($id);
+                            $model->feedsms =1;
+                            if($model->save()){
+                                $data =  do_action('feedback.sms.index',$model);
+                            }
+                     }
+                 }
+                break;
         }
     }
     public function searchFields()

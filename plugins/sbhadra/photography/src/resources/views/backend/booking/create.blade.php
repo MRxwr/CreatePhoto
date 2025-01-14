@@ -61,7 +61,7 @@
     ])
     <div class="row">
             <div class="col-md-8">
-            @do_action('admin.cstudio.themes')
+            <!--@do_action('admin.cstudio.themes')-->
            
                 <div class="row">
                 <input type="hidden" name="title" id="title" value="CPBK{{time()}}">
@@ -117,7 +117,7 @@
                             <textarea name="instructions" id="instructions" class="form-control form-control-lg"  rows="4" placeholder=""></textarea>
                         </div>
                         </div>
-                        @do_action('admin.reservation.fields');
+                        @do_action('admin.reservation.fields')
                     </div>
                 </div>
                 
@@ -152,15 +152,53 @@
         </div>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/> 
-        <style>
-            .datepicker-inline{
+         @php
+         $csting = Sbhadra\Calendar\Models\CalendarSetting::find(1);
+        @endphp
+       <style>
+          .datepicker-inline{
             width: 100%;
+          }
+          .datepicker table {
+            margin: 10px;
+            width: 100%;
+          }
+          .datepicker table tr td, .datepicker table tr th {
+                cursor: pointer;
+                text-align: center;
+                line-height: 0;
+                width: 50px !important;
+                height: 50px !important;
+                font-size: 18px;
+                font-weight: 700;
+                color: {{$csting->default_color?$csting->default_color:"#3D3D3D"}};
             }
-            .datepicker table {
-            margin: 0;
-            
-            width: 100%;
-        }
+            .datepicker table tr th.next, .datepicker table tr th.prev, .datepicker table tr th.datepicker-switch{
+                font-size: 24px;
+                font-weight: 700;
+                color: {{$csting->default_color?$csting->default_color:"#3D3D3D"}};
+            }
+            /*.datepicker table tr td.disabled.day {*/
+            /*   color: #FCBACB!important;*/
+            /*}*/
+
+             .datepicker table tr td.disabled.day.fullbooked {
+               color: {{$csting->fullbook_color?$csting->fullbook_color:"#FCBACB"}}!important;
+            }
+            .datepicker table tr td.disabled.day {
+              color: {{$csting->offday_color?$csting->offday_color:"#0d6efd"}}!important;
+            }
+            .datepicker table tr td.disabled-date.day {
+              color: {{$csting->offday_color?$csting->offday_color:"#0d6efd"}}!important;
+            }
+            .datepicker table tr td.weekend-day.day {
+              color: {{$csting->offday_color?$csting->offday_color:"#0d6efd"}}!important;
+            }
+            .datepicker table tr td.active.day {
+                 background-color:{{$csting->select_color?$csting->select_color:"#428bca"}}!important;
+                 border-color: {{$csting->select_color?$csting->select_color:"#428bca"}}!important;
+                 color: #FFF!important;
+            }
         </style>
       
         @do_action('admin.calendar.hooks')
@@ -185,6 +223,31 @@
                 startDate: truncateDate(),
                 //startDate: new Date(startDate),
                 endDate: new Date(endDate),
+                 beforeShowDay: function (date) {
+                     // Convert the current date to 'DD-MM-YYYY' format for comparison
+                    const day = String(date.getDate()).padStart(2, '0');
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const year = date.getFullYear();
+                    const dateString = `${day}-${month}-${year}`;
+                    //console.log(dateString);
+                    // Add custom class to Mondays
+                    var dayOfWeek =String(date.getDay()) ;
+                    // Check if the date is in the bookedDates array
+                     if (bookedDates.includes(dateString)) {
+                          console.log(dateString);
+                         return {
+                            classes: 'fullbooked'
+                         };
+                    }
+                        
+                    //console.log(dayOfWeek);
+                    if ($.inArray(dayOfWeek, daysOfWeekDisabled) !== -1) {
+                    return {
+                        classes: 'weekend-day'
+                    };
+                 }
+                return {};
+              },
                 icons: {
                             time: "fa fa-clock-o",
                             date: "fa fa-calendar",

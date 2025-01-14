@@ -1,67 +1,39 @@
 @extends('juzaweb::layouts.frontend')
 
 @section('content')
-    @php
-        $cats = $post->getTaxonomies('categories', true);
-    @endphp
-
-<div class="container">
-    <div class="row container" id="wrapper">
-        <div class="mymo-panel-filter">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-8 hidden-xs">
-                        <div class="yoast_breadcrumb">
-                            <span>
-                                <span>
-                                    <a href="{{ route('home') }}">@lang('theme::app.home')</a> »
-
-                                    @foreach($cats as $cat)
-                                        <a href="{{ $cat->getLink() }}">{{ $cat->getName() }}</a> »
-                                    @endforeach
-
-                                    <span class="breadcrumb_last" aria-current="page">{{ $post->getTitle() }}</span>
-
-                                </span>
-                            </span>
+ <!-- reservation-details -->
+ <section class="reservation-details py-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xxl-12">
+                        <div class="row">
+                            <div class="col-xl-12 pb-5">
+                                <div class="site-title position-relative d-flex align-items-center">
+                                    <div class="bg-white">
+                                        <h3 class="fs30 text-300 SegoeUIL pe-4"> 
+                                        {{ $post->getTitle() }}
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="col-xs-4 text-right">
-                        <a href="javascript:void(0)" id="expand-ajax-filter">@lang('theme::app.filter_movies') <i id="ajax-filter-icon" class="hl-angle-down"></i></a>
-                    </div>
-
-                    <div id="alphabet-filter" style="float: right;display: inline-block;margin-right: 25px;"></div>
                 </div>
             </div>
-
-            <div id="ajax-filter" class="panel-collapse collapse" aria-expanded="true" role="menu">
-                <div class="ajax"></div>
+            <div class="container">
+                <div class="row justify-content-center pb-5 mb-3">
+                    @do_action('theme.page.before.'.$post->slug,$post)
+                        <div class="col-xl-11 mb-4">
+                        
+                        {!! $post->getContent() !!}
+                          @do_action('theme.page.'.$post->slug,$post)
+                        </div>
+                    @do_action('theme.page.after.'.$post->slug,$post)
+                </div>
+                
             </div>
-
-        </div><!-- end panel-default -->
-
-        <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
-            <section>
-                <div class="section-bar clearfix">
-                    <h3 class="section-title">
-                        <span>{{ $post->getTitle() }}</span>
-                    </h3>
-                </div>
-                <div class="mymo_box">
-                    {!! $post->getContent() !!}
-                </div>
-
-                <div class="comments">
-
-                </div>
-            </section>
-        </main>
-
-        <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4">
-            {!! dynamic_sidebar('sidebar') !!}
-        </aside>
-    </div>
-</div>
+        </section>
+        <!-- reservation-details -->
 
 @endsection
+

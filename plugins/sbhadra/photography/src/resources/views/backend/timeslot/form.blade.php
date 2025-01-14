@@ -68,10 +68,22 @@
                 }
 </style>
 <script>
-//   var twelveHour = $('.timepicker-12-hr').wickedpicker();
-//             $('.time').text('//JS Console: ' + twelveHour.wickedpicker('time'));
-//             $('.timepicker-24-hr').wickedpicker({twentyFour: true});
-            $('#timepicker1').wickedpicker({now: "12:00", clearable: true, minutesInterval: 30});
-            $('#timepicker2').wickedpicker({now: "12:00", clearable: true, minutesInterval: 30});
+    @if($model->starttime)
+        @php
+        $sdata = explode(" ",$model->starttime);
+        $edata = explode(" ",$model->endtime);
+        //$starttime = substr($model->starttime, 0, -2);
+        //$endtime = substr($model->endtime, 0, -2);
+            $starttime = str_replace(' : ', ':', $model->starttime);
+            $starttime = date("H:i", strtotime($starttime));
+            $endtime = str_replace(' : ', ':', $model->endtime);
+            $endtime = date("H:i", strtotime($endtime));
+        @endphp
+        $('#timepicker1').wickedpicker({ now: "{{$starttime}}", clearable: true, minutesInterval: 30, twentyFour: false});
+        $('#timepicker2').wickedpicker({ now: "{{$endtime}}", clearable: true, minutesInterval: 30, twentyFour: false}); 
+    @else
+        $('#timepicker1').wickedpicker({now: "12:00", clearable: true, minutesInterval: 30, twentyFour: false});
+        $('#timepicker2').wickedpicker({now: "12:30", clearable: true, minutesInterval: 30, twentyFour: false});
+    @endif
 </script>
 @endsection

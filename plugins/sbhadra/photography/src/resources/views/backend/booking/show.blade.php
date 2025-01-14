@@ -64,6 +64,10 @@
             <div class="col-md-8">{{$model->baby_age}} </div>
         </div>
         <div class="row">
+            <div class="col-md-4"> @lang('sbph::app.delivery_adress')</div>
+            <div class="col-md-8">{{$model->address}}</div>
+        </div>
+        <div class="row">
             <div class="col-md-4"> @lang('sbph::app.instructions')</div>
             <div class="col-md-8">{{$model->instructions}} </div>
         </div>

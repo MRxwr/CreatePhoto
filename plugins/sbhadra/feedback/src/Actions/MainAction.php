@@ -8,6 +8,8 @@ use Juzaweb\Facades\HookAction;
 use Sbhadra\Feedback\Models\Feedback;
 use Sbhadra\Feedback\Models\FeedbackPage;
 use Sbhadra\Photography\Models\Package;
+use Sbhadra\Photography\Models\Booking;
+use Sbhadra\Photography\Models\Setting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -25,6 +27,8 @@ class MainAction extends Action
           $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'randerFeedBackFormSubmit']);
           $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'randerFeedBackHomeViews']);
           $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'randerFeedBackViews']);
+          $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'AutomatesendFeedbackSms']); 
+          $this->addAction(self::JUZAWEB_INIT_ACTION, [$this, 'sendFeedbackSms']); 
  
     }
 
@@ -1733,4 +1737,74 @@ class MainAction extends Action
         }
          
     }
+    
+    public function sendFeedbackSms(){
+        $this->addAction('feedback.sms.index', function($model) {
+            
+            //$slug =base64_encode($model->slug);
+            $slug = substr(str_replace(['+', '/', '='], '', base64_encode($model->slug)), 0, 8);
+            $exists = FeedbackPage::where('slug', $slug)->exists();
+            if (!$exists) {
+             $page = new FeedbackPage;
+                $page->title = $slug;
+                $page->slug = $slug;
+                $page->status = 'publish';
+                $page->views = 0;
+                $page->save();
+            } 
+            $link = url('feedback-form/').'?slug='. $slug;
+            $rptest=["[link]"];
+            $nptext = [$link];
+           $data= array(
+               'message'=>str_replace($rptest,$nptext,trans('sbkw::app.feedback_message')),
+               'mobile'=>$model->mobile_number,
+               'code'=>'+965',
+            );
+             //print_r($data);exit;
+             do_action('kwtsms.send.index',$data);
+             //do_action('booking.sms.index',$data);
+        }, 10, 1);
+    }
+    
+    public function AutomatesendFeedbackSms(){
+         $settings = Setting::all()->toArray();
+                $config=array();
+                foreach($settings as $setting){
+                    $config[$setting["field_key"]] = $setting["field_value"];
+                }
+           if(isset($config['id_auto_feedsms']) and $config['id_auto_feedsms']==1 ){
+               $days=1;
+               $days =$config['afetr_number_days']?$config['afetr_number_days']:1;
+                    $datetime = new \DateTime();
+                    $datetime->modify('+'.$days.' days');
+                    $tody = $datetime->format('d-m-Y');
+                    $bookings = Booking::where('status','completed')->where('feedsms','!=',1)->where('booking_date',$tody)->get();
+                    if($bookings->count()>0){
+                      foreach($bookings as $model ){
+                            $slug =base64_encode($model->slug);
+                            $exists = FeedbackPage::where('slug', $slug)->exists();
+                            if (!$exists) {
+                             $page = new FeedbackPage;
+                                $page->title = $slug;
+                                $page->slug = $slug;
+                                $page->status = 'publish';
+                                $page->views = 0;
+                                $page->save();
+                            } 
+                            $model->feedsms=1;
+                            $model->save();
+                            $link = url('feedback-form/').'?slug='. $slug;
+                            $rptest=["[link]"];
+                            $nptext = [$link];
+                            $data= array(
+                               'message'=>str_replace($rptest,$nptext,trans('sbkw::app.feedback_message')),
+                               'mobile'=>$model->mobile_number,
+                               'code'=>'+965',
+                            );
+                            do_action('booking.sms.index',$data);
+                       }
+                    }
+            }
+        }
+    
 }

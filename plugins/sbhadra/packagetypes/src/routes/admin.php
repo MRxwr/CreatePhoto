@@ -11,10 +11,11 @@
 |
 */
 
+Route::get('/type/order/update', 'PackageTypesController@UpdateOrder')->name('admin.type.update');
+Route::get('/attr/order/update', 'PackageTypesAttrController@UpdateOrder')->name('admin.attr.update');
 Route::post('package-type/{id}/update', 'PackageTypesController@update')->name('admin.package-type.typeupdate');
 Route::jwResource('package-type', 'PackageTypesController', ['except' => 'update']);
 Route::get('/package-type-attributes/{id}', 'PackageTypesAttrController@index')->name('admin.package-type-attributes.index');
-
 Route::jwResource('package-type-attributes', 'PackageTypesAttrController');
 
 //Route::post('/package-type/attributes/store/{id}', 'PackageTypesController@attributeStore')->name('admin.attribute.store');

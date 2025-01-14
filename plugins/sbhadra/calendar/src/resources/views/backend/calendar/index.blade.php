@@ -2,14 +2,55 @@
 
 @section('content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" integrity="sha512-liDnOrsa/NzR+4VyWQ3fBzsDBzal338A1VfUpQvAcdt+eL88ePCOd3n9VQpdA0Yxi4yglmLy/AmH+Lrzmn0eMQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+    .fc-event {
+      font-size: 10px;
+      line-height: 1.2;
+     }
+    .dot-item {
+      display: flex;
+      align-items: center;
+      margin: 10px;
+    }
+
+    /* Dot styling */
+    .dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%; /* Make it round */
+      margin-right: 8px; /* Space between dot and label */
+    }
+
+    /* Container for all dots and labels */
+    .dot-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+</style>
     <div class="row mb-3">
         
         <div class="col-md-8">
+            <div class="dot-container">
+              <div class="dot-item">
+                <span class="dot" style="background-color: #FFA500"></span>Pending
+              </div>
+              <div class="dot-item">
+                <span class="dot" style="background-color: #FF0000"></span>Cancel
+              </div>
+              <div class="dot-item">
+                <span class="dot" style="background-color: #4CAF50"></span>Completed 
+              </div>
+              <div class="dot-item">
+                <span class="dot" style="background-color: #0000FF"></span>Success
+              </div>
+            </div>
            <div id='calendar'></div>
         </div>
 
         <div class="col-md-4">
-                <form action="{{route('admin.calendar-date')}}" method="POST" class="form-ajax">
+                <form action="{{route('admin.calendar-date')}}" method="POST">
                 {!! csrf_field() !!}
                 <div class="row">
                 <div class="form-group">  
@@ -59,56 +100,51 @@
                 </div> 
                 </form>
                 <div class="row">
-                        <div class="col-md-12 mt-5">
-                                <div class="table-responsive">
-                                        @if(!empty($dates))
-                                                <table class="table jw-table table-bordered table-hover" id="calendar_table">
-                                                <thead>
-                                                        <tr>
-                                                         <th>Date range</th>
-                                                         <th>Timeslot</th>
-                                                          <th>Action</th>
-                                                        </tr>
-                                                </thead>
-                                                <tbody>
-                                                        @foreach($dates as $date)
-                                                        <tr>
-                                                                <td>{{$date->from_date}} to {{$date->to_date}}</td>
-                                                                <td>
-                                                                 @php
-                                                                   $dslot = '';
-                                                                   if($date->slots=='all') {
-                                                                        $dslot = 'All';   
-                                                                   }elseif($date->slots!=''){
-                                                                           $st=array();
-                                                                           $jsd=json_decode($date->slots);
-                                                                           foreach($model->slots as $slot) {
-                                                                                   if(in_array($slot->id,$jsd)){
-                                                                                        $st[]=$slot->starttime .'-'.$slot->endtime;
-                                                                                   }
+                    <div class="col-md-12 mt-5">
+                        <div class="table-responsive">
+                                @if(!empty($dates))
+                                    <table class="table jw-table table-bordered table-hover" id="calendar_table">
+                                        <thead>
+                                        <tr>
+                                         <th>Date range</th>
+                                         <th>Timeslot</th>
+                                         <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                                @foreach($dates as $date)
+                                                <tr>
+                                                        <td>{{$date->from_date}} to {{$date->to_date}}</td>
+                                                        <td>
+                                                         @php
+                                                           $dslot = '';
+                                                           if($date->slots=='all') {
+                                                                $dslot = 'All';   
+                                                           }elseif($date->slots!=''){
+                                                                   $st=array();
+                                                                   $jsd=json_decode($date->slots);
+                                                                   foreach($model->slots as $slot) {
+                                                                           if(in_array($slot->id,$jsd)){
+                                                                                $st[]=$slot->starttime .'-'.$slot->endtime;
                                                                            }
-                                                                           $dslot = json_encode($st);   
                                                                    }
-                                                                 @endphp 
-                                                                 {{$dslot}}      
-                                                                </td>
-                                                                <td>
-                                                                <form action="{{route('admin.calendar.delete')}}" method="post" class="form-ajax">
-                                                                        <input type="hidden" name="id" value="{{$date->id}}">
-                                                                {!! csrf_field() !!}
-                                                                        <button type="submit"   class="btn btn-danger"> <i class=" fa fa-trash"></i></button>
-                                                                </form>
-                                                                </td>
-                                                        </tr>
-                                                        @endforeach
-                                                </tbody>               
-                                                <table>  
-                                        @endif
-                                </div>
-                </div>
-          
-        
-      </div>
+                                                                   $dslot = json_encode($st);   
+                                                           }
+                                                         @endphp 
+                                                         {{$dslot}}      
+                                                        </td>
+                                                        <td><form action="{{route('admin.calendar.delete',['id'=>$date->id])}}" class=" form-ajax"> 
+                                                        <button class="btn btn-danger" type="submit"><i class=" fa fa-trash"></i></button>
+                                                        </form></td>
+                                                </tr>
+                                                @endforeach
+                                        </tbody>               
+                                    </table>  
+                                @endif
+                        </div>
+                  </div>
+          </div>
+    </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js" integrity="sha512-o0rWIsZigOfRAgBxl4puyd0t6YKzeAw9em/29Ag7lhCQfaaua/mDwnpE2PVzwqJ08N7/wqrgdjc2E0mwdSY2Tg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -219,4 +255,5 @@ function gotopage(selval){
         } );
         });
    </script>
+     
 @endsection

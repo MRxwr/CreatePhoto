@@ -18,6 +18,13 @@ class PackagetypeDatatable extends DataTable
     public function columns()
     {
         return [
+            'odrs' => [
+                'label' => 'order',
+                'width' => '2%',
+                'formatter' => function ($value, $row, $index) {
+                    return '<input data-index="'.$row->id.'" style="width: 50px;" type="number" name="odrs" value="'.$row->odrs.'" />';
+                }
+            ],
             'title' => [
                 'label' => trans('sbph::app.name'),
                 'formatter' => function ($value, $row, $index) {
@@ -69,7 +76,7 @@ class PackagetypeDatatable extends DataTable
                
             });
         }
-
+        $query->orderBy('odrs', 'asc');
         return $query;
     }
 

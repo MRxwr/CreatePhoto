@@ -42,7 +42,7 @@
                                             <div class="row">
                                                 <div class="col-sm-4 col-6 bg-light">
                                                     <p class="fs20">
-                                                        @lang('sbph::app.bookingid'):
+                                                        @lang('theme::app.bookingid'):
                                                     </p>
                                                 </div>
                                                 <div class="col-sm-8 col-6">
@@ -56,7 +56,7 @@
                                             <div class="row">
                                                 <div class="col-sm-4 col-6 bg-light">
                                                     <p class="fs20">
-                                                      @lang('sbph::app.invoiceId')
+                                                      @lang('theme::app.invoiceId')
                                                     </p>
                                                 </div>
                                                 <div class="col-sm-8 col-6">
@@ -70,7 +70,7 @@
                                             <div class="row">
                                                 <div class="col-sm-4 col-6 bg-light">
                                                     <p class="fs20">
-                                                      @lang('sbph::app.customer_name')
+                                                      @lang('theme::app.customer_name')
                                                     </p>
                                                 </div>
                                                 <div class="col-sm-8 col-6">
@@ -85,12 +85,12 @@
                                             <div class="row">
                                                 <div class="col-sm-4 col-6 bg-light">
                                                     <p class="fs20">
-                                                      @lang('sbph::app.mobile_number'):
+                                                      @lang('theme::app.mobile_number'):
                                                     </p>
                                                 </div>
                                                 <div class="col-sm-8 col-6">
                                                     <p class="fs20">
-                                                    {{$booking->mobile_number}}
+                                                     {{$booking->mobile_number}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -113,7 +113,7 @@
                                             <div class="row">
                                                 <div class="col-sm-4 col-6 bg-light">
                                                     <p class="fs20">
-                                                      @lang('sbph::app.booking_date'):
+                                                      @lang('theme::app.booking_date'):
                                                     </p>
                                                 </div>
                                                 <div class="col-sm-8 col-6">
@@ -127,7 +127,7 @@
                                             <div class="row">
                                                 <div class="col-sm-4 col-6 bg-light">
                                                     <p class="fs20">
-                                                      @lang('sbph::app.baby_name'):
+                                                      @lang('theme::app.baby_name'):
                                                     </p>
                                                 </div>
                                                 <div class="col-sm-8 col-6">
@@ -141,7 +141,7 @@
                                             <div class="row">
                                                 <div class="col-sm-4 col-6 bg-light">
                                                     <p class="fs20">
-                                                       @lang('sbph::app.booking_time'):
+                                                       @lang('theme::app.booking_time'):
                                                     </p>
                                                 </div>
                                                 <div class="col-sm-8 col-6">
@@ -155,12 +155,26 @@
                                             <div class="row">
                                                 <div class="col-sm-4 col-6 bg-light">
                                                     <p class="fs20">
-                                                        @lang('sbph::app.baby_age'):
+                                                        @lang('theme::app.baby_age'):
                                                     </p>
                                                 </div>
                                                 <div class="col-sm-8 col-6">
                                                     <p class="fs20">
                                                         {{$booking->baby_age}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="row">
+                                                <div class="col-sm-4 col-6 bg-light">
+                                                    <p class="fs20">
+                                                        @lang('theme::app.status'):
+                                                    </p>
+                                                </div>
+                                                <div class="col-sm-8 col-6">
+                                                    <p class="fs20">
+                                                        {{$booking->status}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -171,7 +185,7 @@
                             <div class="col-sm-12 pb-5">
                                 <div class="package-head bg-light radius15 mh53 py-1 px-3 mb-2 d-inline-flex align-items-center">
                                     <h4 class="fs23">
-                                      @lang('sbph::app.instructions'):
+                                      @lang('theme::app.instructions'):
                                     </h4>
                                 </div>
                                 <p class="fs20">
@@ -184,7 +198,7 @@
                                       @lang('theme::app.note'): 
                                     </h4>
                                 </div>
-                                <ul class="fs20 text-danger">
+                                <ul class="fs20 text-danger" style="display:none;">
                                     <li class="mb-3">
                                         - You'll receive an SMS with you reservation details.
                                     </li>
@@ -198,7 +212,8 @@
                             </div>
                             <div class="col-sm-12 pb-5">
                                 <a href="{{url('/')}}" class="btn btn-lg btn-light fs32 radius30" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Go to homepage
+                                    @lang('theme::app.go_to_home') 
+                                    
                                 </a>
                             </div>
                         </div>

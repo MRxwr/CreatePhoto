@@ -23,6 +23,13 @@ class PackageDatatable extends PostTypeDataTable
     public function columns()
     {
         return [
+            'odrs' => [
+                'label' => 'order',
+                'width' => '2%',
+                'formatter' => function ($value, $row, $index) {
+                    return '<input data-index="'.$row->id.'" style="width: 50px;" type="number" name="odrs" value="'.$row->odrs.'" />';
+                }
+            ],
             'thumbnail' => [
                 'label' => trans('sbph::app.thumbnail'),
                 'width' => '7%',
@@ -72,7 +79,7 @@ class PackageDatatable extends PostTypeDataTable
                 $q->orWhere('description', 'like', '%'. $keyword .'%');
             });
         }
-
+        $query->orderBy('odrs', 'asc');
         return $query;
     }
 

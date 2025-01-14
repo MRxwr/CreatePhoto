@@ -16,11 +16,13 @@ use Sbhadra\Photography\Models\Package;
 use Sbhadra\Photography\Models\Service;
 use Sbhadra\Photography\Models\Booking;
 use Sbhadra\Photography\Models\Timeslot;
+use Sbhadra\Hayaoption\Models\Otp;
 use Juzaweb\Models\Taxonomy;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Juzaweb\Models\EmailList;
+
 class MainAction extends Action
 {
     public function handle()
@@ -29,7 +31,7 @@ class MainAction extends Action
         $this->addAction(Action::JUZAWEB_INIT_ACTION, [$this, 'registerTemplates']);
         $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'addBreadcrumbs']);
         $this->addAction(Action::JUZAWEB_INIT_ACTION, [$this, 'sendContactMail']);
-       
+        $this->addAction(Action::FRONTEND_CALL_ACTION, [$this, 'CheckMobileOtpForBooking']);
         // $this->addAction(Action::WIDGETS_INIT, [$this, 'registerSidebars']);
         // $this->addAction(Action::WIDGETS_INIT, [$this, 'registerWidgets']);
     }
@@ -181,4 +183,68 @@ class MainAction extends Action
         //     'widget' => new PopularWidget(),
         // ]);
     }
+     public function CheckMobileOtpForBooking(){
+         add_action('theme.check.mobile', function() {
+             if(isset($_GET['mobile'])){
+                 $booking = Booking::where('mobile_number',$_GET['mobile'])->get();
+                 //dd($booking);
+                 if($booking->count()>0){
+                   $otp = rand(100000, 999999);
+                   $message = 'Please confirm your '.$otp.'  verification code to view your bookings';
+                   $motp =  Otp::where('mobile',$_GET['mobile'])->first();
+                   if($motp){
+                       if($motp->otp==""){
+                          $motp->otp=$otp;
+                          if($motp->save()){
+                           $data= array(
+                            'message'=>$message,
+                            'mobile'=>$_GET['mobile'],
+                            'code'=>'+965',
+                            );
+                             do_action('booking.sms.index',$data);
+                         }
+                       }
+                       
+                   }else{
+                       $notp = new Otp;
+                       $notp->mobile=$_GET['mobile'];
+                       $notp->otp=$otp;
+                       if($notp->save()){
+                       $data= array(
+                        'message'=>$message,
+                        'mobile'=>$_GET['mobile'],
+                        'code'=>'+965',
+                        );
+                        do_action('booking.sms.index',$data);
+                       }
+                       
+                   }
+                     $html = '<input type="hidden" class="border w-260 radius5" value="'.$_GET['mobile'].'" id="bookingid">
+                              <input type="text" class="border w-260 radius5" placeholder="OTP" id="bookingOtp">
+                              <button class="border-0 bg-none ms-1"  id="book-btn">
+                                <img src="'.asset('/').'jw-styles/themes/cstudio/assets/img/submit.svg" alt="img">
+                              </button>';
+                 }else{
+                        $html = '<form action="" method="get">
+                                <input type="text" name="mobile" class="border w-260 radius5" placeholder="Mobile" id="mobileNo">
+                                <button class="border-0 bg-none ms-1"  id="mobileNo-btn">
+                                    <img src="'.asset('/').'jw-styles/themes/cstudio/assets/img/submit.svg" alt="img">
+                                </button>
+                            </form>'; 
+                   }
+             
+                 }else{
+                     $html = '<form action="" method="get">
+                            <input type="text" name="mobile" class="border w-260 radius5" placeholder="Mobile" id="mobileNo">
+                            <button class="border-0 bg-none ms-1"  id="mobileNo-btn">
+                                <img src="'.asset('/').'jw-styles/themes/cstudio/assets/img/submit.svg" alt="img">
+                            </button>
+                        </form>';
+                 }
+                 echo  $html;
+          
+        }, 10, 1);
+        
+    }
+    
 }

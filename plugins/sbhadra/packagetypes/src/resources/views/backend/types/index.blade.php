@@ -46,5 +46,28 @@
             table.refresh();
         }
     </script>
+    
+    <script>
+        $(document).ready(function(){
+           
+            $('body').on('keyup', 'input[name="odrs"]', function(){
+                var inputValue =  $(this).val();
+                var inputIndex = $(this).attr('data-index');
+               
+                // AJAX request
+                $.ajax({
+                    type: 'GET',
+                    url: '{{route("admin.type.update")}}', 
+                    data: { Index: inputIndex,value:inputValue },
+                    success: function(response) {
+                        console.log('Server response:', response);
+                    },
+                    error: function(error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+        });
+    </script>
 
 @endsection

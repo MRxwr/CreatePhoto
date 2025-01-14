@@ -10,7 +10,8 @@
 | contains the "admin" middleware group. Now create something great!
 |
 */
-
+Route::get('get-booking-themes','AjaxController@getThemesForChanges')->name('admin.booking-themes-change');
+Route::get('/packages/order/update', 'PackageController@UpdateOrder')->name('admin.package_order.update');
 Route::postTypeResource('packages', 'PackageController');
 Route::Resource('services', 'ServiceController');
 Route::Resource('timeslots', 'TimeslotController');

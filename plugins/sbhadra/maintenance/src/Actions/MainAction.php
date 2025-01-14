@@ -26,10 +26,25 @@ class MainAction extends Action
             foreach($settings as $setting){
                 $config[$setting["field_key"]] = $setting["field_value"];
             }
-            //dd($config);
-           echo $html = view('sbma::index', compact('config'))->render();
+            if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+                // Check if the client is behind a proxy
+                $ip = $_SERVER['HTTP_CLIENT_IP'];
+            } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                // Check if the client is behind a proxy or load balancer
+                $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            } else {
+                // Use the default REMOTE_ADDR
+                $ip = $_SERVER['REMOTE_ADDR'];
+            }
+            //$ip = $_SERVER['REMOTE_ADDR'];
+            //echo "Your IP address is: $ip";
+            //dd($config['mt_ips']);
+            if(!in_array($ip, explode(',',$config['mt_ips']))){
+               echo $html = view('sbma::index', compact('config'))->render();
+                die(); 
+            }
 
-            die();
+            
         }
     }
     public function addConfigMaintenanceAction(){

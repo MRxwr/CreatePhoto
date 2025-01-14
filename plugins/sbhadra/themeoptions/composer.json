@@ -1,0 +1,23 @@
+{
+    "name": "sbhadra/themeoptions",
+    "description": "",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sbhadra\\Themeoptions\\Providers\\ThemeoptionsServiceProvider"
+            ],
+            "aliases": {}
+        },
+        "juzaweb": {
+            "name": "sbhadra/themeoptions",
+            "domain": "sbth",
+            "cms_min": "1.0.9",
+            "version": "1.0"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Sbhadra\\Themeoptions\\": "src/"
+        }
+    }
+}

@@ -111,5 +111,17 @@ class PackageTypesController extends BackendController
      {
          return 'Package Types';
      }
+      public function UpdateOrder(Request $request){
+         // dd($request->all());
+         $model = PackageType::find($request->Index);
+         $model->odrs = $request->value;
+         if($model->save()){
+          return $this->success([
+                    'message' => 'order update Successfully ',
+                   
+                ]);
+         }
+         die();
+     }
      
 }

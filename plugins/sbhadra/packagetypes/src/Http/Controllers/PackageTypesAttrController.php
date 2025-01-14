@@ -104,5 +104,16 @@ class PackageTypesAttrController  extends BackendController
      {
          return 'Attributes';
      }
-     
+      public function UpdateOrder(Request $request){
+        
+         $model = PackageTypeAttribute::find($request->Index);
+         $model->odrs = $request->value;
+         if($model->save()){
+          return $this->success([
+                    'message' => 'order update Successfully ',
+                   
+                ]);
+         }
+         die();
+     }
 }

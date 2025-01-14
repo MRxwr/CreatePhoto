@@ -29,10 +29,7 @@
                         </h4>
                         <div class="personal-form">
                             <div class="d-flex align-items-center">
-                                <input type="text" class="border w-260 radius5" id="bookingid">
-                                <button class="border-0 bg-none ms-1"  id="book-btn">
-                                    <img src="{{asset('/')}}jw-styles/themes/cstudio/assets/img/submit.svg" alt="img">
-                                </button>
+                                @do_action('theme.check.mobile')
                             </div>
                         </div>
                     </div>

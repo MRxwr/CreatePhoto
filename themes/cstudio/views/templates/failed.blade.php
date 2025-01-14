@@ -1,6 +1,7 @@
 @extends('juzaweb::layouts.frontend')
 
 @section('content')
+ @do_action('after.booking.faild')
    <!-- reservation-details -->
    <section class="reservation-details py-5">
             <div class="container">

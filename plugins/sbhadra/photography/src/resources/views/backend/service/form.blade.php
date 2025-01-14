@@ -31,7 +31,7 @@
                         <span class="input-group-addon"><i class="fa fa-watch"></i></span>
                 </div> 
                 @php 
-                     $close_days =json_decode($model->days);
+                     $close_days =$model->days;
                      if(empty($close_days)){
                         $close_days=array();
                         
@@ -63,7 +63,7 @@
                     </div>
                 @php
                  $timeslots = Sbhadra\Photography\Models\Timeslot::all();
-                 $package_slots = ($model->slots ? json_decode($model->slots) :[]);
+                 $package_slots = ($model->slots ? $model->slots :[]);
                 @endphp
                 <div class="form-group">
                     <label class="col-form-label" for="timeslots">@lang('sbph::app.timeslots')</label>
@@ -74,6 +74,8 @@
                     </select>
                 </div>
                 {{ Field::image($model, 'thumbnail') }}
+                
+                 {{ Field::text($model, 'message') }}
                 
                 @do_action('post_type.'. $postType .'.form.right', $model)
             </div>

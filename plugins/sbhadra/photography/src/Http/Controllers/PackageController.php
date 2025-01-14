@@ -15,7 +15,6 @@ class PackageController extends BackendController
 {
    
     use PostTypeController;
-
     protected $viewPrefix = 'sbph::backend.package'; // View prefix for resource
 
     public function form($id = null) {
@@ -101,4 +100,16 @@ class PackageController extends BackendController
     {
         return trans('sbph::app.packages');
     }
+    public function UpdateOrder(Request $request){
+         // dd($request->all());
+         $model = Package::find($request->Index);
+         $model->odrs = $request->value;
+         if($model->save()){
+          return $this->success([
+                    'message' => 'order update Successfully ',
+                   
+                ]);
+         }
+         die();
+     }
 }

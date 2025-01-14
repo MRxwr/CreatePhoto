@@ -96,7 +96,6 @@ public function packageThemeField(){
                     <input type="checkbox" name="is_theme_category"  id="is_theme_category" value="1" '.$catischecked.' >
                 </label>
              </div>';
-
         //   $html .='<div class="form-group">
         //         <label class="col-form-label" for="is_pieces">'.trans('sbha::app.is_pieces_enable').'
                     
@@ -108,7 +107,6 @@ public function packageThemeField(){
         //         <input type="text" class="form-control" name="rate_per_pieces" id="rate_per_pieces" value="'.$rate_per_pieces.'"  >
                 
         //     </div>';
-        
           $html .='<div class="form-group">
           <label class="col-form-label" for="theme_category_ids">'.trans('sbha::app.theme_category').'</label>
             <select class="form-control select2-default" id="theme_category_ids" name="theme_category_ids[]" multiple>
@@ -174,14 +172,45 @@ public function packageThemeField(){
      }, 15, 1);
 
      add_action('admin.booking.total', function($model){
+         $settings = Setting::all()->toArray();
+        $config=array();
+        foreach($settings as $setting){
+            $config[$setting["field_key"]] = $setting["field_value"];
+        }
         $html='';
         $total =0.00;
+        $initial_payment=$config['pay_amount'];
         if(isset($model->total_price)){
             $total =$model->total_price;
+         }
+          if(isset($model->initial_payment) && $model->initial_payment>0){
+            $initial_payment = $model->initial_payment;
+          }else if(in_array($model->status,['yes','Yes','completed']) && $model->initial_payment==0.000){
+              $initial_payment=$config['pay_amount'];
+          }else{
+             $initial_payment = $model->initial_payment;
+          }
+         if(isset($model->rest_of_payment) && $model->rest_of_payment>0){
+            $rest_of_payment = $model->rest_of_payment;
+         }else if(in_array($model->status,['yes','Yes','cancel']) && $model->rest_of_payment==0.000){
+              $rest_of_payment=$model->total_price - $initial_payment;
+         }else if(in_array($model->status,['completed'])){
+              $rest_of_payment=0.00;
+         }else{
+              $rest_of_payment=$model->total_price;
          }
          $html .='<div class="row">
             <div class="col-md-6 ">Total</div>
             <div class="col-md-6 text-right"><strong>'.number_format((float)$total, 2, '.', '').' KD</strong></div>
+        </div>';
+        
+        $html .='<div class="row">
+            <div class="col-md-6 ">Down payment</div>
+            <div class="col-md-6 text-right"><strong>'.number_format((float)$initial_payment, 2, '.', '').' KD</strong></div>
+        </div>';
+        $html .='<div class="row">
+            <div class="col-md-6 ">Rest of Payment</div>
+            <div class="col-md-6 text-right"><strong>'.number_format((float)$rest_of_payment, 2, '.', '').' KD</strong></div>
         </div>';
 
          echo  $html;
@@ -238,6 +267,7 @@ public function packageThemeField(){
                        //alert(total_price);
                     }
                 });
+                
                 $("body").on("change", ".pictype", function(e) {
                    
                     var exprice = localStorage.getItem("exprice");
@@ -256,7 +286,30 @@ public function packageThemeField(){
                     $("#totalprice").text(total_price+"KD");
                       
                   });
+              
+                // Get the checkbox element using its class name
+                var checkbox = document.querySelector(".pictype");
+            
+                // Check if the checkbox is checked
+                if (checkbox.checked) {
+                   var exprice = localStorage.getItem("exprice");
+                    var package_price = localStorage.getItem("package_price");
+                    var noofpieces_price = localStorage.getItem("noofpieces_price");
+                    var picture_type_price = 0.00;
+                        
+                    picture_type_price = $("input[name=pictures_type]:checked").attr("data-price");
+                    $("#pictures_type_price").val(picture_type_price);
+                    
+                    localStorage.setItem("picture_type_price",picture_type_price);
+                    var total_price =  (parseFloat(package_price) + parseFloat(exprice) + parseFloat(noofpieces_price) + parseFloat(picture_type_price)); 
+                    
+                    localStorage.setItem("total_price",total_price); 
+                    $("#booking_total_price").val(total_price);
+                    $("#totalprice").text(total_price+"KD");
+                } 
+              
             });
+
         </script>';
        echo  $html;
     }, 25, 1);
@@ -315,11 +368,12 @@ public function packageThemeField(){
                 $html .='</div>';
                 
         }
+        
         echo  $html;
      });
 
-     add_action('admin.success.themes', function(){
-        
+     //add_action('admin.success.themes', function(){
+        if(isset($_REQUEST['ajaxpage']) && $_REQUEST['ajaxpage']=="getThemeForSuccess" ){
         //dd($themes);
         if(isset($_REQUEST['category']) && $_REQUEST['category']!='all'){
                 // $taxonomy = Taxonomy::where('slug', $_REQUEST['category'])->firstOrFail();
@@ -368,14 +422,18 @@ public function packageThemeField(){
                                     <label for="slect'.$theme->id.'" class="d-inline-block">'.$theme->title.'</label>
                                 </label>
                             </div>';
-                       }
+                      }
                 $html .='</div> </div>';
                 
         }
-        echo  $html;
-     });
+       
+        //echo  $html;
+        }
+    // });
 
   }
+  
+
 public function updatepackagefield(){
      add_action('plugin.package.update', function($model){ 
          if(isset( $_REQUEST)){
@@ -408,7 +466,8 @@ public function updatepackagefield(){
 public function addBodyClass()
     {
         $this->addAction('theme.homepackages', function () {
-            $packages = Package::where('status','publish')->get();
+            $packages = Package::where('status','publish')->orderBy('odrs', 'asc')->get();
+            
             if($packages){
                 //var_dump($packages);
                 $html ='<div class="col-xl-9">
@@ -424,11 +483,9 @@ public function addBodyClass()
                                             '.$package->title.'
                                             </h4>
                                         </div>
-                                        <p class="fs17 px-3 py-3 text-center">
-                                        '.str_replace('<ul>',' <ul class="package-list ps-4">',$package->short_description).' 
-                                        </p>
-                                        <div class="pack_img">
-                                            <img src="'. upload_url($package->thumbnail) .'" alt="img" class="w-100">
+                                        
+                                        <div class="pack_img text-center" style="height:225px;">
+                                            <img src="'. upload_url($package->thumbnail) .'" alt="img" class="h-100">
                                         </div>
                                         <a href="'.$slug .'" class="fs18 mt-4 btn btn-dark radius0 w-100">
                                         '.trans('theme::app.book_now').'
@@ -523,8 +580,13 @@ public function addFrontCategories()
         });
     }
 public function addThemeExtraFields(){
-    $this->addAction('theme.reservation.exfields', function() {
-        $package = Package::find($_REQUEST['id']);
+    $this->addAction('theme.reservation.exfields', function($post) {
+        if(isset($_REQUEST['id'])){
+            $package = Package::find($_REQUEST['id']);
+        }else{
+            $package = Package::find($post->id);
+        }
+        
         //dd($package);
         $html = '';
         $html .= '<div class="col-xxl-8 pe-xl-5 pt-4">
@@ -598,10 +660,24 @@ public function addThemeExtraFields(){
        echo  $html;
     }, 25, 1);
 
-       add_filters('theme.cstudio.themes', function(){
+       add_filters('theme.cstudio.themes', function($post){
         
-        //dd($themes);
-        if(isset($_REQUEST['category']) && $_REQUEST['category']!='all'){
+        //dd($post->theme_category_ids);
+        if($post->theme_category_ids){
+            if($post->theme_category_ids!=''){
+                    $slugs=json_decode($post->theme_category_ids);
+                    $themes = DB::table('package_themes')
+                    ->join('term_taxonomies', 'term_taxonomies.term_id', '=', 'package_themes.id')
+                    ->join('taxonomies', 'taxonomies.id', '=', 'term_taxonomies.taxonomy_id')
+                    ->whereIn('taxonomies.slug', $slugs)
+                    ->select('package_themes.*')
+                    ->orderBy("package_themes.id", "desc")
+                    ->get();
+                }else{
+                    //$themes =Theme::all();
+                    $themes =Theme::orderBy("package_themes.id", "desc")->get();
+                }
+        }else if(isset($_REQUEST['category']) && $_REQUEST['category']!='all'){
                 // $taxonomy = Taxonomy::where('slug', $_REQUEST['category'])->firstOrFail();
                 // $postType = $taxonomy->getPostType('model');
                 // $themes = $postType::paginate();
@@ -637,27 +713,45 @@ public function addThemeExtraFields(){
             }
         }   
         $html ='';
-        if(!empty($themes)){
+         if(!empty($themes)){
+            $themecol=array();
+                $x=0;
+                $y=0;
+                foreach($themes as $th) {
+                    $themecol[$x][$y]=$th;
+                    if($y==3){
+                        $x++;
+                        $y=0;
+                    }else{
+                         $y++;
+                    }
+                   
+                }
                 $html .='
                 <div class="col-xl-12 pe-xxl-0">
                 <div class="theme_select_slider owl-carousel owl-theme">';
-                foreach($themes as $theme){
-                    $theme = Theme::find($theme->id);
-                    $html .='<div class="theme-select">
-                    <label class="container_radio themeCheck">
-                        <label for="slect'.$theme->id.'" class="d-inline-block">'.$theme->title.'</label>
-                        <input type="checkbox" class="theme_checkbox" id="slect'.$theme->id.'" value="'.$theme->id.'" name="theme_id[]">
-                        
-                        <a href="'.$theme->getThumbnail().'" class="themeCheck_img image-link border">
-                            <img src="'.$theme->getThumbnail().'" alt="img" class="w-100">
-                        </a>
-                    </label>
+                foreach($themecol as $rowthem){
+                    $html .='<div class="theme-select" style="border: 1px solid #666;">
+                                <div class="row">';
+                                foreach($rowthem as $th){
+                                    $theme = Theme::find($th->id);
+                                $html .='<div class="col-xs-6 col-sm-6 col-md-6 col-6" >
+                                    <label class="container_radio themeCheck" >
+                                        <label for="slect'.$theme->id.'" class="d-inline-block" style="font-size: 16px;"> '.$theme->title.' </label>
+                                        <input type="checkbox" class="theme_checkbox" id="slect'.$theme->id.'" value="'.$theme->id.'" name="theme_id[]" style="height: 18px;width: 18px;">
+                                        <a href="'.$theme->getThumbnail().'" class="themeCheck_img image-link border">
+                                            <img src="'.$theme->getThumbnail().'" alt="img" class="w-100" style="max-height:130px;">
+                                        </a>
+                                    </label>
+                                 </div>';
+                                }
+                            $html .='</div>
                 </div>';
                  }
                 $html .='</div> </div>';
-                $html .='<div class="col-xl-12  d-flex align-items-center justify-content-center">
-                <a class="owl-arrow MyPrevButton" style="padding: 15px 34px;">'.trans('theme::app.Previous').'</a>
-                <a class="owl-arrow MyNextButton" style="padding: 15px 34px;">'.trans('theme::app.Next').'</a>
+                $html .='<div class="col-xl-12  d-flex align-items-center justify-content-center p-4" style="margin-top: 20px;">
+                <a class="owl-arrow MyPrevButton" style="padding: 8px 25px;min-width: 100px;">'.trans('theme::app.Previous').'</a>
+                <a class="owl-arrow MyNextButton" style="padding: 8px 25px;min-width: 100px;">'.trans('theme::app.Next').'</a>
             </div>';
         }
         return $html;
@@ -769,13 +863,11 @@ public function addThemeExtraFields(){
     add_action('theme.footer', function() {
         $html = '<script>
             $(document).ready(function(){
-                
                 $("body").on("click", ".xprice", function(e) {
                     var sid = $(this).val();
                     var id = $("#id").val();
                     var date = $("#booking_date").val();
                     var _token = $("input[name=_token]").val();
-                    
                     if(this.checked){
                         $.ajax({
                             type: "POST",
@@ -790,15 +882,11 @@ public function addThemeExtraFields(){
                             },
                            
                         });
-
-            }
-                   
-                      
+                      }
                   });
-                  
             });
         </script>';
-       echo  $html;
+       //echo  $html;
     }, 35, 1);
   }
 

@@ -14,6 +14,10 @@ class Service extends Model
     protected $table = 'services';
     public $translatable = ['title','description'];
     protected $postType = 'services';
+    protected $casts = [
+        'days' => 'array',
+        'slots' => 'array',
+    ];
     protected $fillable = [
         'title',
         'thumbnail',
@@ -23,6 +27,7 @@ class Service extends Model
         'available_date',
         'days',
         'slots',
+        'message',
     ];
     public function packages()
     {

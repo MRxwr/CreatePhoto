@@ -10,6 +10,8 @@ use Sbhadra\Photography\Models\Service;
 use Sbhadra\Photography\Models\Booking;
 use Sbhadra\Photography\Models\Timeslot;
 use Sbhadra\Photography\Models\Setting;
+use Sbhadra\Packagethemes\Models\Theme;
+use Sbhadra\Hayaoption\Models\Otp;
 use Sbhadra\Photography\Http\Controllers\PaymentController;
 use Sbhadra\Calendar\Models\Calendar;
 use Illuminate\Support\Facades\DB;
@@ -149,6 +151,12 @@ class MainAction extends Action
                 $package = Package::find($_REQUEST['id']);
                    return $this->getPackageCstudioExService($package);
                }, 10, 1);
+               
+               if(isset($_REQUEST['ajaxpage']) && $_REQUEST['ajaxpage']=='getServicesByDate'){
+                   $package = Package::find($_REQUEST['id']);
+                   echo $this->getPackageAjaxCstudioExService($package);
+                   die();
+               }
 
  
             }
@@ -361,7 +369,7 @@ static function getPackageCstudioTimeslots($package){
                     $days = array(0=>'Sun',1=>'Mon',2=>'Tue',3=>'Wed',4=>'Thu',5=>'Fri',6=>'Sat');
                     $d = date('D', strtotime($_REQUEST['date']));
                     $key = array_search ($d, $days);
-                    $sd = json_decode($service->days);
+                    $sd =$service->days;
                     if(in_array($key,$sd)){
                     $html .='<div class="col-xxl-6 mb-xl-5 mb-3">'; 
                     $html .='<label class="container_radio d-flex align-items-center">
@@ -422,9 +430,9 @@ static function getPackageCstudioTimeslots($package){
         if($package->services){                     
             $html .='<div class="col-sm-12 pe-xl-5 pt-4">';
             $html .='<div class="package-head bg-light radius15 mh53 py-1 px-3 mb-4 d-inline-flex align-items-center">';
-            $html .='<h4 class="fs23">'.  trans('theme::app.extra_charges').':</h4>';
+            $html .='<h4 class="fs20">'.  trans('theme::app.extra_charges').':</h4>';
             $html .='</div></div>';
-            $html .='<div class="col-xxl-9">';
+            $html .='<div class="col-xxl-10">';
             $html .='<div class="row px-xl-2">';
                                       
              foreach($package->services as $service){
@@ -432,34 +440,48 @@ static function getPackageCstudioTimeslots($package){
                     $days = array(0=>'Sun',1=>'Mon',2=>'Tue',3=>'Wed',4=>'Thu',5=>'Fri',6=>'Sat');
                     $d = date('D', strtotime($_REQUEST['date']));
                     $key = array_search ($d, $days);
-                    $sd = json_decode($service->days);
+                   // $sd = json_decode($service->days);
+                     $sd = $service->days;
                     if(in_array($key,$sd)){
-                    $html .='<div class="col-xxl-6 mb-xl-5 mb-3">'; 
-                    $html .='<label class="container_radio d-flex align-items-center">
-                    '.$service->title.'
-                        <input type="checkbox" class="xprice" data-exprice="'.$service->price.'" value="'.$service->id.'" name="service_item[]">
-                        <span class="checkmark"></span>
-                            <div class="bg-light text-dark radius15 mh53 py-1 px-3 ms-2 d-inline-flex align-items-center">
-                                <h4 class="fs23">
-                                '.$service->price.' KD
-                                </h4>
-                            </div>
-                    </label>';
+                    $html .='<div class="col-xxl-6 mb-xl-5 mb-3">';
+                    $html .='<div class="row">';
+                        $html .='<div class="col-sm-9 col-9">';
+                            $html .='<label class="container_radio d-flex align-items-center">
+                            '.$service->title.'<span id="pop'.$service->id.'"></span>
+                                <input type="checkbox" class="xprice" data-message="'.$service->message.'" data-exprice="'.$service->price.'" value="'.$service->id.'" name="service_item[]">
+                                <span class="checkmark"></span>
+                                    
+                            </label>';
+                        $html .='</div>';
+                        $html .='<div class="col-sm-3 col-3">';
+                         $html .='<div class="bg-light text-dark radius15 mh53 py-1 px-3 ms-2 d-inline-flex align-items-center">
+                                        <h4 class="fs23">
+                                        '.$service->price.'KD
+                                        </h4>
+                                    </div>';
+                        $html .='</div>';
+                    $html .='</div>';
                     $html .='</div>';
                     }
-                    
                 }else{
                     $html .='<div class="col-xxl-6 mb-xl-5 mb-3">'; 
+                    $html .='<div class="row">';
+                        $html .='<div class="col-sm-9 col-9">';
                     $html .='<label class="container_radio d-flex align-items-center">
-                    '.$service->title.'
-                        <input type="checkbox" class="xprice" data-exprice="'.$service->price.'" value="'.$service->id.'" name="service_item[]">
+                    '.$service->title.'<span id="pop'.$service->id.'"></span>
+                        <input type="checkbox" class="xprice" data-message="'.$service->message.'" data-exprice="'.$service->price.'" value="'.$service->id.'" name="service_item[]">
                         <span class="checkmark"></span>
-                            <div class="bg-light text-dark radius15 mh53 py-1 px-3 ms-2 d-inline-flex align-items-center">
-                                <h4 class="fs23">
-                                '.$service->price.' KD
-                                </h4>
-                            </div>
+                           
                     </label>';
+                    $html .='</div>';
+                        $html .='<div class="col-sm-3 col-3 text-left">';
+                         $html .='<div class="bg-light text-dark radius15 mh53 py-1 px-3 ms-2 d-inline-flex align-items-center">
+                                        <h4 class="fs23">
+                                        '.$service->price.'KD
+                                        </h4>
+                                    </div>';
+                        $html .='</div>';
+                    $html .='</div>';
                     $html .='</div>';
                 }
              }
@@ -468,7 +490,122 @@ static function getPackageCstudioTimeslots($package){
         }
         return $html;
     }
-
+     static function getPackageAjaxCstudioExService($package){
+        $html ='';
+        if($package->services){                     
+            $html .='<div class="col-sm-12 pe-xl-5 pt-4">';
+            $html .='<div class="package-head bg-light radius15 mh53 py-1 px-3 mb-4 d-inline-flex align-items-center">';
+            $html .='<h4 class="fs20">'.  trans('theme::app.extra_charges').':</h4>';
+            $html .='</div></div>';
+            $html .='<div class="col-xxl-10">';
+            $html .='<div class="row px-xl-2">';
+                                      
+             foreach($package->services as $service){
+                 if($service->days!= NULL){
+                    $days = array(0=>'Sun',1=>'Mon',2=>'Tue',3=>'Wed',4=>'Thu',5=>'Fri',6=>'Sat');
+                    $d = date('D', strtotime($_REQUEST['date']));
+                    $key = array_search ($d, $days);
+                   // $sd = json_decode($service->days);
+                     $sd = $service->days;
+                   
+                    if(in_array($key,$sd)){
+                         if(isset($_REQUEST['slot']) && $service->slots!= NULL ){
+                        
+                            if(in_array($_REQUEST['slot'],$service->slots)){
+                                    $html .='<div class="col-xxl-6 mb-xl-5 mb-3">';
+                                    $html .='<div class="row">';
+                                        $html .='<div class="col-sm-9 col-9">';
+                                            $html .='<label class="container_radio d-flex align-items-center">
+                                            '.$service->title.'<span id="pop'.$service->id.'"></span>
+                                                <input type="checkbox" class="xprice" data-message="'.$service->message.'" data-exprice="'.$service->price.'" value="'.$service->id.'" name="service_item[]">
+                                                <span class="checkmark"></span>
+                                                    
+                                            </label>';
+                                        $html .='</div>';
+                                        $html .='<div class="col-sm-3 col-3">';
+                                         $html .='<div class="bg-light text-dark radius15 mh53 py-1 px-3 ms-2 d-inline-flex align-items-center">
+                                                        <h4 class="fs23">
+                                                        '.$service->price.'KD
+                                                        </h4>
+                                                    </div>';
+                                        $html .='</div>';
+                                    $html .='</div>';
+                                    $html .='</div>';
+                            }
+                            
+                        }else{
+                        $html .='<div class="col-xxl-6 mb-xl-5 mb-3">';
+                        $html .='<div class="row">';
+                            $html .='<div class="col-sm-9 col-9">';
+                                $html .='<label class="container_radio d-flex align-items-center">
+                                '.$service->title.'<span id="pop'.$service->id.'"></span>
+                                    <input type="checkbox" class="xprice" data-message="'.$service->message.'" data-exprice="'.$service->price.'" value="'.$service->id.'" name="service_item[]">
+                                    <span class="checkmark"></span>
+                                        
+                                </label>';
+                            $html .='</div>';
+                            $html .='<div class="col-sm-3 col-3">';
+                             $html .='<div class="bg-light text-dark radius15 mh53 py-1 px-3 ms-2 d-inline-flex align-items-center">
+                                            <h4 class="fs23">
+                                            '.$service->price.'KD
+                                            </h4>
+                                        </div>';
+                            $html .='</div>';
+                        $html .='</div>';
+                        $html .='</div>';
+                        }
+                        
+                    }
+                }else if(isset($_REQUEST['slot']) && $service->slots!= NULL ){
+                            if(in_array($_REQUEST['slot'],$service->slots)){
+                                    $html .='<div class="col-xxl-6 mb-xl-5 mb-3">';
+                                    $html .='<div class="row">';
+                                        $html .='<div class="col-sm-9 col-9">';
+                                            $html .='<label class="container_radio d-flex align-items-center">
+                                            '.$service->title.'<span id="pop'.$service->id.'"></span>
+                                                <input type="checkbox" class="xprice" data-message="'.$service->message.'" data-exprice="'.$service->price.'" value="'.$service->id.'" name="service_item[]">
+                                                <span class="checkmark"></span>
+                                                    
+                                            </label>';
+                                        $html .='</div>';
+                                        $html .='<div class="col-sm-3 col-3">';
+                                         $html .='<div class="bg-light text-dark radius15 mh53 py-1 px-3 ms-2 d-inline-flex align-items-center">
+                                                        <h4 class="fs23">
+                                                        '.$service->price.'KD
+                                                        </h4>
+                                                    </div>';
+                                        $html .='</div>';
+                                    $html .='</div>';
+                                    $html .='</div>';
+                            }
+                            
+                        }else{
+                    $html .='<div class="col-xxl-6 mb-xl-5 mb-3">'; 
+                    $html .='<div class="row">';
+                        $html .='<div class="col-sm-9 col-9">';
+                    $html .='<label class="container_radio d-flex align-items-center">
+                    '.$service->title.'<span id="pop'.$service->id.'"></span>
+                        <input type="checkbox" class="xprice" data-message="'.$service->message.'" data-exprice="'.$service->price.'" value="'.$service->id.'" name="service_item[]">
+                        <span class="checkmark"></span>
+                           
+                    </label>';
+                    $html .='</div>';
+                        $html .='<div class="col-sm-3 col-3 text-left">';
+                         $html .='<div class="bg-light text-dark radius15 mh53 py-1 px-3 ms-2 d-inline-flex align-items-center">
+                                        <h4 class="fs23">
+                                        '.$service->price.'KD
+                                        </h4>
+                                    </div>';
+                        $html .='</div>';
+                    $html .='</div>';
+                    $html .='</div>';
+                }
+             }
+            $html .='</div>';
+            $html .='</div>';
+        }
+        return $html;
+    }
     public function addDoPaymentsAction(){
         $this->addAction('theme.payment.index', function () {
              app('Sbhadra\Photography\Http\Controllers\PaymentController')->doPayment();
@@ -537,7 +674,7 @@ static function getPackageCstudioTimeslots($package){
         $this->addAction('backend.dashboard.view', function () {
             $html ='<div class="row">';
              $incomplete_booking =Booking::where('status','No')->count();
-                $html .='<div class="col-md-3">
+            $html .='<div class="col-md-3">
                         <div class="card  border-0 bg-gray-2">
                             <div class="card-body">
                                 <div class="d-flex flex-wrap align-items-center">
@@ -597,8 +734,18 @@ static function getPackageCstudioTimeslots($package){
             
             $html .='</div>';
             
-            $today = date('d-m-Y');
-            $todays_booking =Booking::whereIn('status',['Yes','yes'])->where("booking_date", "=", $today)->orderBy('timeslot_id', 'asc')->get();
+             $today = date('d-m-Y');
+             if(isset($_GET['from']) && isset($_GET['to'])){
+                 $from = $_GET['from'];
+                 $to  = $_GET['to'];
+                 $dates = $this->getDatesFromRange($_GET['from'],$_GET['to']);
+                 $todays_booking =Booking::whereIn('status',['Yes','yes'])->whereIn('booking_date',$dates)->orderBy('timeslot_id', 'asc')->get();
+             }else{
+                  $todays_booking =Booking::whereIn('status',['Yes','yes'])->where("booking_date", "=", $today)->orderBy('timeslot_id', 'asc')->get();
+                  $from = date('Y-m-d');
+                  $to  = date('Y-m-d');
+             }
+            
             //->where("booking_date", ">=",)
             //dd($todays_booking);
             if(!empty($todays_booking)){
@@ -606,7 +753,26 @@ static function getPackageCstudioTimeslots($package){
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>Taday\'s Booking</h5>
+                                <h5 class="float-left col-md-4">Taday\'s Booking</h5>
+                                 <form class="float-right col-md-8 ">
+                                    <div class="row">
+                                      <div class="col-md-5">
+                                          <div class="form-group"><label class="col-form-label" for="title">From</label>
+                                            <input type="date" class="form-control " data-date-format="DD MM YYYY"  name="from" id="from" value="'.$from.'">
+                                         </div>
+                                      </div>
+                                      <div class="col-md-5">
+                                        <div class="form-group"><label class="col-form-label" for="title">To  </label>
+                                            <input type="date" class="form-control " data-date-format="DD MM YYYY"  name="to" id="to" value="'.$to.'">
+                                        </div>
+                                      </div>
+                                      <div class="col-md-2">
+                                      <label class="col-form-label" for="title">-</label>
+                                      <input class="btn btn-primary" type="submit" name="submit" id="submit" value="Submit">
+                                      </div>
+                                     
+                                    </div>
+                                 </form>
                             </div>
             
                             <div class="card-body">
@@ -625,18 +791,14 @@ static function getPackageCstudioTimeslots($package){
                                             <th data-field="created" data-width="10%" data-align="center">Action</th>
                                         </tr>
                                     </thead>';
-                                    $dth=array(231);
                                     foreach($todays_booking as $booking){
                                         $view_details = route('admin.bookings.view', [$booking->id]);
                                         $theme = '';
-                                         if($booking->theme_id>0 && $booking->theme_id!=NULL && !in_array($booking->theme_id, $dth)){
-                                             //$theme = Theme::find($booking->theme_id);
-                                            $theme =  '<img src="'. $booking->theme->getThumbnail() .'"  style="width:100px" />';
-                                         //$theme = $booking->theme_id;
-                                         }else{
-                                           $theme = 'no'  ;
-                                         }
-                                        
+                                        if($booking->theme_id>0 ){
+                                            if(Theme::find($booking->theme_id)){
+                                              $theme =  '<img src="'. $booking->theme->getThumbnail() .'"  style="width:100px" />';
+                                            }
+                                        }
                                         $html .=' <tr> 
                                                     <td data-formatter="index_formatter" data-width="2%">#</td>
                                                     <td data-field="name" data-width="10%">'.$theme.'</td>
@@ -645,7 +807,7 @@ static function getPackageCstudioTimeslots($package){
                                                     <td data-field="name" data-width="10%">'.$booking->customer_name.'</td>
                                                     <td data-field="name" data-width="10%">'.$booking->mobile_number.'</td>
                                                     <td data-field="name" data-width="10%">'.$booking->booking_date.'</td>
-                                                    <td data-field="name" data-width="10%">'.($booking->timeslot?$booking->timeslot->starttime.' '.$booking->timeslot->endtime:'').'</td>
+                                                    <td data-field="name" data-width="10%">'.@$booking->timeslot->starttime.' '.@$booking->timeslot->endtime.'</td>
                                                     <td data-field="name" data-width="10%">'.$booking->status.'</td>
                                                     <td data-field="created" data-align="center"><a href="'.$view_details.'" class="dropdown-item"> <i class=" fa fa-eye"></i> View</a></td>
                                                 </tr>';
@@ -665,24 +827,45 @@ static function getPackageCstudioTimeslots($package){
     
     public function getBookingDetailsAjax(){
         if(isset($_REQUEST['ajaxpage']) && $_REQUEST['ajaxpage']=='getBookingDetailsAjax'){
-           $searchquery = $_REQUEST['searchquery'];
-           $bookings = Booking::where('transaction_id',$searchquery)->get();
-           if(!$bookings->isEmpty()){
-            echo $this->bookingViewRander($bookings);
-           }else{
-               $bookings = Booking::where('title',$searchquery)->get();
-               if(!$bookings->isEmpty()){
-                   echo $this->bookingViewRander($bookings);
-                }else{
-                    $bookings = Booking::where('mobile_number',$searchquery)->get();
-                    if(!$bookings->isEmpty()){
+            if(isset($_REQUEST['otp'])){
+               $mobile = $_REQUEST['mobile'];
+               $otp = Otp::where('mobile',$mobile)->where('otp',$_REQUEST['otp'])->first(); 
+               if($otp){
+                   $bookings = Booking::where('mobile_number',$mobile)->get();
+                      if(!$bookings->isEmpty()){
                         echo $this->bookingViewRander($bookings);
-                    }else{
-                        echo 'No Search Data Found!!!';
-                    }
-                }
+                      }else{
+                          echo 'No Search Data Found!!!'; 
+                      }
+                      $otp->otp="";
+                      $otp->save();
+                      
+               }else{
+                  echo 'OTP Invaied !! Please enter valied OTP'; 
+               }
+               
+            }else{
+                echo 'Please enter valied OTP!';
+            }
+           
 
-           }
+        //   if(!$bookings->isEmpty()){
+        //     echo $this->bookingViewRander($bookings);
+        //   }else{
+        //       $bookings = Booking::where('title',$searchquery)->get();
+        //       if(!$bookings->isEmpty()){
+        //           echo $this->bookingViewRander($bookings);
+        //         }else{
+        //             $bookings = Booking::where('mobile_number',$searchquery)->get();
+        //             if(!$bookings->isEmpty()){
+        //                 echo $this->bookingViewRander($bookings);
+        //             }else{
+        //                 echo 'No Search Data Found!!!';
+        //             }
+        //         }
+
+        //   }
+           
         exit;
         }
     }
@@ -869,7 +1052,7 @@ foreach($bookings as $key=>$booking){
                                 </div>
                                 <div class="col-sm-8 col-6">
                                     <p class="fs20">
-                                    '.$booking->timeslot->title.' ['.$booking->timeslot->starttime.' to '.$booking->timeslot->endtime.']
+                                    '.@$booking->timeslot->title.' ['.@$booking->timeslot->starttime.' to '.@$booking->timeslot->endtime.']
                                     </p>
                                 </div>
                             </div>
@@ -1096,5 +1279,37 @@ foreach($bookings as $key=>$booking){
              exit;
            }   
         }
+        
+        public function getConfig($slug=''){
+           $settings = Setting::all()->toArray();
+            $config=array();
+            foreach($settings as $setting){
+                $config[$setting["field_key"]] = $setting["field_value"];
+            } 
+            dd($config);
+        }
+        
+           static function getDatesFromRange($start, $end, $format = 'd-m-Y') { 
+          
+      // Declare an empty array 
+      $array = array(); 
+        
+      // Variable that store the date interval 
+      // of period 1 day 
+      $interval = new \DateInterval('P1D'); 
+    
+      $realEnd = new \DateTime($end); 
+      $realEnd->add($interval); 
+    
+      $period = new \DatePeriod(new \DateTime($start), $interval, $realEnd); 
+    
+      // Use loop to store date into array 
+      foreach($period as $date) {                  
+          $array[] = $date->format($format);  
+      } 
+    
+      // Return the array elements 
+      return $array; 
+    } 
 
 }

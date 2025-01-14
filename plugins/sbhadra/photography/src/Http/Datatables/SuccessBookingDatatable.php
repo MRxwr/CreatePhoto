@@ -32,11 +32,17 @@ class SuccessBookingDatatable extends PostTypeDataTable
                     $html='';
                     if($row->theme_id>0 && $row->theme_id!=NULL ){
                         $them = Theme::find($row->theme_id);
-                        $html .= '<img src="'. $them->getThumbnail() .'" class="w-50" style="width:50px" />';
+                        if($them){
+                             $html .= '<img src="'. $them->getThumbnail() .'" class="w-50" style="width:50px" />';
+                        }
+                       
                     }
                     if($row->theme_2id>0 && $row->theme_2id!=NULL){
                         $theme = Theme::find($row->theme_2id);
-                        $html .= '<img src="'. $theme->getThumbnail() .'" class="w-50" style="width:50px" />';
+                         if($theme){
+                              $html .= '<img src="'. $theme->getThumbnail() .'" class="w-50" style="width:50px" />';
+                        }
+                      
                     }
                     $html .= '<button type="button" id="'.$row->id.'" class="btn btn-info change_theme" data-toggle="modal" data-target="#change_theme_modal">Add/Change Theme</button>';
                     return $html;
@@ -106,6 +112,12 @@ class SuccessBookingDatatable extends PostTypeDataTable
                 'label' => trans('sbph::app.status'),
                 'formatter' => function ($value, $row, $index) {
                     return $row->status;
+                }
+            ],
+            'payment_type' => [
+                'label' => 'Payment type',
+                'formatter' => function ($value, $row, $index) {
+                    return $row->payment_type;
                 }
             ],
            'coupon_code' => [

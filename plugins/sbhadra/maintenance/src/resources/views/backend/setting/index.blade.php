@@ -45,6 +45,11 @@
                     <input id="timepicker2" name="mt_instagram_url" type="text" class="form-control input-small" value="{{@$settings['mt_instagram_url']}}">
                    
                 </div>
+                
+                <div class="form-group row">
+                    <label class="col-form-label" for="release">IPs For Test</label>
+                    <input id="timepicker2" name="mt_ips" type="text" class="form-control input-small" value="{{@$settings['mt_ips']}}">
+                </div>
 
                 <div class="mt-3"><button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save </button></div>
                 </form>

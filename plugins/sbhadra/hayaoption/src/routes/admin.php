@@ -12,3 +12,4 @@
 */
 
 
+Route::get('get-booking-themes','AjaxController@getThemesForChanges')->name('admin.booking-themes-change');

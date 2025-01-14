@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Validator;
 use Juzaweb\Http\Controllers\BackendController;
 use Sbhadra\Survey\Http\Datatables\SurveyDatatable;
 use Sbhadra\Survey\Models\Survey;
+use Sbhadra\Survey\Models\Question;
+use Illuminate\Http\Request;
 
 class SurveyController extends BackendController
 {
@@ -48,5 +50,35 @@ class SurveyController extends BackendController
             'model' => $model,
             'title' => trans('sbsu::app.survey')
         ]);;
+    }
+   public function getReports(Request $request){
+        $from = date('Y-m-d');
+        $to = date('Y-m-d');
+        if ($request->input('submit')) {
+            // Validate that 'from' and 'to' dates are provided
+            $request->validate([
+                'from' => 'required|date',
+                'to' => 'required|date|after_or_equal:from'
+            ]);
+        
+            $from = $request->input('from');
+            $to = $request->input('to');
+            
+            // Fetch surveys between 'from' and 'to' dates
+            $models = Survey::whereDate('created_at', '>=', $request->input('from'))
+                            ->whereDate('created_at', '<=', $request->input('to'))
+                            ->get();
+        } else {
+            $models = Survey::get();
+        }
+        //$questions =  Question::where('id',$id)->get();
+        $questions =  Question::get();
+        return view('sbsu::backend.survey.report', [
+            'models' => $models,
+            'from' =>$from,
+            'to' =>$to,
+            'questions'=>$questions,
+            'title' => 'Survey reports'
+        ]);
     }
 }

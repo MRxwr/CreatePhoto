@@ -117,6 +117,8 @@ return [
     'Your_message_here'=>'Your message here.....',
     'To_serve_you_better'=>'To serve you better, please note that the message is only for inquiries and not for making reservations. Thank you.',
     'Included_In_This_Package'=>'Included In This Package',
-    'coupon_referral'=>'Coupon / Referral Code',
+    'coupon_referral'=>'Gift Code',
+    'need_delivery' =>'Need delivery',
+    'address' =>'Address',
 
 ];

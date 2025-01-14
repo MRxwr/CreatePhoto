@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Juzaweb\Http\Datatables\PostTypeDataTable;
 use Sbhadra\Photography\Models\Booking;
+use Carbon\Carbon;
 
 class BookingDatatable extends PostTypeDataTable
 {
@@ -160,8 +161,16 @@ class BookingDatatable extends PostTypeDataTable
                 $q->orWhere('customer_name', 'like', '%'. $keyword .'%');
             });
         }
+        //$offset =Arr::get($data, 'offset');
+        //$limit = Arr::get($data, 'limit'); 
+        // Get the current date and the date 6 months ago
+        //$sixMonthsAgo = Carbon::now()->subMonths(6)->startOfDay();
+        // Filter records from the last 6 months based on booking_date
+        //$query->where('booking_date', '>=', $sixMonthsAgo);
+        //$query->offset($offset);
+        //$query->limit($limit);
 
-        return $query;
+        return  $query;
     }
 
     public function bulkActions($action, $ids)

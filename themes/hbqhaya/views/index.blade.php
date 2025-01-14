@@ -8,7 +8,7 @@
         <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-6 px-0">
-                        <img src="{{asset('/')}}jw-styles/themes/hbqhaya/assets/img/hero_img.svg" alt="img" class="w-100">
+                        <img src="{{asset('/')}}jw-styles/themes/hbqhaya/assets/img/hero_banner.jpg" alt="img" class="w-100">
                     </div>
                     <div class="col-lg-6 px-0">
                       @do_action('theme.Haya.slider')

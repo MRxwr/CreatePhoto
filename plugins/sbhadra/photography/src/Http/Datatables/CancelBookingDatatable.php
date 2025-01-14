@@ -24,16 +24,16 @@ class CancelBookingDatatable extends PostTypeDataTable
     public function columns()
     {
         return [
-            'theme' => [
-                'label' => trans('sbpa::app.theme'),
-                'width' => '5%',
-                'formatter' => function ($value, $row, $index) {
-                    if($row->theme_id>0){
-                        return '<img src="'. $row->theme->getThumbnail() .'" class="w-100" style="width:100px" />';
-                    }
+            // 'theme' => [
+            //     'label' => trans('sbpa::app.theme'),
+            //     'width' => '5%',
+            //     'formatter' => function ($value, $row, $index) {
+            //         if($row->theme_id>0){
+            //             return '<img src="'. $row->theme->getThumbnail() .'" class="w-100" style="width:100px" />';
+            //         }
                     
-                }
-            ],
+            //     }
+            // ],
             'title' => [
                 'label' => trans('sbph::app.bookingid'),
                 'formatter' => function ($value, $row, $index) {
@@ -150,6 +150,8 @@ class CancelBookingDatatable extends PostTypeDataTable
     {
         $query = Booking::query();
         $query ->where('status','cancel');
+        $query ->limit(5);
+        /*
         if ($keyword = Arr::get($data, 'keyword')) {
             $query->where(function (Builder $q) use ($keyword) {
                 $q->where('title', 'like', '%'. $keyword .'%');
@@ -158,7 +160,7 @@ class CancelBookingDatatable extends PostTypeDataTable
                 $q->orWhere('customer_name', 'like', '%'. $keyword .'%');
             });
         }
-
+        */ 
         return $query;
     }
 

@@ -56,11 +56,40 @@ class PaymentController extends FrontendController
         //$payment_data['pay_amount'] =$total;
        // $payment_data['pay_amount'] =35.500;
 
+    //   if(isset($config['payment_type']) AND $config['payment_type']==1){
+    //       $pay_amount = $config['pay_amount'];
+    //       $payment_data['pay_amount'] =$pay_amount;
+    //     }else{
+    //       $payment_data['pay_amount'] =$total;  
+    //     }
+        
+        
        if(isset($config['payment_type']) AND $config['payment_type']==1){
-          $pay_amount = $config['pay_amount'];
-          $payment_data['pay_amount'] =$pay_amount;
+           if($total<=0){
+              $payment_data['pay_amount'] =$total;  
+              $initial_payment=$total;
+              $rest_of_payment =0.000;
+              $payment_status ='full'; 
+           }else{
+              $pay_amount = $config['pay_amount'];
+              if($total>$pay_amount){
+                  $payment_data['pay_amount'] = $pay_amount;
+                  $initial_payment=$pay_amount;
+                  $rest_of_payment = $total - $config['pay_amount'];
+                  $payment_status ='partial';
+              }else{
+                   $payment_data['pay_amount'] = $total;  
+                   $initial_payment=$total;
+                   $rest_of_payment =0.000;
+                   $payment_status ='full';
+              }
+           }
+          
         }else{
-           $payment_data['pay_amount'] =$total;  
+           $payment_data['pay_amount'] = $total;  
+           $initial_payment=$total;
+           $rest_of_payment =0.000;
+           $payment_status ='full';
         }
         
         $booking = new Booking;
@@ -74,6 +103,10 @@ class PaymentController extends FrontendController
         $booking->mobile_number = $request['mobile_number'];
         $booking->baby_name = $request['baby_name'];
         $booking->baby_age = $request['baby_age'];
+        $booking->address = $request['address'];
+        $booking->initial_payment = $initial_payment;
+        $booking->rest_of_payment =$rest_of_payment;
+        $booking->payment_status = $payment_status;
         $booking->instructions = $request['instructions'];
         $booking->status = 'No';
         if($booking->save()){
